@@ -26,7 +26,8 @@ class UpdatePharmacyRequest extends FormRequest
         return [
             'email' => 'required|email',
             'password' => 'required',
-            'name' => 'required'
+            'name' => 'required',
+            'license'=>'required'
         ];
     }
 
@@ -37,7 +38,8 @@ class UpdatePharmacyRequest extends FormRequest
             'email.required' => 'يجب إدخال البريد الالكتروني ',
             'email.email' => 'صيغة البريد الالكتروني غير صحيحة ',
             'password.required' => 'يجب إدخال كلمة المرور',
-            'name.required' => 'يجب إدخال اسم الصيدلية'
+            'name.required' => 'يجب إدخال اسم الصيدلية',
+            'license.required'=>'عليل إدخال الترخيص'
 
             ];
     }

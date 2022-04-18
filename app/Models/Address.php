@@ -28,4 +28,9 @@ class Address extends Model
         
         'remember_token',
     ];
+
+
+   
+
+    
 }
