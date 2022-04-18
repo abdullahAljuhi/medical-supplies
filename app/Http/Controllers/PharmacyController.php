@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pharmacy;
-use App\Http\Requests\StorePharmacyRequest;
-use App\Http\Requests\UpdatePharmacyRequest;
 use App\Models\Address;
+use App\Models\Pharmacy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\PharmacyRequest;
+use App\Http\Requests\StorePharmacyRequest;
+use App\Http\Requests\UpdatePharmacyRequest;
 
 class PharmacyController extends Controller
 {
@@ -39,7 +40,7 @@ class PharmacyController extends Controller
      * @param  \App\Http\Requests\StorePharmacyRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePharmacyRequest $request)
+    public function store(PharmacyRequest $request)
     {
 
         try {
@@ -120,9 +121,9 @@ class PharmacyController extends Controller
      * @param  \App\Models\Pharmacy  $pharmacy
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePharmacyRequest $request, Pharmacy $pharmacy)
+    public function update(PharmacyRequest $request, Pharmacy $pharmacy)
     {
-        $pharmacy->nam
+        
     }
 
     /**

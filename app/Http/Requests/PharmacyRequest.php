@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAddressRequest extends FormRequest
+class PharmacyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,7 +16,7 @@ class StoreAddressRequest extends FormRequest
         return false;
     }
 
-    /**
+     /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -25,7 +25,9 @@ class StoreAddressRequest extends FormRequest
     {
         return [
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
+            'name' => 'required',
+            'accept'=>'required',
         ];
     }
 
@@ -33,10 +35,11 @@ class StoreAddressRequest extends FormRequest
     {
         return [
 
-            'email.required' => 'يجب الدخال البريد الالكتروني ',
+            'email.required' => 'يجب إدخال البريد الالكتروني ',
             'email.email' => 'صيغة البريد الالكتروني غير صحيحة ',
-            'password.required' => 'يجب الدخال كلمة المرور'
-
+            'password.required' => 'يجب إدخال كلمة المرور',
+            'name.required' => 'يجب إدخال اسم الصيدلية',
+            'accept.required' => 'يجب ان توافق على الشروط '
             ];
     }
 }

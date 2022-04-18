@@ -53,7 +53,18 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        ],[
+        'name.required' => ' الاسم مطلوب',
+        'name.max' => ' الاسم كبير جدا',
+        'email.required' => 'البريد الإلكتروني مطلوب.',
+        'email.email' => 'ادخل عنوان بريد إلكتروني بشكل صحيح.',
+        'password.required' => 'كلمة المرور مطلوبة.',
+        'email.max'=>"حجم الايميل كبير جدا",
+        'password.max'=>"حجم كلمة السر كبير جدا",
+        'password.min'=>"حجم كلمة السر صغير جدا",
+        'password.confirmed'=>"خطأ في تاكيد كلمة السر"
+        ]
+    );
     }
 
     /**

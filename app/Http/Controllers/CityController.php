@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
-use Illuminate\Http\Request;
+use App\Http\Requests\CityRequest;
 
 class CityController extends Controller
 {
@@ -14,8 +14,9 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities = City::orderBy('id', 'desc')->get();
-        return view('city.index',['cities'=> $cities]);
+        $cities=City::all();
+        return view('city.index',['cities'=>$cities]);
+
     }
 
     /**
@@ -28,13 +29,8 @@ class CityController extends Controller
         return view('city.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+ 
+    public function store(CityRequest $request)
     {
         try {
             $city = new City();
@@ -47,12 +43,7 @@ class CityController extends Controller
     }
 
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\governorate  $governorate
-     * @return \Illuminate\Http\Response
-     */
+  
     public function edit($id)
     {
         try {
@@ -69,14 +60,8 @@ class CityController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\governorate  $governorate
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(CityRequest $request, $id)
     {
         try {
 
@@ -93,12 +78,6 @@ class CityController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\governorate  $governorate
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         try {

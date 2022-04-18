@@ -8,15 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Governorate extends Model
 {
     use HasFactory;
-       /**
+
+     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
         'name',
-        'email',
-        'password',
     ];
 
     /**
@@ -25,7 +24,7 @@ class Governorate extends Model
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        
         'remember_token',
     ];
 }

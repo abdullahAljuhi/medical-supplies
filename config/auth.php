@@ -40,10 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'pharmacy' => [
-            'driver' => 'session',
-            'provider' => 'pharmacies',
-        ],
+        // 'pharmacy' => [
+        //     'driver' => 'session',
+        //     'provider' => 'pharmacies',
+        // ],
     ],
 
     /*
@@ -68,10 +68,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        'pharmacies' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Pharmacy::class,
-        ],
+        // 'pharmacies' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\Pharmacy::class,
+        // ],
 
         // 'users' => [
         //     'driver' => 'database',

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUserRequest extends FormRequest
+class ContactRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,15 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required'
         ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'يجب إدخال بيانات التواصل'
+
+            ];
     }
 }

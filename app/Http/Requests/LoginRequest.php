@@ -33,12 +33,12 @@ class LoginRequest extends FormRequest
     {
         return [
             'email.required' => 'البريد الإلكتروني مطلوب.',
-            'email.email' => 'ادخل عنوان بريد إلكتروني صالح.',
-            'email.email' => ' عنوان البريد إلكتروني الذي ادخلته غير موجود.',
+            'email.email' => 'ادخل عنوان بريد إلكتروني بشكل صحيح.',
             'password.required' => 'كلمة المرور مطلوبة.',
             'email.max'=>"حجم الايميل كبير جدا",
             'password.max'=>"حجم كلمة السر كبير جدا",
             'password.min'=>"حجم كلمة السر صغير جدا",
-            'password.confirmed'=>"خطأ في كلمة السر"];
+            'password.confirmed'=>"خطأ في تاكيد كلمة السر"
+        ];
     }
 }

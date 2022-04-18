@@ -9,40 +9,27 @@ use PhpParser\Node\Expr\AssignOp\Concat;
 
 class ContactController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        $contacts = Contact::orderBy('id', 'desc')->get();
-        return view('contact.index',['cities'=> $contacts]);
+        $contacts = Contact::all();
+        return view('contact.index',['contacts'=> $contacts]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         return view('contact.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         try {
             $contact = new Contact();
-            $contact->name = $request->name;
+            $contact->facebook = $request->facebook;
             $contact->url = $request->url;
-            $contact->pharmacy_id=Auth::guard('pharmacy')->id();
+            $contact->pharmacy_id=Auth::user()->id();
             $contact->save();
 
             return redirect()->route('city.all')->with(['success' => 'تم  الاضافه بنجاح']);
@@ -52,12 +39,7 @@ class ContactController extends Controller
     }
 
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\governorate  $governorate
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         try {
@@ -74,13 +56,7 @@ class ContactController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\governorate  $governorate
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         try {
@@ -100,12 +76,7 @@ class ContactController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\governorate  $governorate
-     * @return \Illuminate\Http\Response
-     */
+   
     public function destroy($id)
     {
         try {

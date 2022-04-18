@@ -9,15 +9,14 @@ class Address extends Model
 {
     use HasFactory;
 
-       /**
+     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'streat',
+        'details',
     ];
 
     /**
@@ -26,8 +25,7 @@ class Address extends Model
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        
         'remember_token',
     ];
 }
-

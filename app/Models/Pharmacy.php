@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Pharmacy extends Model
 {
     use HasFactory;
-    /**
+
+    
+      /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -17,6 +19,7 @@ class Pharmacy extends Model
         'name',
         'email',
         'password',
+        'license',
     ];
 
     /**

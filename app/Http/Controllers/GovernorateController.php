@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GovernorateRequest;
 use App\Models\Governorate;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class GovernorateController extends Controller
      */
     public function index()
     {
-        $governorates = Governorate::orderBy('id', 'desc')->get();
+        $governorates = Governorate::all();
         return view('pharmacy.governorate.index')
             ->with('governorates', $governorates);
     }
@@ -26,7 +27,7 @@ class GovernorateController extends Controller
      */
     public function create()
     {
-        return view('pharmacy.governorate.create');
+        return view('governorate.create');
     }
 
     /**
@@ -35,7 +36,7 @@ class GovernorateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GovernorateRequest $request)
     {
         try {
             $governorate = new Governorate();
@@ -77,7 +78,7 @@ class GovernorateController extends Controller
      * @param  \App\Models\governorate  $governorate
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(GovernorateRequest $request, $id)
     {
         try {
 

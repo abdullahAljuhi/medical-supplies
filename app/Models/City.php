@@ -15,8 +15,6 @@ class City extends Model
      */
     protected $fillable = [
         'name',
-        'email',
-        'password',
     ];
 
     /**
@@ -25,7 +23,7 @@ class City extends Model
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        
         'remember_token',
     ];
 }
