@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCityRequest extends FormRequest
+class GovernorateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -33,7 +33,7 @@ class UpdateCityRequest extends FormRequest
         return [
 
             
-            'name.required' => 'يجب إدخال اسم المدينة'
+            'name.required' => 'يجب إدخال اسم المحافظة'
 
             ];
     }

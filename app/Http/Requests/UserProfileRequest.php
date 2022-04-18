@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAddressRequest extends FormRequest
+class UserProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,7 @@ class StoreAddressRequest extends FormRequest
     public function rules()
     {
         return [
-            'streat' => 'required'
+            //
         ];
-    }
-
-    public function messages()
-    {
-        return [
-
-            
-            'streat.required' => 'يجب إدخال اسم الشارع'
-
-            ];
     }
 }

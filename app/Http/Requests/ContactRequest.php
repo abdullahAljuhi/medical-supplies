@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateGovernorateRequest extends FormRequest
+class ContactRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,9 +31,7 @@ class UpdateGovernorateRequest extends FormRequest
     public function messages()
     {
         return [
-
-            
-            'name.required' => 'يجب إدخال اسم المحافظة'
+            'name.required' => 'يجب إدخال بيانات التواصل'
 
             ];
     }

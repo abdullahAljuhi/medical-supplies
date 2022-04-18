@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
-use App\Http\Requests\StoreCityRequest;
-use App\Http\Requests\UpdateCityRequest;
+use App\Http\Requests\CityRequest;
 
 class CityController extends Controller
 {
@@ -15,7 +14,9 @@ class CityController extends Controller
      */
     public function index()
     {
-        //
+        $cities=City::all();
+        return view('city.index',['cities'=>$cities]);
+
     }
 
     /**
@@ -25,62 +26,71 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        return view('city.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreCityRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreCityRequest $request)
+ 
+    public function store(CityRequest $request)
     {
-        //
+        try {
+            $city = new City();
+            $city->name = $request->name;
+            $city->save();
+            return redirect()->route('city.all')->with(['success' => 'تم  الاضافه بنجاح']);
+        } catch (\Exception $ex) {
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\City  $city
-     * @return \Illuminate\Http\Response
-     */
-    public function show(City $city)
+
+  
+    public function edit($id)
     {
-        //
+        try {
+
+            $city = City::find($id);
+
+            // check if governorate is exist
+            if (!$city)
+                return redirect()->back()->with(['error' => 'هذه المدينه غير موجوده']);
+
+            return view('City.edit', ['City' => $city]);
+        } catch (\Exception $ex) {
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\City  $city
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(City $city)
+
+    public function update(CityRequest $request, $id)
     {
-        //
+        try {
+
+            $city = City::find($id);
+
+            // check if governorate is exist
+            if (!$city)
+                return redirect()->back()->with(['error' => 'هذه المدينه غير موجوده']);
+
+            $city->name = $request->name;
+            $city->save();
+        } catch (\Exception $ex) {
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateCityRequest  $request
-     * @param  \App\Models\City  $city
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateCityRequest $request, City $city)
+    public function destroy($id)
     {
-        //
-    }
+        try {
+            $city = City::find($id);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\City  $city
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(City $city)
-    {
-        //
+            if (!$city)
+                return redirect()->back()->with(['error' => 'هذه المدينه غير موجوده']);
+
+            $city->delete();
+
+            return redirect()->route('governorate.all')->with(['success' => 'تم  الحذف بنجاح']);
+        } catch (\Exception $ex) {
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
     }
 }

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Prodect;
-use App\Http\Requests\StoreProdectRequest;
-use App\Http\Requests\UpdateProdectRequest;
+use App\Models\User;
+use Illuminate\Http\Request;
 
-class ProdectController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,8 @@ class ProdectController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::latest()->where('id', '<>', auth()->id())->get(); //use pagination here
+        return view('dashboard.users.index', compact('users'));
     }
 
     /**
@@ -25,16 +25,16 @@ class ProdectController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreProdectRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProdectRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class ProdectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Prodect  $prodect
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Prodect $prodect)
+    public function show($id)
     {
         //
     }
@@ -53,10 +53,10 @@ class ProdectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Prodect  $prodect
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Prodect $prodect)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +64,11 @@ class ProdectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateProdectRequest  $request
-     * @param  \App\Models\Prodect  $prodect
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProdectRequest $request, Prodect $prodect)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +76,10 @@ class ProdectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Prodect  $prodect
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Prodect $prodect)
+    public function destroy($id)
     {
         //
     }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreContactRequest extends FormRequest
+class CityRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,10 +31,7 @@ class StoreContactRequest extends FormRequest
     public function messages()
     {
         return [
-
-            
-            'name.required' => 'يجب إدخال بيانات التواصل'
-
+            'name.required' => 'يجب إدخال اسم المدينة'
             ];
     }
 }

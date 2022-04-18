@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Pharmacy;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\PharmacyRequest;
 use App\Http\Requests\StorePharmacyRequest;
 use App\Http\Requests\UpdatePharmacyRequest;
 
@@ -15,7 +20,8 @@ class PharmacyController extends Controller
      */
     public function index()
     {
-        //
+        $pharmacies = Pharmacy::orderBy('id', 'DESC')->paginate(PAGINATION_COUNT);
+        return view('Pharmacy.index', ['pharmacies' => $pharmacies]);
     }
 
     /**
@@ -25,7 +31,7 @@ class PharmacyController extends Controller
      */
     public function create()
     {
-        //
+        return view('pharmacy.create');
     }
 
     /**
@@ -34,11 +40,58 @@ class PharmacyController extends Controller
      * @param  \App\Http\Requests\StorePharmacyRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePharmacyRequest $request)
+    public function store(PharmacyRequest $request)
     {
-        //
-    }
 
+        try {
+
+            DB::beginTransaction();
+            $pharmacy = Pharmacy::create([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'phone' => $request['phone'],
+                'phone2' => $request['phone2'],
+                'password' => Hash::make($request['password']),
+                'description' => $request['description'],
+            ]);
+
+            $address = new Address();
+
+            $address->pharmacy_id = $pharmacy->id;
+            $address->city_id = $request->city_id;
+            $address->governorate_id = $request->governorate_id;
+            $address->streat = $request->streat;
+            $address->details = $request->details;
+
+            if ($request->has('lat')) {
+                $address->lat = $request->lat;
+                $address->long = $request->long;
+            }
+            $address->save();
+
+            DB::commit();
+            return redirect()->route('pharmacy.home');
+        } catch (\Exception $ex) {
+
+            DB::rollback();
+            return redirect()->route('admin.brands')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
+    }
+    public function saveImageDB(Request $request)
+    {
+
+        try {
+            $fileName = "" ;
+            if ($request->has('photo')) {
+                
+                // save img in public/pharmacy/images
+                $fileName = uploadImage('pharmacy', $request->photo);
+            }
+
+            return redirect()->route('admin.products')->with(['success' => 'تم التحديث بنجاح']);
+        } catch (\Exception $ex) {
+        }
+    }
     /**
      * Display the specified resource.
      *
@@ -47,7 +100,7 @@ class PharmacyController extends Controller
      */
     public function show(Pharmacy $pharmacy)
     {
-        //
+        return view('pharmacy.profile')->withPharmacy($pharmacy);
     }
 
     /**
@@ -58,7 +111,7 @@ class PharmacyController extends Controller
      */
     public function edit(Pharmacy $pharmacy)
     {
-        //
+        return view('pharmacy.edit')->withPharmacy($pharmacy);
     }
 
     /**
@@ -68,9 +121,9 @@ class PharmacyController extends Controller
      * @param  \App\Models\Pharmacy  $pharmacy
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePharmacyRequest $request, Pharmacy $pharmacy)
+    public function update(PharmacyRequest $request, Pharmacy $pharmacy)
     {
-        //
+        
     }
 
     /**
