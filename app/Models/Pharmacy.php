@@ -31,7 +31,6 @@ class Pharmacy extends Model
         'remember_token',
     ];
 
-<<<<<<< HEAD
 
     public function address(){
         return $this->haMany(Address::class,'id');
@@ -39,7 +38,7 @@ class Pharmacy extends Model
 
     public function contact(){
         return $this->haMany(Address::class,'id');
-=======
+    }
     public function getImgAttribute($value)
     {
         return url("assests/images/pharmacies/") . "/" . $value;
@@ -50,6 +49,5 @@ class Pharmacy extends Model
             return 'غير مفعل';
         else
             return 'مفعل';
->>>>>>> dev
     }
 }

@@ -43,12 +43,8 @@ class PharmacyRequest extends FormRequest
             'email.email' => 'صيغة البريد الالكتروني غير صحيحة ',
             'password.required' => 'يجب إدخال كلمة المرور',
             'name.required' => 'يجب إدخال اسم الصيدلية',
-<<<<<<< HEAD:app/Http/Requests/UpdatePharmacyRequest.php
-            'license.required'=>'عليل إدخال الترخيص'
-
-=======
+            'license.required'=>'عليل إدخال الترخيص',
             'accept.required' => 'يجب ان توافق على الشروط '
->>>>>>> dev:app/Http/Requests/PharmacyRequest.php
             ];
     }
 }
