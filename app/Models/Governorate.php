@@ -27,4 +27,9 @@ class Governorate extends Model
         
         'remember_token',
     ];
+
+
+    public function address(){
+        return $this->hasOne(Address::class,'id');
+    }
 }
