@@ -10,11 +10,7 @@
         "laravel/framework": "^9.2",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
-<<<<<<< HEAD
         "santigarcor/laratrust": "^7.1"
-=======
-        "laravel/ui": "^3.4"
->>>>>>> dev
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -28,9 +24,8 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/",
-            "files": ["app/Helpers/general.php"]
-        }
+            "Database\\Seeders\\": "database/seeders/"
+                }
     },
     "autoload-dev": {
         "psr-4": {

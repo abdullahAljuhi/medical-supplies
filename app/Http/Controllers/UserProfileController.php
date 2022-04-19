@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use App\Models\UserProfile;
 use App\Http\Requests\UserProfileRequest;
 
 
 class UserProfileController extends Controller
 {
+   use Helper;
     /**
      * Display a listing of the resource.
      *
@@ -79,14 +81,19 @@ class UserProfileController extends Controller
         if ($request->filled('password')) {
             $request->merge(['password' => bcrypt($request->password)]);
         }
-        unset($request['id']);
-        unset($request['password_confirmation']);
+        $fileName = "";
+        if ($request->has('photo')) {
 
-        $userProfile->update($request->all());
+            $fileName = uploadImage('brands', $request->photo);
+        }
+
+        $userProfile->update([
+            'name' => $request->name,
+            'name' => $request->name,
+        ]);
         return redirect()->back()->with(['success' => 'تم التحديث بنجاح']);
 
     }catch(\Exception $e){
-
     return redirect()->back()->with(['error' => 'هناك خطا ما يرجي المحاولة فيما بعد']);
 
     }  

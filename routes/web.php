@@ -36,7 +36,7 @@ Route::group(['prefix' => '' , 'middleware' => 'admin'], function () {
 });
 Route::group(['prefix' => 'Admin', 'middleware' => 'admin'], function () {
     Route::get('/', 'DashboardController@index')->name('admin.dashboard');
-
+});
 Route::group(['prefix' => 'profile'], function () {
     Route::get('edit', 'ProfileController@editProfile')->name('edit.profile');
     Route::put('update', 'ProfileController@updateprofile')->name('update.profile');

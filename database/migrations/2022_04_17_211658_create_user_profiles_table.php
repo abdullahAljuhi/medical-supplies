@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->date('birthday')->nullable();
+            $table->timestamp('birthday')->nullable();
+            $table->number('phone')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });
