@@ -9,9 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Laratrust\Traits\LaratrustUserTrait;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use LaratrustUserTrait;
     use HasApiTokens, HasFactory, Notifiable;
 
     
@@ -25,6 +24,7 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+    
 
     /**
      * The attributes that should be hidden for serialization.
@@ -50,4 +50,12 @@ class User extends Authenticatable
     }
 
     
+    public function admin(){
+        if($this->type == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }

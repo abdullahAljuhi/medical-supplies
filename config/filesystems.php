@@ -43,6 +43,18 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'pharmacy' => [
+            'driver' => 'local',
+            'root' => public_path('assets/images/pharmacies'),
+            'url' => env('APP_URL') . '/storage',
+            'visibility' => 'public',
+        ],
+        'users' => [
+            'driver' => 'local',
+            'root' => public_path('assets/images/users'),
+            'url' => env('APP_URL') . '/storage',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',
