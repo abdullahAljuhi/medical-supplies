@@ -27,11 +27,8 @@ class PharmacyRequest extends FormRequest
             'email' => 'required|email',
             'password' => 'required',
             'name' => 'required',
-<<<<<<< HEAD:app/Http/Requests/UpdatePharmacyRequest.php
-            'license'=>'required'
-=======
-            'accept'=>'required',
->>>>>>> dev:app/Http/Requests/PharmacyRequest.php
+            'license'=>'required',
+            'accept'=>'required'
         ];
     }
 

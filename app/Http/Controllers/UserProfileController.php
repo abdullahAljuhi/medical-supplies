@@ -82,14 +82,16 @@ class UserProfileController extends Controller
             $request->merge(['password' => bcrypt($request->password)]);
         }
         $fileName = "";
-        if ($request->has('photo')) {
+        if ($request->has('img')) {
 
-            $fileName = uploadImage('brands', $request->photo);
+            $fileName = uploadImage('users', $request->photo);
         }
 
         $userProfile->update([
-            'name' => $request->name,
-            'name' => $request->name,
+            'name' => $fileName,
+            'img' => $request->img,
+            'phone'=>$request->phone,
+            'birthday'=>$request->birthday,
         ]);
         return redirect()->back()->with(['success' => 'تم التحديث بنجاح']);
 

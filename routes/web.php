@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -13,10 +15,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//
 Auth::routes(['verify'=>true]);
-
-define('PAGINATION_COUNT',10);
+// define('PAGINATION_COUNT',10);
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,15 +30,25 @@ Route::get('/', function () {
 //     Route::get('/', 'DashboardController@index')->name('Pharmacy.dashboard');
     
 // });
-Route::group(['prefix' => '' , 'middleware' => 'admin'], function () {
-    Route::get('/', 'UsersController@index')->name('admin.users.index');
-    Route::get('/create', 'UsersController@create')->name('admin.users.create');
-    Route::post('/store', 'UsersController@store')->name('admin.users.store');
+Route::group(['prefix' => 'users' , 'middleware' => 'admin'], function () {
+    Route::get('/', [UserController::class, 'index'])->name('admin.users.index');
+    Route::get('/create', [UserController::class, 'create'])->name('admin.users.create');
+    Route::post('/store', [UserController::class, 'store'])->name('admin.users.store');;
 });
-Route::group(['prefix' => 'Admin', 'middleware' => 'admin'], function () {
-    Route::get('/', 'DashboardController@index')->name('admin.dashboard');
+Route::group(['prefix' => 'Admin' , 'middleware' => 'admin'], function () {
+
+    Route::get('/',function(){
+        $data=[
+            'admin'=>'you admin'
+        ];
+        return $data;
+        // return response()->json($data);
+    });
 });
 Route::group(['prefix' => 'profile'], function () {
-    Route::get('edit', 'ProfileController@editProfile')->name('edit.profile');
-    Route::put('update', 'ProfileController@updateprofile')->name('update.profile');
+    Route::get('edit', [UserProfileController::class,'edit'])->name('edit.profile');
+    Route::post('update', [UserProfileController::class,'update'])->name('update.profile');
 });
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');

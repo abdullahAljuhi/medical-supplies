@@ -11,7 +11,6 @@ use Laratrust\Traits\LaratrustUserTrait;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use LaratrustUserTrait;
     use HasApiTokens, HasFactory, Notifiable;
 
     
@@ -46,25 +45,17 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-<<<<<<< HEAD
     public function profile(){
         return $this->hasOne(User_profile::class,'id');
     }
 
     
-=======
     public function admin(){
-        if($this->typ==1){
+        if($this->type == 1){
             return true;
         }else{
             return false;
         }
     }
 
-    
-    public function profile()
-    {
-        return $this->hasOne('UserProfile');
-    }
->>>>>>> dev
 }
