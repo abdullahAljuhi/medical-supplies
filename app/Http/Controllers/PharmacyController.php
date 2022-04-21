@@ -42,10 +42,13 @@ class PharmacyController extends Controller
      */
     public function store(PharmacyRequest $request)
     {
+        // PharmacyRequest request with validation
 
         try {
 
+            // start transaction
             DB::beginTransaction();
+            // create pharmacy
             $pharmacy = Pharmacy::create([
                 'name' => $request['name'],
                 'email' => $request['email'],
@@ -55,15 +58,15 @@ class PharmacyController extends Controller
                 'description' => $request['description'],
             ]);
 
-            $address = new Address();
-
-            $address->pharmacy_id = $pharmacy->id;
-            $address->city_id = $request->city_id;
-            $address->governorate_id = $request->governorate_id;
-            $address->streat = $request->streat;
-            $address->details = $request->details;
-
+                // create add address to pharmacy
+            $address=$pharmacy->addreaa()->create([
+                'city_id'=>$request->city_id,
+                'governorate_id'=>$request->governorate_id,
+                'streat'=> $request->streat,
+                'details'=>$request->details,
+            ]);
             if ($request->has('lat')) {
+
                 $address->lat = $request->lat;
                 $address->long = $request->long;
             }
@@ -74,7 +77,7 @@ class PharmacyController extends Controller
         } catch (\Exception $ex) {
 
             DB::rollback();
-            return redirect()->route('admin.brands')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
     public function saveImageDB(Request $request)
@@ -82,13 +85,14 @@ class PharmacyController extends Controller
 
         try {
             $fileName = "" ;
-            if ($request->has('photo')) {
+
+            if ($request->has('image')) {
                 
                 // save img in public/pharmacy/images
                 $fileName = uploadImage('pharmacy', $request->photo);
             }
 
-            return redirect()->route('admin.products')->with(['success' => 'تم التحديث بنجاح']);
+            return redirect()->back()->with(['success' => 'تم التحديث بنجاح']);
         } catch (\Exception $ex) {
         }
     }
@@ -123,7 +127,41 @@ class PharmacyController extends Controller
      */
     public function update(PharmacyRequest $request, Pharmacy $pharmacy)
     {
-        
+        try {
+
+            // start transaction
+            DB::beginTransaction();
+            // create pharmacy
+            $pharmacy->update([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'phone' => $request['phone'],
+                'phone2' => $request['phone2'],
+                'password' => Hash::make($request['password']),
+                'description' => $request['description'],
+            ]);
+
+                // create add address to pharmacy
+            $address=$pharmacy->addreaa()->update([
+                'city_id'=>$request->city_id,
+                'governorate_id'=>$request->governorate_id,
+                'streat'=> $request->streat,
+                'details'=>$request->details,
+            ]);
+            if ($request->has('lat')) {
+
+                $address->lat = $request->lat;
+                $address->long = $request->long;
+            }
+            $address->save();
+
+            DB::commit();
+            return redirect()->route('pharmacy.home');
+        } catch (\Exception $ex) {
+
+            DB::rollback();
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
     }
 
     /**
@@ -134,6 +172,10 @@ class PharmacyController extends Controller
      */
     public function destroy(Pharmacy $pharmacy)
     {
-        //
+        if($pharmacy){
+            $pharmacy->delete();
+            return redirect()->route('pharmacy.home');
+        }
+
     }
 }

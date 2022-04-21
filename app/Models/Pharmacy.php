@@ -16,8 +16,6 @@ class Pharmacy extends Model
      */
     protected $fillable = [
         'name',
-        'email',
-        'password',
         'license',
     ];
 

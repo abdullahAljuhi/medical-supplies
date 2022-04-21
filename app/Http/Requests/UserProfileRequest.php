@@ -13,7 +13,7 @@ class UserProfileRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class UserProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            // 'phone'=>'required|numeric'
         ];
     }
+    public function messages()
+    {
+        return [
+            // 'phone.required'=>'اكتب رقم هاتفك',
+            // 'phone.numeric'=>'يجب كتابة أرقام فقط'
+        ];
+    }
+
 }

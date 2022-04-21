@@ -32,7 +32,6 @@ class ContactRequest extends FormRequest
     {
         return [
             'name.required' => 'يجب إدخال بيانات التواصل'
-
             ];
     }
 }

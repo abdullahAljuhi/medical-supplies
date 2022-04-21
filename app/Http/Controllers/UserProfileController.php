@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Helpers\Helper;
 use App\Models\UserProfile;
 use App\Http\Requests\UserProfileRequest;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserProfileController extends Controller
 {
@@ -49,8 +50,8 @@ class UserProfileController extends Controller
      */
     public function show(UserProfile $userProfile)
     {
-        
-            return view('profiles.show', compact('userProfile'));
+           $userpro = User::find(Auth::id())->profile();
+            return view('profiles.show', compact('userpro'));
     
     }
 
@@ -60,9 +61,10 @@ class UserProfileController extends Controller
      * @param  \App\Models\UserProfile  $userProfile
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserProfile $userProfile)
+    public function edit()
     {
-        return view('profiles.edit', compact('userProfile'));
+        $userpro=User::with('profile')->find(Auth::id()); ;
+        return view('auth.test.profile', compact('userpro'));
     }
 
     /**
@@ -76,20 +78,20 @@ class UserProfileController extends Controller
     {
         try{
 
-            $userProfile = UserProfile::find(auth('web')->user()->id);
+            // dd($request);
 
-        if ($request->filled('password')) {
+            $userProfile = UserProfile::find(auth('web')->user()->id);
+            if ($request->filled('password')) {
             $request->merge(['password' => bcrypt($request->password)]);
         }
         $fileName = "";
         if ($request->has('img')) {
 
-            $fileName = uploadImage('users', $request->photo);
+            $fileName =$this->uploadImage('users', $request->img);
         }
 
         $userProfile->update([
-            'name' => $fileName,
-            'img' => $request->img,
+            'image' => $fileName,
             'phone'=>$request->phone,
             'birthday'=>$request->birthday,
         ]);
