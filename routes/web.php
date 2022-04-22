@@ -28,7 +28,7 @@ Route::get('/', function () {
 // });
 // Route::group(['prefix' => 'pharmacy', 'middleware' => 'auth:Pharmacy'], function () {
 //     Route::get('/', 'DashboardController@index')->name('Pharmacy.dashboard');
-    
+
 // });
 Route::group(['prefix' => 'users' , 'middleware' => 'admin'], function () {
     Route::get('/', [UserController::class, 'index'])->name('admin.users.index');
@@ -49,6 +49,5 @@ Route::group(['prefix' => 'profile'], function () {
     Route::get('edit', [UserProfileController::class,'edit'])->name('edit.profile');
     Route::post('update', [UserProfileController::class,'update'])->name('update.profile');
 });
-
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
