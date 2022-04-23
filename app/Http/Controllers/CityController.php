@@ -37,7 +37,7 @@ class CityController extends Controller
             $city->name = $request->name;
             $city->save();
             return redirect()->route('city.all')->with(['success' => 'تم  الاضافه بنجاح']);
-        } catch (\Exception $ex) {
+        } catch (\Exception $e) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
@@ -48,9 +48,9 @@ class CityController extends Controller
     {
         try {
 
-            $city = City::find($id);
+            $city = City::findOrFail($id);
 
-            // check if governorate is exist
+            // check if city is exist
             if (!$city)
                 return redirect()->back()->with(['error' => 'هذه المدينه غير موجوده']);
 
@@ -65,7 +65,7 @@ class CityController extends Controller
     {
         try {
 
-            $city = City::find($id);
+            $city = City::findOrFail($id);
 
             // check if governorate is exist
             if (!$city)
@@ -88,7 +88,7 @@ class CityController extends Controller
 
             $city->delete();
 
-            return redirect()->route('governorate.all')->with(['success' => 'تم  الحذف بنجاح']);
+            return redirect()->back()->with(['success' => 'تم  الحذف بنجاح']);
         } catch (\Exception $ex) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }

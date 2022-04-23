@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller 
 {
@@ -81,6 +82,17 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $user = User::findOrFail($id);
+            if ($user->image !== '') { // check if user has image
+                // remove image 
+                Storage::disk('users')->delete($user->image);
+            }
+             
+            $user->delete();
+            return redirect()->route('user.home');
+        } catch (\Exception $e) {
+            //throw $th;
+        }
     }
 }

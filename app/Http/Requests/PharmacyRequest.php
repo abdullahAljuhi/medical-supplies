@@ -24,8 +24,6 @@ class PharmacyRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
-            'password' => 'required',
             'name' => 'required',
             'license'=>'required',
             'accept'=>'required'
@@ -35,9 +33,6 @@ class PharmacyRequest extends FormRequest
     public function messages()
     {
         return [
-
-            'email.required' => 'يجب إدخال البريد الالكتروني ',
-            'email.email' => 'صيغة البريد الالكتروني غير صحيحة ',
             'password.required' => 'يجب إدخال كلمة المرور',
             'name.required' => 'يجب إدخال اسم الصيدلية',
             'license.required'=>'عليل إدخال الترخيص',

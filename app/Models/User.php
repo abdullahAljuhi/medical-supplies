@@ -46,12 +46,22 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     public function profile(){
-        return $this->hasOne(UserProfile::class,'id');
+        return $this->hasOne(UserProfile::class);
+    }
+    public function addresses(){
+        return $this->hasOne(Address::class);
     }
 
     
     public function admin(){
         if($this->type == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public function pharmacy(){
+        if($this->type == 2){
             return true;
         }else{
             return false;

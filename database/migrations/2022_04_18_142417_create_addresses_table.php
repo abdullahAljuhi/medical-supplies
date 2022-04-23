@@ -19,12 +19,14 @@ return new class extends Migration
             $table->string('details')->nullable();;
             $table->decimal('lat', 10,  8)->nullable();
             $table->decimal('lang', 10,  8)->nullable();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('city_id');
             $table->foreign('city_id')->references('id')->on('cities')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('governorate_id');
             $table->foreign('governorate_id')->references('id')->on('governorates')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('pharmacy_id')->nullable();
+            $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
