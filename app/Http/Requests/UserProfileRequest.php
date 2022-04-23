@@ -24,7 +24,21 @@ class UserProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'fullname'=>'required',
+            'phone'=>'required|numeric',
+            'birthday'=>'required|min(1900)',
+            'image'=>'image',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'fullname.required'=>'اكتب اسمك الكامل',
+            'phone.required'=>'اكتب رقم هاتفك',
+            'phone.numeric'=>'يجب كتابة أرقام فقط',
+            'birthday.required'=>'يجب إخال سنة الميلاد',
+            'birthday.min'=>'سنة الميلاد غير صالحة',
+            'image.image'=>'الصيغة غير مدعومة تأكد من صيغة الملف',
         ];
     }
 }

@@ -19,6 +19,7 @@ class Pharmacy extends Model
         'email',
         'password',
         'license',
+        'description'
     ];
 
     /**
