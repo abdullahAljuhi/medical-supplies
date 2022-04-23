@@ -15,8 +15,15 @@ class Address extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'streat',
+        'street',
         'details',
+        'lat',
+        'lang',
+        'user_id',
+        'city_id',
+        'governorate_id',
+        'user_id',
+
     ];
 
     /**
@@ -28,9 +35,6 @@ class Address extends Model
         
         'remember_token',
     ];
-
-
-   
 
     
 }

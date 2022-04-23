@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Helpers\Helper;
 use App\Models\UserProfile;
 use App\Http\Requests\UserProfileRequest;
-
+use App\Models\City;
+use App\Models\Governorate;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserProfileController extends Controller
 {
-   use Helper;
+    use Helper;
     /**
      * Display a listing of the resource.
      *
@@ -49,9 +52,9 @@ class UserProfileController extends Controller
      */
     public function show(UserProfile $userProfile)
     {
-        
-            return view('profiles.show', compact('userProfile'));
-    
+        $user = User::find(Auth::id())->with('profile', 'addresses');
+
+        return view('profiles.show', compact('user'));
     }
 
     /**
@@ -60,9 +63,15 @@ class UserProfileController extends Controller
      * @param  \App\Models\UserProfile  $userProfile
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserProfile $userProfile)
+    public function edit()
     {
-        return view('profiles.edit', compact('userProfile'));
+        $cities = City::all();
+
+        $governorates = Governorate::all();
+
+        $user = User::find(Auth::id())->with('profile', 'addresses');
+
+        return view('auth.test.profile', compact('user', 'cities', 'governorates'));
     }
 
     /**
@@ -74,32 +83,30 @@ class UserProfileController extends Controller
      */
     public function update(UserProfileRequest $request)
     {
-        try{
+        try {
+
+            // dd($request);
 
             $userProfile = UserProfile::find(auth('web')->user()->id);
+            if ($request->filled('password')) {
+                $request->merge(['password' => bcrypt($request->password)]);
+            }
+            $fileName = "";
+            if ($request->has('img')) {
 
-        if ($request->filled('password')) {
-            $request->merge(['password' => bcrypt($request->password)]);
+                $fileName = $this->uploadImage('users', $request->img);
+            }
+
+            $userProfile->update([
+                'image' => $fileName,
+                'phone' => $request->phone,
+                'birthday' => $request->birthday,
+            ]);
+            return redirect()->back()->with(['success' => 'تم التحديث بنجاح']);
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => 'هناك خطا ما يرجي المحاولة فيما بعد']);
         }
-        $fileName = "";
-        if ($request->has('img')) {
-
-            $fileName = uploadImage('users', $request->photo);
-        }
-
-        $userProfile->update([
-            'name' => $fileName,
-            'img' => $request->img,
-            'phone'=>$request->phone,
-            'birthday'=>$request->birthday,
-        ]);
-        return redirect()->back()->with(['success' => 'تم التحديث بنجاح']);
-
-    }catch(\Exception $e){
-    return redirect()->back()->with(['error' => 'هناك خطا ما يرجي المحاولة فيما بعد']);
-
-    }  
-  }
+    }
 
     /**
      * Remove the specified resource from storage.

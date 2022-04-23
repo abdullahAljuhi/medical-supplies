@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\GovernorateRequest;
 use App\Models\Governorate;
-use Illuminate\Http\Request;
 
 class GovernorateController extends Controller
 {
@@ -42,7 +41,7 @@ class GovernorateController extends Controller
             $governorate = new Governorate();
             $governorate->name = $request->name;
             $governorate->save();
-            return redirect()->route('governorate.all')->with(['success' => 'تم  الاضافه بنجاح']);
+            return redirect()->back()->with(['success' => 'تم  الاضافه بنجاح']);
         } catch (\Exception $ex) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
