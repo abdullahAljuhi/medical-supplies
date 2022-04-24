@@ -13,7 +13,7 @@ class UserProfileRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,9 +25,9 @@ class UserProfileRequest extends FormRequest
     {
         return [
             'user_id' => 'exists:app\Models\User,id',
-            'fullname'=>'required',
+            'name'=>'required',
             'phone'=>'required|numeric',
-            'birthday'=>'required|date|after:01/01/1990|befor:DateTime()',
+            'birthday'=>'required|date|after:01/01/1990|before:DateTime()',
             'image'=>'image',
         ];
     }
@@ -35,14 +35,15 @@ class UserProfileRequest extends FormRequest
     {
         return [
             'user_id.exists'=>'المستخدم غير موجود',
-            'fullname.required'=>'اكتب اسمك الكامل',
+            'name.required'=>'اكتب اسمك الكامل',
             'phone.required'=>'اكتب رقم هاتفك',
             'phone.numeric'=>'يجب كتابة أرقام فقط',
             'birthday.required'=>'يجب إخال سنة الميلاد',
             'birthday.after'=>'تاريخ الميلاد غير صالح',
-            'birthday.befor'=>'تاريخ الميلاد غير صالح',
+            'birthday.before'=>'تاريخ الميلاد غير صالح',
             'birthday.date'=>'تأكد من كتابة التاريخ بصيغة صحيحة',
             'image.image'=>'الصيغة غير مدعومة تأكد من صيغة الملف',
         ];
     }
+
 }

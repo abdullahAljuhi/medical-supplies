@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class Admin
+class CheckType
 {
     /**
      * Handle an incoming request.
@@ -15,13 +14,17 @@ class Admin
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next,string $type)
     {
-    //     if(Auth::user()->admin()){
-    //     return $next($request);
-    // }
-    // else{
-    //     return redirect('/home');
-    // }
+        if($type =='user' && auth()->user()->type !=0){
+            abort(403);
+        }
+        if($type =='admin' && auth()->user()->type !=1){
+            abort(403);
+        }  
+        if($type =='pharmacy' && auth()->user()->type !=2){
+            abort(403);
+        }
+        return $next($request);
     }
 }

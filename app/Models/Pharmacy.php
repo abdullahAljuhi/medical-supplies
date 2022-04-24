@@ -16,10 +16,13 @@ class Pharmacy extends Model
      */
     protected $fillable = [
         'name',
-        'email',
-        'password',
         'license',
-        'description'
+        'user_id',
+        'mobile',
+        'phone',
+        'fax',
+        'image',
+        'description',
     ];
 
     /**
@@ -33,8 +36,8 @@ class Pharmacy extends Model
     ];
 
 
-    public function address(){
-        return $this->haMany(Address::class,'id');
+    public function addresses(){
+        return $this->hasMany(Address::class,'pharmacy_id');
     }
 
     public function contact(){

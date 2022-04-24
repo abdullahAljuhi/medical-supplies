@@ -28,11 +28,12 @@ class ContactController extends Controller
         try {
             $contact = new Contact();
             $contact->facebook = $request->facebook;
-            $contact->url = $request->url;
-            $contact->pharmacy_id=Auth::user()->id();
+            $contact->twitter = $request->twitter;
+            $contact->instagram = $request->instagram;
+            $contact->user_id = Auth::user()->id();
             $contact->save();
 
-            return redirect()->route('city.all')->with(['success' => 'تم  الاضافه بنجاح']);
+            return redirect()->route('contacts.all')->with(['success' => 'تم  الاضافه بنجاح']);
         } catch (\Exception $ex) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
@@ -44,13 +45,13 @@ class ContactController extends Controller
     {
         try {
 
-            $contact = Contact::find($id);
+            $contact = Contact::findOrFail($id);
 
             // check if contact is exist
             if (!$contact)
                 return redirect()->back()->with(['error' => 'غير موجوده']);
+                
 
-            return view('City.edit', ['contact' => $contact]);
         } catch (\Exception $ex) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
@@ -67,8 +68,11 @@ class ContactController extends Controller
             if (!$contact)
                 return redirect()->back()->with(['error' => 'هذاالعنصر غير موجود']);
 
-            $contact->name = $request->name;
-            $contact->url = $request->url;
+                $contact->facebook = $request->facebook;
+                $contact->twitter = $request->twitter;
+                $contact->instagram = $request->instagram;
+                $contact->user_id = Auth::user()->id();
+                $contact->save();
 
             $contact->save();
         } catch (\Exception $ex) {
@@ -87,7 +91,7 @@ class ContactController extends Controller
 
             $contact->delete();
 
-            return redirect()->route('governorate.all')->with(['success' => 'تم  الحذف بنجاح']);
+            return redirect()->back()->with(['success' => 'تم  الحذف بنجاح']);
         } catch (\Exception $ex) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }

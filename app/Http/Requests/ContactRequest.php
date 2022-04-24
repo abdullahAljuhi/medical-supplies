@@ -34,7 +34,7 @@ class ContactRequest extends FormRequest
     public function messages()
     {
         return [
-            'pharmacy_id.exists'=>'الصيدلية غير موجودة',
+            'pharmacy_id.exists' => 'الصيدلية غير موجودة',
             'name.required' => 'يجب إدخال بيانات التواصل',
             'facebook.required'=>'يجب ملئ هذا الحقل',
             'facebook.url'=>'تأكد من كتابة العنوان بشكل صحيح',

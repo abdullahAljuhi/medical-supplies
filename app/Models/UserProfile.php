@@ -12,10 +12,17 @@ class UserProfile extends Model
         'phone',
         'image',
         'birthday',
+        'user_id'
     ];
 
     public function user()
     {
-        return $this->belongsTo('User');
+        return $this->belongsTo(User::class);
    }
+   public function getImageAttribute($val)
+    {
+
+        return $val ? asset('assets/images/users/'.$val) : '';
+    }
+
 }

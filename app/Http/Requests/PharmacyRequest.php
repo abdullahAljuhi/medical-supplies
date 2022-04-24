@@ -24,8 +24,6 @@ class PharmacyRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'exists:app\Models\User,id',
-            'password' => 'required|min:7|max:25|numbers|letter|symbol',
             'name' => 'required',
             'mobile' => 'numeric|max:11',
             'phone' => 'required|numeric|max:11',
@@ -39,14 +37,6 @@ class PharmacyRequest extends FormRequest
     public function messages()
     {
         return [
-            'user_id.exists'=>'المستخدم غير موجود',
-            'password.required' => 'يجب إدخال كلمة المرور',
-            'password.min'=>'كلمة السر قصيرة جداً',
-            'password.max'=>'كلمة السر طويلة جداً',
-            'password.numbers'=>'كلمة السر يجب أن تحوي على رقم واحد على الأقل',
-            'password.letter'=>'كلمة السر يجب أن تحوي حرف واحد على الأقل',
-            'password.symbol'=>'كلمة السر يجب أن تحوي رمز واحد على الأقل',
-            'password.confirmed'=>"خطأ في تاكيد كلمة السر",
             'name.required' => 'يجب إدخال اسم الصيدلية',
             'mobile.numeric'=>'يجب كتابة أرقام فقط',
             'mobile.max'=>'تأكد من كتابة الرقم بشكل صحيح',

@@ -15,9 +15,10 @@ class Contact extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'url'
-        
+        'facebook',
+        'twitter',
+        'instagram',
+        'pharmacy_id'
     ];
 
     /**

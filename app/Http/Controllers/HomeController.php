@@ -27,7 +27,15 @@ class HomeController extends Controller
     {
         // this check if user is admin
         if(Auth::user()->admin()){
+
+            //  this rout for admin/
             return redirect(RouteServiceProvider::ADMIN);
+
+        }else if(Auth::user()->pharmacy()){
+
+                //  this rout for pharmacy/
+            return redirect(RouteServiceProvider::PHARMACY);
+
         }else{
             return view('home');
         }
