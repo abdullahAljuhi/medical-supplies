@@ -25,7 +25,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => 'required|email|max:99',
-            'password' => 'required|max:99|min:6',
+            'password' => 'required|max:25|min:7|numbers|letter|symbol',
         ];
     }
 
@@ -38,6 +38,9 @@ class LoginRequest extends FormRequest
             'email.max'=>"حجم الايميل كبير جدا",
             'password.max'=>"حجم كلمة السر كبير جدا",
             'password.min'=>"حجم كلمة السر صغير جدا",
+            'password.numbers'=>'كلمة المرور يجب أن تحوي على رقم واحد على الأقل',
+            'password.letter'=>'كلمة المرور يجب أن تحوي حرف واحد على الأقل',
+            'password.symbol'=>'كلمة المرور يجب أن تحوي رمز واحد على الأقل',
             'password.confirmed'=>"خطأ في تاكيد كلمة السر"
         ];
     }

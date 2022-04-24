@@ -24,14 +24,17 @@ class CityRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required'
+            'name' => 'required',
+            'governorate_id' => 'exists:app\Models\Governorate,id'
+        
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'يجب إدخال اسم المدينة'
+            'name.required' => 'يجب إدخال اسم المدينة',
+            'governorate_id.exists'=>'المحافظة غير موجودة'
             ];
     }
 }

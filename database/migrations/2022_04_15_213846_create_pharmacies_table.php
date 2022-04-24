@@ -18,11 +18,11 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('name');
-            $table->integer('mobile')->nullable();;
+            $table->integer('mobile')->nullable();
             $table->integer('phone');
             $table->integer('fax')->nullable();;//should be nullable
             $table->string('license');
-            $table->string('image')->nullable();;
+            $table->string('image')->nullable();
             $table->string('description');
             $table->timestamps();
         });

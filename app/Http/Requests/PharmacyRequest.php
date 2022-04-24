@@ -24,10 +24,14 @@ class PharmacyRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
-            'password' => 'required',
+            'user_id' => 'exists:app\Models\User,id',
+            'password' => 'required|min:7|max:25|numbers|letter|symbol',
             'name' => 'required',
+            'mobile' => 'numeric|max:11',
+            'phone' => 'required|numeric|max:11',
+            'fax' => 'numeric|max:11',
             'license'=>'required',
+            'image'=>'image',
             'accept'=>'required'
         ];
     }
@@ -35,12 +39,24 @@ class PharmacyRequest extends FormRequest
     public function messages()
     {
         return [
-
-            'email.required' => 'يجب إدخال البريد الالكتروني ',
-            'email.email' => 'صيغة البريد الالكتروني غير صحيحة ',
+            'user_id.exists'=>'المستخدم غير موجود',
             'password.required' => 'يجب إدخال كلمة المرور',
+            'password.min'=>'كلمة السر قصيرة جداً',
+            'password.max'=>'كلمة السر طويلة جداً',
+            'password.numbers'=>'كلمة السر يجب أن تحوي على رقم واحد على الأقل',
+            'password.letter'=>'كلمة السر يجب أن تحوي حرف واحد على الأقل',
+            'password.symbol'=>'كلمة السر يجب أن تحوي رمز واحد على الأقل',
+            'password.confirmed'=>"خطأ في تاكيد كلمة السر",
             'name.required' => 'يجب إدخال اسم الصيدلية',
-            'license.required'=>'عليل إدخال الترخيص',
+            'mobile.numeric'=>'يجب كتابة أرقام فقط',
+            'mobile.max'=>'تأكد من كتابة الرقم بشكل صحيح',
+            'phone.required'=>'يجب ملئ هذا الحقل برقم التلفون',
+            'phone.max'=>'تأكد من كتابة الرقم بشكل صحيح',
+            'phone.numeric'=>'يجب كتابة أرقام فقط',
+            'fax.numeric'=>'يجب كتابة أرقام فقط',
+            'fax.max'=>'تأكد من كتابة الرقم بشكل صحيح',
+            'image.image'=>'الصيغة غير مدعومة تأكد من صيغة الملف',
+            'license.required'=>'عليك إدخال الترخيص',
             'accept.required' => 'يجب ان توافق على الشروط '
             ];
     }

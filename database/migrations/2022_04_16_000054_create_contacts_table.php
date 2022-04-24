@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('socials', function (Blueprint $table) {
             $table->id();
             $table->string('facebook');
-            $table->string('twitter');
+            $table->string('twitter')->nullable();
             $table->string('instagram')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');

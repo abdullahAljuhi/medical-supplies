@@ -24,15 +24,26 @@ class AddressRequest extends FormRequest
     public function rules()
     {
         return [
-            'streat' => 'required'
+            'streat' => 'required',
+            'details'=>'max:255',
+            'lat'=>'between:0,99.99999999',
+            'long'=>'between:0,99.99999999',
+            'user_id' => 'exists:app\Models\User,id',
+            'city_id' => 'exists:app\Models\City,id',
+            'governorate_id' => 'exists:app\Models\Governorate,id'
         ];
     }
 
     public function messages()
     {
         return [
-            'streat.required' => 'يجب إدخال اسم الشارع'
-
+            'streat.required' => 'يجب إدخال اسم الشارع',
+            'details.max'=>'لقد تخطيت الحد المسموح به من الأحرف',
+            'lat.between'=>'تأكد من ملئ الحقل بشكل صحيح',
+            'long.between'=>'تأكد من ملئ الحقل بشكل صحيح',
+            'user_id.exists'=>'المستخدم غير موجود',
+            'city_id.exists'=>'المدينة غير موجودة',
+            'governorate_id.exists'=>'المحافظة غير موجودة',
             ];
     }
 }

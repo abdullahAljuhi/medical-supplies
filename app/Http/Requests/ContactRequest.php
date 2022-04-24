@@ -24,15 +24,22 @@ class ContactRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required'
+            'pharmacy_id' => 'exists:app\Models\Pharmacy,id',
+            'facebook'=>'required|url',
+            'twitter'=>'url',
+            'instagram'=>'url'
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'يجب إدخال بيانات التواصل'
-
+            'pharmacy_id.exists'=>'الصيدلية غير موجودة',
+            'name.required' => 'يجب إدخال بيانات التواصل',
+            'facebook.required'=>'يجب ملئ هذا الحقل',
+            'facebook.url'=>'تأكد من كتابة العنوان بشكل صحيح',
+            'twitter.url'=>'تأكد من كتابة العنوان بشكل صحيح',
+            'instagram.url'=>'تأكد من كتابة العنوان بشكل صحيح',
             ];
     }
 }
