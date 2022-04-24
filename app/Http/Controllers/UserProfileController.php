@@ -9,6 +9,7 @@ use App\Models\City;
 use App\Models\Governorate;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserProfileController extends Controller
 {
@@ -52,7 +53,7 @@ class UserProfileController extends Controller
      */
     public function show(UserProfile $userProfile)
     {
-        $user = User::find(Auth::id())->with('profile', 'addresses');
+        $user = User::find(Auth::id())->with('profile');
 
         return view('profiles.show', compact('user'));
     }
@@ -65,13 +66,13 @@ class UserProfileController extends Controller
      */
     public function edit()
     {
-        $cities = City::all();
 
-        $governorates = Governorate::all();
-
-        $user = User::find(Auth::id())->with('profile', 'addresses');
-
-        return view('auth.test.profile', compact('user', 'cities', 'governorates'));
+        $user = User::find(Auth::id())->with('profile');
+        $address=explode(',,',$user->address);
+        $governorate=$address[0];
+        $city=$address[1];
+        $address=[2];
+        return view('auth.test.profile', compact('user', 'city', 'governorate','address'));
     }
 
     /**
@@ -84,23 +85,25 @@ class UserProfileController extends Controller
     public function update(UserProfileRequest $request)
     {
         try {
-
-            // dd($request);
-
             $userProfile = UserProfile::find(auth('web')->user()->id);
             if ($request->filled('password')) {
                 $request->merge(['password' => bcrypt($request->password)]);
             }
             $fileName = "";
-            if ($request->has('img')) {
+            if ($request->has('image')) {
 
-                $fileName = $this->uploadImage('users', $request->img);
+                Storage::disk('pharmacy')->delete($fileName);
+
+                // save img in public/pharmacy/images
+                $fileName = $this->uploadImage('pharmacy', $request->image);
             }
-
+            $address=$request->governorate.',,'.$request->city .',,' . $request->details;
+            
             $userProfile->update([
                 'image' => $fileName,
                 'phone' => $request->phone,
                 'birthday' => $request->birthday,
+                'address'=>$address,
             ]);
             return redirect()->back()->with(['success' => 'تم التحديث بنجاح']);
         } catch (\Exception $e) {

@@ -29,7 +29,7 @@ class Governorate extends Model
     ];
 
 
-    public function address(){
-        return $this->hasOne(Address::class,'id');
+    public function cities(){
+        return $this->hasMany(City::class,'governorate_id');
     }
 }

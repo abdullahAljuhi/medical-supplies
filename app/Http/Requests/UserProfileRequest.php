@@ -29,6 +29,7 @@ class UserProfileRequest extends FormRequest
             'phone'=>'required|numeric',
             'birthday'=>'required|date|after:01/01/1990|before:DateTime()',
             'image'=>'image',
+            'address'=>'string',
         ];
     }
     public function messages()

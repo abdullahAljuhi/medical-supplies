@@ -41,7 +41,7 @@ class Pharmacy extends Model
     }
 
     public function contact(){
-        return $this->haMany(Address::class,'id');
+        return $this->haMany(Address::class,'pharmacy_id');
     }
     public function getImgAttribute($value)
     {

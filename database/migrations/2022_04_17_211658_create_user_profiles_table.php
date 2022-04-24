@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamp('birthday')->nullable();
             $table->integer('phone')->nullable();
             $table->string('image')->nullable();
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }
