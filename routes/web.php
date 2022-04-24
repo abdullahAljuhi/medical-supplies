@@ -20,7 +20,10 @@ Auth::routes(['verify'=>true]);
 // define('PAGINATION_COUNT',10);
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+Route::get('/l', function () {
+    return view('404');
 });
 // Route::group(['prefix' => 'pharmacy', 'middleware' => 'guest:pharmacy'], function () {
 //     Route::get('login', ['LoginController::class','getPharmacyLogin'])->name('get.pharmacy.login');
@@ -46,6 +49,7 @@ Route::group(['prefix' => 'Admin' , 'middleware' => 'admin'], function () {
     });
 });
 Route::group(['prefix' => 'profile'], function () {
+    Route::get('/', [UserProfileController::class,'index'])->name('');
     Route::get('edit', [UserProfileController::class,'edit'])->name('edit.profile');
     Route::post('update', [UserProfileController::class,'update'])->name('update.profile');
 });
