@@ -1,47 +1,56 @@
-@extends('layouts.app')
-
+@extends('layouts.auth-layout')
+@section('title','اعادة ضبط كلمة المرور')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+    <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    <div class="d-flex justify-content-center py-4">
+                        <a href="/" class="logo d-flex align-items-center w-auto">
+                            <img src="{{ asset('assets/img/logo.png') }}" alt="">
+                            <span class="d-none d-lg-block">أمدادات طبية</span>
+                        </a>
+                    </div><!-- End Logo -->
 
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="pt-4 pb-2">
+                                <h5 class="card-title text-center pb-0 fs-4">أعادة ضبط كلمة المرور</h5>
+                            </div>
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                            @if (session('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            <form class="row g-3 needs-validation" method="POST" action="{{ route('password.email') }}">
+                                @csrf
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
+                                <div class="col-12">
+                                    <label for="yourEmail" class="form-label py-2">البريد الالكتروني</label>
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                    @error('email')
+                                    <p class="text-danger mt-2">
                                         <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                                    </p>
+                                    @enderror
+                                    <div class="invalid-feedback">يرجى ادخال بريد الكتروني صالح !</div>
+                                </div>
 
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
+                                <div class="col-12 py-3">
+                                    <button class="btn btn-primary w-100" type="submit">ارسال رابط اعادة ضبط كلمة المرور</button>
+                                </div>
+                            </form>
+
                         </div>
-                    </form>
+                    </div>
+
                 </div>
             </div>
         </div>
-    </div>
-</div>
+
+    </section>
 @endsection

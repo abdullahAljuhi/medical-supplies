@@ -39,7 +39,10 @@ Route::group(['prefix' => 'pharmacy'], function () {
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+Route::get('/l', function () {
+    return view('404');
 });
 
     // Route::get('login', ['LoginController::class','getPharmacyLogin'])->name('get.pharmacy.login');
@@ -47,7 +50,7 @@ Route::get('/', function () {
 
 // Route::group(['prefix' => 'pharmacy', 'middleware' => 'auth:Pharmacy'], function () {
 //     Route::get('/', 'DashboardController@index')->name('Pharmacy.dashboard');
-    
+
 // });
 
 Route::group(['prefix' => 'Admin' , 'middleware' => 'checkType:admin'], function () {
@@ -67,10 +70,10 @@ Route::group(['prefix' => 'Admin' , 'middleware' => 'checkType:admin'], function
     });
 });
 Route::group(['prefix' => 'profile'], function () {
+    Route::get('/', [UserProfileController::class,'index'])->name('');
     Route::get('edit', [UserProfileController::class,'edit'])->name('edit.profile');
     Route::post('update', [UserProfileController::class,'update'])->name('update.profile');
 });
-
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
 Route::resource('city', CityController::class)->except('show');
