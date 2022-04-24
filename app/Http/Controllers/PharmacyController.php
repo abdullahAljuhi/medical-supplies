@@ -27,7 +27,6 @@ class PharmacyController extends Controller
             })->when($request->governorate_id, function ($q) use ($request) { // filter by governorate
                 return $q->where('governorate_id', $request->governorate_id);
             })->paginate(5);
-
             return view('Pharmacy.index', ['pharmacies' => $pharmacies]);
             //code...
         } catch (\Exception $e) {
@@ -237,7 +236,7 @@ class PharmacyController extends Controller
         try {
             $pharmacy = Pharmacy::findOrFail($id);
             if ($pharmacy->image !== '') { // check if pharmacy has image
-                // remove image 
+                // remove image
                 Storage::disk('pharmacy')->delete($pharmacy->image);
             }
 

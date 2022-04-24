@@ -1,0 +1,80 @@
+body {
+    direction: rtl;
+}
+
+.logo img {
+    margin-right: 0px;
+    margin-left: 10px;
+}
+
+.sidebar {
+    right: 0;
+  }
+  @media (max-width: 1199px) {
+    .sidebar {
+      right: -300px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    #main, #footer {
+      margin-right: 300px;
+      margin-left: 0px;
+    }
+  }
+  @media (max-width: 1199px) {
+    .toggle-sidebar .sidebar {
+      right: 0;
+    }
+  }
+  @media (min-width: 1200px) {
+    .toggle-sidebar #main, .toggle-sidebar #footer {
+      margin-right: 0;
+    }
+    .toggle-sidebar .sidebar {
+      right: -300px;
+    }
+  }
+
+.sidebar-nav .nav-link i {
+    margin-right: 0px;
+    margin-left: 10px;
+}
+
+.sidebar-nav .nav-content a i {
+    margin-right: 0px;
+    margin-left: 8px;
+}
+
+.form-check .form-check-input {
+    float: right;
+    margin-left: 1.5em;
+}
+
+.header .search-form button {
+    margin-right: -30px;
+    margin-left: 0px;
+}
+
+.dropdown-item i {
+    margin-right: 0px;
+    margin-left: 10px;
+}
+
+.breadcrumb-item+.breadcrumb-item {
+    padding-right: 0.5rem;
+    padding-left: 0px;
+}
+
+.dataTable-table th {
+    text-align: right;
+}
+
+.dataTable-sorter::before,
+.dataTable-sorter::after {
+	left: 4px;
+}
+
+.photo-content .profile-photo {
+  right: 100px;
+}

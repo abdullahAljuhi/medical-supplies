@@ -36,10 +36,8 @@ Route::group(['prefix' => 'pharmacy'], function () {
     Route::post('/update/{id}', [PharmacyController::class, 'update'])->name('admin.pharmacy.update');
 });
 
-
-
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
     // Route::get('login', ['LoginController::class','getPharmacyLogin'])->name('get.pharmacy.login');
@@ -47,7 +45,7 @@ Route::get('/', function () {
 
 // Route::group(['prefix' => 'pharmacy', 'middleware' => 'auth:Pharmacy'], function () {
 //     Route::get('/', 'DashboardController@index')->name('Pharmacy.dashboard');
-    
+
 // });
 
 Route::group(['prefix' => 'Admin' , 'middleware' => 'checkType:admin'], function () {
