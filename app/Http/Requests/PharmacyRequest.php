@@ -24,12 +24,12 @@ class PharmacyRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
-            'password' => 'required|min(9)|numbers|letter|symbol',
+            'user_id' => 'exists:app\Models\User,id',
+            'password' => 'required|min:7|max:25|numbers|letter|symbol',
             'name' => 'required',
-            'mobile' => 'numeric|max(11)',
-            'phone' => 'required|numeric|max(11)',
-            'fax' => 'numeric|max(11)',
+            'mobile' => 'numeric|max:11',
+            'phone' => 'required|numeric|max:11',
+            'fax' => 'numeric|max:11',
             'license'=>'required',
             'image'=>'image',
             'accept'=>'required'
@@ -39,14 +39,14 @@ class PharmacyRequest extends FormRequest
     public function messages()
     {
         return [
-
-            'email.required' => 'يجب إدخال البريد الالكتروني ',
-            'email.email' => 'صيغة البريد الالكتروني غير صحيحة ',
+            'user_id.exists'=>'المستخدم غير موجود',
             'password.required' => 'يجب إدخال كلمة المرور',
-            'password.min'=>'كلمة المرور قصيرة جداً',
-            'password.numbers'=>'كلمة المرور يجب أن تحوي على رقم واحد على الأقل',
-            'password.letter'=>'كلمة المرور يجب أن تحوي حرف واحد على الأقل',
-            'password.symbol'=>'كلمة المرور يجب أن تحوي رمز واحد على الأقل',
+            'password.min'=>'كلمة السر قصيرة جداً',
+            'password.max'=>'كلمة السر طويلة جداً',
+            'password.numbers'=>'كلمة السر يجب أن تحوي على رقم واحد على الأقل',
+            'password.letter'=>'كلمة السر يجب أن تحوي حرف واحد على الأقل',
+            'password.symbol'=>'كلمة السر يجب أن تحوي رمز واحد على الأقل',
+            'password.confirmed'=>"خطأ في تاكيد كلمة السر",
             'name.required' => 'يجب إدخال اسم الصيدلية',
             'mobile.numeric'=>'يجب كتابة أرقام فقط',
             'mobile.max'=>'تأكد من كتابة الرقم بشكل صحيح',

@@ -24,20 +24,24 @@ class UserProfileRequest extends FormRequest
     public function rules()
     {
         return [
+            'user_id' => 'exists:app\Models\User,id',
             'fullname'=>'required',
             'phone'=>'required|numeric',
-            'birthday'=>'required|min(1900)',
+            'birthday'=>'required|date|after:01/01/1990|befor:DateTime()',
             'image'=>'image',
         ];
     }
     public function messages()
     {
         return [
+            'user_id.exists'=>'المستخدم غير موجود',
             'fullname.required'=>'اكتب اسمك الكامل',
             'phone.required'=>'اكتب رقم هاتفك',
             'phone.numeric'=>'يجب كتابة أرقام فقط',
             'birthday.required'=>'يجب إخال سنة الميلاد',
-            'birthday.min'=>'سنة الميلاد غير صالحة',
+            'birthday.after'=>'تاريخ الميلاد غير صالح',
+            'birthday.befor'=>'تاريخ الميلاد غير صالح',
+            'birthday.date'=>'تأكد من كتابة التاريخ بصيغة صحيحة',
             'image.image'=>'الصيغة غير مدعومة تأكد من صيغة الملف',
         ];
     }
