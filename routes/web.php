@@ -96,9 +96,20 @@ Route::group(['prefix' => 'profile'], function () {
 Route::get('/', function () {
     return view('index');
 });
-
 Route::get('/l', function () {
-    return view('404');
+    return view('registerAsPhar');
+});
+
+Route::get('/profile', function () {
+    return view('user.profile');
+})->name('pharmacies');
+
+Route::get('/re1', function () {
+    return view('order');
+});
+
+Route::get('/re2', function () {
+    return view('registerAsPhar');
 });
 
 

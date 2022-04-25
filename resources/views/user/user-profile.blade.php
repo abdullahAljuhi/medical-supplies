@@ -10,7 +10,7 @@ echo "<pre>";
         <h1>Profile</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.blade.php">Home</a></li>
+                <li class="breadcrumb-item"><a href="../index.blade.php">Home</a></li>
                 <li class="breadcrumb-item">Users</li>
                 <li class="breadcrumb-item active">Profile</li>
             </ol>
@@ -25,9 +25,9 @@ echo "<pre>";
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                        <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                        <h2>مراد العمودي</h2>
-                        <h3>Murad77@gmail.com</h3>
+                        <img src="{{ asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle">
+                        <h2>{{ Auth::user()->name }}</h2>
+                        <h3>{{ Auth::user()->email }}</h3>
                         <div class="social-links mt-2">
                             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -68,7 +68,7 @@ echo "<pre>";
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label ">اسم الكامل</div>
-                                    <div class="col-lg-9 col-md-8">مراد حسن العمودي</div>
+                                    <div class="col-lg-9 col-md-8">{{ Auth::user()->name }}</div>
                                 </div>
 
                                 <div class="row">
@@ -83,7 +83,7 @@ echo "<pre>";
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">البريد الالكتروني</div>
-                                    <div class="col-lg-9 col-md-8">murad77@gmail.com</div>
+                                    <div class="col-lg-9 col-md-8">{{ Auth::user()->email }}</div>
                                 </div>
 
                             </div>
@@ -95,10 +95,10 @@ echo "<pre>";
                                     <div class="row mb-3">
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">الصورة الشخصية</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <img src="assets/img/profile-img.jpg" alt="Profile">
+                                            <img src="{{ asset('assets/img/user.png') }}" id="blah" alt="Profile">
                                             <div class="pt-2">
                                                 <label class="btn btn-primary text-light">
-                                                    <i class="bi bi-upload"></i><input type="file" hidden>
+                                                    <i class="bi bi-upload"></i><input type="file" id="imgInp" hidden>
                                                 </label>
                                                 <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image">
                                                     <i class="bi bi-trash"></i>
@@ -217,4 +217,18 @@ echo "<pre>";
             </div>
         </div>
     </section>
+
+
+
+    <script>
+        imgInp = document.getElementById('imgInp');
+        blah = document.getElementById('blah');
+
+        imgInp.onchange = evt => {
+            const [file] = imgInp.files
+            if (file) {
+                blah.src = URL.createObjectURL(file)
+            }
+        }
+    </script>
 @endsection
