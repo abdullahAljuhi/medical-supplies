@@ -61,5 +61,49 @@ Route::group(['middleware' => 'auth'], function () {
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
 Route::get('/', function () {
+<<<<<<< HEAD
     return view('welcome');
 });
+=======
+    return view('index');
+});
+Route::get('/l', function () {
+    return view('404');
+});
+
+    // Route::get('login', ['LoginController::class','getPharmacyLogin'])->name('get.pharmacy.login');
+    // Route::post('login', 'LoginController@PharmacyLogin')->name('pharmacy.login');
+
+// Route::group(['prefix' => 'pharmacy', 'middleware' => 'auth:Pharmacy'], function () {
+//     Route::get('/', 'DashboardController@index')->name('Pharmacy.dashboard');
+
+// });
+
+Route::group(['prefix' => 'Admin' , 'middleware' => 'checkType:admin'], function () {
+
+    Route::get('/',function(){
+        $data=[
+            'admin'=>'you admin'
+        ];
+        return $data;
+        // return response()->json($data);
+    });
+
+    Route::group(['prefix' => 'users'], function () {
+        Route::get('/', [UserController::class, 'index'])->name('admin.users.index');
+        Route::get('/create', [UserController::class, 'create'])->name('admin.users.create');
+        Route::post('/store', [UserController::class, 'store'])->name('admin.users.store');
+    });
+});
+Route::group(['prefix' => 'profile'], function () {
+    Route::get('/', [UserProfileController::class,'index'])->name('');
+    Route::get('edit', [UserProfileController::class,'edit'])->name('edit.profile');
+    Route::post('update', [UserProfileController::class,'update'])->name('update.profile');
+});
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
+Route::resource('city', CityController::class)->except('show');
+Route::resource('governorate', GovernorateController::class)->except('show');
+Route::resource('contact', ContactController::class)->except('show');
+
+>>>>>>> 76e95587ae06e2ed5bbcdc36bbfeb4abe1da1a7e

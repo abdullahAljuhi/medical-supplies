@@ -1,0 +1,23 @@
+.photo-content .cover-photo {
+  background: url(../img/cover.jpg);
+  background-size: cover;
+  background-position: center;
+  min-height: 250px;
+  width: 100%;
+}
+
+.photo-content {
+  position: relative;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.photo-content .profile-photo {
+    bottom: -75px;
+    right: 100px;
+    max-width: 150px;
+    position: absolute;
+}
