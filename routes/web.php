@@ -34,7 +34,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/update/{id}', [PharmacyController::class, 'update'])->name('admin.pharmacy.update');
     });
 
-    Route::group(['prefix' => 'Admin', 'middleware' => 'checkType:admin'], function () {
+    // Route::get('login', ['LoginController::class','getPharmacyLogin'])->name('get.pharmacy.login');
+    // Route::post('login', 'LoginController@PharmacyLogin')->name('pharmacy.login');
+
+// Route::group(['prefix' => 'pharmacy', 'middleware' => 'auth:Pharmacy'], function () {
+//     Route::get('/', 'DashboardController@index')->name('Pharmacy.dashboard');
+
+// });
+
+Route::group(['prefix' => 'Admin' , 'middleware' => 'checkType:admin'], function () {
 
         Route::get('/', function () {
             $data = [
@@ -54,7 +62,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/store', [UserController::class, 'store'])->name('admin.users.store');
         }); // end users
     });
-    
+
     Route::group(['prefix' => 'profile'], function () {
         Route::get('edit', [UserProfileController::class, 'edit'])->name('edit.profile');
         Route::post('update', [UserProfileController::class, 'update'])->name('update.profile');
@@ -69,9 +77,20 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/', function () {
     return view('index');
 });
-
 Route::get('/l', function () {
-    return view('404');
+    return view('registerAsPhar');
+});
+
+Route::get('/profile', function () {
+    return view('user.profile');
+})->name('pharmacies');
+
+Route::get('/re1', function () {
+    return view('order');
+});
+
+Route::get('/re2', function () {
+    return view('registerAsPhar');
 });
 
 
@@ -81,3 +100,4 @@ Route::get('/l', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
 
 
+Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');

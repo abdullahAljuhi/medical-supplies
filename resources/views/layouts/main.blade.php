@@ -19,6 +19,8 @@
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/ar.css') }}">
     <!--
 
     TemplateMo 559 Zay Shop
@@ -30,111 +32,268 @@
 
 <body>
 
+<!-- ======= Header ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center">
 
-    <!-- Header -->
-    <nav class="navbar navbar-expand-lg navbar-light shadow">
-        <div class="container-fluid d-flex justify-content-between align-items-center">
+    <!-- Main Logo -->
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="/" class="logo d-flex align-items-center">
+            <img class="m-4" src="{{ asset('assets/img/logo.png') }}" alt="">
+            <span class="d-none d-lg-block">علاجي كوم</span>
+        </a>
+    </div>
+    <!-- End Logo -->
 
-            <a class="navbar-brand logo h3 align-self-center col-lg-auto col-md-10 col-sm-8" href="index.html">
-                <img src="assets/img/logo.png" alt="">
-                علاجي كوم
-            </a>
-
-            <div class="order-lg-2 order-md-1 nav-item dropdown pe-3">
-                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                  <i class="fa fa-fw fa-user text-dark mr-2"></i>
-                </a>
-
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                  <li class="dropdown-header">
-                    <h6>Kevin Anderson</h6>
-                    <span>Web Designer</span>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-
-                  <li>
-                    <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                      <i class="bi bi-person"></i>
-                      <span>My Profile</span>
-                    </a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-
-                  <li>
-                    <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                      <i class="bi bi-gear"></i>
-                      <span>Account Settings</span>
-                    </a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-
-                  <li>
-                    <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                      <i class="bi bi-question-circle"></i>
-                      <span>Need Help?</span>
-                    </a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-
-                  <li>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                      <i class="bi bi-box-arrow-right"></i>
-                      <span>Sign Out</span>
-                    </a>
-                  </li>
-                </ul>
-            </div>
-            <!-- End Profile Dropdown Items -->
-            <button class="order-lg-1 order-md-2 navbar-toggler border-0" type="button" data-bs-toggle="collapse"
-                data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="order-lg-1 order-md-2 align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
-                id="templatemo_main_nav">
-                <div class="flex-fill">
-                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">الصيدليات</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">الشركاء</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">التواصل</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="shop.html">حولنا</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="navbar align-self-center d-flex">
-
-
-                    <a class="nav-icon position-relative text-decoration-none" href="#">
-                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                        <span
-                            class="position-absolute   translate-middle badge rounded bg-light text-dark shopping">7</span>
-                    </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="#">AR</a>
-                    <a class="nav-icon position-relative text-decoration-none" href="login.html">تسجيل </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="register.html">انشاء حساب </a>
-                </div>
-            </div>
-
-        </div>
+    <!-- Main Links Bar -->
+    <nav class="header-nav w-100">
+        <ul class="d-flex align-items-center flex-fill justify-content-center d-md-flex d-none">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('pharmacies') }}">{{ __('الصيدليات') }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">{{ __('الشركاء') }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">{{ __('التواصل') }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">{{ __('حولنا') }}</a>
+            </li>
+        </ul>
     </nav>
-    <!-- Close Header -->
+
+    <!-- Icons Navigation -->
+    <nav class="header-nav">
+        <ul class="d-flex align-items-center">
+            @guest
+                @if (Route::has('login'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                @endif
+
+                @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
+                @endif
+            @else
+            <!-- Notification Nav -->
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-bell"></i>
+                        <span class="badge bg-primary badge-number">4</span>
+                    </a><!-- End Notification Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                        <li class="dropdown-header">
+                            لديك 4 اشعارات جديدة
+                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">عرض الكل</span></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="notification-item">
+                            <i class="bi bi-exclamation-circle text-warning"></i>
+                            <div>
+                                <h4>محمد زبير</h4>
+                                <p>وصفة طبية مستعجلة</p>
+                                <p>منذ 30 دقيقة</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="notification-item">
+                            <i class="bi bi-x-circle text-danger"></i>
+                            <div>
+                                <h4>محمد زبير</h4>
+                                <p>وصفة طبية مستعجلة</p>
+                                <p>منذ 30 دقيقة</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="notification-item">
+                            <i class="bi bi-check-circle text-success"></i>
+                            <div>
+                                <h4>محمد زبير</h4>
+                                <p>وصفة طبية مستعجلة</p>
+                                <p>منذ 30 دقيقة</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="notification-item">
+                            <i class="bi bi-info-circle text-primary"></i>
+                            <div>
+                                <h4>محمد زبير</h4>
+                                <p>وصفة طبية مستعجلة</p>
+                                <p>منذ 30 دقيقة</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="dropdown-footer">
+                            <a href="#">عرض جميع الاشعارات</a>
+                        </li>
+
+                    </ul><!-- End Notification Dropdown Items -->
+
+                </li>
+                <!-- End Notification Nav -->
+
+                <!-- Messages Nav -->
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-chat-left-text"></i>
+                        <span class="badge bg-success badge-number">3</span>
+                    </a><!-- End Messages Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+                        <li class="dropdown-header">
+                            لديك 3 رسائل جديدة
+                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">عرض الجميع</span></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
+                                <div>
+                                    <h4>ناصر الغيثي</h4>
+                                    <p>ممكن دواء بديل للصداع</p>
+                                    <p>منذ 4 ساعات</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
+                                <div>
+                                    <h4>ناصر الغيثي</h4>
+                                    <p>ممكن دواء بديل للصداع</p>
+                                    <p>منذ 4 ساعات</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
+                                <div>
+                                    <h4>ناصر الغيثي</h4>
+                                    <p>ممكن دواء بديل للصداع</p>
+                                    <p>منذ 4 ساعات</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="dropdown-footer">
+                            <a href="#">عرض جميع الرسائل</a>
+                        </li>
+
+                    </ul><!-- End Messages Dropdown Items -->
+
+                </li>
+                <!-- End Messages Nav -->
+
+                <!-- Profile Nav -->
+                <li class="nav-item dropdown pe-3">
+
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        <img src="assets/img/user.png" alt="Profile" class="rounded-circle p-1 border">
+                    </a><!-- End Profile Iamge Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+
+                        <li class="dropdown-header">
+                            <h6>{{ Auth::user()->name }}</h6>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="profile">
+                                <i class="bi bi-person"></i>
+                                <span>الملف الشخصي</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('edit.profile') }}">
+                                <i class="bi bi-gear"></i>
+                                <span>اعدادات الحساب</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                                <i class="bi bi-question-circle"></i>
+                                <span>هل تحتاج المساعدة ؟</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>تسجيل الخروج</span>
+                            </a>
+                        </li>
+
+                    </ul><!-- End Profile Dropdown Items -->
+                </li>
+                <!-- End Profile Nav -->
+            @endguest
+
+        </ul>
+    </nav>
+    <!-- End Icons Navigation -->
+    <button class="d-md-none d-sm-inline-block  navbar-toggler border-0 text-black" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+        <i class="bi bi-list toggle-sidebar-btn"></i>
+    </button>
+
+</header>
+<!-- End Header -->
 
 
 
@@ -217,9 +376,9 @@
                     <div class="col-auto">
                         <label class="sr-only" for="subscribeEmail">Email address</label>
                         <div class="input-group mb-2">
-                            <input type="text" class="form-control bg-dark border-light" id="subscribeEmail"
+                            <input type="text" class="form-control bg-dark border-light text-light" id="subscribeEmail"
                                 placeholder="Email address">
-                            <div class="input-group-text btn-success text-light">Subscribe</div>
+                            <div class="input-group-text btn-success text-white">Subscribe</div>
                         </div>
                     </div>
                 </div>
