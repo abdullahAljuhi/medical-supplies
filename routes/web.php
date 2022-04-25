@@ -76,7 +76,7 @@ Route::get('/l', function () {
 
 
 
-\
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
 

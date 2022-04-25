@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-@extends('layouts.app')
-@section('title', 'الصفحة الرئيسية')
-@section('content')
-    <div class="pagetitle">
-      <h1>لوحة التحكم</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">الصفحة الرئيسية /</a></li>
-          <li class="breadcrumb-item active">لوحة التحكم</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
-=======
 @extends("layouts.main")
 @section('content')
     <!-- Start Banner Hero -->
@@ -401,5 +387,4 @@
         </div>
     </section>
 
->>>>>>> 0c114c3e03741c8f92f9602c8c2a3fe64e87a4c3
 @endsection

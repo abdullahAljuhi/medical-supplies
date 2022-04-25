@@ -5,11 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
-<<<<<<< HEAD
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User_profile>
-=======
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserProfile>
->>>>>>> dev
  */
 class UserProfileFactory extends Factory
 {
