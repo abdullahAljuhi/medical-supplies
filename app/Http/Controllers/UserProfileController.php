@@ -55,7 +55,7 @@ class UserProfileController extends Controller
     {
         $user = User::find(Auth::id())->with('profile');
 
-        return view('user-profile', compact('user'));
+        return view('user.profile', compact('user'));
     }
 
     /**

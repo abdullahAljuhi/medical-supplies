@@ -58,7 +58,9 @@
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">العنوان</div>
-                                    <div class="col-lg-9 col-md-8">حضرموت - المكلا</div>
+                                    <div class="col-lg-9 col-md-8">@isset($user->adress)
+                                        
+                                    @endisset</div>
                                 </div>
 
                                 <div class="row">

@@ -44,125 +44,6 @@
     </div>
     <!-- End Logo -->
 
-<<<<<<< HEAD
-            <a class="navbar-brand logo h3 align-self-center col-lg-auto col-md-10 col-sm-8" href="index.html">
-                <img src="assets/img/logo.png" alt="">
-                علاجي كوم
-            </a>
-            @auth('web')
-            <div class="order-lg-2 order-md-1 nav-item dropdown pe-3">
-                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <i class="fa fa-fw fa-user text-dark mr-2"></i>
-                </a>
-
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile ">
-                    <li class="dropdown-header">
-                        <h6>{{ auth()->user()->name }}</h6>
-                        <span></span>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="{{ route('show.profile') }}">
-                            <i class="bi bi-person"></i>
-                            <span> الملف الشخصي </span>
-                        </a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                            <i class="bi bi-gear"></i>
-                            <span>Account Settings</span>
-                        </a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                            <i class="bi bi-question-circle"></i>
-                            <span>Need Help?</span>
-                        </a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                        <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                            <i class="bi bi-box-arrow-right"></i>
-                            <span>تسجيل الخروج</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!-- End Profile Dropdown Items -->
-            <button class="order-lg-1 order-md-2 navbar-toggler border-0" type="button" data-bs-toggle="collapse"
-                data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            @endauth
-
-            <div class="order-lg-1 order-md-2 align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
-                id="templatemo_main_nav">
-                <div class="flex-fill">
-                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">الصيدليات</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">الشركاء</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">التواصل</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="shop.html">حولنا</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="navbar align-self-center d-flex">
-
-
-                    <a class="nav-icon position-relative text-decoration-none" href="#">
-                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                        <span
-                            class="position-absolute   translate-middle badge rounded bg-light text-dark shopping">7</span>
-                    </a>
-
-                    <a class="nav-icon position-relative text-decoration-none" href="#">AR</a>
-                    @guest
-                    @if (Route::has('login'))
-                    <a class="nav-icon position-relative text-decoration-none" href="{{ route('login') }}">تسجيل </a>
-                    @endif
-
-                    @if (Route::has('register'))
-                    <a class="nav-icon position-relative text-decoration-none" href="{{ route('register') }}">انشاء حساب
-                    </a>
-                    @endif
-                    @else
-                    <form action="{{ route('pharmacy.create') }}" method="get">
-                        <button class="nav-icon position-relative text-decoration-none" > تحويل الحساب الى حساب صيدليه </button>
-                    </form>
-                    @endguest
-                </div>
-            </div>
-
-        </div>
-=======
     <!-- Main Links Bar -->
     <nav class="header-nav w-100">
         <ul class="d-flex align-items-center flex-fill justify-content-center d-md-flex d-none">
@@ -179,7 +60,6 @@
                 <a class="nav-link" href="">{{ __('حولنا') }}</a>
             </li>
         </ul>
->>>>>>> f1205cf46a50fb80b6a32a32cf4000092da7ec69
     </nav>
 
     <!-- Icons Navigation -->
@@ -507,14 +387,6 @@
 
         <div class="w-100 bg-black py-3">
             <div class="container">
-<<<<<<< HEAD
-                <div class="row pt-2">
-                    <div class="col-12">
-                        <p class="text-left text-light">
-                            جميع الحقوق محفوظة لدى علاجي كوم
-                            | Designed by <a rel="sponsored" href="https://jaweb.com" target="_blank">Jaweb Company</a>
-                        </p>
-=======
                 <div class="row">
 
                     <div class="col-md-4 pt-5">
@@ -592,7 +464,6 @@
                                 placeholder="Email address">
                             <div class="input-group-text btn-success text-white">Subscribe</div>
                         </div>
->>>>>>> f1205cf46a50fb80b6a32a32cf4000092da7ec69
                     </div>
                 </div>
             </div>
