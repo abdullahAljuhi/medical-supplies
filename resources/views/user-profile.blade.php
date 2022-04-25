@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('title', 'الملف الشخصي')
 @section('content')
+@php
+echo "<pre>";
+    var_dump($user);
+@endphp
     <!-- Page Title -->
     <div class="pagetitle">
         <h1>Profile</h1>

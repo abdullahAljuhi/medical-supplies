@@ -55,6 +55,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ],[
             'email.required' => 'البريد الإلكتروني مطلوب.',
+            'email.unique' => 'البريد الإلكتروني موحود.',
             'email.email' => 'ادخل عنوان بريد إلكتروني بشكل صحيح.',
             'password.required' => 'كلمة المرور مطلوبة.',
             'email.max'=>"حجم الايميل كبير جدا",
@@ -80,8 +81,6 @@ class RegisterController extends Controller
         // create profile for user 
         $user->profile()->create([]);
 
-        // create address for user 
-        $user->addresses()->create([]);
 
         return $user;    
     }

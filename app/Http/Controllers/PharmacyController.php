@@ -46,7 +46,7 @@ class PharmacyController extends Controller
 
         $governorates = Governorate::all();
 
-        return view('pharmacy.create', compact('cities', 'governorates'));
+        return view('pharmacy-register', compact('cities', 'governorates'));
     }
 
     /**
@@ -245,5 +245,19 @@ class PharmacyController extends Controller
         } catch (\Exception $e) {
             //throw $th;
         }
+    }
+
+    // active pharmacy
+    public function active($id)
+    {
+        $pharmacy = Pharmacy::find($id);
+        $pharmacy->is_active = 1;
+    }
+
+    // dis_active pharmacy
+    public function disActive($id)
+    {
+        $pharmacy = Pharmacy::find($id);
+        $pharmacy->is_active = 0;
     }
 }

@@ -54,4 +54,12 @@ class Pharmacy extends Model
         else
             return 'مفعل';
     }
+
+    public function admin(){
+        if($this->type == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
