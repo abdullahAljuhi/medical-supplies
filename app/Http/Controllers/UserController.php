@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class UserController extends Controller 
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->where('id', '<>', auth()->id())->get(); //use pagination here
-        return view('dashboard.users.index', compact('users'));
+        //$users = User::latest()->where('id', '<>', auth()->id())->get(); //use pagination here
+        $users = User::all();
+        $types = ['User','Admin','Pharmacy'];
+        return view('user.users', compact('users','types'));
     }
 
     /**
@@ -26,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -85,10 +87,10 @@ class UserController extends Controller
         try {
             $user = User::findOrFail($id);
             if ($user->image !== '') { // check if user has image
-                // remove image 
+                // remove image
                 Storage::disk('users')->delete($user->image);
             }
-             
+
             $user->delete();
             return redirect()->route('user.home');
         } catch (\Exception $e) {

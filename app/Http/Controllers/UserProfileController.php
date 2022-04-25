@@ -21,7 +21,7 @@ class UserProfileController extends Controller
      */
     public function index()
     {
-        //
+        return view('user.user-profile');
     }
 
     /**
@@ -98,7 +98,7 @@ class UserProfileController extends Controller
                 $fileName = $this->uploadImage('pharmacy', $request->image);
             }
             $address=$request->governorate.',,'.$request->city .',,' . $request->details;
-            
+
             $userProfile->update([
                 'image' => $fileName,
                 'phone' => $request->phone,

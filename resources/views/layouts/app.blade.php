@@ -236,8 +236,7 @@
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="assets/img/user.png" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle pe-2">{{ Auth::user()->name }}</span>
+                        <img src="assets/img/user.png" alt="Profile" class="rounded-circle border p-1">
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -310,7 +309,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link " href="index">
+            <a class="nav-link " href="/">
                 <i class="bi bi-grid"></i>
                 <span>لوحة التحكم</span>
             </a>
@@ -437,6 +436,9 @@
 
 <!-- Template Main JS File -->
 <script src="{{ asset('assets/js/main.js') }}"></script>
+
+<!-- Jquery -->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
 </body>
 
