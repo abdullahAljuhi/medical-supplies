@@ -1,10 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.main')
 @section('title', 'الملف الشخصي')
 @section('content')
-@php
-echo "<pre>";
-    var_dump($user);
-@endphp
+
     <!-- Page Title -->
     <div class="pagetitle">
         <h1>Profile</h1>
@@ -18,7 +15,7 @@ echo "<pre>";
     </div>
     <!-- End Page Title -->
 
-    <section class="section profile">
+    <section class="section profile min-vh-100 vw-100 overflow-hidden">
         <div class="row">
             <div class="col-xl-4">
 
@@ -45,18 +42,18 @@ echo "<pre>";
                         <!-- Bordered Tabs -->
                         <ul class="nav nav-tabs nav-tabs-bordered justify-content-center">
 
-                            <li class="nav-item">
-                                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">نظرة
+                            <li class="nav-item p-1">
+                                <button class="nav-link active bg-white" data-bs-toggle="tab" data-bs-target="#profile-overview">نظرة
                                     عامة</button>
                             </li>
 
-                            <li class="nav-item">
-                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">تعديل الملف
+                            <li class="nav-item p-1">
+                                <button class="nav-link bg-white" data-bs-toggle="tab" data-bs-target="#profile-edit">تعديل الملف
                                     الشخصي</button>
                             </li>
 
-                            <li class="nav-item">
-                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">تغيير كلمة
+                            <li class="nav-item p-1">
+                                <button class="nav-link bg-white" data-bs-toggle="tab" data-bs-target="#profile-change-password">تغيير كلمة
                                     المرور</button>
                             </li>
 

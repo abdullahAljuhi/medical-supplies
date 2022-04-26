@@ -28,6 +28,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     ////////////////////////////////////
 
+    Route::get('/profile', function () {
+        return view('user.user-profile');
+    })->name('profile');
+
     Route::group(['prefix' => 'pharmacy'], function () {
         Route::get('/create', [PharmacyController::class, 'create'])->name('pharmacy.create');
         Route::post('/store', [PharmacyController::class, 'store'])->name('admin.pharmacy.store');
@@ -50,7 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-        // crud USers
+        // crud Users
         Route::group(['prefix' => 'users'], function () {
             Route::get('/', [UserController::class, 'index'])->name('admin.users.index');
             Route::get('/create', [UserController::class, 'create'])->name('admin.users.create');
@@ -63,16 +67,16 @@ Route::group(['middleware' => 'auth'], function () {
 
         // crud city
         Route::resource('city', CityController::class)->except('show');
-        
+
         //  crud governorate
         Route::resource('governorate', GovernorateController::class)->except('show');
-        
+
         // crud pharmacy contact
         Route::resource('contact', ContactController::class)->except('show');
-        
+
         Route::group(['prefix' => 'pharmacy', 'middleware' => ['checkType:pharmacy','active']], function () {
 
-        
+
     });
 
 
@@ -93,13 +97,13 @@ Route::group(['prefix' => 'profile'], function () {
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/l', function () {
-    return view('registerAsPhar');
-});
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
 
-Route::get('/profile', function () {
-    return view('user.profile');
-})->name('pharmacies');
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
 
 Route::get('/re1', function () {
     return view('order');
