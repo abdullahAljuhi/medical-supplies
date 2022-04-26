@@ -58,10 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
         }); // end users
 
         Route::get('/', function () {
-            $data = [
-                'admin' => 'you admin'
-            ];
-            return $data;
+        return view('home');
         });
 
         // crud city
