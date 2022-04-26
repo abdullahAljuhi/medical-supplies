@@ -43,9 +43,9 @@
 
     <!-- Main Logo -->
     <div class="d-flex align-items-center justify-content-between">
-        <a href="/" class="logo d-flex align-items-center">
+        <a href="/dashboard" class="logo d-flex align-items-center">
             <img class="m-4" src="{{ asset('assets/img/logo.png') }}" alt="">
-            <span class="d-none d-lg-block">أمدادات طبية</span>
+            <span class="d-none d-lg-block">علاجي كوم</span>
         </a>
         @auth
         <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -54,12 +54,12 @@
     <!-- End Logo -->
 
     <!-- Search Bar -->
-    <div class="search-bar">
-        <form class="search-form d-flex align-items-center" method="POST" action="#">
-            <input type="text" name="query" placeholder="البحث" title="Enter search keyword">
-            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-        </form>
-    </div>
+{{--    <div class="search-bar">--}}
+{{--        <form class="search-form d-flex align-items-center" method="POST" action="#">--}}
+{{--            <input type="text" name="query" placeholder="البحث" title="Enter search keyword">--}}
+{{--            <button type="submit" title="Search"><i class="bi bi-search"></i></button>--}}
+{{--        </form>--}}
+{{--    </div>--}}
     <!-- End Search Bar -->
 
     <!-- Icons Navigation -->
@@ -236,7 +236,7 @@
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="assets/img/user.png" alt="Profile" class="rounded-circle border p-1">
+                        <img src="{{ asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -309,7 +309,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link " href="/">
+            <a class="nav-link " href="/dashboard">
                 <i class="bi bi-grid"></i>
                 <span>لوحة التحكم</span>
             </a>
@@ -365,43 +365,10 @@
         </li><!-- End Icons Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="profile">
-                <i class="bi bi-person"></i>
-                <span>الملف الشخصي</span>
+            <a class="nav-link collapsed" href="#">
+                <i class="bi bi-gem"></i><span>اعدادات</span></i>
             </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="register">
-                <i class="bi bi-person"></i>
-                <span>انشاء حساب</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pharmacy-register">
-                <i class="bi bi-person"></i>
-                <span>انشاء صيدلية</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="login">
-                <i class="bi bi-person"></i>
-                <span>تسجيل الدخول</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
-            <a class="nav-link collapsed" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                <i class="bi bi-box-arrow-in-right"></i>
-                <span>تسجيل الخروج</span>
-            </a>
-        </li>
+        </li><!-- End Icons Nav -->
 
     </ul>
 

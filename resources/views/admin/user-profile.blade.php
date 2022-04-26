@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 @section('title', 'الملف الشخصي')
 @section('content')
 

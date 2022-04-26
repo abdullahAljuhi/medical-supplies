@@ -28,9 +28,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     ////////////////////////////////////
 
-    Route::get('/profile', function () {
-        return view('user.user-profile');
-    })->name('profile');
 
     Route::group(['prefix' => 'pharmacy'], function () {
         Route::get('/create', [PharmacyController::class, 'create'])->name('pharmacy.create');
@@ -43,18 +40,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     ///////////////////////////////////////
 
-
-
-
     Route::get('/', [PharmacyController::class, 'index'])->name('admin.pharmacy.index');
-    
+
     Route::post('/changePassword', [UserController::class, 'changePassword'])->name('changePassword.user');
 
     Route::group(['prefix' => 'dashboard', 'middleware' => 'checkType:admin'], function () {
-
-
-
-
 
         // crud Users
         Route::group(['prefix' => 'users'], function () {
@@ -65,7 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
         }); // end users
 
         Route::get('/', function () {
-        return view('home');
+            return view('home');
         });
 
         // crud city
@@ -77,23 +67,18 @@ Route::group(['middleware' => 'auth'], function () {
         // crud pharmacy contact
         Route::resource('contact', ContactController::class)->except('show');
 
-        Route::group(['prefix' => 'pharmacy', 'middleware' => ['checkType:pharmacy','active']], function () {
+        Route::group(['prefix' => 'pharmacy', 'middleware' => ['checkType:pharmacy', 'active']], function () {
+
+
+        });
 
 
     });
-
-
-
-
-
-
-
-});
-Route::group(['prefix' => 'profile'], function () {
-    Route::get('index', [UserProfileController::class, 'show'])->name('index.profile');
-    Route::get('edit', [UserProfileController::class, 'edit'])->name('edit.profile');
-    Route::post('update', [UserProfileController::class, 'update'])->name('update.profile');
-});
+    Route::group(['prefix' => 'profile'], function () {
+        Route::get('index', [UserProfileController::class, 'show'])->name('index.profile');
+        Route::get('edit', [UserProfileController::class, 'edit'])->name('edit.profile');
+        Route::post('update', [UserProfileController::class, 'update'])->name('update.profile');
+    });
 });
 
 
@@ -115,9 +100,6 @@ Route::get('/re1', function () {
 Route::get('/re2', function () {
     return view('registerAsPhar');
 });
-
-
-
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
