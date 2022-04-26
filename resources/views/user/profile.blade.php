@@ -58,9 +58,11 @@
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">العنوان</div>
-                                    <div class="col-lg-9 col-md-8">@isset($user->adress)
-                                        
-                                    @endisset</div>
+                                    <div class="col-lg-9 col-md-8">@isset($user->profile['address'])
+                                        {{$user->profile['address'][0]}} - {{$user->profile['address'][1]}}
+                                       
+                                    @endisset
+                                </div>
                                 </div>
 
                                 <div class="row">

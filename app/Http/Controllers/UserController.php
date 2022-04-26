@@ -16,7 +16,6 @@ class UserController extends Controller
     public function index()
     {
         $users = User::latest()->where('id', '<>', auth()->id())->get(); 
-        // $users = User::all();
         $types = ['User','Admin','Pharmacy'];
         return view('user.users', compact('users','types'));
     }

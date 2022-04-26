@@ -21,7 +21,9 @@ class UserProfileController extends Controller
      */
     public function index()
     {
-        return view('user.user-profile');
+        $user = User::with('profile')->find(Auth::id());
+
+        return view('user.profile', compact('user'));
     }
 
     /**
@@ -51,9 +53,9 @@ class UserProfileController extends Controller
      * @param  \App\Models\UserProfile  $userProfile
      * @return \Illuminate\Http\Response
      */
-    public function show(UserProfile $userProfile)
+    public function show($id)
     {
-        $user = User::find(Auth::id())->with('profile');
+        $user = User::with('profile')->find($id);
 
         return view('user.profile', compact('user'));
     }
@@ -67,12 +69,16 @@ class UserProfileController extends Controller
     public function edit()
     {
 
-        $user = User::find(Auth::id())->with('profile');
-        $address=explode(',,',$user->address);
-        $governorate=$address[0];
-        $city=$address[1];
-        $address=[2];
-        return view('auth.test.profile', compact('user', 'city', 'governorate','address'));
+        
+        $user = User::with('profile')->find(Auth::user()->id);
+    
+
+        $address=explode(',,',$user->profile['address']);
+        $user->profile['address']=$address;
+        // $governorate=$address[0];
+        // $city=$address[1];
+        // $address=[2];
+        return view('user.profile', compact('user'));
     }
 
     /**
