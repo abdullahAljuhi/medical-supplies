@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 @section('title', 'الملف الشخصي')
 @section('content')
 
@@ -15,7 +15,7 @@
     </div>
     <!-- End Page Title -->
 
-    <section class="section profile min-vh-100 vw-100 overflow-hidden">
+    <section class="section profile">
         <div class="row">
             <div class="col-xl-4">
 
@@ -42,18 +42,18 @@
                         <!-- Bordered Tabs -->
                         <ul class="nav nav-tabs nav-tabs-bordered justify-content-center">
 
-                            <li class="nav-item p-1">
-                                <button class="nav-link active bg-white" data-bs-toggle="tab" data-bs-target="#profile-overview">نظرة
+                            <li class="nav-item">
+                                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">نظرة
                                     عامة</button>
                             </li>
 
-                            <li class="nav-item p-1">
-                                <button class="nav-link bg-white" data-bs-toggle="tab" data-bs-target="#profile-edit">تعديل الملف
+                            <li class="nav-item">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">تعديل الملف
                                     الشخصي</button>
                             </li>
 
-                            <li class="nav-item p-1">
-                                <button class="nav-link bg-white" data-bs-toggle="tab" data-bs-target="#profile-change-password">تغيير كلمة
+                            <li class="nav-item">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">تغيير كلمة
                                     المرور</button>
                             </li>
 
@@ -88,7 +88,7 @@
                             <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                                 <!-- Profile Edit Form -->
-                                <form>
+                                <form action="{{ route('update.profile') }}" method="POST" enctype="multipart/form-data">
                                     <div class="row mb-3">
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">الصورة الشخصية</label>
                                         <div class="col-md-8 col-lg-9">
@@ -175,19 +175,20 @@
 
                             <div class="tab-pane fade pt-3" id="profile-change-password">
                                 <!-- Change Password Form -->
-                                <form>
 
+                                <form action="{{ route('changePassword.user') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
                                     <div class="row mb-3">
                                         <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">كلمة المرور الحالية</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="password" type="password" class="form-control" id="currentPassword">
+                                            <input name="current_password" type="password" class="form-control" id="currentPassword">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">كلمة المرور الجديدة</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="newpassword" type="password" class="form-control" id="newPassword">
+                                            <input name="new_password" type="password" class="form-control" id="newPassword">
                                         </div>
                                     </div>
 

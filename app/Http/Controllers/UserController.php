@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -28,6 +30,27 @@ class UserController extends Controller
     public function create()
     {
 
+    }
+
+    public function changePassword(Request $request) {
+        if (!(Hash::check($request->current_password, Auth::user()->password))) {
+            
+            // The passwords matches
+            return redirect()->back()->with(["error"=>" كلمة المرور لا تتطابق مع كلمة المروو الخاصه بك"]);
+        }
+
+        if(strcmp($request->current_password , $request->new_password) == 0){
+
+            // Current password and new password same
+            return redirect()->back()->with(["error"=>" كلمة المرور الجديده لا يمكن تساوي   كلمة الحاليه"]);
+        }
+
+        //Change Password
+        $user = Auth::user();
+        $user->password = bcrypt($request->new_password);
+        $user->save();
+
+        return redirect()->back()->with(["error"=>" تم تغيير كلمة السر بنجاح"]);
     }
 
     /**

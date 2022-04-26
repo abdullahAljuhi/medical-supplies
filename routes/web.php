@@ -47,6 +47,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::get('/', [PharmacyController::class, 'index'])->name('admin.pharmacy.index');
+    
+    Route::post('/changePassword', [UserController::class, 'changePassword'])->name('changePassword.user');
 
     Route::group(['prefix' => 'dashboard', 'middleware' => 'checkType:admin'], function () {
 
@@ -57,6 +59,7 @@ Route::group(['middleware' => 'auth'], function () {
         // crud Users
         Route::group(['prefix' => 'users'], function () {
             Route::get('/', [UserController::class, 'index'])->name('admin.users.index');
+            Route::get('/{id}', [UserProfileController::class, 'show'])->name('show.profile');
             Route::get('/create', [UserController::class, 'create'])->name('admin.users.create');
             Route::post('/store', [UserController::class, 'store'])->name('admin.users.store');
         }); // end users
@@ -87,7 +90,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 Route::group(['prefix' => 'profile'], function () {
-    Route::get('show', [UserProfileController::class, 'show'])->name('show.profile');
+    Route::get('index', [UserProfileController::class, 'show'])->name('index.profile');
     Route::get('edit', [UserProfileController::class, 'edit'])->name('edit.profile');
     Route::post('update', [UserProfileController::class, 'update'])->name('update.profile');
 });
