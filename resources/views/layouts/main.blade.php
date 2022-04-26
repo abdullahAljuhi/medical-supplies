@@ -240,7 +240,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="profile">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('index.profile') }}">
                                 <i class="bi bi-person"></i>
                                 <span>الملف الشخصي</span>
                             </a>

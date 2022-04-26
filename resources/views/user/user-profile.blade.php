@@ -1,10 +1,7 @@
 @extends('layouts.app')
 @section('title', 'الملف الشخصي')
 @section('content')
-@php
-echo "<pre>";
-    var_dump($user);
-@endphp
+
     <!-- Page Title -->
     <div class="pagetitle">
         <h1>Profile</h1>
@@ -17,7 +14,9 @@ echo "<pre>";
         </nav>
     </div>
     <!-- End Page Title -->
-
+    @include('alerts.success')
+    @include('alerts.errors')
+    
     <section class="section profile">
         <div class="row">
             <div class="col-xl-4">
@@ -91,7 +90,7 @@ echo "<pre>";
                             <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                                 <!-- Profile Edit Form -->
-                                <form>
+                                <form action="{{ route('update.profile') }}" method="POST" enctype="multipart/form-data">
                                     <div class="row mb-3">
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">الصورة الشخصية</label>
                                         <div class="col-md-8 col-lg-9">
@@ -178,19 +177,20 @@ echo "<pre>";
 
                             <div class="tab-pane fade pt-3" id="profile-change-password">
                                 <!-- Change Password Form -->
-                                <form>
-
+                                
+                                <form action="{{ route('changePassword.user') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
                                     <div class="row mb-3">
                                         <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">كلمة المرور الحالية</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="password" type="password" class="form-control" id="currentPassword">
+                                            <input name="current_password" type="password" class="form-control" id="currentPassword">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">كلمة المرور الجديدة</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="newpassword" type="password" class="form-control" id="newPassword">
+                                            <input name="new_password" type="password" class="form-control" id="newPassword">
                                         </div>
                                     </div>
 

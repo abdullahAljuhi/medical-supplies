@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Helpers\Helper;
 use App\Models\UserProfile;
-use App\Http\Requests\UserProfileRequest;
-use App\Models\City;
-use App\Models\Governorate;
-use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\UserProfileRequest;
 
 class UserProfileController extends Controller
 {
@@ -72,13 +72,12 @@ class UserProfileController extends Controller
         
         $user = User::with('profile')->find(Auth::user()->id);
     
-
         $address=explode(',,',$user->profile['address']);
         $user->profile['address']=$address;
         // $governorate=$address[0];
         // $city=$address[1];
         // $address=[2];
-        return view('user.profile', compact('user'));
+        return view('user.user-profile', compact('user'));
     }
 
     /**
@@ -91,31 +90,28 @@ class UserProfileController extends Controller
     public function update(UserProfileRequest $request)
     {
         try {
-            $userProfile = UserProfile::find(auth('web')->user()->id);
-            if ($request->filled('password')) {
-                $request->merge(['password' => bcrypt($request->password)]);
-            }
-            $fileName = "";
+            $user = UserProfile::find(Auth::user()->id);
+            $photo= $user->image;
+            $fileName = $photo;
             if ($request->has('image')) {
 
+                if($fileName != null)
                 Storage::disk('pharmacy')->delete($fileName);
 
                 // save img in public/pharmacy/images
                 $fileName = $this->uploadImage('pharmacy', $request->image);
             }
-            $address=$request->governorate.',,'.$request->city .',,' . $request->details;
-
-            $userProfile->update([
-                'image' => $fileName,
-                'phone' => $request->phone,
-                'birthday' => $request->birthday,
-                'address'=>$address,
-            ]);
+            
+            $user=User::updated($request->all());
+            $user->profile()->update($request->all());
+   
             return redirect()->back()->with(['success' => 'تم التحديث بنجاح']);
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => 'هناك خطا ما يرجي المحاولة فيما بعد']);
         }
     }
+
+
 
     /**
      * Remove the specified resource from storage.

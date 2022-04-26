@@ -72,7 +72,7 @@
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">البريد الالكتروني</div>
-                                    <div class="col-lg-9 col-md-8">{{ Auth::user()->email }}</div>
+                                    <div class="col-lg-9 col-md-8">{{ $user->email }}</div>
                                 </div>
 
                             </div>
