@@ -33,13 +33,13 @@
 <body>
 
 <!-- ======= Header ======= -->
-<header id="header" class="header fixed-top d-flex align-items-center">
+<header id="header" class="header fixed-top d-flex align-items-center position-absolute">
 
     <!-- Main Logo -->
     <div class="d-flex align-items-center justify-content-between">
         <a href="/" class="logo d-flex align-items-center">
             <img class="m-4" src="{{ asset('assets/img/logo.png') }}" alt="">
-            <span class="d-none d-lg-block">علاجي كوم</span>
+            <span class="text-nowrap">علاجي كوم</span>
         </a>
     </div>
     <!-- End Logo -->
@@ -48,33 +48,35 @@
     <nav class="header-nav w-100">
         <ul class="d-flex align-items-center flex-fill justify-content-center d-md-flex d-none">
             <li class="nav-item">
-                <a class="nav-link" href="">{{ __('الصيدليات') }}</a>
+                <a class="nav-link text-dark" href="">{{ __('الصيدليات') }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">{{ __('الشركاء') }}</a>
+                <a class="nav-link text-dark" href="">{{ __('الشركاء') }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('contact') }}">{{ __('التواصل') }}</a>
+                <a class="nav-link text-dark" href="{{ route('contact') }}">{{ __('التواصل') }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('about') }}">{{ __('حولنا') }}</a>
+                <a class="nav-link text-dark" href="{{ route('about') }}">{{ __('حولنا') }}</a>
             </li>
         </ul>
     </nav>
 
     <!-- Icons Navigation -->
-    <nav class="header-nav">
+    <nav class="header-nav d-sm-block d-none">
         <ul class="d-flex align-items-center">
             @guest
-                @if (Route::has('login'))
+                @if (Route::has('register'))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link btn btn-outline-primary mx-2 text-nowrap py-1"
+                           href="{{ route('register') }}">{{ __('انشاء حساب') }}</a>
                     </li>
                 @endif
 
-                @if (Route::has('register'))
+                @if (Route::has('login'))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="nav-link btn btn-outline-success mx-2 text-nowrap py-1"
+                           href="{{ route('login') }}">{{ __('تسجيل الدخول') }}</a>
                     </li>
                 @endif
             @else
@@ -234,13 +236,14 @@
 
                         <li class="dropdown-header">
                             <h6>{{ Auth::user()->name }}</h6>
+                            <span>{{ Auth::user()->email }}</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="profile">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('profile') }}">
                                 <i class="bi bi-person"></i>
                                 <span>الملف الشخصي</span>
                             </a>
@@ -288,11 +291,43 @@
         </ul>
     </nav>
     <!-- End Icons Navigation -->
-    <button class="d-md-none d-sm-inline-block  navbar-toggler border-0 text-black" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+    <button class="d-md-none d-sm-inline-block  navbar-toggler border-0 text-black" type="button"
+            data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent"
+            aria-expanded="true" aria-label="Toggle navigation">
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </button>
 
+    <div
+        class="position-absolute top-100 bg-white w-100 order-lg-1 order-md-2 align-self-center navbar-collapse flex-fill d-lg-none w-100 justify-content-lg-between collapse"
+        id="templatemo_main_nav" style="">
+        <div class="flex-fill">
+            <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="">{{ __('الصيدليات') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="">{{ __('الشركاء') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="">{{ __('التواصل') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="">{{ __('حولنا') }}</a>
+                </li>
+                <li class="nav-item d-flex d-sm-none d-block my-3">
+                    <a class="btn btn-outline-primary text-nowrap p-1"
+                       href="{{ route('register') }}">{{ __('انشاء حساب') }}</a>
+                </li>
+                <li class="nav-item d-flex d-sm-none d-block my-3">
+                    <a class="btn btn-outline-success text-nowrap py-1"
+                       href="{{ route('login') }}">{{ __('تسجيل الدخول') }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </header>
+
+
 <!-- End Header -->
 
 
