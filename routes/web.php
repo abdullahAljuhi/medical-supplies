@@ -69,9 +69,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::group(['prefix' => 'pharmacy', 'middleware' => ['checkType:pharmacy', 'active']], function () {
 
-
         });
-
 
     });
     Route::group(['prefix' => 'profile'], function () {
@@ -92,14 +90,6 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
-
-Route::get('/re1', function () {
-    return view('order');
-});
-
-Route::get('/re2', function () {
-    return view('registerAsPhar');
-});
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
