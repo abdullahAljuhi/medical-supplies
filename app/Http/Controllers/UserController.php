@@ -34,7 +34,7 @@ class UserController extends Controller
 
     public function changePassword(Request $request) {
         if (!(Hash::check($request->current_password, Auth::user()->password))) {
-            
+
             // The passwords matches
             return redirect()->back()->with(["error"=>" كلمة المرور لا تتطابق مع كلمة المروو الخاصه بك"]);
         }

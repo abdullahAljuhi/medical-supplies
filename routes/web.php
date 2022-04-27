@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     ////////////////////////////////////
 
+
     Route::group(['prefix' => 'pharmacy'], function () {
         Route::get('/create', [PharmacyController::class, 'create'])->name('pharmacy.create');
         Route::post('/store', [PharmacyController::class, 'store'])->name('admin.pharmacy.store');
@@ -39,20 +40,13 @@ Route::group(['middleware' => 'auth'], function () {
 
     ///////////////////////////////////////
 
-
-
-
     Route::get('/', [PharmacyController::class, 'index'])->name('admin.pharmacy.index');
-    
+
     Route::post('/changePassword', [UserController::class, 'changePassword'])->name('changePassword.user');
 
     Route::group(['prefix' => 'dashboard', 'middleware' => 'checkType:admin'], function () {
 
-
-
-
-
-        // crud USers
+        // crud Users
         Route::group(['prefix' => 'users'], function () {
             Route::get('/', [UserController::class, 'index'])->name('admin.users.index');
             Route::get('/{id}', [UserProfileController::class, 'show'])->name('show.profile');
@@ -66,54 +60,45 @@ Route::group(['middleware' => 'auth'], function () {
 
         // crud city
         Route::resource('city', CityController::class)->except('show');
-        
+
         //  crud governorate
         Route::resource('governorate', GovernorateController::class)->except('show');
-        
+
         // crud pharmacy contact
         Route::resource('contact', ContactController::class)->except('show');
-        
-        Route::group(['prefix' => 'pharmacy', 'middleware' => ['checkType:pharmacy','active']], function () {
 
-        
+        Route::group(['prefix' => 'pharmacy', 'middleware' => ['checkType:pharmacy', 'active']], function () {
+
+        });
+
     });
-
-
-
-
-
-
-
-});
-Route::group(['prefix' => 'profile'], function () {
-    Route::get('index', [UserProfileController::class, 'show'])->name('index.profile');
-    Route::get('edit', [UserProfileController::class, 'edit'])->name('edit.profile');
-    Route::post('update', [UserProfileController::class, 'update'])->name('update.profile');
-});
+    Route::group(['prefix' => 'profile'], function () {
+        Route::get('/', [UserProfileController::class, 'index'])->name('profile');
+        Route::get('index', [UserProfileController::class, 'show'])->name('index.profile');
+        Route::get('edit', [UserProfileController::class, 'edit'])->name('edit.profile');
+        Route::post('update', [UserProfileController::class, 'update'])->name('update.profile');
+    });
 });
 
 
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/l', function () {
-    return view('registerAsPhar');
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+
+Route::get('/l1', function () {
+    return view('murad.city');
+});Route::get('/l2', function () {
+    return view('murad.state');
 });
-
-Route::get('/profile', function () {
-    return view('user.profile');
-})->name('pharmacies');
-
-Route::get('/re1', function () {
+Route::get('/l', function () {
     return view('order');
 });
-
-Route::get('/re2', function () {
-    return view('registerAsPhar');
-});
-
-
-
-
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');

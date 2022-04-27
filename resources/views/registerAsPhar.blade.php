@@ -11,7 +11,7 @@
                         <div class="d-flex justify-content-center py-4">
                             <a href="/" class="logo d-flex align-items-center w-auto">
                                 <img src="assets/img/logo.png" alt="">
-                                <span class="d-none d-lg-block">أمدادات طبية</span>
+                                <span class="d-none d-lg-block">علاجي كوم</span>
                             </a>
                         </div><!-- End Logo -->
 

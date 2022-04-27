@@ -3,6 +3,49 @@
 
 
     <!-- Modal -->
+
+    <section class="min-vh-100 pt-5 d-flex align-items-center justify-content-center top-0 bg-light">
+        <!-- Start Content Page -->
+        <div class="w-100 bg-light py-5">
+            <div class="container">
+                <div class="col-md text-center">
+                    <h1 class="h1">تواصل معنا</h1>
+                    <div class="row">
+
+                        <div class="col-md-6 col-lg-4 pb-5  ">
+                            <div class="h-100 py-5 services-icon-wap shadow ">
+                                <div class="h1 text-success text-center "><i class="bi bi-telephone-fill"></i></div>
+                                <h2 class="h5 mt-4 text-center">الهاتف</h2>
+                                <p>
+                                    772725220
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4 pb-5">
+                            <div class="h-100 py-5 services-icon-wap shadow">
+                                <div class="h1 text-success text-center"><i class="bi bi-geo-alt-fill"></i></div>
+                                <h2 class="h5 mt-4 text-center">العنوان</h2>
+                                <p>
+                                    اليمن / حضرموت /المكلا
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4 pb-5">
+                            <div class="h-100 py-5 services-icon-wap shadow">
+                                <div class="h1 text-success text-center"><i class="bi bi-envelope-fill"></i></div>
+                                <h2 class="h5 mt-4 text-center">البريد الالكتروني</h2>
+                                <p>
+                                    MedicalSublies@gmail.com
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="w-100 pt-1 mb-5 text-right">
@@ -18,49 +61,6 @@
             </form>
         </div>
     </div>
-
-
-    <!-- Start Content Page -->
-    <div class=" bg-light py-5">
-        <div class="container">
-            <div class="col-md text-center">
-                <h1 class="h1">تواصل معنا</h1>
-                <div class="row">
-
-                    <div class="col-md-6 col-lg-4 pb-5  ">
-                        <div class="h-100 py-5 services-icon-wap shadow ">
-                            <div class="h1 text-success text-center "><i class="bi bi-telephone-fill"></i></div>
-                            <h2 class="h5 mt-4 text-center">الهاتف</h2>
-                            <p>
-                                  772725220
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 pb-5">
-                        <div class="h-100 py-5 services-icon-wap shadow">
-                            <div class="h1 text-success text-center"><i class="bi bi-geo-alt-fill"></i></div>
-                            <h2 class="h5 mt-4 text-center">العنوان</h2>
-                            <p>
-                                اليمن / حضرموت /المكلا
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 pb-5">
-                        <div class="h-100 py-5 services-icon-wap shadow">
-                            <div class="h1 text-success text-center"><i class="bi bi-envelope-fill"></i></div>
-                            <h2 class="h5 mt-4 text-center">البريد الالكتروني</h2>
-                            <p>
-                                MedicalSublies@gmail.com
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <!-- Start Contact -->
     <div class="container py-5">
@@ -94,7 +94,7 @@
                     </form>
                 </div>
             </div>
-            
+
         </div>
 
     </div>
