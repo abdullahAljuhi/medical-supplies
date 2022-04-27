@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         $users = User::latest()->where('id', '<>', auth()->id())->get();
         $types = ['User','Admin','Pharmacy'];
-        return view('user.user', compact('users','types'));
+        return view('user.users', compact('users','types'));
     }
 
     /**
@@ -34,7 +34,7 @@ class UserController extends Controller
 
     public function changePassword(Request $request) {
         if (!(Hash::check($request->current_password, Auth::user()->password))) {
-            
+
             // The passwords matches
             return redirect()->back()->with(["error"=>" كلمة المرور لا تتطابق مع كلمة المروو الخاصه بك"]);
         }

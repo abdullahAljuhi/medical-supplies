@@ -243,14 +243,14 @@
 
                         <li class="dropdown-header">
                             <h6>{{ Auth::user()->name }}</h6>
-                            <span>مختص طبي</span>
+                            <span>{{ Auth::user()->email }}</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{{ route('index.profile') }}">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('profile') }}">
                                 <i class="bi bi-person"></i>
                                 <span>الملف الشخصي</span>
                             </a>
@@ -323,7 +323,7 @@
         </li><!-- End Users Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="users">
+            <a class="nav-link collapsed" href="{{ route('admin.users.index') }}">
                 <i class="bi bi-person"></i>
                 <span>المستخدمين</span>
             </a>
@@ -405,7 +405,7 @@
 <script src="{{ asset('assets/js/main.js') }}"></script>
 
 <!-- Jquery -->
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 
 </body>
 

@@ -22,8 +22,13 @@ class UserProfileController extends Controller
     public function index()
     {
         $user = User::with('profile')->find(Auth::id());
+        if (Auth::user()->type === 0)
+        {
 
-        return view('user.profile', compact('user'));
+            return view('user.user-profile', compact('user'));
+        }
+
+        return view('admin.user-profile', compact('user'));
     }
 
     /**
@@ -69,9 +74,9 @@ class UserProfileController extends Controller
     public function edit()
     {
 
-        
+
         $user = User::with('profile')->find(Auth::user()->id);
-    
+
         $address=explode(',,',$user->profile['address']);
         $user->profile['address']=$address;
         // $governorate=$address[0];
@@ -101,10 +106,10 @@ class UserProfileController extends Controller
                 // save img in public/pharmacy/images
                 $fileName = $this->uploadImage('pharmacy', $request->image);
             }
-            
+
             $user=User::updated($request->all());
             $user->profile()->update($request->all());
-   
+
             return redirect()->back()->with(['success' => 'تم التحديث بنجاح']);
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => 'هناك خطا ما يرجي المحاولة فيما بعد']);

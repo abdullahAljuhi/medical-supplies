@@ -73,6 +73,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     });
     Route::group(['prefix' => 'profile'], function () {
+        Route::get('/', [UserProfileController::class, 'index'])->name('profile');
         Route::get('index', [UserProfileController::class, 'show'])->name('index.profile');
         Route::get('edit', [UserProfileController::class, 'edit'])->name('edit.profile');
         Route::post('update', [UserProfileController::class, 'update'])->name('update.profile');
