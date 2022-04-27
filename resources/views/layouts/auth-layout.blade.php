@@ -33,6 +33,7 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/ar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 
     <!-- =======================================================
     * Template Name: NiceAdmin - v2.2.2
