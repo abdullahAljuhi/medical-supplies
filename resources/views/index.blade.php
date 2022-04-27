@@ -1,7 +1,7 @@
 @extends("layouts.main")
 @section('content')
     <!-- Start Banner Hero -->
-    <section class="min-vh-100 d-flex align-items-center justify-content-center top-0 bg-light">
+    <section class="min-vh-100 d-flex align-items-center justify-content-center top-0 bg-light p-lg-5">
         <div id="template-mo-zay-hero-carousel" class="carousel slide h-75 w-100  bg-light" data-bs-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
@@ -75,7 +75,7 @@
         </div>
     </section>
     <!-- End Banner Hero -->
-    <section class="bg-white ads  p-4">
+    <section class="bg-white ads  px-5">
         <div class="  p-4">
             <div class="row">
                 <div class="col-md-6 col-lg-3 ">
@@ -101,8 +101,8 @@
             </div>
         </div>
     </section>
-    <section class="bg-light py-5">
-        <div class="container pb-5">
+    <section class="bg-light p-lg-5">
+        <div class="container pb-5 p-lg-5">
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
                     <h1 class="h1">الصيدليات</h1>
@@ -111,16 +111,16 @@
                     </p>
                 </div>
             </div>
-            <div class="card-group">
+            <div class="card-group p-lg-5">
                 <div class="row row-cols-1 row-cols-md-3 g-5 text-center jobs">
                     <div class="col">
-                        <div class="card h-100">
+                        <div class="card h-100 p-2">
                             <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title fs-3 text-primary">صيدلية رضا الوالدين</h5>
-                                <p class="card-text fs-4 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
-                                <ul class="text-center footer-icons d-flex justify-content-center">
-                                    <li class="list-inline-item  text-center">
+                            <div class="card-body pb-0">
+                                <h5 class="card-title fs-4 text-primary fw-bold">صيدلية رضا الوالدين</h5>
+                                <p class="card-text fs-5 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
+                                <ul class="text-center footer-icons d-flex justify-content-center mb-0">
+                                    <li class="list-inline-item text-center">
                                         <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
                                                 class="fab fa-facebook-f fa-lg fa-fw"></i></a>
                                     </li>
@@ -147,13 +147,13 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100">
+                        <div class="card h-100 p-2">
                             <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title fs-3 text-primary">صيدلية رضا الوالدين</h5>
-                                <p class="card-text fs-4 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
-                                <ul class="text-center footer-icons d-flex justify-content-center">
-                                    <li class="list-inline-item  text-center">
+                            <div class="card-body pb-0">
+                                <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
+                                <p class="card-text fs-5 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
+                                <ul class="text-center footer-icons d-flex justify-content-center mb-0">
+                                    <li class="list-inline-item text-center">
                                         <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
                                                 class="fab fa-facebook-f fa-lg fa-fw"></i></a>
                                     </li>
@@ -180,13 +180,13 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100">
+                        <div class="card h-100 p-2">
                             <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title fs-3 text-primary">صيدلية رضا الوالدين</h5>
-                                <p class="card-text fs-4 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
-                                <ul class="text-center footer-icons d-flex justify-content-center">
-                                    <li class="list-inline-item  text-center">
+                            <div class="card-body pb-0">
+                                <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
+                                <p class="card-text fs-5 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
+                                <ul class="text-center footer-icons d-flex justify-content-center mb-0">
+                                    <li class="list-inline-item text-center">
                                         <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
                                                 class="fab fa-facebook-f fa-lg fa-fw"></i></a>
                                     </li>
@@ -213,13 +213,13 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100">
+                        <div class="card h-100 p-2">
                             <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title fs-3 text-primary">صيدلية رضا الوالدين</h5>
-                                <p class="card-text fs-4 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
-                                <ul class="text-center footer-icons d-flex justify-content-center">
-                                    <li class="list-inline-item  text-center">
+                            <div class="card-body pb-0">
+                                <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
+                                <p class="card-text fs-5 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
+                                <ul class="text-center footer-icons d-flex justify-content-center mb-0">
+                                    <li class="list-inline-item text-center">
                                         <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
                                                 class="fab fa-facebook-f fa-lg fa-fw"></i></a>
                                     </li>
@@ -246,13 +246,13 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100">
+                        <div class="card h-100 p-2">
                             <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title fs-3 text-primary">صيدلية رضا الوالدين</h5>
-                                <p class="card-text fs-4 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
-                                <ul class="text-center footer-icons d-flex justify-content-center">
-                                    <li class="list-inline-item  text-center">
+                            <div class="card-body pb-0">
+                                <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
+                                <p class="card-text fs-5 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
+                                <ul class="text-center footer-icons d-flex justify-content-center mb-0">
+                                    <li class="list-inline-item text-center">
                                         <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
                                                 class="fab fa-facebook-f fa-lg fa-fw"></i></a>
                                     </li>
@@ -279,13 +279,13 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100">
+                        <div class="card h-100 p-2">
                             <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title fs-3 text-primary">صيدلية رضا الوالدين</h5>
-                                <p class="card-text fs-4 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
-                                <ul class="text-center footer-icons d-flex justify-content-center">
-                                    <li class="list-inline-item  text-center">
+                            <div class="card-body pb-0">
+                                <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
+                                <p class="card-text fs-5 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
+                                <ul class="text-center footer-icons d-flex justify-content-center mb-0">
+                                    <li class="list-inline-item text-center">
                                         <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
                                                 class="fab fa-facebook-f fa-lg fa-fw"></i></a>
                                     </li>
@@ -311,6 +311,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
             <div class="row d-flex justify-content-center align-items-center mt-5">
@@ -337,28 +338,28 @@
             <div class="row">
 
                 <div class="col-md-6 col-lg-3 pb-5  ">
-                    <div class="h-100 py-5 services-icon-wap shadow ">
+                    <div class="h-100 py-5 services-icon-wapp shadow-sm border ">
                         <div class="h1 text-success text-center "><i class="fa fa-truck fa-lg "></i></div>
                         <h2 class="h5 mt-4 text-center">توصيل</h2>
                     </div>
                 </div>
 
                 <div class="col-md-6 col-lg-3 pb-5">
-                    <div class="h-100 py-5 services-icon-wap shadow">
+                    <div class="h-100 py-5 services-icon-wapp shadow-sm border">
                         <div class="h1 text-success text-center"><i class="bi bi-credit-card-fill"></i></div>
                         <h2 class="h5 mt-4 text-center">دفع الالكتروني</h2>
                     </div>
                 </div>
 
                 <div class="col-md-6 col-lg-3 pb-5">
-                    <div class="h-100 py-5 services-icon-wap shadow">
+                    <div class="h-100 py-5 services-icon-wapp shadow-sm border">
                         <div class="h1 text-success text-center"><i class="bi bi-display-fill"></i></div>
                         <h2 class="h5 mt-4 text-center">عروض</h2>
                     </div>
                 </div>
 
                 <div class="col-md-6 col-lg-3 pb-5">
-                    <div class="h-100 py-5 services-icon-wap shadow">
+                    <div class="h-100 py-5 services-icon-wapp shadow-sm border">
                         <div class="h1 text-success text-center"><i class="bi bi-alarm"></i></div>
                         <h2 class="h5 mt-4 text-center">خدمة على مدار 24 ساعة</h2>
                     </div>

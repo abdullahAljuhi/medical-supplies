@@ -18,21 +18,21 @@
         <!-- Recent Sales -->
         <div class="card  recent-sales overflow-auto p-3">
 
-            <div class="filter">
-                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                        <h6>Filter</h6>
-                    </li>
+{{--            <div class="filter">--}}
+{{--                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>--}}
+{{--                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">--}}
+{{--                    <li class="dropdown-header text-start">--}}
+{{--                        <h6>Filter</h6>--}}
+{{--                    </li>--}}
 
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                </ul>
-            </div>
+{{--                    <li><a class="dropdown-item" href="#">Today</a></li>--}}
+{{--                    <li><a class="dropdown-item" href="#">This Month</a></li>--}}
+{{--                    <li><a class="dropdown-item" href="#">This Year</a></li>--}}
+{{--                </ul>--}}
+{{--            </div>--}}
 
             <p class="card-body">
-            <h5 class="card-title">Recent Sales <span>| Today</span></h5>
+            <h5 class="card-title">جميع مستخدمين النظام<span></span></h5>
 
             <table class="table table-hover datatable">
                 <thead>
@@ -45,6 +45,9 @@
                 </tr>
                 </thead>
                 <tbody>
+                @php
+                  $types = ['مستخدم','مدير','مالك صيدلية'];
+                @endphp
                 @foreach($users as $user)
                     <a href="#">
                         <tr>
