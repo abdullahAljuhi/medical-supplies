@@ -22,12 +22,6 @@ class UserProfileController extends Controller
     public function index()
     {
         $user = User::with('profile')->find(Auth::id());
-        if (Auth::user()->type === 0)
-        {
-
-            return view('user.profile', compact('user'));
-        }
-
         return view('user.profile', compact('user'));
     }
 

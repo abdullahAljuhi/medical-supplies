@@ -348,7 +348,7 @@
         </li><!-- End Icons Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#">
+            <a class="nav-link collapsed" href="">
                 <i class="bi bi-gem"></i><span>اعدادات</span></i>
             </a>
         </li><!-- End Icons Nav -->
