@@ -19,8 +19,6 @@
         </div>
     </div>
 
-
-
     <section class="vh-100 d-flex align-items-center justify-content-center top-0 bg-primary">
         <div class="container">
             <div class="row align-items-center py-5">

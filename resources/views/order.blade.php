@@ -1,14 +1,14 @@
 @extends("layouts.main")
 @section('content')
-    <div class="container my-5">
+    <div class="container my-5 pt-5">
         <section class="section profile">
             <div class="row">
 
 
                 <div class="col-xl-4 ">
-                  <div class="card  shadow    bg-body  d-flex justify-content-center align-items-center" style=" padding: 0 0 1rem 0 ; overflow: hidden;border-radius: 1rem;">
+                  <div class="card  shadow bg-body  d-flex justify-content-center align-items-center" style=" padding: 0 0 1rem 0 ; overflow: hidden;border-radius: 1rem;">
                       <div class="row card-img-top w-100 mb-2 h-100 " >
-                       <img src="imgs/phramacy6.png" class="card-img-top w-100  card-pharmacy p-0"  alt="...">
+                       <img src="{{ asset('img/phramacy5.png') }}" class="card-img-top w-100  card-pharmacy p-0"  alt="...">
                       </div>
                        <!-- strat info  -->
                        <div class="card-body">
