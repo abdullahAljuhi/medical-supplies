@@ -55,8 +55,8 @@ Route::group(['middleware' => 'auth'], function () {
         }); // end users
 
         Route::get('/', function () {
-            return view('home');
-        });
+        return view('home');
+        })->name('dashboard');
 
         // crud city
         Route::resource('city', CityController::class)->except('show');
