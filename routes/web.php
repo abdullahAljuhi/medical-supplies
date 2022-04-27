@@ -92,5 +92,13 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
+Route::get('/l1', function () {
+    return view('murad.city');
+});Route::get('/l2', function () {
+    return view('murad.state');
+});
+Route::get('/l', function () {
+    return view('order');
+});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');

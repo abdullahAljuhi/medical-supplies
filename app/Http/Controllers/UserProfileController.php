@@ -25,10 +25,10 @@ class UserProfileController extends Controller
         if (Auth::user()->type === 0)
         {
 
-            return view('user.user-profile', compact('user'));
+            return view('user.profile', compact('user'));
         }
 
-        return view('admin.user-profile', compact('user'));
+        return view('user.profile', compact('user'));
     }
 
     /**
