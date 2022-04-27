@@ -62,7 +62,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/', function () {
         return view('home');
-        });
+        })->name('dashboard');
 
         // crud city
         Route::resource('city', CityController::class)->except('show');

@@ -309,7 +309,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link " href="/">
+            <a class="nav-link " href="{{ route('dashboard') }}">
                 <i class="bi bi-grid"></i>
                 <span>لوحة التحكم</span>
             </a>

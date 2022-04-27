@@ -50,9 +50,9 @@ class Pharmacy extends Model
     public function getIsActiveAttribute($value)
     {
         if ($value)
-            return 'غير مفعل';
-        else
             return 'مفعل';
+        else
+            return 'غير مفعل';
     }
 
     public function admin(){
