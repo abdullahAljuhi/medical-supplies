@@ -1,7 +1,7 @@
 @extends("layouts.main")
 @section('content')
     <!-- Start Banner Hero -->
-    <section class="min-vh-100 d-flex align-items-center justify-content-center top-0 bg-light p-lg-5">
+    <section class="min-vh-100 d-flex align-items-center justify-content-center top-0 bg-light p-lg-5 ">
         <div id="template-mo-zay-hero-carousel" class="carousel slide h-75 w-100  bg-light" data-bs-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>

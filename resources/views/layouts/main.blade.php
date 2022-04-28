@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="{{ asset('css/templatemo.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/viewAndList.css') }}">
+
 
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet"
@@ -32,7 +34,7 @@
 -->
 </head>
 
-<body>
+<body style="overflow-x: hidden">
 
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center position-absolute">
@@ -367,6 +369,7 @@
 <script src="{{asset('js/bootstrap.bundle.min.js ') }}"></script>
 <script src="{{asset('js/templatemo.js ') }}"></script>
 <script src="{{asset('js/custom.js ') }}"></script>
+<script src="{{asset('js/viewAndList.js ') }}"></script>
 <!-- End Script -->
 </body>
 
