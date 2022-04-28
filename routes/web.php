@@ -57,6 +57,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', function () {
         return view('home');
         })->name('dashboard');
+        Route::get('/location', function () {
+            return view('admin.location');
+        })->name('location');
 
         // crud city
         Route::resource('city', CityController::class)->except('show');
@@ -92,13 +95,8 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('/l1', function () {
-    return view('murad.city');
-});Route::get('/l2', function () {
-    return view('murad.state');
-});
-Route::get('/l', function () {
-    return view('order');
-});
+Route::get('/pharmacies', function () {
+    return view('murad.pharmacy');
+})->name('pharmacies');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
