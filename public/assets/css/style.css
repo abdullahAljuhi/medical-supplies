@@ -11,12 +11,13 @@
 :root {
   scroll-behavior: smooth;
 }
-
-body {
-  font-family: "Open Sans", sans-serif;
-  background: #f6f9ff;
-  color: #444444;
+*{
+  font-family: 'Cairo', sans-serif;
 }
+body {
+   background: #f6f9ff;
+  color: #444444;
+ }
 
 a {
   color: #4154f1;
@@ -29,7 +30,7 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Nunito", sans-serif;
+font-family: "Cairo", sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -212,7 +213,8 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 30px;
   border: none;
   border-radius: 5px;
-  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+  box-shadow: 0px 0 20px rgba(1, 42, 112, 0.087);
+  border: 1px solid #d0d6e1;
 }
 
 .card-header, .card-footer {
@@ -224,10 +226,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .card-title {
   padding: 20px 0 15px 0;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 500;
   color: #012970;
-  font-family: "Poppins", sans-serif;
+  font-family: "Cairo", sans-serif;
 }
 .card-title span {
   color: #899bbd;
@@ -245,7 +247,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Alerts */
 .alert-heading {
   font-weight: 500;
-  font-family: "Poppins", sans-serif;
+  font-family: "Cairo", sans-serif;
   font-size: 20px;
 }
 
@@ -290,7 +292,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Breadcrumbs */
 .breadcrumb {
   font-size: 14px;
-  font-family: "Nunito", sans-serif;
+font-family: "Cairo", sans-serif;
   color: #899bbd;
   font-weight: 600;
 }
@@ -346,7 +348,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 26px;
   font-weight: 700;
   color: #012970;
-  font-family: "Nunito", sans-serif;
+font-family: "Cairo", sans-serif;
 }
 
 .header {

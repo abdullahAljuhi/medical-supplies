@@ -4,22 +4,22 @@
 <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-6 col-md-6 d-flex flex-column align-items-center justify-content-center p-5">
+            <div class="col-lg-6 col-md-6 d-flex flex-column align-items-center justify-content-center p-3 pt-0">
 
                 <!-- Logo -->
                 <div class="d-flex justify-content-center py-4">
                     <a href="/" class="logo d-flex align-items-center w-auto">
                         <img src="{{ asset('assets/img/logo.png') }}" alt="">
-                        <span class="d-none d-lg-block">صيدليتي كوم</span>
+                        <span class="d-none d-lg-block">علاجي كوم</span>
                     </a>
                 </div>
                 <!-- End Logo -->
 
                 <div class="card mb-3">
 
-                    <div class="card-body px-2">
+                    <div class="card-body p-2">
 
-                        <ul class="nav nav-tabs w-100 p-0 mt-2 nav-order p-1 rounded overflow border">
+                        <ul class="nav nav-tabs w-100 mt-2 nav-order p-2  shadow-sm rounded overflow border">
 
                             <li class="nav-item  w-50 fs-5  d-flex justify-content-center align-items-center">
                                 <button class="nav-link active w-100" data-bs-toggle="tab" data-bs-toggle="tab" data-bs-target="#user-register">انشاء حساب مستخدم</button>
@@ -30,7 +30,7 @@
                             </li>
 
                         </ul>
-                        <div class="tab-content p-3">
+                        <div class="tab-content p-3 pt-2">
                             <div class="tab-pane fade profile-edit show active" id="user-register">
                                 <div class="pb-2">
                                     <h5 class="card-title text-center pb-0 fs-4">قم بانشاء حساب جديد</h5>
@@ -108,31 +108,31 @@
                                 <form class="row g-3 needs-validation" novalidate>
                                     <div class="col-12">
                                         <label for="yourName" class="form-label">أسم الصيدلية</label>
-                                        <input type="text" name="name" class="form-control" id="yourName" required>
+                                        <input type="text" name="name" class="form-control" id="pharmacy_name" required>
                                         <div class="invalid-feedback">يرجى  اسم الصيدلية </div>
                                     </div>
 
                                     <div class="col-12">
-                                        <label for="yourEmail" class="form-label">رقم الهاتف</label>
-                                        <input type="tel" name="email" class="form-control" id="yourEmail" required>
+                                        <label for="phone" class="form-label">رقم الهاتف</label>
+                                        <input type="tel" name="phone" class="form-control" id="phone" required>
                                         <div class="invalid-feedback">يرجى ادخال  رقم الهاتف!</div>
                                     </div>
                                     <div class="col-12">
-                                        <label for="yourEmail" class="form-label">رقم الموبايل</label>
-                                        <input type="text" name="email" class="form-control" id="yourEmail" required>
+                                        <label for="mobil" class="form-label">رقم الموبايل</label>
+                                        <input type="text" name="mobil" class="form-control" id="mobil" required>
                                         <div class="invalid-feedback">يرجى ادخال   رقم الموبايل!</div>
                                     </div>
 
                                     <div class="col-12">
-                                        <label for="yourPassword" class="form-label">رقم  الترخيص</label>
-                                        <input type="number" name="password" class="form-control" id="yourPassword" required>
+                                        <label for="license" class="form-label">رقم  الترخيص</label>
+                                        <input type="number" name="license" class="form-control" id="license" required>
                                         <div class="invalid-feedback">يرجى ادخال رقم الترخيص   </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="row">
                                             <div class="col-6">
-                                                <label for="inputState" class="form-label">المحافظة</label>
-                                                <select class="form-select" aria-label="Default select example">
+                                                <label for="state" class="form-label">المحافظة</label>
+                                                <select class="form-select" aria-label="Default select example" name="state" id="state">
                                                     <option selected>حدد المحافظة</option>
                                                     <option value="1">One</option>
                                                     <option value="2">Two</option>
@@ -140,8 +140,8 @@
                                                 </select>
                                             </div>
                                             <div class="col-6">
-                                                <label for="inputState" class="form-label">المدينة</label>
-                                                <select class="form-select" aria-label="Default select example">
+                                                <label for="city" class="form-label">المدينة</label>
+                                                <select class="form-select" aria-label="Default select example" name="city" id="city">
                                                     <option selected>حدد المدينة</option>
                                                     <option value="1">One</option>
                                                     <option value="2">Two</option>
@@ -152,9 +152,9 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <label for="inputState" class="form-label">تفاصيل اخرى</label>
+                                        <label for="description" class="form-label">تفاصيل اخرى</label>
                                         <div class="form-floating">
-                                            <textarea class="form-control text-right" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                                            <textarea class="form-control text-right" name="description" placeholder="Leave a comment here" id="description" style="height: 100px"></textarea>
                                         </div>
                                     </div>
 

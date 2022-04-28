@@ -82,7 +82,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::get('/', function () {
-    return view('pharmacy');
+    return view('index');
 });
 Route::get('/about', function () {
     return view('about');

@@ -3,7 +3,7 @@
  <section class="mt-5 py-3">
     <div class="container  my-3 bg-white shadow">
         <div class="row py-3  px-1">
-            <div class="col-1 links  ">
+            <div class="col-md-1 col-sm-2 links  ">
                 <ul class="w-100 h-100">
                     <li data-view="list-view" class="li-list active">
                     <i class="fas fa-th-list"></i>
@@ -13,13 +13,13 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-5">
+            <div class="col-md-5 col-sm-12 mb-2">
                 <div class="input-group  form-control ">
                     <input type="text" class=" border-0" style="width: 95%;outline:0ch" placeholder="البحث " aria-label="Example text with button addon" aria-describedby="button-addon1">
                     <i class="bi bi-search" style="width: 5%"></i>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-md-6 col-sm-12">
                 <div class="row">
                     <div class="col-6">
                         <select class="form-select form-control p-2 pe-5" aria-label=".form-select-lg example">
@@ -43,7 +43,7 @@
         </div>
     </div>
     <div class="wrapper">
-        
+
         <div class="view_main container shadow ">
             <div class="view_wrap list-view" style="display: block;">
                 <div class="  mt-0 bg-white ">
@@ -81,15 +81,15 @@
             </div>
 
             <div class="view_wrap grid-view " style="display: none;">
-                
+
                 <div class="card-group p-lg-5">
                     <div class="row row-cols-1 row-cols-md-3 g-5 text-center jobs">
                         <div class="col">
                             <div class="card h-100 p-2">
-                                <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5" alt="...">
+                                <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
                                 <div class="card-body pb-0">
-                                    <h5 class="card-title fs-4 text-primary fw-bold">صيدلية رضا الوالدين</h5>
-                                    <p class="card-text fs-5 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
+                                    <h5 class="card-title fs-4 text-primary ">صيدلية رضا الوالدين</h5>
+                                     <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
                                     <ul class="text-center footer-icons d-flex justify-content-center mb-0">
                                         <li class="list-inline-item text-center">
                                             <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
@@ -119,10 +119,10 @@
                         </div>
                         <div class="col">
                             <div class="card h-100 p-2">
-                                <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5" alt="...">
+                                <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
                                 <div class="card-body pb-0">
                                     <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
-                                    <p class="card-text fs-5 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
+                                     <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
                                     <ul class="text-center footer-icons d-flex justify-content-center mb-0">
                                         <li class="list-inline-item text-center">
                                             <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
@@ -152,10 +152,10 @@
                         </div>
                         <div class="col">
                             <div class="card h-100 p-2">
-                                <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5" alt="...">
+                                <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
                                 <div class="card-body pb-0">
                                     <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
-                                    <p class="card-text fs-5 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
+                                     <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
                                     <ul class="text-center footer-icons d-flex justify-content-center mb-0">
                                         <li class="list-inline-item text-center">
                                             <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
@@ -185,10 +185,10 @@
                         </div>
                         <div class="col">
                             <div class="card h-100 p-2">
-                                <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5" alt="...">
+                                <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
                                 <div class="card-body pb-0">
                                     <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
-                                    <p class="card-text fs-5 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
+                                     <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
                                     <ul class="text-center footer-icons d-flex justify-content-center mb-0">
                                         <li class="list-inline-item text-center">
                                             <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
@@ -218,10 +218,10 @@
                         </div>
                         <div class="col">
                             <div class="card h-100 p-2">
-                                <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5" alt="...">
+                                <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
                                 <div class="card-body pb-0">
                                     <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
-                                    <p class="card-text fs-5 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
+                                     <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
                                     <ul class="text-center footer-icons d-flex justify-content-center mb-0">
                                         <li class="list-inline-item text-center">
                                             <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
@@ -251,10 +251,10 @@
                         </div>
                         <div class="col">
                             <div class="card h-100 p-2">
-                                <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5" alt="...">
+                                <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
                                 <div class="card-body pb-0">
                                     <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
-                                    <p class="card-text fs-5 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
+                                     <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
                                     <ul class="text-center footer-icons d-flex justify-content-center mb-0">
                                         <li class="list-inline-item text-center">
                                             <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
@@ -282,7 +282,7 @@
                                 </div>
                             </div>
                         </div>
-    
+
                     </div>
                 </div>
 

@@ -1,6 +1,7 @@
 body
 {
     direction: rtl;
+    font-family: 'cairo', sans-serif;
 }
 .top-slider
 {
@@ -87,7 +88,7 @@ body
      align-items: center;
      justify-content: space-between;
  }
- 
+
  .img-parents
  {
      width: 300px;
@@ -98,6 +99,12 @@ body
  .img-parents:hover
  {
     transform:translateY(-20px);
-    transform-origin: 20% 40%; 
+    transform-origin: 20% 40%;
     box-shadow: 0 .125rem .25rem rgba(0, 0, 0, 0.250)
+}
+.img-card-cus
+{
+    width: 100%;
+    height: 200px;
+    border-bottom: .5px solid #cfd6e1;
 }
