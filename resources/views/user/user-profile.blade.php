@@ -1,7 +1,8 @@
 @extends(Auth::user()->type == 0 ? 'layouts.main' : 'layouts.app')
 @section('title', 'الملف الشخصي')
 @section('content')
-
+@include('alerts.errors')
+@include('alerts.success')
     <!-- Page Title -->
     <div class="pagetitle">
         <h1>Profile</h1>
@@ -15,6 +16,20 @@
     </div>
     <!-- End Page Title -->
 
+
+<!-- End Page Title -->
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+@include('alerts.success')
+@include('alerts.errors')
+
     <section class="section profile min-vh-100 overflow-hidden">
         <div class="row">
             <div class="col-xl-4">
@@ -22,7 +37,7 @@
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                        <img src="{{ asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
+                        <img src="{{$user->profile['image']?asset('assets/images/users/'.$user->profile['image']) : asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
                         <h2>{{ Auth::user()->name }}</h2>
                         <h3>{{ Auth::user()->email }}</h3>
                     </div>
@@ -54,9 +69,8 @@
                         <div class="tab-content pt-2">
                             <div class="tab-pane fade profile-edit show active pt-3" id="profile-edit">
 
-
                                 <!-- Profile Edit Form -->
-                                <form method="POST" action="{{ route('update.profile') }}">
+                                <form method="POST" action="{{ route('update.profile') }}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row mb-3">
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">الصورة
@@ -72,7 +86,7 @@
                                                     <i class="bi bi-trash"></i>
                                                 </a>
                                             </div>
-                                            <img src="{{ asset('assets/img/user.png') }}" id="blah" alt="Profile"
+                                            <img src="{{$user->profile['image']?asset('assets/images/users/'.$user->profile['image']) : asset('assets/img/user.png') }}" id="blah" alt="Profile"
                                                  class="mx-auto rounded-circle border p-1">
                                         </div>
                                     </div>
@@ -81,7 +95,7 @@
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">اسم
                                             الكامل</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="fullName" type="text" class="form-control" id="fullName"
+                                            <input name="name" type="text" class="form-control" id="fullName"
                                                    value="{{ $user->name }}">
                                         </div>
                                     </div>
@@ -111,24 +125,24 @@
                                         </div>
                                     </div>
 
-                                    <div class="row mb-3">
-                                        <div class="col-md-8 col-lg-9 input-group">
-                                            <label for="Job" class="col-md-4 col-lg-3 col-form-label">العنوان</label>
-                                            <select name="governorate" class="form-select select1 mx-2"
-                                                    id="inputGroupSelect01">
-                                                <option selected="" value="0">حضرموت</option>
-                                                <option value="1">المهرة</option>
-                                                <option value="2">عدن</option>
-                                            </select>
+{{--                                    <div class="row mb-3">--}}
+{{--                                        <div class="col-md-8 col-lg-9 input-group">--}}
+{{--                                            <label for="Job" class="col-md-4 col-lg-3 col-form-label">العنوان</label>--}}
+{{--                                            <select name="governorate" class="form-select select1 mx-2"--}}
+{{--                                                    id="inputGroupSelect01">--}}
+{{--                                                <option selected="" value="0">حضرموت</option>--}}
+{{--                                                <option value="1">المهرة</option>--}}
+{{--                                                <option value="2">عدن</option>--}}
+{{--                                            </select>--}}
                                             <!-- <label class="input-group-text" for="inputGroupSelect02">Options</label> -->
-                                            <select name="city" class="form-select select2 mx-2" id="inputGroupSelect02"
-                                                    style="">
-                                                <option value="1">المكلا</option>
-                                                <option value="2">سيئون</option>
-                                                <option value="2">الشحر</option>
-                                            </select>
-                                        </div>
-                                    </div>
+{{--                                            <select name="city" class="form-select select2 mx-2" id="inputGroupSelect02"--}}
+{{--                                                    style="">--}}
+{{--                                                <option value="1">المكلا</option>--}}
+{{--                                                <option value="2">سيئون</option>--}}
+{{--                                                <option value="2">الشحر</option>--}}
+{{--                                            </select>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
                                     <div class="row mb-3">
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">الشارع</label>

@@ -27,7 +27,7 @@ class UserProfileRequest extends FormRequest
             'user_id' => 'exists:app\Models\User,id',
             'name'=>'required',
             'phone'=>'required|numeric',
-            'birthday'=>'required|date|after:01/01/1990|before:DateTime()',
+            'birthday'=>'required|date',
             'image'=>'image',
             'address'=>'string',
         ];

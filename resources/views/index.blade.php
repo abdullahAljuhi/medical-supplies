@@ -75,7 +75,7 @@
         </div>
     </section>
     <!-- End Banner Hero -->
-    <section class="bg-white ads  px-5">
+    <section class="bg-white ads">
         <div class="  p-4">
             <div class="row">
                 <div class="col-md-6 col-lg-3 ">
@@ -101,9 +101,9 @@
             </div>
         </div>
     </section>
-    <section class="bg-light p-lg-5">
-        <div class="container pb-5 p-lg-5">
-            <div class="row text-center py-3">
+    <section class="bg-light">
+        <div class="container pb-5 p-xl-5 p-0">
+            <div class="row text-center py-3 p-xl-5 p-0">
                 <div class="col-lg-6 m-auto">
                     <h1 class="h1">الصيدليات</h1>
                     <p>
@@ -111,8 +111,8 @@
                     </p>
                 </div>
             </div>
-            <div class="card-group p-lg-5">
-                <div class="row row-cols-1 row-cols-md-3 g-5 text-center jobs">
+            <div class="card-group">
+                <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-0 g-sm-5 text-center jobs">
                     <div class="col">
                         <div class="card h-100 p-2">
                             <img src="{{asset('img/phramacy6.png') }}" class="card-img-top py-5 img-card-cus" alt="...">

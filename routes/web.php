@@ -95,8 +95,16 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
+Route::get('/partners', function () {
+    return view('partner');
+})->name('partners');
+
 Route::get('/pharmacies', function () {
-    return view('murad.pharmacy');
+    return view('pharmacy');
 })->name('pharmacies');
+
+Route::get('/l', function () {
+    return view('404');
+})->name('l');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
