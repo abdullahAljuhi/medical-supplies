@@ -21,13 +21,25 @@
 
                         <ul class="nav nav-tabs w-100 mt-2 nav-order p-2  shadow-sm rounded overflow border">
 
-                            <li class="nav-item  w-50 fs-5  d-flex justify-content-center align-items-center">
-                                <button class="nav-link active w-100" data-bs-toggle="tab" data-bs-toggle="tab" data-bs-target="#user-register">انشاء حساب مستخدم</button>
-                            </li>
+                                        <div class="col-12">
+                                            <label for="yourPassword" class="form-label">كلمة المرور</label>
+                                            <input id="password" type="password"
+                                                   class="form-control @error('password') is-invalid @enderror"
+                                                   name="password"
+                                                   required autocomplete="new-password">
+                                            @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                            <div class="invalid-feedback">يرجى ادخال كلمة مرور</div>
+                                        </div>
 
-                            <li class="nav-item  w-50 fs-5  d-flex justify-content-center align-items-center">
-                                <button class="nav-link w-100" data-bs-toggle="tab" data-bs-target="#pharmacy-register">انشاء حساب صيدلية</button>
-                            </li>
+                                        <div class="col-12">
+                                            <label for="yourPassword" class="form-label">تأكيد كلمة المرور</label>
+                                            <input id="password-confirm" type="password" class="form-control"
+                                                   name="password_confirmation" required autocomplete="new-password">
+                                        </div>
 
                         </ul>
                         <div class="tab-content p-3 pt-2">
@@ -36,69 +48,30 @@
                                     <h5 class="card-title text-center pb-0 fs-4">قم بانشاء حساب جديد</h5>
                                     <p class="text-center small">يرجى ادخال بياناتك الشخصية لأنشاء حساب</p>
                                 </div>
-                                <form class="row g-3 needs-validation" novalidate method="POST"
-                                      action="{{ route('register') }}">
-                                    @csrf
-                                    <div class="col-12">
-                                        <label for="yourName" class="form-label">أسم المستخدم</label>
-                                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                               name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                                        @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                        @enderror
-                                    </div>
 
-                                    <div class="col-12">
-                                        <label for="yourEmail" class="form-label">البريد الالكتروني</label>
-                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                               name="email" value="{{ old('email') }}" required autocomplete="email">
-                                        @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                        @enderror
-                                        <div class="invalid-feedback">يرجى ادخال بريد الكتروني صالح !</div>
+                                <div class="tab-pane fade" id="pharmacy-register">
+                                    <div class="pb-2">
+                                        <h5 class="card-title text-center pb-0 fs-4">سجل كمالك صيدلية</h5>
+                                        <p class="text-center small">يرجى ادخال بيانات الصيدلية </p>
                                     </div>
-
-                                    <div class="col-12">
-                                        <label for="yourPassword" class="form-label">كلمة المرور</label>
-                                        <input id="password" type="password"
-                                               class="form-control @error('password') is-invalid @enderror" name="password"
-                                               required autocomplete="new-password">
-                                        @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                        @enderror
-                                        <div class="invalid-feedback">يرجى ادخال كلمة مرور</div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <label for="yourPassword" class="form-label">تأكيد كلمة المرور</label>
-                                        <input id="password-confirm" type="password" class="form-control"
-                                               name="password_confirmation" required autocomplete="new-password">
-                                    </div>
-
-                                    <div class="col-12">
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="terms" type="checkbox" value=""
-                                                   id="acceptTerms" required>
-                                            <label class="form-check-label" for="acceptTerms">أوافق و اقبل <a href="#">الشروط
-                                                    والسياسات الخاصة بالموقع</a></label>
-                                            <div class="invalid-feedback">يجب ان تقبل بالشروط قبل أنشاء الحساب</div>
+                                    <form class="row g-3 needs-validation" novalidate>
+                                        <div class="col-12">
+                                            <label for="yourName" class="form-label">أسم المالك</label>
+                                            <input type="text" name="name" class="form-control" id="yourName" required>
+                                            <div class="invalid-feedback">يرجى اسم الصيدلية</div>
                                         </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <button class="btn btn-primary w-100" type="submit">أنشاء حساب</button>
-                                    </div>
-                                    <div class="col-12">
-                                        <p class="small mb-0">بالفعل لديك حساب ؟ <a href="{{ route('login') }}">تسجيل الدخول</a>
-                                        </p>
-                                    </div>
-                                </form>
-                            </div>
+
+                                        <div class="col-12">
+                                            <label for="yourName" class="form-label">أسم الصيدلية</label>
+                                            <input type="text" name="name" class="form-control" id="yourName" required>
+                                            <div class="invalid-feedback">يرجى اسم الصيدلية</div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="yourName" class="form-label">البريد الالكتروني</label>
+                                            <input type="text" name="name" class="form-control" id="yourName" required>
+                                            <div class="invalid-feedback">يرجى اسم الصيدلية</div>
+                                        </div>
 
                             <div class="tab-pane fade" id="pharmacy-register">
                                 <div class="pb-2">
@@ -149,40 +122,48 @@
                                                 </select>
                                             </div>
 
+                                        <div class="col-12">
+                                            <label for="yourPassword" class="form-label">رقم الترخيص</label>
+                                            <input type="number" name="password" class="form-control" id="yourPassword"
+                                                   required>
+                                            <div class="invalid-feedback">يرجى ادخال رقم الترخيص</div>
                                         </div>
+                                        
                                     </div>
                                     <div class="col-12">
                                         <label for="description" class="form-label">تفاصيل اخرى</label>
                                         <div class="form-floating">
                                             <textarea class="form-control text-right" name="description" placeholder="Leave a comment here" id="description" style="height: 100px"></textarea>
                                         </div>
-                                    </div>
 
-                                    <div class="col-12">
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
-                                            <label class="form-check-label" for="acceptTerms">أوافق و اقبل <a href="#">الشروط والسياسات الخاصة بالموقع</a></label>
-                                            <div class="invalid-feedback">يجب ان تقبل بالشروط قبل أنشاء الحساب</div>
+                                        <div class="col-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="terms" type="checkbox" value=""
+                                                       id="acceptTerms" required>
+                                                <label class="form-check-label" for="acceptTerms">أوافق و اقبل <a
+                                                        href="#">الشروط والسياسات الخاصة بالموقع</a></label>
+                                                <div class="invalid-feedback">يجب ان تقبل بالشروط قبل أنشاء الحساب</div>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-12">
-                                        <button class="btn btn-primary w-100" type="submit">أنشاء حساب</button>
-                                    </div>
-                                    <div class="col-12">
-                                        <p class="small mb-0">بالفعل لديك حساب ؟ <a href="login.html">تسجيل الدخول</a></p>
-                                    </div>
-                                </form>
-                            </div>
+                                        <div class="col-12">
+                                            <button class="btn btn-primary w-100" type="submit">أنشاء حساب</button>
+                                        </div>
+                                        <div class="col-12">
+                                            <p class="small mb-0">بالفعل لديك حساب ؟ <a href="login">تسجيل الدخول</a>
+                                            </p>
+                                        </div>
+                                    </form>
+                                </div>
 
-                        </div><!-- End Bordered Tabs -->
+                            </div><!-- End Bordered Tabs -->
 
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
-    </div>
 
-</section>
+    </section>
 @endsection

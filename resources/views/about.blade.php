@@ -19,17 +19,17 @@
         </div>
     </div>
 
-    <section class="vh-100 d-flex align-items-center justify-content-center top-0 bg-primary">
+    <section class="min-vh-100 d-flex align-items-center justify-content-center top-0 bg-primary pt-5">
         <div class="container">
-            <div class="row align-items-center py-5">
-                <div class="col-md-8 text-white">
+            <div class="row align-items-center pt-5">
+                <div class="col-lg-8 col-md-6 text-white">
                     <h1>من نحن</h1>
-                    <p>
-                       نحن عبارة عن موقع الالكتروني يقدم خدمات متنوعة التي يحتاجه المريض حيث جاءت علاجي كوم من اجل مساعدة المريض بصورة خاصة وتوفير له كافة المتطلبات التي يحتاجه بدون الذهاب الى الصيدلية وطلب العلاج من المنزل.
+                    <p class="col-lg-9">
+                        نحن عبارة عن موقع الالكتروني يقدم خدمات متنوعة التي يحتاجه المريض حيث جاءت علاجي كوم من اجل مساعدة المريض بصورة خاصة وتوفير له كافة المتطلبات التي يحتاجه بدون الذهاب الى الصيدلية وطلب العلاج من المنزل.
                     </p>
                 </div>
-                <div class="col-md-4">
-                    <img src="{{ asset('assets/img/about-hero.svg') }}" alt="About Hero">
+                <div class="col-lg-4 col-md-6 p-md-0 p-5">
+                    <img class="w-100" src="{{ asset('img/ab3.png') }}" alt="About Hero">
                 </div>
             </div>
         </div>

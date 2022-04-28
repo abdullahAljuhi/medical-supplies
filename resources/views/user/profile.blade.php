@@ -22,8 +22,8 @@
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
                         <img src="{{ asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle">
-                        <h2>{{ Auth::user()->name }}</h2>
-                        <h3>{{ Auth::user()->email }}</h3>
+                        <h2>{{ $user->name }}</h2>
+                        <h3>{{ $user->email }}</h3>
                     </div>
                 </div>
             </div>
@@ -32,8 +32,9 @@
 
                 <div class="card">
                     <div class="card-body pt-3">
-                        <!-- Bordered Tabs -->
+                        @if($user->id === Auth::user()->id)
                         <a href="{{ route('edit.profile') }}" class="btn btn-outline-primary"> تعديل بيانات الحساب</a>
+                        @endif
                         <div class="tab-content pt-2">
 
                             <div class="tab-pane fade show active profile-overview" id="profile-overview">
@@ -41,7 +42,7 @@
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label ">اسم الكامل</div>
-                                    <div class="col-lg-9 col-md-8">{{ Auth::user()->name }}</div>
+                                    <div class="col-lg-9 col-md-8">{{ $user->name }}</div>
                                 </div>
 
                                 <div class="row">
@@ -55,7 +56,7 @@
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">هاتف</div>
-                                    <div class="col-lg-9 col-md-8">770-552-517</div>
+                                    <div class="col-lg-9 col-md-8">{{ $user->phone }}</div>
                                 </div>
 
                                 <div class="row">
