@@ -15,15 +15,21 @@
     <link rel="stylesheet" href="{{ asset('css/templatemo.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/viewAndList.css') }}">
+
 
     <!-- Load fonts style after rendering the layout styles -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/ar.css') }}">
-    <!--
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--  google font  -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+      <!--
 
     TemplateMo 559 Zay Shop
 
@@ -32,7 +38,7 @@
 -->
 </head>
 
-<body>
+<body style="overflow-x: hidden">
 
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center position-absolute">
@@ -367,6 +373,7 @@
 <script src="{{asset('js/bootstrap.bundle.min.js ') }}"></script>
 <script src="{{asset('js/templatemo.js ') }}"></script>
 <script src="{{asset('js/custom.js ') }}"></script>
+<script src="{{asset('js/viewAndList.js ') }}"></script>
 <!-- End Script -->
 </body>
 

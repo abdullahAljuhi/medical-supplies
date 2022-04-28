@@ -1,7 +1,7 @@
 @extends("layouts.main")
 @section('content')
     <!-- Start Banner Hero -->
-    <section class="min-vh-100 d-flex align-items-center justify-content-center top-0 bg-light p-lg-5">
+    <section class="min-vh-100 d-flex align-items-center justify-content-center top-0 bg-light p-lg-5 ">
         <div id="template-mo-zay-hero-carousel" class="carousel slide h-75 w-100  bg-light" data-bs-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
@@ -115,10 +115,10 @@
                 <div class="row row-cols-1 row-cols-md-3 g-5 text-center jobs">
                     <div class="col">
                         <div class="card h-100 p-2">
-                            <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5" alt="...">
+                            <img src="{{asset('img/phramacy6.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
                             <div class="card-body pb-0">
-                                <h5 class="card-title fs-4 text-primary fw-bold">صيدلية رضا الوالدين</h5>
-                                <p class="card-text fs-5 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
+                                <h5 class="card-title fs-4 text-primary ">صيدلية رضا الوالدين</h5>
+                                <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
                                 <ul class="text-center footer-icons d-flex justify-content-center mb-0">
                                     <li class="list-inline-item text-center">
                                         <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
@@ -148,10 +148,10 @@
                     </div>
                     <div class="col">
                         <div class="card h-100 p-2">
-                            <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5" alt="...">
+                            <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus " alt="...">
                             <div class="card-body pb-0">
                                 <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
-                                <p class="card-text fs-5 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
+                                <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
                                 <ul class="text-center footer-icons d-flex justify-content-center mb-0">
                                     <li class="list-inline-item text-center">
                                         <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
@@ -181,10 +181,10 @@
                     </div>
                     <div class="col">
                         <div class="card h-100 p-2">
-                            <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5" alt="...">
+                            <img src="{{asset('img/phramacy2.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
                             <div class="card-body pb-0">
                                 <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
-                                <p class="card-text fs-5 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
+                                <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
                                 <ul class="text-center footer-icons d-flex justify-content-center mb-0">
                                     <li class="list-inline-item text-center">
                                         <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
@@ -214,10 +214,10 @@
                     </div>
                     <div class="col">
                         <div class="card h-100 p-2">
-                            <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5" alt="...">
+                            <img src="{{asset('img/phramacy3.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
                             <div class="card-body pb-0">
                                 <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
-                                <p class="card-text fs-5 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
+                                <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
                                 <ul class="text-center footer-icons d-flex justify-content-center mb-0">
                                     <li class="list-inline-item text-center">
                                         <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
@@ -247,10 +247,10 @@
                     </div>
                     <div class="col">
                         <div class="card h-100 p-2">
-                            <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5" alt="...">
+                            <img src="{{asset('img/phramacy4.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
                             <div class="card-body pb-0">
                                 <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
-                                <p class="card-text fs-5 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
+                                <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
                                 <ul class="text-center footer-icons d-flex justify-content-center mb-0">
                                     <li class="list-inline-item text-center">
                                         <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
@@ -280,10 +280,10 @@
                     </div>
                     <div class="col">
                         <div class="card h-100 p-2">
-                            <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5" alt="...">
+                            <img src="{{asset('img/phramacy5.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
                             <div class="card-body pb-0">
                                 <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
-                                <p class="card-text fs-5 text-secondary">العنوان : حضرموت -  المكلا - حي الشهيد</p>
+                                <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
                                 <ul class="text-center footer-icons d-flex justify-content-center mb-0">
                                     <li class="list-inline-item text-center">
                                         <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
