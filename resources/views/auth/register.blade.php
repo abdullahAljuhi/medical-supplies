@@ -143,15 +143,12 @@
                                                     <option value="3">الشرج</option>
                                                 </select>
                                             </div>
-<<<<<<< HEAD
-=======
 
                                         <div class="col-12">
                                             <label for="yourPassword" class="form-label">رقم الترخيص</label>
                                             <input type="number" name="password" class="form-control" id="yourPassword"
                                                    required>
                                             <div class="invalid-feedback">يرجى ادخال رقم الترخيص</div>
->>>>>>> 84aa7645d48ed4a07fe03f826784e6a1c63dad2b
                                         </div>
                                         
                                     </div>
@@ -171,7 +168,6 @@
                                             </div>
                                         </div>
 
-<<<<<<< HEAD
                                     <div class="col-12">
                                         <button class="btn btn-primary w-100" type="submit">أنشاء حساب</button>
                                     </div>
@@ -181,17 +177,6 @@
                                     </div>
                                 </form>
                             </div>
-=======
-                                        <div class="col-12">
-                                            <button class="btn btn-primary w-100" type="submit">أنشاء حساب</button>
-                                        </div>
-                                        <div class="col-12">
-                                            <p class="small mb-0">بالفعل لديك حساب ؟ <a href="login">تسجيل الدخول</a>
-                                            </p>
-                                        </div>
-                                    </form>
-                                </div>
->>>>>>> 84aa7645d48ed4a07fe03f826784e6a1c63dad2b
 
                             </div><!-- End Bordered Tabs -->
 

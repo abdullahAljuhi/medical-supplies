@@ -61,21 +61,29 @@
                     <div class="tab-content p-4 pt-1">
 
                       <div class="tab-pane fade pt- show active" id="profile-settings">
-                        <form>
+                        <form class=" needs-validation" novalidate method="POST"
+                                action="">
+                                @csrf
                           <div class="row mb-3">
                             <label for="name" class="col-md-12 col-form-label"> قم بكتابة اسم العلاج</label>
                             <div class="col-md-12 mb-3">
-                              <input name="name" type="text" class="form-control" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." id="currentPassword">
-                            </div>
-                            <div class="col-md-12 ">
-                                <select class="form-select form-control p-2 pe-5" aria-label=".form-select-lg example">
-                                    <option selected>   طلب  لمرة واحدة فقط</option>
-                                    <option value="1"> طلب كل اسبوع</option>
-                                    <option value="2"> طلب كل اسبوعين</option>
-                                    <option value="2"> طلب كل 3 اسابيع</option>
-                                    <option value="2"> طلب كل شهر</option>
-                                 </select>
-                             </div>
+                              <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class="form-control @error('name') is-invalid @enderror"
+                              name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                              @error('name')
+                                  <span class="invalid-feedback" role="alert">
+                                          <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
+                          </div>
+                          <div class="col-md-12 ">
+                            <select class="form-select form-control p-2 pe-5" aria-label=".form-select-lg example" name="netx_order">
+                                <option selected>طلب  لمرة واحدة فقط</option>
+                                <option value="1">طلب كل اسبوع</option>
+                                <option value="2"> طلب كل اسبوعين</option>
+                                <option value="3"> طلب كل 3 اسابيع</option>
+                                <option value="4"> طلب كل شهر</option>
+                             </select>
+                         </div>
                              
                           </div>
                           <div class="text-center">
@@ -87,19 +95,29 @@
 
                       <div class="tab-pane fade pt-0" id="profile-change-password">
 
-                        <form>
+                        <form class=" needs-validation" novalidate method="POST"
+                            action="">
+                            @csrf
                           <div class="row mb-3">
                             <label for="phote" class="col-md-12  col-form-label">صورة الوصفة الطبية او صورة من العلاج   </label>
                             <div class="col-md-12 mb-3">
-                              <input name="phote" type="file" class="form-control" id="phote">
+                                <input type="file" class="form-control" id="phote"
+                                class="form-control @error('phote') is-invalid @enderror"
+                                name="phote" value="{{ old('name') }}" required autocomplete="phote" autofocus>
+                                @error('phote')
+                                    <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                             </div>
                             <div class="col-md-12 ">
-                                <select class="form-select form-control p-2 pe-5" aria-label=".form-select-lg example">
-                                    <option selected>   طلب  لمرة واحدة فقط</option>
-                                    <option value="1"> طلب كل اسبوع</option>
+                                <select class="form-select form-control p-2 pe-5" aria-label=".form-select-lg example" name="netx_order">
+                                    <option selected>طلب  لمرة واحدة فقط</option>
+                                    <option value="1">طلب كل اسبوع</option>
                                     <option value="2"> طلب كل اسبوعين</option>
-                                    <option value="2"> طلب كل 3 اسابيع</option>
-                                    <option value="2"> طلب كل شهر</option>
+                                    <option value="3"> طلب كل 3 اسابيع</option>
+                                    <option value="4"> طلب كل شهر</option>
                                  </select>
                              </div>
                           </div>
