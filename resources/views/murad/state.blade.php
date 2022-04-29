@@ -16,7 +16,7 @@
 
     <section class="section profile">
         <div class="row">
-            
+
 
             <div class="col-xl-12">
 
@@ -26,32 +26,35 @@
                         <ul class="nav nav-tabs nav-tabs-bordered justify-content-center">
 
                             <li class="nav-item">
-                                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">المحافظات</button>
+                                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">
+                                    المحافظات
+                                </button>
                             </li>
 
                         </ul>
                         <div class="tab-content pt-2">
 
                             <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                                <label for="fullName" class="col-md-4 col-lg-3 col-form-label">  يرجى ادخال اسم المحافظة</label>
+                                <label for="fullName" class="col-md-4 col-lg-3 col-form-label"> يرجى ادخال اسم
+                                    المحافظة</label>
                                 <div class="col-md-8 col-lg-9">
                                     <input name="state" type="text" class="form-control" id="fullName" value="">
-                                </div>    
-                            </div>
-                            <div class="tab-pane fade show active profile-overview mt-3" id="profile-overview">
-                                <div >
-                                    <button type="submit" class="btn btn-primary px-3 ">حفظ </button>
                                 </div>
                             </div>
-                         </div>
-                            
+                            <div class="tab-pane fade show active profile-overview mt-3" id="profile-overview">
+                                <div>
+                                    <button type="submit" class="btn btn-primary px-3 ">حفظ</button>
+                                </div>
+                            </div>
+                        </div>
 
-                        </div><!-- End Bordered Tabs -->
 
-                    </div>
+                    </div><!-- End Bordered Tabs -->
+
                 </div>
-
             </div>
+
+        </div>
         </div>
     </section>
     <section class="section">
@@ -77,16 +80,15 @@
                             <span class="badge bg-success">Approved</span>
                             <form>
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" id="submitBtn" data-bs-toggle="modal"
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
+                                           id="submitBtn" data-bs-toggle="modal"
                                            data-bs-target="#exampleModal" checked="">
                                 </div>
                             </form>
                         </td>
                     </tr>
-                     
-                    
-                     
-                     
+
+
                     </tbody>
                 </table>
 

@@ -18,19 +18,6 @@
         <!-- Recent Sales -->
         <div class="card  recent-sales overflow-auto p-3">
 
-{{--            <div class="filter">--}}
-{{--                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>--}}
-{{--                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">--}}
-{{--                    <li class="dropdown-header text-start">--}}
-{{--                        <h6>Filter</h6>--}}
-{{--                    </li>--}}
-
-{{--                    <li><a class="dropdown-item" href="#">Today</a></li>--}}
-{{--                    <li><a class="dropdown-item" href="#">This Month</a></li>--}}
-{{--                    <li><a class="dropdown-item" href="#">This Year</a></li>--}}
-{{--                </ul>--}}
-{{--            </div>--}}
-
             <p class="card-body">
             <h5 class="card-title">جميع مستخدمين النظام<span></span></h5>
 
@@ -49,8 +36,8 @@
                   $types = ['مستخدم','مدير','مالك صيدلية'];
                 @endphp
                 @foreach($users as $user)
-                    <a href="#">
-                        <tr>
+                    <a href="www.google.com">
+                        <tr style='cursor: pointer; cursor: hand;' onclick="window.location='{{ route('show.profile',['id'=>$user->id]) }}';">
                             <th scope="row"><a href="#">#{{ $user->id }}</a></th>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>

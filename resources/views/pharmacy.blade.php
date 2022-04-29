@@ -14,11 +14,13 @@
                 </ul>
             </div>
             <div class="col-md-5 col-sm-12 mb-2">
+
                 <div class="input-group  form-control ">
                     <input type="text" class=" border-0" style="width: 95%;outline:0ch" placeholder="البحث " aria-label="Example text with button addon" aria-describedby="button-addon1">
                     <i class="bi bi-search" style="width: 5%"></i>
                 </div>
             </div>
+
             <div class="col-md-6 col-sm-12">
                 <div class="row">
                     <div class="col-6">
@@ -27,14 +29,17 @@
                             <option value="1">حضرموت</option>
                             <option value="2">صنعاء</option>
                             <option value="3">عدن</option>
+
                           </select>
                     </div>
                     <div class="col-6">
                         <select class="form-select form-control p-2 pe-5" aria-label=".form-select-lg example">
+
                             <option selected>قم باختيار احد المدن</option>
                             <option value="1">المكلا</option>
                             <option value="2">الديس</option>
                             <option value="3">باجعمان</option>
+
                           </select>
                     </div>
                 </div>
@@ -42,6 +47,7 @@
 
         </div>
     </div>
+
     <div class="wrapper">
 
         <div class="view_main container shadow ">
@@ -289,7 +295,6 @@
             </div>
         </div>
     </div>
-
 
 </section>
 

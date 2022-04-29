@@ -33,6 +33,7 @@
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     <!-- Costume CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/css/ar.css') }}">
+    @yield('extra-style')
 
 </head>
 
@@ -300,7 +301,7 @@
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="pharmacies">
-                <i class="bi bi-building"></i>
+                <i class="bi bi-flower1"></i>
                 <span>الصيدليات</span>
             </a>
         </li><!-- End Users Nav -->
@@ -312,28 +313,28 @@
             </a>
         </li><!-- End Users Nav -->
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#orders-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-cart2"></i><span>الطلبات</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="orders-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="#">
-                        <i class="bi bi-circle"></i><span>الكل</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="bi bi-circle"></i><span>الجديدة</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="bi bi-circle"></i><span>المكتملة</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Charts Nav -->
+{{--        <li class="nav-item">--}}
+{{--            <a class="nav-link collapsed" data-bs-target="#orders-nav" data-bs-toggle="collapse" href="#">--}}
+{{--                <i class="bi bi-cart2"></i><span>الطلبات</span><i class="bi bi-chevron-down ms-auto"></i>--}}
+{{--            </a>--}}
+{{--            <ul id="orders-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">--}}
+{{--                <li>--}}
+{{--                    <a href="#">--}}
+{{--                        <i class="bi bi-circle"></i><span>الكل</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--                <li>--}}
+{{--                    <a href="#">--}}
+{{--                        <i class="bi bi-circle"></i><span>الجديدة</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--                <li>--}}
+{{--                    <a href="#">--}}
+{{--                        <i class="bi bi-circle"></i><span>المكتملة</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--            </ul>--}}
+{{--        </li><!-- End Charts Nav -->--}}
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="#">
@@ -348,8 +349,8 @@
         </li><!-- End Icons Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="">
-                <i class="bi bi-gem"></i><span>اعدادات</span></i>
+            <a class="nav-link collapsed" href="{{ route('location') }}">
+                <i class="bi bi-gear"></i><span>اعدادات</span></i>
             </a>
         </li><!-- End Icons Nav -->
 
@@ -388,8 +389,7 @@
 <script src="{{ asset('assets/js/main.js') }}"></script>
 
 <!-- Jquery -->
-<script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
-
+<script src="{{ asset('js/jquery-3.6.0.min.js') }}" defer></script>
 </body>
 
 </html>

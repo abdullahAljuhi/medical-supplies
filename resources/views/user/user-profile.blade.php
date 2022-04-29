@@ -37,13 +37,17 @@
                         <ul class="nav nav-tabs nav-tabs-bordered justify-content-center">
 
                             <li class="nav-item p-1">
-                                <button class="nav-link active bg-white" data-bs-toggle="tab" data-bs-target="#profile-edit">تعديل الملف
-                                    الشخصي</button>
+                                <button class="nav-link active bg-white" data-bs-toggle="tab"
+                                        data-bs-target="#profile-edit">تعديل الملف
+                                    الشخصي
+                                </button>
                             </li>
 
                             <li class="nav-item p-1">
-                                <button class="nav-link bg-white" data-bs-toggle="tab" data-bs-target="#profile-change-password">تغيير كلمة
-                                    المرور</button>
+                                <button class="nav-link bg-white" data-bs-toggle="tab"
+                                        data-bs-target="#profile-change-password">تغيير كلمة
+                                    المرور
+                                </button>
                             </li>
 
                         </ul>
@@ -52,7 +56,8 @@
 
 
                                 <!-- Profile Edit Form -->
-                                <form>
+                                <form method="POST" action="{{ route('update.profile') }}">
+                                    @csrf
                                     <div class="row mb-3">
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">الصورة
                                             الشخصية</label>
@@ -77,7 +82,7 @@
                                             الكامل</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="fullName" type="text" class="form-control" id="fullName"
-                                                   value="مراد العمودي">
+                                                   value="{{ $user->name }}">
                                         </div>
                                     </div>
 
@@ -137,7 +142,6 @@
                                         <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
                                     </div>
                                 </form><!-- End Profile Edit Form -->
-
                             </div>
 
                             <div class="tab-pane fade pt-3" id="profile-change-password">
@@ -145,24 +149,30 @@
                                 <form>
 
                                     <div class="row mb-3">
-                                        <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">كلمة المرور الحالية</label>
+                                        <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">كلمة
+                                            المرور الحالية</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="password" type="password" class="form-control" id="currentPassword">
+                                            <input name="password" type="password" class="form-control"
+                                                   id="currentPassword">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">كلمة المرور الجديدة</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="newpassword" type="password" class="form-control" id="newPassword">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">تأكيد كلمة المرور
+                                        <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">كلمة المرور
                                             الجديدة</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                                            <input name="newpassword" type="password" class="form-control"
+                                                   id="newPassword">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">تأكيد كلمة
+                                            المرور
+                                            الجديدة</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="renewpassword" type="password" class="form-control"
+                                                   id="renewPassword">
                                         </div>
                                     </div>
 
@@ -181,8 +191,6 @@
             </div>
         </div>
     </section>
-
-
 
     <script>
         imgInp = document.getElementById('imgInp');

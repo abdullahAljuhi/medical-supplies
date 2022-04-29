@@ -46,7 +46,7 @@
     <!-- Main Logo -->
     <div class="d-flex align-items-center justify-content-between">
         <a href="/" class="logo d-flex align-items-center">
-            <img class="m-4" src="{{ asset('assets/img/logo.png') }}" alt="">
+            <img class="mx-4 h-100" src="{{ asset('assets/img/logo.png') }}" alt="">
             <span class="text-nowrap">علاجي كوم</span>
         </a>
     </div>
@@ -56,7 +56,7 @@
     <nav class="header-nav w-100">
         <ul class="d-flex align-items-center flex-fill justify-content-center d-md-flex d-none">
             <li class="nav-item">
-                <a class="nav-link text-dark" href="">{{ __('الصيدليات') }}</a>
+                <a class="nav-link text-dark" href="{{ route('pharmacies') }}">{{ __('الصيدليات') }}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark" href="">{{ __('الشركاء') }}</a>
