@@ -85,7 +85,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::get('/', function () {
-    return view('index');
+    return view('order');
 });
 Route::get('/about', function () {
     return view('about');
