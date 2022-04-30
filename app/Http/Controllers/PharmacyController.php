@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\notfiy;
+use App\Models\City;
+use App\Models\User;
 use App\Models\Pharmacy;
+use App\Models\Governorate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PharmacyRequest;
-use App\Models\City;
-use App\Models\Governorate;
 use Illuminate\Support\Facades\Storage;
+use Phar;
 
 class PharmacyController extends Controller
 {
@@ -17,18 +21,25 @@ class PharmacyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         try {
-            $pharmacies = Pharmacy::with('address')->when($request->search, function ($q) use ($request) {
-                return $q->where('name', '%' . $request->search . '%');
-            })->when($request->city_id, function ($q) use ($request) { // filter by city
-                return $q->where('city_id', $request->city_id);
-            })->when($request->governorate_id, function ($q) use ($request) { // filter by governorate
-                return $q->where('governorate_id', $request->governorate_id);
-            })->paginate(5);
-            return view('Pharmacy.index', ['pharmacies' => $pharmacies]);
-            //code...
+            $pharmacy = Pharmacy::where('user_id', Auth::id())->first();
+            // dd($pharmacy);
+            if (empty($pharmacy)) {
+                return redirect()->route('pharmacy.create');
+            } else {
+                if ($pharmacy->is_active == '1') {
+                    return view('pharmacy.index');
+                } else {
+        
+                    event(new notfiy($pharmacy));
+
+                    return "await to agree your request";
+                }
+            }
+            // $user->pharmacy['license'];
+
         } catch (\Exception $e) {
             return $e->getMessage();
             //throw $th;
@@ -42,11 +53,18 @@ class PharmacyController extends Controller
      */
     public function create()
     {
-        $cities = City::all();
+        $pharmacy = Pharmacy::where('user_id', Auth::id())->first();
+        // dd($pharmacy);
+        if (empty($pharmacy)) {
+            
+            $cities = City::all();
 
-        $governorates = Governorate::all();
+            $governorates = Governorate::all();
 
-        return view('pharmacy-register', compact('cities', 'governorates'));
+            return view('pharmacy.create', compact('cities', 'governorates'));
+        } else {
+            return redirect('/pharmacy');
+        }
     }
 
     /**
@@ -76,7 +94,7 @@ class PharmacyController extends Controller
             // create pharmacy
             $pharmacy = Pharmacy::create([
                 'name' => $request['name'],
-                'user_id' => $request['user_id'],
+                'user_id' => Auth::id(),
                 'mobile' => $request['mobile'],
                 'phone' => $request['phone'],
                 'image' => $fileName,
@@ -89,9 +107,9 @@ class PharmacyController extends Controller
 
             // add address to pharmacy
             $address = $pharmacy->address()->create([
-                'city_id' => $request['city_id'],
-                'governorate_id' => $request['governorate_id'],
-                'street' => $request['street'],
+                'city_id' => $request['city'],
+                'governorate_id' => $request['state'],
+                'street' => $request['description'],
                 'details' => $request['details'],
                 'user_id' => $request['user_id'],
             ]);
@@ -106,7 +124,8 @@ class PharmacyController extends Controller
 
 
             DB::commit();
-            return redirect()->route('pharmacy.home');
+            event(new notfiy($pharmacy));
+            return redirect()->route('home');
         } catch (\Exception $ex) {
 
 
@@ -252,6 +271,8 @@ class PharmacyController extends Controller
     {
         $pharmacy = Pharmacy::find($id);
         $pharmacy->is_active = 1;
+        $pharmacy->save();
+        return redirect()->back();
     }
 
     // dis_active pharmacy
@@ -259,5 +280,7 @@ class PharmacyController extends Controller
     {
         $pharmacy = Pharmacy::find($id);
         $pharmacy->is_active = 0;
+        $pharmacy->save();
+        return redirect()->back();
     }
 }

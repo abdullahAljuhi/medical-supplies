@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\PharmacyController;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Services\PharmacyService;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -78,9 +80,16 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        // create profile for user 
-        $user->profile()->create([]);
-
+        if(isset($data['type']) && $data['type'] == 2){
+            // $user->pharmacy()->create($data);
+            $user->type=2;
+            $user->save();
+            // return redirect()->route('pharmacy.create'); 
+            // PharmacyService::store($data);
+        }else{
+            // create profile for user 
+            $user->profile()->create([]);
+        }
 
         return $user;    
     }

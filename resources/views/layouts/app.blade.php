@@ -34,43 +34,55 @@
     <!-- Costume CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/css/ar.css') }}">
     @yield('extra-style')
+    {{-- pusher js --}}
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script>
+        Pusher.logToConsole = true;
 
+var pusher = new Pusher('e4b4e21e1f468b8bddf2', {
+  cluster: 'mt1'
+});
+let channel = pusher.subscribe('active-pharmacy');
+    channel.bind('App\\Events\\notfiy', function(data) {
+      console.log(data);
+    });
+    </script>
 </head>
 
 <body>
 
-<!-- ======= Header ======= -->
-<header id="header" class="header fixed-top d-flex align-items-center">
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
 
-    <!-- Main Logo -->
-    <div class="d-flex align-items-center justify-content-between">
-        <a href="/dashboard" class="logo d-flex align-items-center">
-            <img class="m-4" src="{{ asset('assets/img/logo.png') }}" alt="">
-            <span class="d-none d-lg-block">علاجي كوم</span>
-        </a>
-        @auth
-        <i class="bi bi-list toggle-sidebar-btn"></i>
-        @endauth
-    </div>
-    <!-- End Logo -->
+        <!-- Main Logo -->
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="/dashboard" class="logo d-flex align-items-center">
+                <img class="m-4" src="{{ asset('assets/img/logo.png') }}" alt="">
+                <span class="d-none d-lg-block">علاجي كوم</span>
+            </a>
+            @auth
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+            @endauth
+        </div>
+        <!-- End Logo -->
 
-    <!-- Icons Navigation -->
-    <nav class="header-nav me-auto">
-        <ul class="d-flex align-items-center">
+        <!-- Icons Navigation -->
+        <nav class="header-nav me-auto">
+            <ul class="d-flex align-items-center">
 
-            @guest
+                @guest
                 @if (Route::has('login'))
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                </li>
                 @endif
 
                 @if (Route::has('register'))
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                </li>
                 @endif
-            @else
+                @else
                 <!-- Notification Nav -->
                 <li class="nav-item dropdown">
 
@@ -220,7 +232,9 @@
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="{{Auth::user()->profile->image?asset('assets/images/users/'.Auth::user()->profile->image) : asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
+                        {{-- <img
+                            src="{{Auth::user()->profile->image?asset('assets/images/users/'.Auth::user()->profile->image) : asset('assets/img/user.png') }}"
+                            alt="Profile" class="rounded-circle border p-1"> --}}
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -277,119 +291,119 @@
                     </ul><!-- End Profile Dropdown Items -->
                 </li>
                 <!-- End Profile Nav -->
-        @endguest
+                @endguest
+
+            </ul>
+        </nav>
+        <!-- End Icons Navigation -->
+
+    </header>
+    <!-- End Header -->
+
+    @auth
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item">
+                <a class="nav-link " href="{{ route('dashboard') }}">
+                    <i class="bi bi-grid"></i>
+                    <span>لوحة التحكم</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('admin.pharmacy') }}">
+                    <i class="bi bi-flower1"></i>
+                    <span>الصيدليات</span>
+                </a>
+            </li><!-- End Users Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('admin.users.index') }}">
+                    <i class="bi bi-person"></i>
+                    <span>المستخدمين</span>
+                </a>
+            </li><!-- End Users Nav -->
+
+            {{-- <li class="nav-item">--}}
+                {{-- <a class="nav-link collapsed" data-bs-target="#orders-nav" data-bs-toggle="collapse" href="#">--}}
+                    {{-- <i class="bi bi-cart2"></i><span>الطلبات</span><i class="bi bi-chevron-down ms-auto"></i>--}}
+                    {{-- </a>--}}
+                {{-- <ul id="orders-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">--}}
+                    {{-- <li>--}}
+                        {{-- <a href="#">--}}
+                            {{-- <i class="bi bi-circle"></i><span>الكل</span>--}}
+                            {{-- </a>--}}
+                        {{-- </li>--}}
+                    {{-- <li>--}}
+                        {{-- <a href="#">--}}
+                            {{-- <i class="bi bi-circle"></i><span>الجديدة</span>--}}
+                            {{-- </a>--}}
+                        {{-- </li>--}}
+                    {{-- <li>--}}
+                        {{-- <a href="#">--}}
+                            {{-- <i class="bi bi-circle"></i><span>المكتملة</span>--}}
+                            {{-- </a>--}}
+                        {{-- </li>--}}
+                    {{-- </ul>--}}
+                {{-- </li><!-- End Charts Nav -->--}}
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#">
+                    <i class="bi bi-cash"></i><span>الدفع</span>
+                </a>
+            </li><!-- End Charts Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#">
+                    <i class="bi bi-gem"></i><span>اعلانات</span></i>
+                </a>
+            </li><!-- End Icons Nav -->
+
+            <li class="nav-item">
+                {{-- <a class="nav-link collapsed" href="{{ route('location') }}"> --}}
+                    <i class="bi bi-gear"></i><span>اعدادات</span></i>
+                </a>
+            </li><!-- End Icons Nav -->
 
         </ul>
-    </nav>
-    <!-- End Icons Navigation -->
 
-</header>
-<!-- End Header -->
+    </aside>
+    <!-- End Sidebar-->
+    @endauth
 
-@auth
-<!-- ======= Sidebar ======= -->
-<aside id="sidebar" class="sidebar">
+    <main id="main" class="main">
+        @yield('content')
+    </main>
 
-    <ul class="sidebar-nav" id="sidebar-nav">
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Jaweb</span></strong>. All Rights Reserved
+        </div>
+    </footer>
+    <!-- End Footer -->
 
-        <li class="nav-item">
-            <a class="nav-link " href="{{ route('dashboard') }}">
-                <i class="bi bi-grid"></i>
-                <span>لوحة التحكم</span>
-            </a>
-        </li><!-- End Dashboard Nav -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pharmacies">
-                <i class="bi bi-flower1"></i>
-                <span>الصيدليات</span>
-            </a>
-        </li><!-- End Users Nav -->
+    <!-- Vendor JS Files -->
+    <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/chart.js/chart.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/echarts/echarts.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/quill/quill.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
+    <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('admin.users.index') }}">
-                <i class="bi bi-person"></i>
-                <span>المستخدمين</span>
-            </a>
-        </li><!-- End Users Nav -->
+    <!-- Template Main JS File -->
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 
-{{--        <li class="nav-item">--}}
-{{--            <a class="nav-link collapsed" data-bs-target="#orders-nav" data-bs-toggle="collapse" href="#">--}}
-{{--                <i class="bi bi-cart2"></i><span>الطلبات</span><i class="bi bi-chevron-down ms-auto"></i>--}}
-{{--            </a>--}}
-{{--            <ul id="orders-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">--}}
-{{--                <li>--}}
-{{--                    <a href="#">--}}
-{{--                        <i class="bi bi-circle"></i><span>الكل</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <a href="#">--}}
-{{--                        <i class="bi bi-circle"></i><span>الجديدة</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <a href="#">--}}
-{{--                        <i class="bi bi-circle"></i><span>المكتملة</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-{{--            </ul>--}}
-{{--        </li><!-- End Charts Nav -->--}}
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#">
-                <i class="bi bi-cash"></i><span>الدفع</span>
-            </a>
-        </li><!-- End Charts Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#">
-                <i class="bi bi-gem"></i><span>اعلانات</span></i>
-            </a>
-        </li><!-- End Icons Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('location') }}">
-                <i class="bi bi-gear"></i><span>اعدادات</span></i>
-            </a>
-        </li><!-- End Icons Nav -->
-
-    </ul>
-
-</aside>
-<!-- End Sidebar-->
-@endauth
-
-<main id="main" class="main">
-@yield('content')
-</main>
-
-<!-- ======= Footer ======= -->
-<footer id="footer" class="footer">
-    <div class="copyright">
-        &copy; Copyright <strong><span>Jaweb</span></strong>. All Rights Reserved
-    </div>
-</footer>
-<!-- End Footer -->
-
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-        class="bi bi-arrow-up-short"></i></a>
-
-<!-- Vendor JS Files -->
-<script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
-<script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('assets/vendor/chart.js/chart.min.js') }}"></script>
-<script src="{{ asset('assets/vendor/echarts/echarts.min.js') }}"></script>
-<script src="{{ asset('assets/vendor/quill/quill.min.js') }}"></script>
-<script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
-<script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
-<script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
-
-<!-- Template Main JS File -->
-<script src="{{ asset('assets/js/main.js') }}"></script>
-
-<!-- Jquery -->
-<script src="{{ asset('js/jquery-3.6.0.min.js') }}" defer></script>
+    <!-- Jquery -->
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}" defer></script>
 </body>
 
 </html>

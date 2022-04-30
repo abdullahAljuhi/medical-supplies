@@ -110,7 +110,9 @@ class UserController extends Controller
             $user = User::findOrFail($id);
             if ($user->image !== '') { // check if user has image
                 // remove image
-                Storage::disk('users')->delete($user->image);
+                // Storage::disk('users')->delete($user->image);
+                $fileName=public_path('assets/images/users/'.$photo);
+                unlink(realpath($fileName));
             }
 
             $user->delete();

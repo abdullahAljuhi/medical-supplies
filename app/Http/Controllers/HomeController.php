@@ -31,7 +31,7 @@ class HomeController extends Controller
             //  this rout for admin/
             return redirect(RouteServiceProvider::ADMIN);
 
-        }else if(Auth::user()->pharmacy()){
+        }else if(Auth::user()->pharmacyType()){
 
                 //  this rout for pharmacy/
             return redirect(RouteServiceProvider::PHARMACY);

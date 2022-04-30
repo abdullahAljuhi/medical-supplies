@@ -36,6 +36,18 @@
     https://templatemo.com/tm-559-zay-shop
 
 -->
+{{-- <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+<script>
+     Pusher.logToConsole = true;
+
+var pusher = new Pusher('e4b4e21e1f468b8bddf2', {
+cluster: 'mt1'
+});
+let channel = pusher.subscribe('active-pharmacy');
+channel.bind('App\\Events\\notfiy', function(data) {
+  alert(data);
+});
+</script> --}}
 </head>
 
 <body style="overflow-x: hidden">
@@ -169,7 +181,7 @@
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="{{Auth::user()->profile->image?asset('assets/images/users/'.Auth::user()->profile->image) : asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle p-1 border">
+                        {{-- <img src="{{Auth::user()->profile->image?asset('assets/images/users/'.Auth::user()->profile->image) : asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle p-1 border"> --}}
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">

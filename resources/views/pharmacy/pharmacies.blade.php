@@ -34,7 +34,15 @@
 
             <div class="card-body">
                 <h5 class="card-title">Recent Sales <span>| Today</span></h5>
+                <ul>
+                    @foreach ($pharmacies as $p)
+                        <li>{{ $p }}
+                        <a href="{{ route('admin.pharmacy.active',$p->id) }}">تفغيل</a>
+                        <a href="{{ route('admin.pharmacy.disActive',$p->id) }}"> الغاء التفغيل</a>
+                        </li>
 
+                    @endforeach
+                </ul>
                 <table class="table table-hover datatable">
                     <thead>
                     <tr>

@@ -3,9 +3,11 @@
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GovernorateController;
+use App\Http\Controllers\MedicalController;
 use App\Http\Controllers\PharmacyController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -26,40 +28,36 @@ define('PAGINATION', 10);
 
 Route::group(['middleware' => 'auth'], function () {
 
-    ////////////////////////////////////
 
 
-    Route::group(['prefix' => 'pharmacy'], function () {
-        Route::get('/create', [PharmacyController::class, 'create'])->name('pharmacy.create');
-        Route::post('/store', [PharmacyController::class, 'store'])->name('admin.pharmacy.store');
-        Route::get('/edit/{id}', [PharmacyController::class, 'edit'])->name('admin.pharmacy.edit');
-        Route::post('/update/{id}', [PharmacyController::class, 'update'])->name('admin.pharmacy.update');
-        Route::get('/active/{id}', [PharmacyController::class, 'active'])->name('admin.pharmacy.active');
-        Route::get('/disActive/{id}', [PharmacyController::class, 'disActive'])->name('admin.pharmacy.disActive');
-    });
+    // Route::get('/', [PharmacyController::class, 'index'])->name('admin.pharmacy.index');
 
-    ///////////////////////////////////////
-
-    Route::get('/', [PharmacyController::class, 'index'])->name('admin.pharmacy.index');
-
+    // change password
     Route::post('/changePassword', [UserController::class, 'changePassword'])->name('changePassword.user');
 
+    // admin
     Route::group(['prefix' => 'dashboard', 'middleware' => 'checkType:admin'], function () {
+        
+        // dashboard
+        Route::get('/', function () {return view('home');})->name('dashboard');
+    
 
         // crud Users
         Route::group(['prefix' => 'users'], function () {
+
             Route::get('/', [UserController::class, 'index'])->name('admin.users.index');
-            Route::get('/{id}', [UserProfileController::class, 'show'])->name('show.profile');
             Route::get('/create', [UserController::class, 'create'])->name('admin.users.create');
             Route::post('/store', [UserController::class, 'store'])->name('admin.users.store');
+
+            // start profile
+            Route::group(['prefix' => 'profile'], function () {
+                Route::get('/{id}', [UserProfileController::class, 'show'])->name('show.profile');
+            }); // end show user profile
+
         }); // end users
 
-        Route::get('/', function () {
-        return view('home');
-        })->name('dashboard');
-        Route::get('/location', function () {
-            return view('admin.location');
-        })->name('location');
+
+
 
         // crud city
         Route::resource('city', CityController::class)->except('show');
@@ -70,41 +68,64 @@ Route::group(['middleware' => 'auth'], function () {
         // crud pharmacy contact
         Route::resource('contact', ContactController::class)->except('show');
 
-        Route::group(['prefix' => 'pharmacy', 'middleware' => ['checkType:pharmacy', 'active']], function () {
 
-        });
+    //////////////////////////////////// pharmacy
+
+    Route::group(['prefix' => 'pharmacy'], function () {
+        Route::get('/', [MedicalController::class, 'index'])->name('admin.pharmacy');
+        Route::get('/active/{id}', [PharmacyController::class, 'active'])->name('admin.pharmacy.active');
+        Route::get('/disActive/{id}', [PharmacyController::class, 'disActive'])->name('admin.pharmacy.disActive');
+    });
+
+    /////////////////////////////////////// end pharmacy
 
     });
-    Route::group(['prefix' => 'profile'], function () {
+        // pharmacy crud start
+        Route::group(['prefix' => 'pharmacy', 'middleware' => ['checkType:pharmacy']], function () {
+            Route::get('/', [PharmacyController::class, 'index'])->name('pharmacy.index');
+            Route::get('/create', [PharmacyController::class, 'create'])->name('pharmacy.create');
+            Route::post('/store', [PharmacyController::class, 'store'])->name('admin.pharmacy.store');
+            Route::get('/edit/{id}', [PharmacyController::class, 'edit'])->name('admin.pharmacy.edit');
+            Route::post('/update/{id}', [PharmacyController::class, 'update'])->name('admin.pharmacy.update');
+
+        });
+        // pharmacy crud end
+
+    Route::group(['prefix' => 'profile','middleware'=>'checkType:user'], function () {
         Route::get('/', [UserProfileController::class, 'index'])->name('profile');
         Route::get('index', [UserProfileController::class, 'show'])->name('index.profile');
         Route::get('edit', [UserProfileController::class, 'edit'])->name('edit.profile');
         Route::post('update', [UserProfileController::class, 'update'])->name('update.profile');
     });
+
 });
 
+// Route::group(['prefix' => 'pharmacy', 'middleware' => ['checkType:pharmacy']], function () {
+    Route::get('/', [PharmacyController::class, 'index'])->name('pharmacy.index');
+    Route::get('pharmacy/create', [PharmacyController::class, 'create'])->name('pharmacy.create');
+    Route::post('/store', [PharmacyController::class, 'store'])->name('admin.pharmacy.store');
 
-Route::get('/', function () {
-    return view('index');
-});
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
+// });
+// main page 
+// Route::get('/', function () {return view('index');})->middleware('guest');
+Route::get('/', function () {return view('index');});
 
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
-
-Route::get('/partners', function () {
-    return view('partner');
-})->name('partners');
-
-Route::get('/pharmacies', function () {
-    return view('pharmacy');
-})->name('pharmacies');
-
-Route::get('/l', function () {
-    return view('404');
-})->name('l');
-
+// main page after login
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
+
+Route::get('/about', function () {return view('about');})->name('about');
+
+Route::get('/contact', function () {return view('contact');})->name('contact');
+
+
+// start const route
+Route::get('/about', function () {return view('about');})->name('about');
+
+Route::get('/contact', function () {return view('contact');})->name('contact');
+
+Route::get('/partners', function () {return view('partner');})->name('partners');
+
+Route::get('/pharmacies', function () {return view('pharmacy');})->name('pharmacies');
+
+Route::get('/l', function () {return view('404');})->name('l');
+// end const route
