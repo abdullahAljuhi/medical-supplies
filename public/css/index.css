@@ -118,4 +118,8 @@ body
     border-radius: 1rem;
     background-color: #fff;
     background-clip: border-box;
+} 
+.btn-outline-primary:hover i
+{
+    margin-right: 5px;
 }
