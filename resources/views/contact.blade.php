@@ -70,21 +70,21 @@
                     <form class="col-md m-auto" method="post" role="form">
                         <div class="row">
                             <div class="form-group col-md  mb-3">
-                                <label for="inputname">الاسم</label>
-                                <input type="text" class="form-control mt-1" id="name" name="name" placeholder="Name">
+                                <label for="name">الاسم</label>
+                                <input type="text" class="form-control mt-1" id="name" name="name" placeholder="قم بكتابة اسم المستخدم">
                             </div>
                             <div class="form-group  mb-3">
-                                <label for="inputemail">البريد الالكتروني</label>
-                                <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Email">
+                                <label for="email">البريد الالكتروني</label>
+                                <input type="email" class="form-control mt-1" id="email" name="email" placeholder="قم بكتابة البريد الالكتروني">
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="inputsubject">الموضوع</label>
-                            <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Subject">
+                            <label for="subject">الموضوع</label>
+                            <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="قم بكتابة عنوان الرسالة">
                         </div>
                         <div class="mb-3">
-                            <label for="inputmessage">الرسال</label>
-                            <textarea class="form-control mt-1" id="message" name="message" placeholder="Message" rows="8"></textarea>
+                            <label for="message">الرسال</label>
+                            <textarea class="form-control mt-1" id="message" name="message" placeholder="قم بكتابة الرسالة مع تحديد المشكلة " rows="8"></textarea>
                         </div>
                         <div class="row">
                             <div class="col text-end mt-2">

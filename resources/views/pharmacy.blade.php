@@ -29,8 +29,7 @@
                             <option value="1">حضرموت</option>
                             <option value="2">صنعاء</option>
                             <option value="3">عدن</option>
-
-                          </select>
+                         </select>
                     </div>
                     <div class="col-6">
                         <select class="form-select form-control p-2 pe-5" aria-label=".form-select-lg example">
