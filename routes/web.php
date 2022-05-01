@@ -85,7 +85,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::get('/', function () {
-    return view('pharmcy-profile');
+    return view('ads');
 });
 Route::get('/about', function () {
     return view('about');
