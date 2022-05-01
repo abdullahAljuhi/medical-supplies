@@ -20,10 +20,10 @@ class UserProfile extends Model
     {
         return $this->belongsTo(User::class,'user_id');
    }
-   public function getImageAttribute($val)
-    {
-
-        return $val ? asset('assets/images/users/'.$val) : '';
-    }
+//   public function getImageAttribute($val)
+//    {
+//
+//        return $val ? asset('assets/images/users/'.$val) : '';
+//    }
 
 }

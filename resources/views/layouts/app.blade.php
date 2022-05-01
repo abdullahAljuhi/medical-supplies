@@ -28,7 +28,10 @@
     <link href="{{ asset('assets/vendor/quill/quill.bubble.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    {{-- fotn awesom  --}}
+     
+    <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     <!-- Costume CSS Files -->
@@ -220,7 +223,7 @@
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="{{ asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
+                        <img src="{{Auth::user()->profile->image?asset('assets/images/users/'.Auth::user()->profile->image) : asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">

@@ -59,7 +59,7 @@
                 <a class="nav-link text-dark" href="{{ route('pharmacies') }}">{{ __('الصيدليات') }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" href="">{{ __('الشركاء') }}</a>
+                <a class="nav-link text-dark" href="{{ route('partners') }}">{{ __('الشركاء') }}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark" href="{{ route('contact') }}">{{ __('التواصل') }}</a>
@@ -169,7 +169,7 @@
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="{{ asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle p-1 border">
+                        <img src="{{Auth::user()->profile->image?asset('assets/images/users/'.Auth::user()->profile->image) : asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle p-1 border">
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">

@@ -32,25 +32,25 @@
 
                                     <div class="col-12">
                                         <label for="yourEmail" class="form-label">رقم الهاتف</label>
-                                        <input type="tel" name="email" class="form-control" id="yourEmail" required>
+                                        <input type="tel" name="phone" class="form-control" id="yourEmail" required>
                                         <div class="invalid-feedback">يرجى ادخال  رقم الهاتف!</div>
                                     </div>
                                     <div class="col-12">
                                         <label for="yourEmail" class="form-label">رقم الموبايل</label>
-                                        <input type="text" name="email" class="form-control" id="yourEmail" required>
+                                        <input type="text" name="mobile" class="form-control" id="yourEmail" required>
                                         <div class="invalid-feedback">يرجى ادخال   رقم الموبايل!</div>
                                     </div>
 
                                     <div class="col-12">
                                         <label for="yourPassword" class="form-label">رقم  الترخيص</label>
-                                        <input type="number" name="password" class="form-control" id="yourPassword" required>
+                                        <input type="number" name="liscen" class="form-control" id="yourPassword" required>
                                         <div class="invalid-feedback">يرجى ادخال رقم الترخيص   </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="row">
                                             <div class="col-6">
                                                 <label for="inputState" class="form-label">المحافظة</label>
-                                                <select class="form-select" aria-label="Default select example">
+                                                <select class="form-select" aria-label="Default select example" name="governorate">
                                                     <option selected>حدد المحافظة</option>
                                                     <option value="1">One</option>
                                                     <option value="2">Two</option>
@@ -59,20 +59,26 @@
                                             </div>
                                             <div class="col-6">
                                                 <label for="inputState" class="form-label">المدينة</label>
-                                                <select class="form-select" aria-label="Default select example">
+                                                <select class="form-select" aria-label="Default select example" name="city">
                                                     <option selected>حدد المدينة</option>
                                                     <option value="1">One</option>
                                                     <option value="2">Two</option>
                                                     <option value="3">Three</option>
                                                 </select>
                                             </div>
-
+                                            <div class="col-6">
+                                                <label for="street" class="col-md-4 col-lg-3 col-form-label">الشارع</label>
+                                                <div class="col-md-8 col-lg-9">
+                                                    <input name="street" type="text" class="form-control" id="street"
+                                                           placeholder="مثل الشارع العام او امام محلات ....">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <label for="inputState" class="form-label">تفاصيل اخرى</label>
                                         <div class="form-floating">
-                                            <textarea class="form-control text-right" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                                            <textarea class="form-control text-right" name="detlaie" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
                                         </div>
                                     </div>
 

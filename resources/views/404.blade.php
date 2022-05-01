@@ -46,6 +46,7 @@
         <h1>404</h1>
         <h2>الصفحةالتي تحاول الوصول اليها غير موجودة</h2>
         <a class="btn" href="index">العودة الى الصفحة الرئيسية</a>
+          <h1 id="one">One</h1>
         <img src="assets/img/not-found.svg" class="img-fluid py-5" alt="Page Not Found">
       </section>
 
@@ -66,6 +67,11 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+<script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+
+<script>
+    $('#one').hide()
+</script>
 
 </body>
 
