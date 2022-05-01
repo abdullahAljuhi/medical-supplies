@@ -8,7 +8,6 @@ use App\Models\UserProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UserProfileRequest;
 
 class UserProfileController extends Controller
@@ -23,6 +22,18 @@ class UserProfileController extends Controller
     {
         $user = User::with('profile')->find(Auth::id());
         return view('user.profile', compact('user'));
+
+        // // user profile
+        // if (Auth::user()->type === 0)
+        // {
+        //     return view('user.user-profile', compact('user'));
+
+        // } elseif (Auth::user()->type === 1) { // admin profile
+
+        //     return view('admin.user-profile', compact('user'));
+        // }
+
+        // return view('admin.user-profile', compact('user'));
     }
 
     /**
@@ -71,42 +82,57 @@ class UserProfileController extends Controller
 
         $user = User::with('profile')->find(Auth::user()->id);
 
-        $address=explode(',,',$user->profile['address']);
-        $user->profile['address']=$address;
-        // $governorate=$address[0];
-        // $city=$address[1];
-        // $address=[2];
+        // $address = explode(',,',$user->profile['address']);
+
+        // $user->profile['address']=$address;
+
         return view('user.user-profile', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateUserProfileRequest  $request
+     * @param  \App\Http\Requests\UserProfileRequest  $request
      * @param  \App\Models\UserProfile  $userProfile
      * @return \Illuminate\Http\Response
      */
     public function update(UserProfileRequest $request)
     {
         try {
-            $user = UserProfile::find(Auth::user()->id);
-            $photo= $user->image;
-            $fileName = $photo;
-            if ($request->has('image')) {
+            $user = User::with('profile')->find(Auth::user()->id);
 
-                if($fileName != null)
-                Storage::disk('pharmacy')->delete($fileName);
+            $photo= $user->profile['image'];
+
+            $fileName = $photo;
+
+            if ($request->has('image')) {
+                if($fileName != null){
+                    $fileName=public_path('assets/images/users/'.$photo);
+                    unlink(realpath($fileName));
+                }
 
                 // save img in public/pharmacy/images
-                $fileName = $this->uploadImage('pharmacy', $request->image);
+                $fileName = $this->uploadImage('users', $request->image);
             }
 
-            $user=User::updated($request->all());
-            $user->profile()->update($request->all());
+            $input = $request->all();
+            $user->fill($input)->save();
+
+            $user->profile()->update([
+                'phone'=>$request->phone,
+                'image'=>$fileName,
+                'birthday'=>$request->birthday,
+                // 'user_id'=>$user->id,
+                'address'=>$request->address,
+            ]);
+
 
             return redirect()->back()->with(['success' => 'تم التحديث بنجاح']);
+
         } catch (\Exception $e) {
+
             return redirect()->back()->with(['error' => 'هناك خطا ما يرجي المحاولة فيما بعد']);
+
         }
     }
 

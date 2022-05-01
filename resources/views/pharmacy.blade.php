@@ -81,6 +81,180 @@
                             </button>
                         </div>
                     </a>
+                    <a href="" class="row  py-2 border-bottom text-content text-black ">
+                        <div class="col-md-1 col-4 mb-md-0 mb-4 d-flex justify-content-center fw-bold align-self-center fs-5"> 1
+                        </div>
+                        <div class="col-md-2 col-8  d-flex justify-content-strat fw-bold align-self-center fs-5">                صيدلية الاسرة
+                        </div>
+                        <div class="col-md-3  mb-2 mb-md-0   d-flex justify-content-strat fw-bold align-self-center">
+                            <div class="row w-100">
+                                <div class="col-6">
+                                    <i class="bi bi-geo-alt  text-primary ms-3"></i>
+                                    <span >حضرموت</span>
+                                </div>
+                                <div class="col-6">
+                                    <i class="bi bi-hospital   text-primary ms-3"></i>
+                                    <span >المكلا</span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-2 mb-md-0 d-flex justify-content-strat  align-self-center">
+                            <i class="bi bi-map   text-primary ms-3"></i>
+                            <span >امام مسجد الروضة وبجانب محلات المحضار</span>
+                        </div>
+                        <div class="col-md-2 mb-2 mb-md-0 text-center d-flex justify-content-center fw-bold align-self-center">
+                            <button type="button" class="btn btn-outline-primary px-4">
+                                <span style="font-size: 18px">طلب  </span>
+                                <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i>
+                            </button>
+                        </div>
+                    </a>
+                    <a href="" class="row  py-2 border-bottom text-content text-black ">
+                        <div class="col-md-1 col-4 mb-md-0 mb-4 d-flex justify-content-center fw-bold align-self-center fs-5"> 1
+                        </div>
+                        <div class="col-md-2 col-8  d-flex justify-content-strat fw-bold align-self-center fs-5">                صيدلية الاسرة
+                        </div>
+                        <div class="col-md-3  mb-2 mb-md-0   d-flex justify-content-strat fw-bold align-self-center">
+                            <div class="row w-100">
+                                <div class="col-6">
+                                    <i class="bi bi-geo-alt  text-primary ms-3"></i>
+                                    <span >حضرموت</span>
+                                </div>
+                                <div class="col-6">
+                                    <i class="bi bi-hospital   text-primary ms-3"></i>
+                                    <span >المكلا</span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-2 mb-md-0 d-flex justify-content-strat  align-self-center">
+                            <i class="bi bi-map   text-primary ms-3"></i>
+                            <span >امام مسجد الروضة وبجانب محلات المحضار</span>
+                        </div>
+                        <div class="col-md-2 mb-2 mb-md-0 text-center d-flex justify-content-center fw-bold align-self-center">
+                            <button type="button" class="btn btn-outline-primary px-4">
+                                <span style="font-size: 18px">طلب  </span>
+                                <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i>
+                            </button>
+                        </div>
+                    </a>
+                    <a href="" class="row  py-2 border-bottom text-content text-black ">
+                        <div class="col-md-1 col-4 mb-md-0 mb-4 d-flex justify-content-center fw-bold align-self-center fs-5"> 1
+                        </div>
+                        <div class="col-md-2 col-8  d-flex justify-content-strat fw-bold align-self-center fs-5">                صيدلية الاسرة
+                        </div>
+                        <div class="col-md-3  mb-2 mb-md-0   d-flex justify-content-strat fw-bold align-self-center">
+                            <div class="row w-100">
+                                <div class="col-6">
+                                    <i class="bi bi-geo-alt  text-primary ms-3"></i>
+                                    <span >حضرموت</span>
+                                </div>
+                                <div class="col-6">
+                                    <i class="bi bi-hospital   text-primary ms-3"></i>
+                                    <span >المكلا</span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-2 mb-md-0 d-flex justify-content-strat  align-self-center">
+                            <i class="bi bi-map   text-primary ms-3"></i>
+                            <span >امام مسجد الروضة وبجانب محلات المحضار</span>
+                        </div>
+                        <div class="col-md-2 mb-2 mb-md-0 text-center d-flex justify-content-center fw-bold align-self-center">
+                            <button type="button" class="btn btn-outline-primary px-4">
+                                <span style="font-size: 18px">طلب  </span>
+                                <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i>
+                            </button>
+                        </div>
+                    </a>
+                    <a href="" class="row  py-2 border-bottom text-content text-black ">
+                        <div class="col-md-1 col-4 mb-md-0 mb-4 d-flex justify-content-center fw-bold align-self-center fs-5"> 1
+                        </div>
+                        <div class="col-md-2 col-8  d-flex justify-content-strat fw-bold align-self-center fs-5">                صيدلية الاسرة
+                        </div>
+                        <div class="col-md-3  mb-2 mb-md-0   d-flex justify-content-strat fw-bold align-self-center">
+                            <div class="row w-100">
+                                <div class="col-6">
+                                    <i class="bi bi-geo-alt  text-primary ms-3"></i>
+                                    <span >حضرموت</span>
+                                </div>
+                                <div class="col-6">
+                                    <i class="bi bi-hospital   text-primary ms-3"></i>
+                                    <span >المكلا</span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-2 mb-md-0 d-flex justify-content-strat  align-self-center">
+                            <i class="bi bi-map   text-primary ms-3"></i>
+                            <span >امام مسجد الروضة وبجانب محلات المحضار</span>
+                        </div>
+                        <div class="col-md-2 mb-2 mb-md-0 text-center d-flex justify-content-center fw-bold align-self-center">
+                            <button type="button" class="btn btn-outline-primary px-4">
+                                <span style="font-size: 18px">طلب  </span>
+                                <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i>
+                            </button>
+                        </div>
+                    </a>
+                    <a href="" class="row  py-2 border-bottom text-content text-black ">
+                        <div class="col-md-1 col-4 mb-md-0 mb-4 d-flex justify-content-center fw-bold align-self-center fs-5"> 1
+                        </div>
+                        <div class="col-md-2 col-8  d-flex justify-content-strat fw-bold align-self-center fs-5">                صيدلية الاسرة
+                        </div>
+                        <div class="col-md-3  mb-2 mb-md-0   d-flex justify-content-strat fw-bold align-self-center">
+                            <div class="row w-100">
+                                <div class="col-6">
+                                    <i class="bi bi-geo-alt  text-primary ms-3"></i>
+                                    <span >حضرموت</span>
+                                </div>
+                                <div class="col-6">
+                                    <i class="bi bi-hospital   text-primary ms-3"></i>
+                                    <span >المكلا</span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-2 mb-md-0 d-flex justify-content-strat  align-self-center">
+                            <i class="bi bi-map   text-primary ms-3"></i>
+                            <span >امام مسجد الروضة وبجانب محلات المحضار</span>
+                        </div>
+                        <div class="col-md-2 mb-2 mb-md-0 text-center d-flex justify-content-center fw-bold align-self-center">
+                            <button type="button" class="btn btn-outline-primary px-4">
+                                <span style="font-size: 18px">طلب  </span>
+                                <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i>
+                            </button>
+                        </div>
+                    </a>
+                    <a href="" class="row  py-2 border-bottom text-content text-black ">
+                        <div class="col-md-1 col-4 mb-md-0 mb-4 d-flex justify-content-center fw-bold align-self-center fs-5"> 1
+                        </div>
+                        <div class="col-md-2 col-8  d-flex justify-content-strat fw-bold align-self-center fs-5">                صيدلية الاسرة
+                        </div>
+                        <div class="col-md-3  mb-2 mb-md-0   d-flex justify-content-strat fw-bold align-self-center">
+                            <div class="row w-100">
+                                <div class="col-6">
+                                    <i class="bi bi-geo-alt  text-primary ms-3"></i>
+                                    <span >حضرموت</span>
+                                </div>
+                                <div class="col-6">
+                                    <i class="bi bi-hospital   text-primary ms-3"></i>
+                                    <span >المكلا</span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-2 mb-md-0 d-flex justify-content-strat  align-self-center">
+                            <i class="bi bi-map   text-primary ms-3"></i>
+                            <span >امام مسجد الروضة وبجانب محلات المحضار</span>
+                        </div>
+                        <div class="col-md-2 mb-2 mb-md-0 text-center d-flex justify-content-center fw-bold align-self-center">
+                            <button type="button" class="btn btn-outline-primary px-4">
+                                <span style="font-size: 18px">طلب  </span>
+                                <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i>
+                            </button>
+                        </div>
+                    </a>
                 </div>
 
             </div>
