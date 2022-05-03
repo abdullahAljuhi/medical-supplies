@@ -36,24 +36,27 @@ class Pharmacy extends Model
     ];
 
 
-    public function addresses(){
+    public function address(){
         return $this->hasMany(Address::class,'pharmacy_id');
     }
 
     public function contact(){
-        return $this->haMany(Address::class,'pharmacy_id');
+        return $this->hasMany(Contact::class,'pharmacy_id');
+    }
+    public function user(){
+        return $this->belongsTo(User::class,'user_id');
     }
     public function getImgAttribute($value)
     {
         return url("assests/images/pharmacies/") . "/" . $value;
     }
-    public function getIsActiveAttribute($value)
-    {
-        if ($value)
-            return 'مفعل';
-        else
-            return 'غير مفعل';
-    }
+    // public function getIsActiveAttribute($value)
+    // {
+    //     if ($value)
+    //         return 'مفعل';
+    //     else
+    //         return 'غير مفعل';
+    // }
 
     public function admin(){
         if($this->type == 1){

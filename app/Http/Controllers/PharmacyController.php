@@ -2,33 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\notfiy;
+use App\Helpers\Helper;
+use App\Models\City;
+use App\Models\User;
 use App\Models\Pharmacy;
+use App\Models\Governorate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PharmacyRequest;
-use App\Models\City;
-use App\Models\Governorate;
+use App\Notifications\ActivePharmacy;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 
 class PharmacyController extends Controller
 {
+    use Helper;
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         try {
-            $pharmacies = Pharmacy::with('address')->when($request->search, function ($q) use ($request) {
-                return $q->where('name', '%' . $request->search . '%');
-            })->when($request->city_id, function ($q) use ($request) { // filter by city
-                return $q->where('city_id', $request->city_id);
-            })->when($request->governorate_id, function ($q) use ($request) { // filter by governorate
-                return $q->where('governorate_id', $request->governorate_id);
-            })->paginate(5);
-            return view('Pharmacy.index', ['pharmacies' => $pharmacies]);
-            //code...
+            $pharmacy = Pharmacy::where('user_id', Auth::id())->first();
+            // dd($pharmacy);
+            if (empty($pharmacy)) {
+                return redirect()->route('pharmacy.create');
+            } else {
+                if ($pharmacy->is_active == '1') {
+                    return view('pharmacy.index');
+                } else {
+        
+                    event(new notfiy($pharmacy));
+                    return "await to agree your request";
+
+                }
+            }
+            // $user->pharmacy['license'];
+
         } catch (\Exception $e) {
             return $e->getMessage();
             //throw $th;
@@ -42,11 +57,18 @@ class PharmacyController extends Controller
      */
     public function create()
     {
-        $cities = City::all();
+        $pharmacy = Pharmacy::where('user_id', Auth::id())->first();
+        // dd($pharmacy);
+        if (empty($pharmacy)) {
+            
+            $cities = City::all();
 
-        $governorates = Governorate::all();
+            $governorates = Governorate::all();
 
-        return view('pharmacy-register', compact('cities', 'governorates'));
+            return view('auth.registerNext', compact('cities', 'governorates'));
+        } else {
+            return redirect('/pharmacy');
+        }
     }
 
     /**
@@ -76,7 +98,7 @@ class PharmacyController extends Controller
             // create pharmacy
             $pharmacy = Pharmacy::create([
                 'name' => $request['name'],
-                'user_id' => $request['user_id'],
+                'user_id' => Auth::id(),
                 'mobile' => $request['mobile'],
                 'phone' => $request['phone'],
                 'image' => $fileName,
@@ -89,11 +111,10 @@ class PharmacyController extends Controller
 
             // add address to pharmacy
             $address = $pharmacy->address()->create([
-                'city_id' => $request['city_id'],
-                'governorate_id' => $request['governorate_id'],
-                'street' => $request['street'],
+                'city_id' => $request['city'],
+                'governorate_id' => $request['state'],
+                'street' => $request['description'],
                 'details' => $request['details'],
-                'user_id' => $request['user_id'],
             ]);
 
 
@@ -106,12 +127,12 @@ class PharmacyController extends Controller
 
 
             DB::commit();
-            return redirect()->route('pharmacy.home');
+            event(new notfiy($pharmacy));
+            return redirect()->route('home');
         } catch (\Exception $ex) {
 
 
-            // return  insert date
-
+            // 
             DB::rollback();
             return $ex->getMessage();
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
@@ -127,7 +148,7 @@ class PharmacyController extends Controller
     public function show(Pharmacy $pharmacy)
     {
 
-        return view('pharmacy.profile')->withPharmacy($pharmacy);
+        return view('pharmacy.pharmacy-profile')->withPharmacy($pharmacy);
     }
 
     /**
@@ -136,17 +157,12 @@ class PharmacyController extends Controller
      * @param  \App\Models\Pharmacy  $pharmacy
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Pharmacy $pharmacy)
     {
         try {
-
-            $pharmacy = Pharmacy::findOrFail($id);
-
             if ($pharmacy == '') {
                 return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
             }
-            $pharmacy = $pharmacy->with('addresses')->get();
-
             return view('pharmacy.edit')->withPharmacy($pharmacy);
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
@@ -160,7 +176,7 @@ class PharmacyController extends Controller
      * @param  \App\Models\Pharmacy  $pharmacy
      * @return \Illuminate\Http\Response
      */
-    public function update(PharmacyRequest $request, $id)
+    public function update(Request $request, Pharmacy $pharmacy)
     {
 
         // PharmacyRequest request with validation
@@ -171,40 +187,42 @@ class PharmacyController extends Controller
             // start transaction
             DB::beginTransaction();
 
-            $pharmacy = Pharmacy::findOrFail($id);
-
             $fileName = $pharmacy->image;
 
             if ($request->has('image')) {
-
-                Storage::disk('pharmacy')->delete($fileName);
+                if($fileName != null){
+                    $fileName=public_path('assets/images/pharmacies/'.$fileName);
+                    unlink(realpath($fileName));
+                }
 
                 // save img in public/pharmacy/images
                 $fileName = $this->uploadImage('pharmacy', $request->image);
             }
-
             // create pharmacy
             $pharmacy->update([
-                'name' => $request['name'],
-                'user_id' => $request['user_id'],
-                'mobile' => $request['mobile'],
+                // 'name' => $request['name'],
+                // 'mobile' => $request['mobile'],
                 'phone' => $request['phone'],
                 'image' => $fileName,
                 'fax' => $request['fax'],
-                'license' => $request['license'],
+                // 'license' => $request['license'],
                 'description' => $request['description'],
             ]);
-
+            
             // add address to pharmacy
             $address = $pharmacy->address()->update([
-                'city_id' => $request['city_id'],
-                'governorate_id' => $request['governorate_id'],
-                'street' => $request['street'],
-                'details' => $request['details'],
-                'user_id' => $request['user_id'],
+                // 'city_id' => $request['city_id'],
+                // 'governorate_id' => $request['governorate_id'],
+                // 'street' => $request['street'],
+                // 'details' => $request['details'],
             ]);
-
-
+            
+            $address = $pharmacy->contact()->updateOrCreate([
+                'twitter' => $request['twitter'],
+                'facebook' => $request['facebook'],
+                'instagram' => $request['instagram'],
+            ]);
+            
             if ($request->has('lat')) {
 
                 $address->lat = $request['lat'];
@@ -214,7 +232,7 @@ class PharmacyController extends Controller
 
 
             DB::commit();
-            return redirect()->route('pharmacy.home');
+            return redirect()->route('pharmacy.index');
         } catch (\Exception $ex) {
 
             // return  insert date
@@ -237,7 +255,8 @@ class PharmacyController extends Controller
             $pharmacy = Pharmacy::findOrFail($id);
             if ($pharmacy->image !== '') { // check if pharmacy has image
                 // remove image
-                Storage::disk('pharmacy')->delete($pharmacy->image);
+                $fileName=public_path('assets/images/pharmacies/'.$pharmacy->image);
+                unlink(realpath($fileName));
             }
 
             $pharmacy->delete();
@@ -248,16 +267,22 @@ class PharmacyController extends Controller
     }
 
     // active pharmacy
-    public function active($id)
+    public function active(Pharmacy $pharmacy)
     {
-        $pharmacy = Pharmacy::find($id);
         $pharmacy->is_active = 1;
+        $pharmacy->save();
+
+        // send email to user pharmacy 
+        Notification::send($pharmacy->user, new ActivePharmacy());
+
+        return redirect()->back();
     }
 
     // dis_active pharmacy
-    public function disActive($id)
+    public function disActive(Pharmacy $pharmacy)
     {
-        $pharmacy = Pharmacy::find($id);
         $pharmacy->is_active = 0;
+        $pharmacy->save();
+        return redirect()->back();
     }
 }

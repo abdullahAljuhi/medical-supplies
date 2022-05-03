@@ -22,8 +22,8 @@
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
                         <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                        <h2>صيدلية الصديق</h2>
-                        <h3>Murad77@gmail.com</h3>
+                        <h2>{{ $pharmacy->name }}</h2>
+                        <h3>{{ $pharmacy->user['email'] }}</h3>
                         <div class="social-links mt-2">
                             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -40,7 +40,7 @@
                                 <i class="bi bi-geo-alt"></i>
                                 <h3 class="my-auto">الموقع</h3>
                             </div>
-                            <p>حصرموت - المكلا<br>قوه المساكن</p>
+                            <p>{{ $pharmacy->address[0]['governorate']['name']??'' }} - {{ $pharmacy->address[0]['city']['name']??'' }}<br> {{ $pharmacy->address[0]->street??'' }}</p>
                             <p>بجانب مسجد الصديق</p>
                         </div>
                     </div>
@@ -113,14 +113,14 @@
                             <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                                 <!-- Profile Edit Form -->
-                                <form>
+                                <form method="POST" action="{{ route('admin.pharmacy.update',$pharmacy->id) }}" enctype="multipart/form-data">
+                                    @csrf                                    
                                     <div class="row mb-3">
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">الصورة الشخصية</label>
                                         <div class="col-md-8 col-lg-9">
                                             <img src="assets/img/profile-img.jpg" alt="Profile">
                                             <div class="pt-2">
-                                                <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i
-                                                        class="bi bi-upload"></i></a>
+                                                <input class="bi bi-upload btn btn-primary btn-sm" name="image" type="file">
                                                 <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
                                                         class="bi bi-trash"></i></a>
                                             </div>
@@ -130,14 +130,14 @@
                                     <div class="row mb-3">
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">اسم المالك</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="fullName" type="text" class="form-control" id="fullName" value="مراد العمودي">
+                                            <input name="user_name" type="text" class="form-control" id="fullName" value="مراد العمودي">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="about" class="col-md-4 col-lg-3 col-form-label">عنا</label>
                                         <div class="col-md-8 col-lg-9">
-                        <textarea name="about" class="form-control" id="about"
+                        <textarea name="description" class="form-control" id="about"
                                   style="height: 100px">صيدلية الصديق من اكبر الصيدليات في مدينة المكلا وتم انشائها عام 1995 في منطقة المساكن بمدينة المكل</textarea>
                                         </div>
                                     </div>
@@ -145,7 +145,7 @@
                                     <div class="row mb-3">
                                         <label for="company" class="col-md-4 col-lg-3 col-form-label">العنوان</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="company" type="text" class="form-control" id="company"
+                                            <input name="address" type="text" class="form-control" id="company"
                                                    value="حضرموت - المكلا - المساكن">
                                         </div>
                                     </div>
@@ -153,7 +153,7 @@
                                     <div class="row mb-3">
                                         <label for="Job" class="col-md-4 col-lg-3 col-form-label">الهاتف</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="job" type="text" class="form-control" id="Job" value="770-552-517">
+                                            <input name="phone" type="text" class="form-control" id="Job" value="770-552-517">
                                         </div>
                                     </div>
 
@@ -180,15 +180,6 @@
                                                    value="https://instagram.com/#">
                                         </div>
                                     </div>
-
-                                    <div class="row mb-3">
-                                        <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="linkedin" type="text" class="form-control" id="Linkedin"
-                                                   value="https://linkedin.com/#">
-                                        </div>
-                                    </div>
-
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
                                     </div>

@@ -9,6 +9,8 @@ class Contact extends Model
 {
     use HasFactory;
 
+    protected $table = 'socials';
+
      /**
      * The attributes that are mass assignable.
      *

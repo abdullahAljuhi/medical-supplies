@@ -48,7 +48,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function profile(){
         return $this->hasOne(UserProfile::class,'user_id');
     }
- 
+    public function pharmacy(){
+        return $this->hasOne(Pharmacy::class,'user_id');
+    }
 
     
     public function admin(){
@@ -58,7 +60,7 @@ class User extends Authenticatable implements MustVerifyEmail
             return false;
         }
     }
-    public function pharmacy(){
+    public function pharmacyType(){
         if($this->type == 2){
             return true;
         }else{

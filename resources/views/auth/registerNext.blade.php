@@ -28,7 +28,7 @@
                                     <p class="text-center small">يرجى ادخال بيانات الصيدلية  </p>
                                 </div>
                                 <form class="row g-3 needs-validation" novalidate method="POST"
-                                    action="">
+                                    action="{{ route('admin.pharmacy.store') }}">
                                     @csrf
                                     <div class="col-12">
                                         <label for="pharmacy_name" class="form-label">أسم الصيدلية</label>

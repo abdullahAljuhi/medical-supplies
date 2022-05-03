@@ -46,80 +46,21 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row"><a href="#">#2457</a></th>
-                        <td>صيدلية الحياة</td>
-                        <td>مراد العمودي</td>
-                        <td><a href="#" class="text-primary">murad77@gmail.com</a></td>
-                        <td class="d-flex justify-content-around">
-                            <span class="badge bg-success">Approved</span>
-                            <form>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" id="submitBtn" data-bs-toggle="modal"
-                                           data-bs-target="#exampleModal" checked="">
-                                </div>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><a href="#">#2147</a></th>
-                        <td>صيدلية الامل</td>
-                        <td>محمد زبير</td>
-                        <td><a href="#" class="text-primary">zubair7@gmail.com</a></td>
-                        <td class="d-flex justify-content-around">
-                            <span class="badge bg-warning">Pending</span>
-                            <form>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" id="submitBtn" data-bs-toggle="modal"
-                                           data-bs-target="#exampleModal">
-                                </div>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><a href="#">#2049</a></th>
-                        <td>صيدليةالناس</td>
-                        <td>ناصر الغيثي</td>
-                        <td><a href="#" class="text-primary">nasier@gmail.com</a></td>
-                        <td class="d-flex justify-content-around"><span class="badge bg-success">Approved</span>
-                            <form>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" id="submitBtn" data-bs-toggle="modal"
-                                           data-bs-target="#exampleModal" checked>
-                                </div>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>صيدلية الصديق</td>
-                        <td>فؤاد العمودي</td>
-                        <td><a href="#" class="text-primary">fuad@gmail.com</a></td>
-                        <td class="d-flex justify-content-around">
-                            <span class="badge bg-danger">Rejected</span>
-                            <form>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" id="submitBtn" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                </div>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>صيدلية الأقصى</td>
-                        <td>مراد العمودي</td>
-                        <td><a href="#" class="text-primary">amas@gmail.com</a></td>
-                        <td class="d-flex justify-content-around">
-                            <span class="badge bg-success">Approved</span>
-                            <form>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" id="submitBtn" data-bs-toggle="modal"
-                                           data-bs-target="#exampleModal" checked>
-                                </div>
-                            </form>
-                        </td>
-                    </tr>
+                        @foreach ($pharmacies as $pharmacy)
+                        <tr>
+                            <th scope="row"><a href="#">#2457</a></th>
+                            <td> {{ $pharmacy->name }}</td>
+                            <td> {{ $pharmacy->user['name'] }}</td>
+                            <td><a href="#" class="text-primary">{{ $pharmacy->user['email'] }}</a></td>
+                            <td class="d-flex justify-content-around">
+                                
+                                <a href="{{ route('admin.pharmacy.active',$pharmacy->id) }}">تفغيل</a>
+                                <a href="{{ route('admin.pharmacy.disActive',$pharmacy->id) }}"> الغاء التفغيل</a>
+                                <a href="{{ route('admin.pharmacy.show',$pharmacy->id) }}"> الغاء التفغيل</a>
+                            </td>
+                        </tr>
+
+                    @endforeach
                     </tbody>
                 </table>
 

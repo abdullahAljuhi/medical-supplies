@@ -223,7 +223,11 @@
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="{{Auth::user()->profile->image?asset('assets/images/users/'.Auth::user()->profile->image) : asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
+                        @if(isset(Auth::user()->profile->image))
+                        <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile" class="rounded-circle border p-1">
+                        @else
+                        <img src="{{asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
+                        @endif
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -303,7 +307,7 @@
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="pharmacies">
+            <a class="nav-link collapsed" href="{{ route('admin.pharmacy') }}">
                 <i class="bi bi-flower1"></i>
                 <span>الصيدليات</span>
             </a>
@@ -352,7 +356,7 @@
         </li><!-- End Icons Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('location') }}">
+            <a class="nav-link collapsed" href="">
                 <i class="bi bi-gear"></i><span>اعدادات</span></i>
             </a>
         </li><!-- End Icons Nav -->
@@ -364,6 +368,9 @@
 @endauth
 
 <main id="main" class="main">
+<div class="alert alert-success" style="display: none" role="alert" id=pharmcy>
+
+        </div>
 @yield('content')
 </main>
 
@@ -393,6 +400,23 @@
 
 <!-- Jquery -->
 <script src="{{ asset('js/jquery-3.6.0.min.js') }}" defer></script>
+
+    {{-- pusher js --}}
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script>
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('e4b4e21e1f468b8bddf2', {
+            cluster: 'mt1'
+        });
+        var channel = pusher.subscribe('active-pharmacy');
+        channel.bind('App\\Events\\notfiy', function(data) {
+            let a=document.querySelector('#pharmacy').style.display='block';
+            
+            console.log(data.pharmacy.name);
+        });
+
+    </script>
 </body>
 
 </html>
