@@ -57,6 +57,13 @@ Route::group(['middleware' => 'auth'], function () {
         }); // end users
 
 
+        //crud advertisement
+        Route::group(['prefix'=>'advertisement'],function(){
+            Route::get('/show',[AdvertisementController::class,'show'])->name('show.adv');
+            Route::get('/edit',[AdvertisementController::class,'edit'])->name('edit.adv');
+            Route::post('/update',[AdvertisementController::class,'update'])->name('update.adv');
+            Route::get('/delete',[AdvertisementController::class,'remove'])->name('delete.adv');
+        });
 
 
         // crud city
