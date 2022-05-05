@@ -11,7 +11,7 @@ class Advertisement extends Model
     protected $fillable = [
         'startDate',
         'image',
-        'period',
+        'endDate',
         'user_id',
         'details',
         'price'
