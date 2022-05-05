@@ -52,6 +52,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Pharmacy::class,'user_id');
     }
 
+    public function advertisement(){
+        return $this->hasMany(Advertisement::class,'user_id');
+    }
+
     
     public function admin(){
         if($this->type == 1){
