@@ -25,7 +25,7 @@ class AdvertisementRequest extends FormRequest
     {
         return [
             'user_id' => 'exists:app\Models\User,id',
-            'period'=>'required',
+            'endDate'=>'required',
             'details'=>'max:1000',
             'startDate'=>'required|date',
             'image'=>'image',
@@ -36,7 +36,7 @@ class AdvertisementRequest extends FormRequest
     {
         return [
             'user_id.exists'=>'المستخدم غير موجود',
-            'period.required'=>'عليك إخال المدة المحددة لعرض الإعلان',
+            'endDate.required'=>'    يجب ادخال تاريخ الانتهاء',
             'startDate.required'=>'عليك إدخال تارخ بدء عرض الإعلان',
             'startDate.date'=>'الرجاء التأكد من كتابة التاريخ بشكل صحيح',
             'image.image'=>'تأكد من صيغة الملف'
