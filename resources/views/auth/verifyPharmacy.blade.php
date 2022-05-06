@@ -18,18 +18,9 @@
                         <div class="card-body">
                             @if (session('resent'))
                                 <div class="alert alert-success" role="alert">
-                                    {{ __('سوف يتم التحقق من البيانات و ارسال رابط على البريد الالكتروني الخاص فيك') }}
+                                    {{ __(' سوف يتم التحقق من البيانات و ارسال رابط على البريد الالكتروني الخاص فيك ثم يمكنك الدخول على حسابك') }}
                                 </div>
                             @endif
-
-                            {{ __('قبل المتابعة ، يرجى التحقق من بريدك الإلكتروني للحصول على رابط التحقق.') }}
-                            {{ __('إذا لم تستلم البريد الإلكتروني') }},
-                            <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-                                @csrf
-                                <button type="submit"
-                                        class="btn btn-link p-0 m-0 align-baseline">{{ __('انقر هنا لطلب آخر') }}</button>
-                                .
-                            </form>
                         </div>
                     </div>
                 </div>
