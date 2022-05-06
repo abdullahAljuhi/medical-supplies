@@ -26,10 +26,10 @@ class CityController extends Controller
      */
     public function create()
     {
-        return view('city.create');
+        return view('admin.city');
     }
 
- 
+
     public function store(CityRequest $request)
     {
         try {
@@ -43,7 +43,7 @@ class CityController extends Controller
     }
 
 
-  
+
     public function edit($id)
     {
         try {

@@ -320,29 +320,6 @@
             </a>
         </li><!-- End Users Nav -->
 
-{{--        <li class="nav-item">--}}
-{{--            <a class="nav-link collapsed" data-bs-target="#orders-nav" data-bs-toggle="collapse" href="#">--}}
-{{--                <i class="bi bi-cart2"></i><span>الطلبات</span><i class="bi bi-chevron-down ms-auto"></i>--}}
-{{--            </a>--}}
-{{--            <ul id="orders-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">--}}
-{{--                <li>--}}
-{{--                    <a href="#">--}}
-{{--                        <i class="bi bi-circle"></i><span>الكل</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <a href="#">--}}
-{{--                        <i class="bi bi-circle"></i><span>الجديدة</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <a href="#">--}}
-{{--                        <i class="bi bi-circle"></i><span>المكتملة</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-{{--            </ul>--}}
-{{--        </li><!-- End Charts Nav -->--}}
-
         <li class="nav-item">
             <a class="nav-link collapsed" href="#">
                 <i class="bi bi-cash"></i><span>الدفع</span>
@@ -356,10 +333,22 @@
         </li><!-- End Icons Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('location') }}">
-                <i class="bi bi-gear"></i><span>اعدادات</span></i>
+            <a class="nav-link collapsed" data-bs-target="#orders-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-gear"></i><span>اعدادات</span><i class="bi bi-chevron-down me-auto"></i>
             </a>
-        </li><!-- End Icons Nav -->
+            <ul id="orders-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li class="px-4">
+                    <a href="{{ route('add-state') }}">
+                        <i class="bi bi-circle"></i><span>ادارة المحافظات</span>
+                    </a>
+                </li>
+                <li class="px-4">
+                    <a href="{{ route('add-city') }}">
+                        <i class="bi bi-circle"></i><span>ادارة المدن</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Charts Nav -->
 
     </ul>
 
@@ -417,6 +406,7 @@
         });
 
     </script>
+@yield('scripts')
 </body>
 
 </html>
