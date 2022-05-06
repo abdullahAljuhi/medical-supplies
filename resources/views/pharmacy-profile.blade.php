@@ -17,28 +17,31 @@
     <section class="section profile min-vh-100 overflow-hidden">
         <div class="row">
             <div class="col-xl-4">
-
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                        <img src="{{ asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
-                       <h5 class="card-title fs-4 text-primary text-center">صيدلية ماهر </h5>
-                        <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
+                        @if($pharmacy->image)
+                        <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}" alt="Profile" class="rounded-circle border p-1">
+                        @else
+                        <img src="{{asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
+                        @endif
+                       <h5 class="card-title fs-4 text-primary text-center">{{ $pharmacy->name }} </h5>
+                        <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> {{ $pharmacy->address[0]->governorate->name?? '' }} -  {{ $pharmacy->address[0]->city->name ??''}} </p>
                         <ul class="text-center footer-icons d-flex justify-content-center mb-0">
                             <li class="list-inline-item text-center">
-                                <a class="  text-decoration-none" target="_blank" href="http://facebook.com/"><i
+                                <a class="  text-decoration-none" target="_blank" href="{{ $pharmacy->contact[0]->facebook ?? ''}}"><i
                                         class="fab fa-facebook-f fa-lg fa-fw"></i></a>
                             </li>
                             <li class="list-inline-item  text-center">
                                 <a class=" text-decoration-none" target="_blank"
-                                   href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
+                                   href="{{ $pharmacy->contact[0]->instagram ?? 'https://www.instagram.com'}}><i class="fab fa-instagram fa-lg fa-fw"></i></a>
                             </li>
                             <li class="list-inline-item  text-center">
-                                <a class=" text-decoration-none" target="_blank" href="https://twitter.com/"><i
+                                <a class=" text-decoration-none" target="_blank" href="{{ $pharmacy->contact[0]->instagram ?? 'https://twitter.com/'}}"><i
                                         class="fab fa-twitter fa-lg fa-fw"></i></a>
                             </li>
                             <li class="list-inline-item  text-center">
                                 <a class=" text-decoration-none" target="_blank"
-                                   href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
+                                   href="{{ $pharmacy->contact[0]->instagram ?? 'https://www.linkedin.com/'}}"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
                             </li>
                            </ul>
                     </div>
@@ -72,7 +75,7 @@
 
 
                                 <!-- Profile Edit Form -->
-                                <form method="POST" action="{{ route('update.profile') }}">
+                                <form method="POST" action="{{ route('pharmacy.update',$pharmacy->id) }}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row mb-3">
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">الصورة
@@ -88,8 +91,11 @@
                                                     <i class="bi bi-trash"></i>
                                                 </a>
                                             </div>
-                                            <img src="{{ asset('assets/img/user.png') }}" id="blah" alt="Profile"
-                                                 class="mx-auto rounded-circle border p-1">
+                                            @if($pharmacy->image)
+                                            <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}" alt="Profile" class="rounded-circle border p-1">
+                                            @else
+                                            <img src="{{asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
+                                            @endif
                                         </div>
                                     </div>
 
@@ -98,7 +104,7 @@
                                             الكامل</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="name" type="text" class="form-control" id="fullName"
-                                                   value="صيدلية ماهر">
+                                                   value="{{ $pharmacy->name }}">
                                         </div>
                                     </div>
 
@@ -106,14 +112,14 @@
                                         <label for="company" class="col-md-4 col-lg-3 col-form-label">رقم الهاتف</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="phone" type="tel" class="form-control" id="company"
-                                                   value="772725220">
+                                                   value="{{ $pharmacy->phone }}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="company" class="col-md-4 col-lg-3 col-form-label">رثم الموبايل</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="mobile" type="text" class="form-control" id="company"
-                                                   value="05303638">
+                                                   value="{{ $pharmacy->mobile ?? ''}}">
                                         </div>
                                     </div>
 
@@ -122,15 +128,17 @@
                                             <label for="Job" class="col-md-4 col-lg-3 col-form-label">العنوان</label>
                                             <select name="governorate" class="form-select select1 mx-2"
                                                     id="inputGroupSelect01">
-                                                <option selected="" value="0">حضرموت</option>
-                                                <option value="1">المهرة</option>
-                                                <option value="2">عدن</option>
+                                                    @foreach ($governorates as $governorat)
+                                                    <option value="{{ $governorat->id }}" {{ ($pharmacy->address[0]->governorate_id == $governorat->id) ? 'selected' :'' }}>
+                                                        {{ $governorat->name }}
+                                                    </option>
+                                                    @endforeach
                                             </select>
                                              <select name="city" class="form-select select2 mx-2" id="inputGroupSelect02"
                                                     style="">
-                                                <option value="1">المكلا</option>
-                                                <option value="2">سيئون</option>
-                                                <option value="2">الشحر</option>
+                                                    @foreach ($cities as $city)
+                                                    <option value="{{ $city->id }}" {{ $pharmacy->address[0]->city_id == $city->id ? 'selected' : ''}}>{{ $city->name }}</option>
+                                                    @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -139,49 +147,49 @@
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">الشارع</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="street" type="text" class="form-control" id="fullName"
-                                                   value=" الشارع العام">
+                                                   value="{{ $pharmacy->address[0]->street??''}}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">تفاصيل العنوان</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="detaile_address" type="text" class="form-control" id="fullName"
-                                            value="امام مسجد الصديق">
+                                            <input name="details" type="text" class="form-control" id="fullName"
+                                            value="{{ $pharmacy->address[0]->details??''}}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="company" class="col-md-4 col-lg-3 col-form-label">رابط الفيسبوك</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="facebook" type="url" class="form-control" id="company"
-                                                   value="www.facebook.com">
+                                                   value="{{ $pharmacy->contact[0]->facebook?? ''}}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="company" class="col-md-4 col-lg-3 col-form-label">رابط الانستقرام</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="instgram" type="url" class="form-control" id="company"
-                                                   value=" ">
+                                            value="{{ $pharmacy->contact[0]->instagram?? ''}}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="company" class="col-md-4 col-lg-3 col-form-label">رابط تويتر</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="twitter" type="url" class="form-control" id="company"
-                                                   value="">
+                                            value="{{ $pharmacy->contact[0]->twitter?? ''}}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="company" class="col-md-4 col-lg-3 col-form-label">رابط لاينكدن</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="linkdin" type="url" class="form-control" id="company"
-                                                   value="">
+                                            value="{{ $pharmacy->contact[0]->linkdin?? ''}}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">وصف عن الصيدلية</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <textarea class="form-control "  name="detlaie" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px;">
-                                            تم افتتاح صيدلية ماهر عام 1997 م ....
+                                            <textarea class="form-control"  name="description" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px;">
+                                                {{ $pharmacy->description??'' }}
                                             </textarea>
                                         </div>
                                     </div>

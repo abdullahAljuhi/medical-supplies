@@ -56,7 +56,7 @@
 
                                 <a href="{{ route('admin.pharmacy.active',$pharmacy->id) }}">تفغيل</a>
                                 <a href="{{ route('admin.pharmacy.disActive',$pharmacy->id) }}"> الغاء التفغيل</a>
-                                <a href="{{ route('admin.pharmacy.show',$pharmacy->id) }}"> الغاء التفغيل</a>
+                                <a href="{{ route('admin.pharmacy.show',$pharmacy->id) }}"> تفاصيل </a>
                             </td>
                         </tr>
 

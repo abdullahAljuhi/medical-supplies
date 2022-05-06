@@ -92,7 +92,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/{pharmacy}', [PharmacyController::class, 'show'])->name('admin.pharmacy.show');
         Route::get('/active/{pharmacy}', [PharmacyController::class, 'active'])->name('admin.pharmacy.active');
         Route::get('/disActive/{pharmacy}', [PharmacyController::class, 'disActive'])->name('admin.pharmacy.disActive');
-        Route::post('/update/{pharmacy}', [PharmacyController::class, 'update'])->name('admin.pharmacy.update');
+        Route::post('/update/{pharmacy}', [PharmacyController::class, 'update'])->name('pharmacy.update');
 
     });
 
@@ -105,7 +105,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/create', [PharmacyController::class, 'create'])->name('pharmacy.create');
             Route::post('/store', [PharmacyController::class, 'store'])->name('admin.pharmacy.store');
             Route::get('/edit/{pharmacy}', [PharmacyController::class, 'edit'])->name('admin.pharmacy.edit');
-            // Route::post('/update/{pharmacy}', [PharmacyController::class, 'update'])->name('admin.pharmacy.update');
+            // Route::post('/update/{pharmacy}', [PharmacyController::class, 'update'])->name('pharmacy.update');
 
         });// pharmacy crud end
 

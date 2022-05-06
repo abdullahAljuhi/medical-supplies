@@ -46,10 +46,7 @@ class Pharmacy extends Model
     public function user(){
         return $this->belongsTo(User::class,'user_id');
     }
-    public function getImgAttribute($value)
-    {
-        return url("assests/images/pharmacies/") . "/" . $value;
-    }
+
     // public function getIsActiveAttribute($value)
     // {
     //     if ($value)
