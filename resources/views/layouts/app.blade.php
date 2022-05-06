@@ -28,14 +28,14 @@
     <link href="{{ asset('assets/vendor/quill/quill.bubble.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     {{-- fotn awesom  --}}
-     
+
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     <!-- Costume CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/css/ar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     @yield('extra-style')
 
 </head>
@@ -356,7 +356,7 @@
         </li><!-- End Icons Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="">
+            <a class="nav-link collapsed" href="{{ route('location') }}">
                 <i class="bi bi-gear"></i><span>اعدادات</span></i>
             </a>
         </li><!-- End Icons Nav -->
@@ -399,7 +399,7 @@
 <script src="{{ asset('assets/js/main.js') }}"></script>
 
 <!-- Jquery -->
-<script src="{{ asset('js/jquery-3.6.0.min.js') }}" defer></script>
+<script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 
     {{-- pusher js --}}
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
@@ -412,7 +412,7 @@
         var channel = pusher.subscribe('active-pharmacy');
         channel.bind('App\\Events\\notfiy', function(data) {
             let a=document.querySelector('#pharmacy').style.display='block';
-            
+
             console.log(data.pharmacy.name);
         });
 

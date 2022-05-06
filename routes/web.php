@@ -37,10 +37,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     // admin
     Route::group(['prefix' => 'dashboard', 'middleware' => 'checkType:admin'], function () {
-        
+
         // dashboard
         Route::get('/', function () {return view('home');})->name('dashboard');
-    
+        Route::get('/location', function () {return view('admin.location');})->name('location');
+
 
         // crud Users
         Route::group(['prefix' => 'users'], function () {
@@ -100,7 +101,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         });// pharmacy crud end
 
-    Route::group(['prefix' => 'profile','middleware'=>'checkType:user'], function () {
+    Route::group(['prefix' => 'profile'], function () {
         Route::get('/', [UserProfileController::class, 'index'])->name('profile');
         Route::get('index', [UserProfileController::class, 'show'])->name('index.profile');
         Route::get('edit', [UserProfileController::class, 'edit'])->name('edit.profile');
@@ -115,17 +116,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('pharmacy/store', [PharmacyController::class, 'store'])->name('admin.pharmacy.store');
 
 // });
-// main page 
+// main page
 // Route::get('/', function () {return view('index');})->middleware('guest');
 Route::get('/', function () {return view('index');});
 
 // main page after login
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
-
-Route::get('/about', function () {return view('about');})->name('about');
-
-Route::get('/contact', function () {return view('contact');})->name('contact');
-
 
 // start const route
 Route::get('/about', function () {return view('about');})->name('about');
@@ -136,5 +132,5 @@ Route::get('/partners', function () {return view('partner');})->name('partners')
 
 Route::get('/pharmacies', function () {return view('pharmacy');})->name('pharmacies');
 
-Route::get('/l', function () {return view('404');})->name('l');
+Route::get('/l', function () {return view('auth.registerNext');})->name('l');
 // end const route

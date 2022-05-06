@@ -379,6 +379,8 @@
 <script src="{{asset('js/custom.js ') }}"></script>
 <script src="{{asset('js/viewAndList.js ') }}"></script>
 <!-- End Script -->
+
+@yield('scripts')
 </body>
 
 </html>

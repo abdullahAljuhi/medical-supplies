@@ -24,21 +24,19 @@
             <div class="col-md-6 col-sm-12">
                 <div class="row">
                     <div class="col-6">
-                        <select class="form-select form-control p-2 pe-5" aria-label=".form-select-lg example">
-                            <option selected>قم باختيار احد المحافظات</option>
+                        <select id="select1" class="form-select select1 form-control p-2 pe-5" aria-label=".form-select-lg example">
+                            <option value="0" selected>كل المحافظات</option>
                             <option value="1">حضرموت</option>
                             <option value="2">صنعاء</option>
                             <option value="3">عدن</option>
                          </select>
                     </div>
-                    <div class="col-6">
-                        <select class="form-select form-control p-2 pe-5" aria-label=".form-select-lg example">
-
-                            <option selected>قم باختيار احد المدن</option>
-                            <option value="1">المكلا</option>
-                            <option value="2">الديس</option>
-                            <option value="3">باجعمان</option>
-
+                    <div class="col-6 second">
+                        <select id="select2" class="form-select select2 form-control p-2 pe-5" aria-label=".form-select-lg example">
+                            <option class="city1" value='1'>1</option>
+                            <option class="city2" value='2'>2</option>
+                            <option class="city3" value='3'>3</option>
+                            <option class="city4" value='4'>4</option>
                           </select>
                     </div>
                 </div>
@@ -471,4 +469,21 @@
 
 </section>
 
+@endsection
+
+@section('scripts')
+    <script>
+        var all = '<option selected value="0">كل المدن</option>';
+        $('#select2').prepend(all);
+        $("#select1").change(function() {
+            if ($(this).data('options') === undefined) {
+                /*Taking an array of all options-2 and kind of embedding it on the select1*/
+                $(this).data('options', $('#select2 option').clone());
+            }
+            var id = $(this).val();
+            var options = $(this).data('options').filter('[class=city' + id + ']');
+            $('#select2').html(options);
+            $('#select2').prepend(all);
+        });
+    </script>
 @endsection

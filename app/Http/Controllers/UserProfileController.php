@@ -22,18 +22,6 @@ class UserProfileController extends Controller
     {
         $user = User::with('profile')->find(Auth::id());
         return view('user.profile', compact('user'));
-
-        // // user profile
-        // if (Auth::user()->type === 0)
-        // {
-        //     return view('user.user-profile', compact('user'));
-
-        // } elseif (Auth::user()->type === 1) { // admin profile
-
-        //     return view('admin.user-profile', compact('user'));
-        // }
-
-        // return view('admin.user-profile', compact('user'));
     }
 
     /**

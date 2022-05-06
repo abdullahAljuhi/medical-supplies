@@ -114,8 +114,8 @@
             <div class="card-group">
                 <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-0 g-sm-5 text-center jobs">
                     <div class="col">
-                        <div class="card h-100 p-2">
-                            <img src="{{asset('img/phramacy6.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
+                        <div class="card p-2">
+                            <img src="{{asset('img/phramacy6.png') }}" class="card-img-top py-5 img-card-cus card-img" alt="...">
                             <div class="card-body pb-0">
                                 <h5 class="card-title fs-4 text-primary ">صيدلية رضا الوالدين</h5>
                                 <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
@@ -147,8 +147,8 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100 p-2">
-                            <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus " alt="...">
+                        <div class="card p-2">
+                            <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus card-img" alt="...">
                             <div class="card-body pb-0">
                                 <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
                                 <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
@@ -180,8 +180,8 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100 p-2">
-                            <img src="{{asset('img/phramacy2.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
+                        <div class="card p-2">
+                            <img src="{{asset('img/phramacy2.png') }}" class="card-img-top py-5 img-card-cus card-img" alt="...">
                             <div class="card-body pb-0">
                                 <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
                                 <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
@@ -213,8 +213,8 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100 p-2">
-                            <img src="{{asset('img/phramacy3.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
+                        <div class="card p-2">
+                            <img src="{{asset('img/phramacy3.png') }}" class="card-img-top py-5 img-card-cus card-img" alt="...">
                             <div class="card-body pb-0">
                                 <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
                                 <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
@@ -246,8 +246,8 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100 p-2">
-                            <img src="{{asset('img/phramacy4.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
+                        <div class="card p-2">
+                            <img src="{{asset('img/phramacy4.png') }}" class="card-img-top py-5 img-card-cus card-img" alt="...">
                             <div class="card-body pb-0">
                                 <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
                                 <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
@@ -279,8 +279,8 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100 p-2">
-                            <img src="{{asset('img/phramacy5.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
+                        <div class="card p-2">
+                            <img src="{{asset('img/phramacy5.png') }}" class="card-img-top py-5 img-card-cus card-img" alt="...">
                             <div class="card-body pb-0">
                                 <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
                                 <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>

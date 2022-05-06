@@ -32,9 +32,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                @php
-                  $types = ['مستخدم','مدير','مالك صيدلية'];
-                @endphp
                 @foreach($users as $user)
                     <a href="www.google.com">
                         <tr style='cursor: pointer; cursor: hand;' onclick="window.location='{{ route('show.profile',['id'=>$user->id]) }}';">

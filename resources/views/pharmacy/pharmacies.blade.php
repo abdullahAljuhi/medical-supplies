@@ -53,7 +53,7 @@
                             <td> {{ $pharmacy->user['name'] }}</td>
                             <td><a href="#" class="text-primary">{{ $pharmacy->user['email'] }}</a></td>
                             <td class="d-flex justify-content-around">
-                                
+
                                 <a href="{{ route('admin.pharmacy.active',$pharmacy->id) }}">تفغيل</a>
                                 <a href="{{ route('admin.pharmacy.disActive',$pharmacy->id) }}"> الغاء التفغيل</a>
                                 <a href="{{ route('admin.pharmacy.show',$pharmacy->id) }}"> الغاء التفغيل</a>

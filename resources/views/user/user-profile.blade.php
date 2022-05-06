@@ -49,17 +49,17 @@
                 <div class="card">
                     <div class="card-body pt-3">
                         <!-- Bordered Tabs -->
-                        <ul class="nav nav-tabs nav-tabs-bordered justify-content-center">
+                        <ul class="nav nav-tabs w-100 p-0 mt-2 nav-order p-1 rounded overflow justify-content-center bg-white">
 
-                            <li class="nav-item p-1">
-                                <button class="nav-link active bg-white" data-bs-toggle="tab"
+                            <li class="nav-item mx-1  d-flex justify-content-center align-items-center">
+                                <button class="nav-link active" data-bs-toggle="tab"
                                         data-bs-target="#profile-edit">تعديل الملف
                                     الشخصي
                                 </button>
                             </li>
 
-                            <li class="nav-item p-1">
-                                <button class="nav-link bg-white" data-bs-toggle="tab"
+                            <li class="nav-item  d-flex justify-content-center align-items-center">
+                                <button class="nav-link" data-bs-toggle="tab"
                                         data-bs-target="#profile-change-password">تغيير كلمة
                                     المرور
                                 </button>
