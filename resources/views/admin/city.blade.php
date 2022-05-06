@@ -21,30 +21,31 @@
                     <div class="card-body pt-3">
                         <!-- Bordered Tabs -->
                         <div class="tab-content pt-2">
+                            <form method="post" action="{{ route('store-city') }}">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="inputState" class="form-label">حدد المحافظة</label>
+                                        <select name="governorate" class="form-select" aria-label="Default select example">
+                                            @foreach($governorates as $governorate)
+                                                <option value="{{ $governorate->id }}">{{ $governorate->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="city" class="form-label">يرجى ادخال اسم المدينة</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="name" type="text" class="form-control" id="city" value="">
+                                        </div>
+                                    </div>
 
-                            <div class="row">
-                                <div class="col-6">
-                                    <label for="inputState" class="form-label">حدد المحافظة</label>
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>حدد المحافظة</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
                                 </div>
-                                <div class="col-6">
-                                    <label for="city" class="form-label">يرجى ادخال اسم المدينة</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <input name="city" type="text" class="form-control" id="city" value="">
+                                <div class="tab-pane fade show active profile-overview mt-3" id="profile-overview">
+                                    <div >
+                                        <button type="submit" class="btn btn-primary px-3 ">حفظ </button>
                                     </div>
                                 </div>
-
-                            </div>
-                            <div class="tab-pane fade show active profile-overview mt-3" id="profile-overview">
-                                <div >
-                                    <button type="submit" class="btn btn-primary px-3 ">حفظ </button>
-                                </div>
-                            </div>
+                            </form>
                          </div>
 
 
@@ -68,29 +69,20 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">المحافظة</th>
-                        <th scope="col">المدينة</th>
-                        <th scope="col">الحالة</th>
+                        <th scope="col">اسم المدينة</th>
+                        <th scope="col">اسم المحافظة</th>
+                        <th scope="col">تاريخ الاضافة</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row"><a href="#">#2457</a></th>
-                        <td>حضرموت</td>
-                        <td> المكلا</td>
-                        <td class="d-flex justify-content-around">
-                            <span class="badge bg-success">Approved</span>
-                            <form>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" id="submitBtn" data-bs-toggle="modal"
-                                           data-bs-target="#exampleModal" checked="">
-                                </div>
-                            </form>
-                        </td>
-                    </tr>
-
-
-
+                    @foreach($cities as $city)
+                        <tr>
+                            <th scope="row"><a href="#">{{ $city->id }}</a></th>
+                            <td>{{ $city->name }}</td>
+                            <td> {{ $city->governorate['name'] }}</td>
+                            <td>{{ $city->created_at }}</td>
+                        </tr>
+                    @endforeach
 
                     </tbody>
                 </table>
