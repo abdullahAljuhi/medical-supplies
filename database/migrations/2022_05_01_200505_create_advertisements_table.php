@@ -19,9 +19,9 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('image');
             $table->string('details')->nullable();
-            $table->string('period');
             $table->number('price');
             $table->date('startDate');
+            $table->date('endDate');
             $table->timestamps();
         });
     }
