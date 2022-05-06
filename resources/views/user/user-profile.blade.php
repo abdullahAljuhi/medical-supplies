@@ -37,7 +37,14 @@
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                        <img src="{{$user->profile['image']?asset('assets/images/users/'.$user->profile['image']) : asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
+                        @if(isset(Auth::user()->profile->image))
+                            <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile"
+                                 class="rounded-circle border p-1">
+                        @else
+                            <img src="{{asset('assets/img/user.png') }}" alt="Profile"
+                                 class="rounded-circle border p-1">
+                        @endif
+{{--                        <img src="{{$user->profile['image']?asset('assets/images/users/'.$user->profile['image']) : asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">--}}
                         <h2>{{ Auth::user()->name }}</h2>
                         <h3>{{ Auth::user()->email }}</h3>
                     </div>
@@ -86,8 +93,13 @@
                                                     <i class="bi bi-trash"></i>
                                                 </a>
                                             </div>
-                                            <img src="{{$user->profile['image']?asset('assets/images/users/'.$user->profile['image']) : asset('assets/img/user.png') }}" id="blah" alt="Profile"
-                                                 class="mx-auto rounded-circle border p-1">
+                                            @if(isset(Auth::user()->profile->image))
+                                                <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile"
+                                                     class="mx-auto rounded-circle border p-1" id="blah">
+                                            @else
+                                                <img src="{{asset('assets/img/user.png') }}" alt="Profile"
+                                                     class="mx-auto rounded-circle border p-1" id="blah">
+                                            @endif
                                         </div>
                                     </div>
 
@@ -124,25 +136,6 @@
                                                    value="770-552-517">
                                         </div>
                                     </div>
-
-{{--                                    <div class="row mb-3">--}}
-{{--                                        <div class="col-md-8 col-lg-9 input-group">--}}
-{{--                                            <label for="Job" class="col-md-4 col-lg-3 col-form-label">العنوان</label>--}}
-{{--                                            <select name="governorate" class="form-select select1 mx-2"--}}
-{{--                                                    id="inputGroupSelect01">--}}
-{{--                                                <option selected="" value="0">حضرموت</option>--}}
-{{--                                                <option value="1">المهرة</option>--}}
-{{--                                                <option value="2">عدن</option>--}}
-{{--                                            </select>--}}
-                                            <!-- <label class="input-group-text" for="inputGroupSelect02">Options</label> -->
-{{--                                            <select name="city" class="form-select select2 mx-2" id="inputGroupSelect02"--}}
-{{--                                                    style="">--}}
-{{--                                                <option value="1">المكلا</option>--}}
-{{--                                                <option value="2">سيئون</option>--}}
-{{--                                                <option value="2">الشحر</option>--}}
-{{--                                            </select>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
 
                                     <div class="row mb-3">
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">الشارع</label>

@@ -19,9 +19,9 @@
 
                     <div class="card-body p-2">
 
-                  
+
                         <div class="tab-content p-3 pt-2">
-                            
+
                             <div class="tab-pane show active" id="pharmacy-register">
                                 <div class="pb-2">
                                     <h5 class="card-title text-center pb-0 fs-4">سجل كمالك صيدلية</h5>
@@ -62,8 +62,8 @@
                                     </div>
 
                                     <div class="col-12">
-                                        <label for="license" class="form-label">رقم  الترخيص</label>
-                                        <input type="number" id="license" class="form-control @error('license') is-invalid @enderror"
+                                        <label for="license" class="form-label">رقم الترخيص</label>
+                                        <input type="file" id="license" class="form-control @error('license') is-invalid @enderror"
                                         name="license" value="{{ old('license') }}" required autocomplete="license" autofocus>
                                         @error('license')
                                             <span class="invalid-feedback" role="alert">

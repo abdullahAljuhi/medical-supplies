@@ -20,8 +20,14 @@
 
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-
-                        <img src="{{$user->profile['image']?asset('assets/images/users/'.$user->profile['image']) : asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle">
+                        @if(isset(Auth::user()->profile->image))
+                            <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile"
+                                 class="rounded-circle border p-1">
+                        @else
+                            <img src="{{asset('assets/img/user.png') }}" alt="Profile"
+                                 class="rounded-circle border p-1">
+                        @endif
+                        {{--                        <img src="{{$user->profile['image']?asset('assets/images/users/'.$user->profile['image']) : asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle">--}}
                         <h2>{{ $user->name }}</h2>
                         <h3>{{ $user->email }}</h3>
                     </div>
@@ -33,7 +39,8 @@
                 <div class="card">
                     <div class="card-body pt-3">
                         @if($user->id === Auth::user()->id)
-                        <a href="{{ route('edit.profile') }}" class="btn btn-outline-primary"> تعديل بيانات الحساب</a>
+                            <a href="{{ route('edit.profile') }}" class="btn btn-outline-primary"> تعديل بيانات
+                                الحساب</a>
                         @endif
                         <div class="tab-content pt-2">
 
@@ -47,16 +54,19 @@
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">العنوان</div>
-                                    <div class="col-lg-9 col-md-8">@isset($user->profile['address'])
-                                        {{$user->profile['address'][0]}} - {{$user->profile['address'][1]}}
-
-                                    @endisset
-                                </div>
+                                    <div class="col-lg-9 col-md-8">
+                                        @isset($user->profile['address'])
+                                            {{$user->profile['address']}}
+                                        @endisset
+                                    </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">هاتف</div>
-                                    <div class="col-lg-9 col-md-8">{{ $user->profile['phone'] }}</div>
+                                    <div class="col-lg-9 col-md-8">
+                                        @isset($user->profile['phone'])
+                                            {{$user->profile['phone']}}
+                                        @endisset</div>
                                 </div>
 
                                 <div class="row">
