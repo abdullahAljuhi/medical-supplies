@@ -40,7 +40,15 @@ Route::group(['middleware' => 'auth'], function () {
 
         // dashboard
         Route::get('/', function () {return view('home');})->name('dashboard');
-        Route::get('/location', function () {return view('admin.location');})->name('location');
+
+        // Setting Routs
+        Route::group(['prefix' => 'settings'], function () {
+            Route::get('/location', function () {return view('admin.location');})->name('location');
+            Route::get('/city', [CityController::class, 'create'])->name('add-city');
+            Route::post('/city/store', [CityController::class, 'store'])->name('store-city');
+            Route::get('/state', [GovernorateController::class, 'create'])->name('add-state');
+            Route::post('/state/store', [GovernorateController::class, 'store'])->name('store-state');
+        }); // end users
 
 
         // crud Users

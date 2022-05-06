@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Http\Requests\CityRequest;
+use App\Models\Governorate;
 
 class CityController extends Controller
 {
@@ -26,15 +27,18 @@ class CityController extends Controller
      */
     public function create()
     {
-        return view('city.create');
+        $governorates = Governorate::all();
+        $cities = City::with('governorate')->get();
+        return view('admin.city',['cities'=>$cities, 'governorates'=>$governorates]);
     }
 
- 
+
     public function store(CityRequest $request)
     {
         try {
             $city = new City();
             $city->name = $request->name;
+            $city->governorate_id = $request->governorate;
             $city->save();
             return redirect()->route('city.all')->with(['success' => 'تم  الاضافه بنجاح']);
         } catch (\Exception $e) {
@@ -43,7 +47,7 @@ class CityController extends Controller
     }
 
 
-  
+
     public function edit($id)
     {
         try {

@@ -13,7 +13,7 @@ class CityRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,7 +26,7 @@ class CityRequest extends FormRequest
         return [
             'name' => 'required',
             'governorate_id' => 'exists:app\Models\Governorate,id'
-        
+
         ];
     }
 

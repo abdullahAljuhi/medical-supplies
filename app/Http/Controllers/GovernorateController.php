@@ -26,7 +26,9 @@ class GovernorateController extends Controller
      */
     public function create()
     {
-        return view('governorate.create');
+        $governorates = Governorate::all();
+        return view('admin.state',compact('governorates'));
+
     }
 
     /**
