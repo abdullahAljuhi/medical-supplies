@@ -23,7 +23,9 @@
                                     <h5 class="card-title text-center pb-0 fs-4">سجل كمالك صيدلية</h5>
                                     <p class="text-center small">يرجى ادخال بيانات الصيدلية  </p>
                                 </div>
-                                <form class="row g-3 needs-validation" novalidate>
+                                <form class="row g-3 needs-validation" novalidate method="POST"
+                                    action="">
+                                    @csrf
                                     <div class="col-12">
                                         <label for="yourName" class="form-label">أسم الصيدلية</label>
                                         <input type="text" name="name" class="form-control" id="yourName" required>
@@ -31,19 +33,19 @@
                                     </div>
 
                                     <div class="col-12">
-                                        <label for="yourEmail" class="form-label">رقم الهاتف</label>
-                                        <input type="tel" name="phone" class="form-control" id="yourEmail" required>
+                                        <label for="yourphone" class="form-label">رقم الهاتف</label>
+                                        <input type="tel" name="phone" class="form-control" id="yourphone" required>
                                         <div class="invalid-feedback">يرجى ادخال  رقم الهاتف!</div>
                                     </div>
                                     <div class="col-12">
-                                        <label for="yourEmail" class="form-label">رقم الموبايل</label>
-                                        <input type="text" name="mobile" class="form-control" id="yourEmail" required>
+                                        <label for="yourmobile" class="form-label">رقم الموبايل</label>
+                                        <input type="text" name="mobile" class="form-control" id="yourmobile" required>
                                         <div class="invalid-feedback">يرجى ادخال   رقم الموبايل!</div>
                                     </div>
 
                                     <div class="col-12">
-                                        <label for="yourPassword" class="form-label">رقم  الترخيص</label>
-                                        <input type="number" name="liscen" class="form-control" id="yourPassword" required>
+                                        <label for="liscen" class="form-label">صورة  الترخيص</label>
+                                        <input type="file" name="liscen" class="form-control" id="liscen" required>
                                         <div class="invalid-feedback">يرجى ادخال رقم الترخيص   </div>
                                     </div>
                                     <div class="col-12">
@@ -52,9 +54,9 @@
                                                 <label for="inputState" class="form-label">المحافظة</label>
                                                 <select class="form-select" aria-label="Default select example" name="governorate">
                                                     <option selected>حدد المحافظة</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
+                                                    <option value="1">حضرموت</option>
+                                                    <option value="2">عدن </option>
+                                                    <option value="3">المهره</option>
                                                 </select>
                                             </div>
                                             <div class="col-6">
@@ -66,17 +68,21 @@
                                                     <option value="3">Three</option>
                                                 </select>
                                             </div>
-                                            <div class="col-6">
-                                                <label for="street" class="col-md-4 col-lg-3 col-form-label">الشارع</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <input name="street" type="text" class="form-control" id="street"
-                                                           placeholder="مثل الشارع العام او امام محلات ....">
-                                                </div>
-                                            </div>
+
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <label for="inputState" class="form-label">تفاصيل اخرى</label>
+                                        <label for="yourPassword" class="form-label">الشارع</label>
+                                        <input type="text" name="street" class="form-control" id="yourPassword" required>
+                                        <div class="invalid-feedback">يرجى ادخال رقم الترخيص   </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="fullName" class="col-md-4 col-lg-3 col-form-label">تفاصيل العنوان</label>
+                                        <input type="text" name="detaile_address" class="form-control" id="yourPassword" required>
+                                        <div class="invalid-feedback">يرجى ادخال رقم الترخيص   </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="inputState" class="form-label">وصف عن الصيدلية</label>
                                         <div class="form-floating">
                                             <textarea class="form-control text-right" name="detlaie" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
                                         </div>

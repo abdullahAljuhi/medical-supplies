@@ -42,7 +42,7 @@
                             </li>
                            </ul>
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -119,7 +119,7 @@
 
                                     <div class="row mb-3">
                                         <div class="col-md-8 col-lg-9 input-group">
-                                            <label for="Job" class="col-md-4 col-lg-3 col-form-label">المحافظة</label>
+                                            <label for="Job" class="col-md-4 col-lg-3 col-form-label">العنوان</label>
                                             <select name="governorate" class="form-select select1 mx-2"
                                                     id="inputGroupSelect01">
                                                 <option selected="" value="0">حضرموت</option>
@@ -139,7 +139,14 @@
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">الشارع</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="street" type="text" class="form-control" id="fullName"
-                                                   value="امام مسجد الصديق">
+                                                   value=" الشارع العام">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="fullName" class="col-md-4 col-lg-3 col-form-label">تفاصيل العنوان</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="detaile_address" type="text" class="form-control" id="fullName"
+                                            value="امام مسجد الصديق">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -171,7 +178,7 @@
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="fullName" class="col-md-4 col-lg-3 col-form-label">التفاصيل</label>
+                                        <label for="fullName" class="col-md-4 col-lg-3 col-form-label">وصف عن الصيدلية</label>
                                         <div class="col-md-8 col-lg-9">
                                             <textarea class="form-control "  name="detlaie" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px;">
                                             تم افتتاح صيدلية ماهر عام 1997 م ....
@@ -186,7 +193,9 @@
 
                             <div class="tab-pane fade pt-3" id="profile-change-password">
                                 <!-- Change Password Form -->
-                                <form>
+                                <form method="POST"
+                                    action="">
+                                    @csrf
 
                                     <div class="row mb-3">
                                         <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">كلمة

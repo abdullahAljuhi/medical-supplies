@@ -20,7 +20,6 @@
                     <i class="bi bi-search" style="width: 5%"></i>
                 </div>
             </div>
-
             <div class="col-md-6 col-sm-12">
                 <div class="row">
                     <div class="col-6">
