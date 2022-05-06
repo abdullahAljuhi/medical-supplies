@@ -33,19 +33,19 @@
                                     </div>
 
                                     <div class="col-12">
-                                        <label for="yourEmail" class="form-label">رقم الهاتف</label>
-                                        <input type="tel" name="phone" class="form-control" id="yourEmail" required>
+                                        <label for="yourphone" class="form-label">رقم الهاتف</label>
+                                        <input type="tel" name="phone" class="form-control" id="yourphone" required>
                                         <div class="invalid-feedback">يرجى ادخال  رقم الهاتف!</div>
                                     </div>
                                     <div class="col-12">
-                                        <label for="yourEmail" class="form-label">رقم الموبايل</label>
-                                        <input type="text" name="mobile" class="form-control" id="yourEmail" required>
+                                        <label for="yourmobile" class="form-label">رقم الموبايل</label>
+                                        <input type="text" name="mobile" class="form-control" id="yourmobile" required>
                                         <div class="invalid-feedback">يرجى ادخال   رقم الموبايل!</div>
                                     </div>
 
                                     <div class="col-12">
-                                        <label for="yourPassword" class="form-label">صورة  الترخيص</label>
-                                        <input type="file" name="liscen" class="form-control" id="yourPassword" required>
+                                        <label for="liscen" class="form-label">صورة  الترخيص</label>
+                                        <input type="file" name="liscen" class="form-control" id="liscen" required>
                                         <div class="invalid-feedback">يرجى ادخال رقم الترخيص   </div>
                                     </div>
                                     <div class="col-12">
@@ -54,9 +54,9 @@
                                                 <label for="inputState" class="form-label">المحافظة</label>
                                                 <select class="form-select" aria-label="Default select example" name="governorate">
                                                     <option selected>حدد المحافظة</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
+                                                    <option value="1">حضرموت</option>
+                                                    <option value="2">عدن </option>
+                                                    <option value="3">المهره</option>
                                                 </select>
                                             </div>
                                             <div class="col-6">
