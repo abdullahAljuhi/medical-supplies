@@ -16,11 +16,9 @@
                         <div class="card-header">{{ __('التحقق من البيانات') }}</div>
 
                         <div class="card-body">
-                            @if (session('resent'))
                                 <div class="alert alert-success" role="alert">
                                     {{ __(' سوف يتم التحقق من البيانات و ارسال رابط على البريد الالكتروني الخاص فيك ثم يمكنك الدخول على حسابك') }}
                                 </div>
-                            @endif
                         </div>
                     </div>
                 </div>

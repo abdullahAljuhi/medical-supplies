@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\GovernorateController;
 use App\Http\Controllers\MedicalController;
 use App\Http\Controllers\PharmacyController;
@@ -37,9 +38,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     // admin
     Route::group(['prefix' => 'dashboard', 'middleware' => 'checkType:admin'], function () {
+        Route::get('/', [dashboardController::class, 'index'])->name('dashboard');
 
         // dashboard
-        Route::get('/', function () {return view('home');})->name('dashboard');
+        // Route::get('/',);
+        //  function () {
+            // return view('home');})->name('dashboard');
 
         // Setting Routs
         Route::group(['prefix' => 'settings'], function () {
@@ -93,6 +97,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/active/{pharmacy}', [PharmacyController::class, 'active'])->name('admin.pharmacy.active');
         Route::get('/disActive/{pharmacy}', [PharmacyController::class, 'disActive'])->name('admin.pharmacy.disActive');
         Route::post('/update/{pharmacy}', [PharmacyController::class, 'update'])->name('pharmacy.update');
+        Route::post('/check/{id?}', [dashboardController::class, 'checkPharmacy'])->name('admin.check.pharmacy');
 
     });
 
@@ -103,7 +108,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'pharmacy', 'middleware' => ['checkType:pharmacy']], function () {
             Route::get('/', [PharmacyController::class, 'index'])->name('pharmacy.index');
             Route::get('/create', [PharmacyController::class, 'create'])->name('pharmacy.create');
-            Route::post('/store', [PharmacyController::class, 'store'])->name('admin.pharmacy.store');
+            // Route::post('/store', [PharmacyController::class, 'store'])->name('pharmacy.store');
             Route::get('/edit/{pharmacy}', [PharmacyController::class, 'edit'])->name('admin.pharmacy.edit');
             // Route::post('/update/{pharmacy}', [PharmacyController::class, 'update'])->name('pharmacy.update');
 
@@ -116,12 +121,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('update', [UserProfileController::class, 'update'])->name('update.profile');
     });
 
+    // Route::group(['prefix' => 'pharmacy', 'middleware' => ['checkType:pharmacy']], function () {
+        Route::get('pharmacy/', [PharmacyController::class, 'index'])->name('pharmacy.index');
+        Route::get('pharmacy/create', [PharmacyController::class, 'create'])->name('pharmacy.create');
+        Route::post('pharmacy/store', [PharmacyController::class, 'store'])->name('admin.pharmacy.store');
 });
 
-// Route::group(['prefix' => 'pharmacy', 'middleware' => ['checkType:pharmacy']], function () {
-    Route::get('pharmacy/', [PharmacyController::class, 'index'])->name('pharmacy.index');
-    Route::get('pharmacy/create', [PharmacyController::class, 'create'])->name('pharmacy.create');
-    Route::post('pharmacy/store', [PharmacyController::class, 'store'])->name('admin.pharmacy.store');
 
 // });
 // main page

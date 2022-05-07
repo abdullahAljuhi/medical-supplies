@@ -396,20 +396,6 @@
 
     {{-- pusher js --}}
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-    <script>
-        Pusher.logToConsole = true;
-
-        var pusher = new Pusher('e4b4e21e1f468b8bddf2', {
-            cluster: 'mt1'
-        });
-        var channel = pusher.subscribe('active-pharmacy');
-        channel.bind('App\\Events\\notfiy', function(data) {
-            let a=document.querySelector('#pharmacy').style.display='block';
-
-            console.log(data.pharmacy.name);
-        });
-
-    </script>
 @yield('scripts')
 </body>
 

@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('license');
             $table->string('image')->nullable();
             $table->string('description');
+            $table->boolean('is_active')->default(0);
+            $table->boolean('check')->default(0);
             $table->timestamps();
         });
     }

@@ -36,9 +36,7 @@ class PharmacyController extends Controller
                 if ($pharmacy->is_active == '1') {
                     return view('pharmacy.index');
                 } else {
-        
-                    event(new notfiy($pharmacy));
-                    return "await to agree your request";
+                    return view('auth.verifyPharmacy');
 
                 }
             }
@@ -58,14 +56,9 @@ class PharmacyController extends Controller
     public function create()
     {
         $pharmacy = Pharmacy::where('user_id', Auth::id())->first();
-        // dd($pharmacy);
+
         if (empty($pharmacy)) {
-            
-            $cities = City::all();
-
-            $governorates = Governorate::all();
-
-            return view('auth.registerNext', compact('cities', 'governorates'));
+            return view('registerAsPhar');
         } else {
             return redirect('/pharmacy');
         }
@@ -89,10 +82,10 @@ class PharmacyController extends Controller
 
             $fileName = "";
 
-            if ($request->has('image')) {
+            if ($request->has('license')) {
 
                 // save img in public/pharmacy/images
-                $fileName = $this->uploadImage('pharmacy', $request->photo);
+                $fileName = $this->uploadImage('pharmacies/licenses', $request->license);
             }
 
             // create pharmacy
@@ -101,9 +94,9 @@ class PharmacyController extends Controller
                 'user_id' => Auth::id(),
                 'mobile' => $request['mobile'],
                 'phone' => $request['phone'],
-                'image' => $fileName,
+                'image' => '',
                 'fax' => $request['fax'],
-                'license' => $request['license'],
+                'license' => $fileName,
                 'description' => $request['description'],
             ]);
 
@@ -112,7 +105,7 @@ class PharmacyController extends Controller
             // add address to pharmacy
             $address = $pharmacy->address()->create([
                 'city_id' => $request['city'],
-                'governorate_id' => $request['state'],
+                'governorate_id' => $request['governorate'],
                 'street' => $request['description'],
                 'details' => $request['details'],
             ]);
@@ -127,7 +120,9 @@ class PharmacyController extends Controller
 
 
             DB::commit();
+
             event(new notfiy($pharmacy));
+
             return redirect()->route('home');
         } catch (\Exception $ex) {
 
@@ -196,7 +191,7 @@ class PharmacyController extends Controller
                 }
 
                 // save img in public/pharmacy/images
-                $fileName = $this->uploadImage('pharmacy', $request->image);
+                $fileName = $this->uploadImage('pharmacies', $request->image);
             }
             // create pharmacy
             $pharmacy->update([
@@ -205,7 +200,6 @@ class PharmacyController extends Controller
                 'phone' => $request['phone'],
                 'image' => $fileName,
                 'fax' => $request['fax'],
-                // 'license' => $request['license'],
                 'description' => $request['description'],
             ]);
             
