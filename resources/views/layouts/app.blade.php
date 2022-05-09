@@ -77,76 +77,18 @@
                 @endif
             @else
                 <!-- Notification Nav -->
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown dropdown-notifications">
 
-                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
                         <i class="bi bi-bell"></i>
-                        <span class="badge bg-primary badge-number">4</span>
+                        <span class="badge bg-primary badge-number notify-count" data-count="0">0</span>
                     </a><!-- End Notification Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                        <li class="dropdown-header">
-                            لديك 4 اشعارات جديدة
-                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">عرض الكل</span></a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
+
+                        <li class="notification-item scrollable-container">
                         </li>
 
-                        <li class="notification-item">
-                            <i class="bi bi-exclamation-circle text-warning"></i>
-                            <div>
-                                <h4>محمد زبير</h4>
-                                <p>وصفة طبية مستعجلة</p>
-                                <p>منذ 30 دقيقة</p>
-                            </div>
-                        </li>
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="notification-item">
-                            <i class="bi bi-x-circle text-danger"></i>
-                            <div>
-                                <h4>محمد زبير</h4>
-                                <p>وصفة طبية مستعجلة</p>
-                                <p>منذ 30 دقيقة</p>
-                            </div>
-                        </li>
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="notification-item">
-                            <i class="bi bi-check-circle text-success"></i>
-                            <div>
-                                <h4>محمد زبير</h4>
-                                <p>وصفة طبية مستعجلة</p>
-                                <p>منذ 30 دقيقة</p>
-                            </div>
-                        </li>
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="notification-item">
-                            <i class="bi bi-info-circle text-primary"></i>
-                            <div>
-                                <h4>محمد زبير</h4>
-                                <p>وصفة طبية مستعجلة</p>
-                                <p>منذ 30 دقيقة</p>
-                            </div>
-                        </li>
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li class="dropdown-footer">
-                            <a href="#">عرض جميع الاشعارات</a>
-                        </li>
 
                     </ul><!-- End Notification Dropdown Items -->
 

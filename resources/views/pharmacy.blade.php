@@ -1,46 +1,38 @@
 @extends("layouts.main")
 @section('content')
- <section class="mt-5 py-3">
+<section class="mt-5 py-3">
     <div class="container  my-3 bg-white shadow">
         <div class="row py-3  px-1">
             <div class="col-md-1 col-sm-2 links  ">
                 <ul class="w-100 h-100">
                     <li data-view="list-view" class="li-list active">
-                    <i class="fas fa-th-list"></i>
+                        <i class="fas fa-th-list"></i>
                     </li>
                     <li data-view="grid-view" class="li-grid">
-                    <i class="fas fa-th-large" ></i>
+                        <i class="fas fa-th-large"></i>
                     </li>
                 </ul>
             </div>
-            <div class="col-md-5 col-sm-12 mb-2">
-
-                <div class="input-group  form-control ">
-                    <input type="text" class=" border-0" style="width: 95%;outline:0ch" placeholder="البحث " aria-label="Example text with button addon" aria-describedby="button-addon1">
-                    <i class="bi bi-search" style="width: 5%"></i>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <div class="row">
-                    <div class="col-6">
-                        <select id="select1" class="form-select select1 form-control p-2 pe-5" aria-label=".form-select-lg example">
-                            <option value="0" selected>كل المحافظات</option>
-                            <option value="1">حضرموت</option>
-                            <option value="2">صنعاء</option>
-                            <option value="3">عدن</option>
-                         </select>
-                    </div>
-                    <div class="col-6 second">
-                        <select id="select2" class="form-select select2 form-control p-2 pe-5" aria-label=".form-select-lg example">
-                            <option class="city1" value='1'>1</option>
-                            <option class="city2" value='2'>2</option>
-                            <option class="city3" value='3'>3</option>
-                            <option class="city4" value='4'>4</option>
-                          </select>
-                    </div>
-                </div>
-            </div>
-
+            <form action="{{ route('admin.pharmacy') }}" method="get">
+                <select name="governorate" class="form-select select1 mx-2" id="inputGroupSelect01">
+                    @foreach ($governorates as $governorat)
+                    <option value="{{ $governorat->id }}">
+                        {{ $governorat->name }}
+                    </option>
+                    @endforeach
+                </select>
+                <select name="city" class="form-select select2 mx-2" id="inputGroupSelect02" style="">
+                    @foreach ($cities as $city)
+                    <option value="{{ $city->id }}">
+                        {{ $city->name }}
+                    </option>
+                    @endforeach
+                </select>
+                        <input type="text" class=" border-0" style="width: 95%;outline:0ch" placeholder="البحث "
+                            aria-label="Example text with button addon" aria-describedby="button-addon1" name="name">
+                        <i class="bi bi-search" style="width: 5%"></i>
+                <input type="submit" name="search" id="">
+            </form>
         </div>
     </div>
 
@@ -49,209 +41,41 @@
         <div class="view_main container shadow ">
             <div class="view_wrap list-view" style="display: block;">
                 <div class="  mt-0 bg-white ">
+                    @foreach ($pharmacies as $pharmacy)
                     <a href="" class="row  py-2 border-bottom text-content text-black ">
-                        <div class="col-md-1 col-4 mb-md-0 mb-4 d-flex justify-content-center fw-bold align-self-center fs-5"> 1
+                        <div
+                            class="col-md-1 col-4 mb-md-0 mb-4 d-flex justify-content-center fw-bold align-self-center fs-5">
+                            {{ $loop->index }}
                         </div>
-                        <div class="col-md-2 col-8  d-flex justify-content-strat fw-bold align-self-center fs-5">                صيدلية الاسرة
+                        <div class="col-md-2 col-8  d-flex justify-content-strat fw-bold align-self-center fs-5">
+                            {{ $pharmacy->pharmacy_name??'' }}
                         </div>
                         <div class="col-md-3  mb-2 mb-md-0   d-flex justify-content-strat fw-bold align-self-center">
                             <div class="row w-100">
                                 <div class="col-6">
                                     <i class="bi bi-geo-alt  text-primary ms-3"></i>
-                                    <span >حضرموت</span>
+                                    <span>{{ $pharmacy->city_name?? '' }}</span>
                                 </div>
                                 <div class="col-6">
                                     <i class="bi bi-hospital   text-primary ms-3"></i>
-                                    <span >المكلا</span>
+                                    <span>{{ $pharmacy->governorate_name ??''}}</span>
                                 </div>
 
                             </div>
                         </div>
                         <div class="col-md-4 mb-2 mb-md-0 d-flex justify-content-strat  align-self-center">
                             <i class="bi bi-map   text-primary ms-3"></i>
-                            <span >امام مسجد الروضة وبجانب محلات المحضار</span>
+                            <span>{{ $pharmacy->address[0]->steet ??''}}</span>
                         </div>
-                        <div class="col-md-2 mb-2 mb-md-0 text-center d-flex justify-content-center fw-bold align-self-center">
+                        <div
+                            class="col-md-2 mb-2 mb-md-0 text-center d-flex justify-content-center fw-bold align-self-center">
                             <button type="button" class="btn btn-outline-primary px-4">
-                            <span style="font-size: 18px">طلب  </span>
+                                <span style="font-size: 18px">طلب </span>
                                 <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i>
                             </button>
                         </div>
                     </a>
-                    <a href="" class="row  py-2 border-bottom text-content text-black ">
-                        <div class="col-md-1 col-4 mb-md-0 mb-4 d-flex justify-content-center fw-bold align-self-center fs-5"> 1
-                        </div>
-                        <div class="col-md-2 col-8  d-flex justify-content-strat fw-bold align-self-center fs-5">                صيدلية الاسرة
-                        </div>
-                        <div class="col-md-3  mb-2 mb-md-0   d-flex justify-content-strat fw-bold align-self-center">
-                            <div class="row w-100">
-                                <div class="col-6">
-                                    <i class="bi bi-geo-alt  text-primary ms-3"></i>
-                                    <span >حضرموت</span>
-                                </div>
-                                <div class="col-6">
-                                    <i class="bi bi-hospital   text-primary ms-3"></i>
-                                    <span >المكلا</span>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-2 mb-md-0 d-flex justify-content-strat  align-self-center">
-                            <i class="bi bi-map   text-primary ms-3"></i>
-                            <span >امام مسجد الروضة وبجانب محلات المحضار</span>
-                        </div>
-                        <div class="col-md-2 mb-2 mb-md-0 text-center d-flex justify-content-center fw-bold align-self-center">
-                            <button type="button" class="btn btn-outline-primary px-4">
-                                <span style="font-size: 18px">طلب  </span>
-                                <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i>
-                            </button>
-                        </div>
-                    </a>
-                    <a href="" class="row  py-2 border-bottom text-content text-black ">
-                        <div class="col-md-1 col-4 mb-md-0 mb-4 d-flex justify-content-center fw-bold align-self-center fs-5"> 1
-                        </div>
-                        <div class="col-md-2 col-8  d-flex justify-content-strat fw-bold align-self-center fs-5">                صيدلية الاسرة
-                        </div>
-                        <div class="col-md-3  mb-2 mb-md-0   d-flex justify-content-strat fw-bold align-self-center">
-                            <div class="row w-100">
-                                <div class="col-6">
-                                    <i class="bi bi-geo-alt  text-primary ms-3"></i>
-                                    <span >حضرموت</span>
-                                </div>
-                                <div class="col-6">
-                                    <i class="bi bi-hospital   text-primary ms-3"></i>
-                                    <span >المكلا</span>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-2 mb-md-0 d-flex justify-content-strat  align-self-center">
-                            <i class="bi bi-map   text-primary ms-3"></i>
-                            <span >امام مسجد الروضة وبجانب محلات المحضار</span>
-                        </div>
-                        <div class="col-md-2 mb-2 mb-md-0 text-center d-flex justify-content-center fw-bold align-self-center">
-                            <button type="button" class="btn btn-outline-primary px-4">
-                                <span style="font-size: 18px">طلب  </span>
-                                <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i>
-                            </button>
-                        </div>
-                    </a>
-                    <a href="" class="row  py-2 border-bottom text-content text-black ">
-                        <div class="col-md-1 col-4 mb-md-0 mb-4 d-flex justify-content-center fw-bold align-self-center fs-5"> 1
-                        </div>
-                        <div class="col-md-2 col-8  d-flex justify-content-strat fw-bold align-self-center fs-5">                صيدلية الاسرة
-                        </div>
-                        <div class="col-md-3  mb-2 mb-md-0   d-flex justify-content-strat fw-bold align-self-center">
-                            <div class="row w-100">
-                                <div class="col-6">
-                                    <i class="bi bi-geo-alt  text-primary ms-3"></i>
-                                    <span >حضرموت</span>
-                                </div>
-                                <div class="col-6">
-                                    <i class="bi bi-hospital   text-primary ms-3"></i>
-                                    <span >المكلا</span>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-2 mb-md-0 d-flex justify-content-strat  align-self-center">
-                            <i class="bi bi-map   text-primary ms-3"></i>
-                            <span >امام مسجد الروضة وبجانب محلات المحضار</span>
-                        </div>
-                        <div class="col-md-2 mb-2 mb-md-0 text-center d-flex justify-content-center fw-bold align-self-center">
-                            <button type="button" class="btn btn-outline-primary px-4">
-                                <span style="font-size: 18px">طلب  </span>
-                                <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i>
-                            </button>
-                        </div>
-                    </a>
-                    <a href="" class="row  py-2 border-bottom text-content text-black ">
-                        <div class="col-md-1 col-4 mb-md-0 mb-4 d-flex justify-content-center fw-bold align-self-center fs-5"> 1
-                        </div>
-                        <div class="col-md-2 col-8  d-flex justify-content-strat fw-bold align-self-center fs-5">                صيدلية الاسرة
-                        </div>
-                        <div class="col-md-3  mb-2 mb-md-0   d-flex justify-content-strat fw-bold align-self-center">
-                            <div class="row w-100">
-                                <div class="col-6">
-                                    <i class="bi bi-geo-alt  text-primary ms-3"></i>
-                                    <span >حضرموت</span>
-                                </div>
-                                <div class="col-6">
-                                    <i class="bi bi-hospital   text-primary ms-3"></i>
-                                    <span >المكلا</span>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-2 mb-md-0 d-flex justify-content-strat  align-self-center">
-                            <i class="bi bi-map   text-primary ms-3"></i>
-                            <span >امام مسجد الروضة وبجانب محلات المحضار</span>
-                        </div>
-                        <div class="col-md-2 mb-2 mb-md-0 text-center d-flex justify-content-center fw-bold align-self-center">
-                            <button type="button" class="btn btn-outline-primary px-4">
-                                <span style="font-size: 18px">طلب  </span>
-                                <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i>
-                            </button>
-                        </div>
-                    </a>
-                    <a href="" class="row  py-2 border-bottom text-content text-black ">
-                        <div class="col-md-1 col-4 mb-md-0 mb-4 d-flex justify-content-center fw-bold align-self-center fs-5"> 1
-                        </div>
-                        <div class="col-md-2 col-8  d-flex justify-content-strat fw-bold align-self-center fs-5">                صيدلية الاسرة
-                        </div>
-                        <div class="col-md-3  mb-2 mb-md-0   d-flex justify-content-strat fw-bold align-self-center">
-                            <div class="row w-100">
-                                <div class="col-6">
-                                    <i class="bi bi-geo-alt  text-primary ms-3"></i>
-                                    <span >حضرموت</span>
-                                </div>
-                                <div class="col-6">
-                                    <i class="bi bi-hospital   text-primary ms-3"></i>
-                                    <span >المكلا</span>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-2 mb-md-0 d-flex justify-content-strat  align-self-center">
-                            <i class="bi bi-map   text-primary ms-3"></i>
-                            <span >امام مسجد الروضة وبجانب محلات المحضار</span>
-                        </div>
-                        <div class="col-md-2 mb-2 mb-md-0 text-center d-flex justify-content-center fw-bold align-self-center">
-                            <button type="button" class="btn btn-outline-primary px-4">
-                                <span style="font-size: 18px">طلب  </span>
-                                <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i>
-                            </button>
-                        </div>
-                    </a>
-                    <a href="" class="row  py-2 border-bottom text-content text-black ">
-                        <div class="col-md-1 col-4 mb-md-0 mb-4 d-flex justify-content-center fw-bold align-self-center fs-5"> 1
-                        </div>
-                        <div class="col-md-2 col-8  d-flex justify-content-strat fw-bold align-self-center fs-5">                صيدلية الاسرة
-                        </div>
-                        <div class="col-md-3  mb-2 mb-md-0   d-flex justify-content-strat fw-bold align-self-center">
-                            <div class="row w-100">
-                                <div class="col-6">
-                                    <i class="bi bi-geo-alt  text-primary ms-3"></i>
-                                    <span >حضرموت</span>
-                                </div>
-                                <div class="col-6">
-                                    <i class="bi bi-hospital   text-primary ms-3"></i>
-                                    <span >المكلا</span>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-2 mb-md-0 d-flex justify-content-strat  align-self-center">
-                            <i class="bi bi-map   text-primary ms-3"></i>
-                            <span >امام مسجد الروضة وبجانب محلات المحضار</span>
-                        </div>
-                        <div class="col-md-2 mb-2 mb-md-0 text-center d-flex justify-content-center fw-bold align-self-center">
-                            <button type="button" class="btn btn-outline-primary px-4">
-                                <span style="font-size: 18px">طلب  </span>
-                                <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i>
-                            </button>
-                        </div>
-                    </a>
+                    @endforeach
                 </div>
 
             </div>
@@ -260,205 +84,53 @@
 
                 <div class="card-group p-lg-5">
                     <div class="row row-cols-1 row-cols-md-3 g-5 text-center jobs">
-                        <div class="col">
-                            <div class="card h-100 p-2">
-                                <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
-                                <div class="card-body pb-0">
-                                    <h5 class="card-title fs-4 text-primary ">صيدلية رضا الوالدين</h5>
-                                     <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
-                                    <ul class="text-center footer-icons d-flex justify-content-center mb-0">
-                                        <li class="list-inline-item text-center">
-                                            <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
-                                                    class="fab fa-facebook-f fa-lg fa-fw"></i></a>
-                                        </li>
-                                        <li class="list-inline-item  text-center">
-                                            <a class="text-light text-decoration-none" target="_blank"
-                                               href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
-                                        </li>
-                                        <li class="list-inline-item  text-center">
-                                            <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i
-                                                    class="fab fa-twitter fa-lg fa-fw"></i></a>
-                                        </li>
-                                        <li class="list-inline-item  text-center">
-                                            <a class="text-light text-decoration-none" target="_blank"
-                                               href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="card-footer bg-white">
-                                    <div class="my-2">
-                                        <a href="job-details.html" class="btn btn-outline-primary w-100"><span>طلب دواء  </span>
-                                            <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100 p-2">
-                                <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
-                                <div class="card-body pb-0">
-                                    <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
-                                     <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
-                                    <ul class="text-center footer-icons d-flex justify-content-center mb-0">
-                                        <li class="list-inline-item text-center">
-                                            <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
-                                                    class="fab fa-facebook-f fa-lg fa-fw"></i></a>
-                                        </li>
-                                        <li class="list-inline-item  text-center">
-                                            <a class="text-light text-decoration-none" target="_blank"
-                                               href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
-                                        </li>
-                                        <li class="list-inline-item  text-center">
-                                            <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i
-                                                    class="fab fa-twitter fa-lg fa-fw"></i></a>
-                                        </li>
-                                        <li class="list-inline-item  text-center">
-                                            <a class="text-light text-decoration-none" target="_blank"
-                                               href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="card-footer bg-white">
-                                    <div class="my-2">
-                                        <a href="job-details.html" class="btn btn-outline-primary w-100"><span>طلب دواء  </span>
-                                            <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100 p-2">
-                                <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
-                                <div class="card-body pb-0">
-                                    <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
-                                     <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
-                                    <ul class="text-center footer-icons d-flex justify-content-center mb-0">
-                                        <li class="list-inline-item text-center">
-                                            <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
-                                                    class="fab fa-facebook-f fa-lg fa-fw"></i></a>
-                                        </li>
-                                        <li class="list-inline-item  text-center">
-                                            <a class="text-light text-decoration-none" target="_blank"
-                                               href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
-                                        </li>
-                                        <li class="list-inline-item  text-center">
-                                            <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i
-                                                    class="fab fa-twitter fa-lg fa-fw"></i></a>
-                                        </li>
-                                        <li class="list-inline-item  text-center">
-                                            <a class="text-light text-decoration-none" target="_blank"
-                                               href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="card-footer bg-white">
-                                    <div class="my-2">
-                                        <a href="job-details.html" class="btn btn-outline-primary w-100"><span>طلب دواء  </span>
-                                            <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100 p-2">
-                                <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
-                                <div class="card-body pb-0">
-                                    <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
-                                     <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
-                                    <ul class="text-center footer-icons d-flex justify-content-center mb-0">
-                                        <li class="list-inline-item text-center">
-                                            <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
-                                                    class="fab fa-facebook-f fa-lg fa-fw"></i></a>
-                                        </li>
-                                        <li class="list-inline-item  text-center">
-                                            <a class="text-light text-decoration-none" target="_blank"
-                                               href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
-                                        </li>
-                                        <li class="list-inline-item  text-center">
-                                            <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i
-                                                    class="fab fa-twitter fa-lg fa-fw"></i></a>
-                                        </li>
-                                        <li class="list-inline-item  text-center">
-                                            <a class="text-light text-decoration-none" target="_blank"
-                                               href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="card-footer bg-white">
-                                    <div class="my-2">
-                                        <a href="job-details.html" class="btn btn-outline-primary w-100"><span>طلب دواء  </span>
-                                            <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100 p-2">
-                                <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
-                                <div class="card-body pb-0">
-                                    <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
-                                     <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
-                                    <ul class="text-center footer-icons d-flex justify-content-center mb-0">
-                                        <li class="list-inline-item text-center">
-                                            <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
-                                                    class="fab fa-facebook-f fa-lg fa-fw"></i></a>
-                                        </li>
-                                        <li class="list-inline-item  text-center">
-                                            <a class="text-light text-decoration-none" target="_blank"
-                                               href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
-                                        </li>
-                                        <li class="list-inline-item  text-center">
-                                            <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i
-                                                    class="fab fa-twitter fa-lg fa-fw"></i></a>
-                                        </li>
-                                        <li class="list-inline-item  text-center">
-                                            <a class="text-light text-decoration-none" target="_blank"
-                                               href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="card-footer bg-white">
-                                    <div class="my-2">
-                                        <a href="job-details.html" class="btn btn-outline-primary w-100"><span>طلب دواء  </span>
-                                            <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100 p-2">
-                                <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
-                                <div class="card-body pb-0">
-                                    <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
-                                     <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
-                                    <ul class="text-center footer-icons d-flex justify-content-center mb-0">
-                                        <li class="list-inline-item text-center">
-                                            <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
-                                                    class="fab fa-facebook-f fa-lg fa-fw"></i></a>
-                                        </li>
-                                        <li class="list-inline-item  text-center">
-                                            <a class="text-light text-decoration-none" target="_blank"
-                                               href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
-                                        </li>
-                                        <li class="list-inline-item  text-center">
-                                            <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i
-                                                    class="fab fa-twitter fa-lg fa-fw"></i></a>
-                                        </li>
-                                        <li class="list-inline-item  text-center">
-                                            <a class="text-light text-decoration-none" target="_blank"
-                                               href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="card-footer bg-white">
-                                    <div class="my-2">
-                                        <a href="job-details.html" class="btn btn-outline-primary w-100"><span>طلب دواء  </span>
-                                            <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
+                        @foreach ($pharmacies as $pharmacy)
+                        <div class="col">
+                            <div class="card h-100 p-2">
+                                @if($pharmacy->image)
+                                <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}" alt="pharmacy"
+                                    class="rounded-circle border p-1">
+                                @else
+                                <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus"
+                                    alt="...">
+                                @endif
+                                <div class="card-body pb-0">
+                                    <h5 class="card-title fs-4 text-primary "> {{ $pharmacy->pharmacy_name }}</h5>
+
+                                    <p class="card-text fs-5 text-secondary text-center w-100"><i
+                                            class="bi bi-geo-alt  text-primary ms-1"></i>
+                                        {{ $pharmacy->address[0]->governorate->name?? '' }} - {{
+                                        $pharmacy->address[0]->city->name ??''}} </p>
+
+                                    <ul class="text-center footer-icons d-flex justify-content-center mb-0">
+                                        <li class="list-inline-item text-center">
+                                            <a class="text-light text-decoration-none" target="_blank"
+                                                href="{{ $pharmacy->contact[0]->facebook ?? ''}}">
+                                                <i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                                        </li>
+                                        <li class="list-inline-item  text-center">
+                                            <a class="text-light text-decoration-none" target="_blank"
+                                                href="{{ $pharmacy->contact[0]->instagram ?? 'https://instagram.com/'}}"><i
+                                                    class="fab fa-instagram fa-lg fa-fw"></i></a>
+                                        </li>
+                                        <li class="list-inline-item  text-center">
+                                            <a class="text-light text-decoration-none" target="_blank"
+                                                href="{{ $pharmacy->contact[0]->twitter ?? 'https://twitter.com/'}}"><i
+                                                    class="fab fa-twitter fa-lg fa-fw"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-footer bg-white">
+                                    <div class="my-2">
+                                        <a href="job-details.html" class="btn btn-outline-primary w-100"><span>طلب دواء
+                                            </span>
+                                            <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
 
@@ -471,8 +143,8 @@
 @endsection
 
 @section('scripts')
-    <script>
-        var all = '<option selected value="0">كل المدن</option>';
+<script>
+    var all = '<option selected value="0">كل المدن</option>';
         $('#select2').prepend(all);
         $("#select1").change(function() {
             if ($(this).data('options') === undefined) {
@@ -484,5 +156,5 @@
             $('#select2').html(options);
             $('#select2').prepend(all);
         });
-    </script>
+</script>
 @endsection

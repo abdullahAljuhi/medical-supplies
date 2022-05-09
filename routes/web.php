@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 //
 
 Auth::routes(['verify' => true]);
+
 define('PAGINATION', 10);
 
 Route::group(['middleware' => 'auth'], function () {
@@ -40,11 +41,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'dashboard', 'middleware' => 'checkType:admin'], function () {
         Route::get('/', [dashboardController::class, 'index'])->name('dashboard');
 
-        // dashboard
-        // Route::get('/',);
-        //  function () {
-            // return view('home');})->name('dashboard');
-
         // Setting Routs
         Route::group(['prefix' => 'settings'], function () {
             Route::get('/location', function () {return view('admin.location');})->name('location');
@@ -57,11 +53,9 @@ Route::group(['middleware' => 'auth'], function () {
 
         // crud Users
         Route::group(['prefix' => 'users'], function () {
-
             Route::get('/', [UserController::class, 'index'])->name('admin.users.index');
             Route::get('/create', [UserController::class, 'create'])->name('admin.users.create');
             Route::post('/store', [UserController::class, 'store'])->name('admin.users.store');
-
             // start profile
             Route::group(['prefix' => 'profile'], function () {
                 Route::get('/{id}', [UserProfileController::class, 'show'])->name('show.profile');
@@ -79,24 +73,18 @@ Route::group(['middleware' => 'auth'], function () {
         });
 
 
-        // crud city
-        Route::resource('city', CityController::class)->except('show');
-
-        //  crud governorate
-        Route::resource('governorate', GovernorateController::class)->except('show');
 
         // crud pharmacy contact
-        Route::resource('contact', ContactController::class)->except('show');
+    Route::resource('contact', ContactController::class)->except('show');
 
 
     //////////////////////////////////// pharmacy
 
     Route::group(['prefix' => 'pharmacy'], function () {
-        Route::get('/', [MedicalController::class, 'index'])->name('admin.pharmacy');
+        Route::get('/', [MedicalController::class, 'index'])->name('admin.pharmacy'); // show all
         Route::get('/{pharmacy}', [PharmacyController::class, 'show'])->name('admin.pharmacy.show');
         Route::get('/active/{pharmacy}', [PharmacyController::class, 'active'])->name('admin.pharmacy.active');
         Route::get('/disActive/{pharmacy}', [PharmacyController::class, 'disActive'])->name('admin.pharmacy.disActive');
-        Route::post('/update/{pharmacy}', [PharmacyController::class, 'update'])->name('pharmacy.update');
         Route::post('/check/{id?}', [dashboardController::class, 'checkPharmacy'])->name('admin.check.pharmacy');
 
     });
@@ -108,10 +96,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'pharmacy', 'middleware' => ['checkType:pharmacy']], function () {
             Route::get('/', [PharmacyController::class, 'index'])->name('pharmacy.index');
             Route::get('/create', [PharmacyController::class, 'create'])->name('pharmacy.create');
-            // Route::post('/store', [PharmacyController::class, 'store'])->name('pharmacy.store');
             Route::get('/edit/{pharmacy}', [PharmacyController::class, 'edit'])->name('admin.pharmacy.edit');
-            // Route::post('/update/{pharmacy}', [PharmacyController::class, 'update'])->name('pharmacy.update');
-
+            Route::post('/update/{pharmacy}', [PharmacyController::class, 'update'])->name('pharmacy.update');
         });// pharmacy crud end
 
     Route::group(['prefix' => 'profile'], function () {
@@ -121,10 +107,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('update', [UserProfileController::class, 'update'])->name('update.profile');
     });
 
-    // Route::group(['prefix' => 'pharmacy', 'middleware' => ['checkType:pharmacy']], function () {
-        Route::get('pharmacy/', [PharmacyController::class, 'index'])->name('pharmacy.index');
-        Route::get('pharmacy/create', [PharmacyController::class, 'create'])->name('pharmacy.create');
-        Route::post('pharmacy/store', [PharmacyController::class, 'store'])->name('admin.pharmacy.store');
 });
 
 
@@ -145,5 +127,4 @@ Route::get('/partners', function () {return view('partner');})->name('partners')
 
 Route::get('/pharmacies', function () {return view('pharmacy');})->name('pharmacies');
 
-Route::get('/l', function () {return view('auth.registerNext');})->name('l');
 // end const route

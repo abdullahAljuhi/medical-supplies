@@ -113,6 +113,9 @@
             </div>
             <div class="card-group">
                 <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-0 g-sm-5 text-center jobs">
+                    {{-- @foreach ( as )
+                        
+                    @endforeach --}}
                     <div class="col">
                         <div class="card p-2">
                             <img src="{{asset('img/phramacy6.png') }}" class="card-img-top py-5 img-card-cus card-img" alt="...">

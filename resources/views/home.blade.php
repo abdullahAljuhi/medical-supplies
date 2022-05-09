@@ -42,21 +42,8 @@
     var pusher = new Pusher('e4b4e21e1f468b8bddf2', {
         cluster: 'mt1'
     });
-    var channel = pusher.subscribe('active-pharmacy');
-    channel.bind('App\\Events\\notfiy', function(data) {
-        let real=document.querySelector('#real');
-        real.innerHTML +=`
-        <form action="{{ route('admin.check.pharmacy') }}" method="POST" id="real_form">
-                            @csrf 
-                            <input type="hidden" value="${data.pharmacy.id}" name='pharmacy'/>
-                            <a href="javascript:{}" class="float-right mark-as-read" onclick="document.getElementById('real_form').submit();">
-                                [${data.pharmacy.created_at } pharmacy  ${data.pharmacy.name} 
-                            </a>
-        </form>
-        `;
-        real.classList.add("alert","alert-success")
-        console.log(data.pharmacy.name);
-    });
-
+    
+    
 </script>
+    <script src="{{asset('js/pusherNotifications.js')}}"></script>
 @endsection

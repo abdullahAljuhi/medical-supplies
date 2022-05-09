@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('details')->nullable();
             $table->string('period');
-            $table->number('price');
+            $table->integer('price');
             $table->date('startDate');
             $table->timestamps();
         });

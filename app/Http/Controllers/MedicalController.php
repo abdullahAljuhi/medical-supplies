@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pharmacy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MedicalController extends Controller
 {
@@ -15,19 +16,24 @@ class MedicalController extends Controller
     public function index(Request $request)
     {
         try {
-            $pharmacies = Pharmacy::with(['address','user'])->when($request->search, function ($q) use ($request) {
-                return $q->where('name', '%' . $request->search . '%');
-            })->when($request->city_id, function ($q) use ($request) { // filter by city
-                return $q->where('city_id', $request->city_id);
-            })->when($request->governorate_id, function ($q) use ($request) { // filter by governorate
-                return $q->where('governorate_id', $request->governorate_id);
-            })->paginate(5);
-            // return $pharmacies;
-            return view('pharmacy.pharmacies', ['pharmacies' => $pharmacies]);
-            //code...
+            $pharmacies = DB::table('pharmacies')
+            ->join('addresses', 'pharmacies.id', '=', 'addresses.pharmacy_id')
+            ->join('users', 'users.id', '=', 'pharmacies.user_id')
+            ->join('cities', 'cities.id', '=', 'addresses.city_id')
+            ->join('governorates', 'governorates.id', '=', 'addresses.governorate_id')
+            ->select('pharmacies.*', 'addresses.*','cities.name as city_name','governorates.name as governorate_name')
+                ->when($request->search, function ($q) use ($request) {
+                    return $q->where('pharmacy_name', 'like', '%' . $request->name . '%');
+                })
+                ->when($request->city, function ($q) use ($request)  {
+                    return $q->where('city_id', $request->city);
+                })->when($request->city, function ($q) use ($request)  {
+                    return $q->where('city_id', $request->city);
+                }, function ($query) {
+                })->get();
+            return view('pharmacy', ['pharmacies' => $pharmacies]);
         } catch (\Exception $e) {
             return $e->getMessage();
-            //throw $th;
         }
     
     }

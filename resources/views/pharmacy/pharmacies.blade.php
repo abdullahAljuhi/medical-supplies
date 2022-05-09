@@ -49,11 +49,10 @@
                         @foreach ($pharmacies as $pharmacy)
                         <tr>
                             <th scope="row"><a href="#">#2457</a></th>
-                            <td> {{ $pharmacy->name }}</td>
+                            <td> {{ $pharmacy->pharmacy_name }}</td>
                             <td> {{ $pharmacy->user['name'] }}</td>
                             <td><a href="#" class="text-primary">{{ $pharmacy->user['email'] }}</a></td>
                             <td class="d-flex justify-content-around">
-
                                 <a href="{{ route('admin.pharmacy.active',$pharmacy->id) }}">تفغيل</a>
                                 <a href="{{ route('admin.pharmacy.disActive',$pharmacy->id) }}"> الغاء التفغيل</a>
                                 <a href="{{ route('admin.pharmacy.show',$pharmacy->id) }}"> تفاصيل </a>

@@ -68,7 +68,10 @@ class UserProfileController extends Controller
     {
 
 
-        $user = User::with('profile')->find(Auth::user()->id);
+        $user = User::with('profile')->find(Auth::user()->id);        
+        if(  $user->type==2 ){
+            redirect()->route('admin.pharmacy.edit',);
+        }
 
         // $address = explode(',,',$user->profile['address']);
 
