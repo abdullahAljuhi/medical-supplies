@@ -37,7 +37,6 @@ class PharmacyController extends Controller
                     return view('pharmacy.index');
                 } else {
                     return view('auth.verifyPharmacy');
-
                 }
             }
             // $user->pharmacy['license'];
@@ -117,8 +116,6 @@ class PharmacyController extends Controller
                 $address->lang = $request['lang'];
             }
             $address->save();
-
-
             DB::commit();
 
             event(new notfiy($pharmacy));
