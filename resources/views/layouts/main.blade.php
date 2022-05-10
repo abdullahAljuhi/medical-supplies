@@ -56,7 +56,7 @@
     <nav class="header-nav w-100">
         <ul class="d-flex align-items-center flex-fill justify-content-center d-md-flex d-none">
             <li class="nav-item">
-                <a class="nav-link text-dark" href="{{ route('pharmacies') }}">{{ __('الصيدليات') }}</a>
+                <a class="nav-link text-dark" href="{{ route('morePharmacy') }}">{{ __('الصيدليات') }}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark" href="{{ route('partners') }}">{{ __('الشركاء') }}</a>
@@ -186,6 +186,7 @@
                             <hr class="dropdown-divider">
                         </li>
 
+                        @if(Auth::user()->profile)
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="{{ route('profile') }}">
                                 <i class="bi bi-person"></i>
@@ -195,13 +196,14 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-
+                        
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="{{ route('edit.profile') }}">
                                 <i class="bi bi-gear"></i>
                                 <span>اعدادات الحساب</span>
                             </a>
                         </li>
+                        @endif                         
                         <li>
                             <hr class="dropdown-divider">
                         </li>

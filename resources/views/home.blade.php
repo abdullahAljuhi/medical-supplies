@@ -15,19 +15,16 @@
                     @endif
                     <div id="real">
                     </div>
-                    @forelse($pharmacies as $pharmacy)
+                    @foreach ($pharmacies as $pharmacy)
                     <div class="alert alert-success" role="alert">
                         <form action="{{ route('admin.check.pharmacy',$pharmacy->id) }}" method="POST" id="my_form">
                             @csrf
                             <a href="javascript:{}" class="float-right mark-as-read" onclick="document.getElementById('my_form').submit();">
-                                [{{ $pharmacy->created_at }}] pharmacy {{ $pharmacy->name}} 
+                                [{{ $pharmacy->created_at }}] pharmacy {{ $pharmacy->pharmacy_name}} 
                             </a>
                         </form>
                     </div>
-                    @empty
-                    <div id="real">
-                    </div>
-                    @endforelse
+                @endforeach
                     {{ __('لقد تم تسجيل دخولك!') }}
                 </div>
             </div>

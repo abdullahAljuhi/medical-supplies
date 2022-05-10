@@ -24,11 +24,11 @@
                                 <p class="text-center small">يرجى ادخال بيانات الصيدلية </p>
                             </div>
                             <form class="row g-3 needs-validation" novalidate method="POST"
-                                action="{{ route('admin.pharmacy.store') }}" enctype="multipart/form-data">
+                                action="{{ route('pharmacy.store') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="col-12">
                                     <label for="yourName" class="form-label">أسم الصيدلية</label>
-                                    <input type="text" name="name" class="form-control" id="yourName" required>
+                                    <input type="text" name="pharmacy_name" class="form-control" id="yourName" required>
                                     <div class="invalid-feedback">يرجى اسم الصيدلية </div>
                                 </div>
 
@@ -45,7 +45,7 @@
 
                                 <div class="col-12">
                                     <label for="liscen" class="form-label">صورة الترخيص</label>
-                                    <input type="file" name="liscen" class="form-control" id="liscen" required>
+                                    <input type="file" name="license" class="form-control" id="liscen" required>
                                     <div class="invalid-feedback">يرجى ادخال رقم الترخيص </div>
                                 </div>
                                 <div class="col-12">

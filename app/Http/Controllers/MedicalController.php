@@ -13,7 +13,7 @@ class MedicalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function showPharmacies(Request $request)
     {
         try {
             $pharmacies = DB::table('pharmacies')
@@ -32,6 +32,28 @@ class MedicalController extends Controller
                 }, function ($query) {
                 })->get();
             return view('pharmacy', ['pharmacies' => $pharmacies]);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    
+    }
+
+    public function index(Request $request)
+    {
+        try {
+            $pharmacies = Pharmacy::all();
+            return view('index', ['pharmacies' => $pharmacies]);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    
+    }
+    public function pharmacies(Request $request)
+    {
+        try {
+            $pharmacies = Pharmacy::all();
+        
+            return view('pharmacies', ['pharmacies' => $pharmacies]);
         } catch (\Exception $e) {
             return $e->getMessage();
         }

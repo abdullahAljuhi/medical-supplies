@@ -38,7 +38,7 @@ class HomeController extends Controller
 
         }else{
             
-            return view('index');
+            return redirect()->route('index');
         }
     }
 }

@@ -28,7 +28,7 @@ channel.bind('App\\Events\\notfiy', function (data) {
     <input type="hidden" name="_token" value="${token}" />
                         <input type="hidden" value="${data.pharmacy.id}" name='pharmacy'/>
                         <a href="javascript:{}" class="float-right mark-as-read" onclick="document.getElementById('real_form').submit();">
-                            [${data.pharmacy.created_at} pharmacy  ${data.pharmacy.name} 
+                            [${data.pharmacy.created_at} pharmacy  ${data.pharmacy.pharmacy_name} 
                         </a>
     </form>
     `;

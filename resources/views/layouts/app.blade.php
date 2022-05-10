@@ -251,7 +251,7 @@
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('admin.pharmacy') }}">
+            <a class="nav-link collapsed" href="{{ route('admin.pharmacies.all') }}">
                 <i class="bi bi-flower1"></i>
                 <span>الصيدليات</span>
             </a>

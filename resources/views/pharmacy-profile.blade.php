@@ -71,7 +71,7 @@
 
 
                                 <!-- Profile Edit Form -->
-                                <form method="POST" action="{{ route('pharmacy.update',$pharmacy->id) }}" enctype="multipart/form-data">
+                                <form method="POST" action="{{ route('pharmacy.update') }}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row mb-3">
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">الصورة
@@ -99,7 +99,7 @@
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">اسم
                                             الكامل</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="name" type="text" class="form-control" id="fullName"
+                                            <input name="pharmacy_name" type="text" class="form-control" id="fullName"
                                                    value="{{ $pharmacy->pharmacy_name }}">
                                         </div>
                                     </div>

@@ -20,7 +20,12 @@ class UserProfileController extends Controller
      */
     public function index()
     {
+        
         $user = User::with('profile')->find(Auth::id());
+
+        if( $user->type == 2 ){
+            return redirect()->route('pharmacy.edit');
+        }
         return view('user.profile', compact('user'));
     }
 
@@ -68,14 +73,11 @@ class UserProfileController extends Controller
     {
 
 
-        $user = User::with('profile')->find(Auth::user()->id);        
-        if(  $user->type==2 ){
-            redirect()->route('admin.pharmacy.edit',);
+        $user = User::find(Auth::user()->id);        
+        if( $user->type == 2 ){
+            return redirect()->route('pharmacy.edit');
         }
 
-        // $address = explode(',,',$user->profile['address']);
-
-        // $user->profile['address']=$address;
 
         return view('user.user-profile', compact('user'));
     }
@@ -113,7 +115,6 @@ class UserProfileController extends Controller
                 'phone'=>$request->phone,
                 'image'=>$fileName,
                 'birthday'=>$request->birthday,
-                // 'user_id'=>$user->id,
                 'address'=>$request->address,
             ]);
 

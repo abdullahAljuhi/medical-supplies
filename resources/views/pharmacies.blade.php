@@ -13,14 +13,15 @@
                     </li>
                 </ul>
             </div>
-            <form action="{{ route('admin.pharmacy') }}" method="get">
-                <select name="governorate" class="form-select select1 mx-2" id="inputGroupSelect01">
-                    @foreach ($governorates as $governorat)
-                    <option value="{{ $governorat->id }}">
-                        {{ $governorat->name }}
-                    </option>
-                    @endforeach
-                </select>
+            <form action="{{ route('morePharmacy') }}" method="get">
+                <select name="governorate" class="form-select select1 mx-2"
+                id="inputGroupSelect01">
+                @foreach ($governorates as $governorat)
+                <option value="{{ $governorat->id }}">
+                    {{ $governorat->name }}
+                </option>
+                @endforeach
+              </select>
                 <select name="city" class="form-select select2 mx-2" id="inputGroupSelect02" style="">
                     @foreach ($cities as $city)
                     <option value="{{ $city->id }}">
@@ -54,18 +55,18 @@
                             <div class="row w-100">
                                 <div class="col-6">
                                     <i class="bi bi-geo-alt  text-primary ms-3"></i>
-                                    <span>{{ $pharmacy->city_name?? '' }}</span>
+                                    <span>{{$pharmacy->address[0]->governorate->name ??''}}</span>
                                 </div>
                                 <div class="col-6">
                                     <i class="bi bi-hospital   text-primary ms-3"></i>
-                                    <span>{{ $pharmacy->governorate_name ??''}}</span>
+                                    <span>{{$pharmacy->address[0]->city->name ??''}}</span>
                                 </div>
 
                             </div>
                         </div>
                         <div class="col-md-4 mb-2 mb-md-0 d-flex justify-content-strat  align-self-center">
                             <i class="bi bi-map   text-primary ms-3"></i>
-                            <span>{{ $pharmacy->address[0]->steet ??''}}</span>
+                            <span> {{ $pharmacy->address[0]->street?? '' }}</span>
                         </div>
                         <div
                             class="col-md-2 mb-2 mb-md-0 text-center d-flex justify-content-center fw-bold align-self-center">

@@ -4,11 +4,11 @@
 
     <!-- Page Title -->
     <div class="pagetitle">
-        <h1>Dashboard</h1>
+        <h1>الصيدليات</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../index.blade.php">Home</a></li>
-                <li class="breadcrumb-item active">Dashboard</li>
+                <li class="breadcrumb-item"><a href="/home">لوحة التحكم</a></li>
+                <li class="breadcrumb-item active">الصيدليات</li>
             </ol>
         </nav>
     </div>
@@ -43,20 +43,37 @@
                         <th scope="col">المالك</th>
                         <th scope="col">الايميل</th>
                         <th scope="col">الحالة</th>
+                        <th scope="col">تفعيل / الغاء تفعيل</th>
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach ($pharmacies as $pharmacy)
-                        <tr>
-                            <th scope="row"><a href="#">#2457</a></th>
+                    @foreach ($pharmacies as $pharmacy)
+                        <tr style='cursor: pointer; cursor: hand;' onclick="window.location='{{ route('admin.pharmacy.show',$pharmacy->id) }}';">
+                            <th scope="row">{{ $pharmacy->id }}</th>
                             <td> {{ $pharmacy->pharmacy_name }}</td>
                             <td> {{ $pharmacy->user['name'] }}</td>
                             <td><a href="#" class="text-primary">{{ $pharmacy->user['email'] }}</a></td>
-                            <td class="d-flex justify-content-around">
-                                <a href="{{ route('admin.pharmacy.active',$pharmacy->id) }}">تفغيل</a>
-                                <a href="{{ route('admin.pharmacy.disActive',$pharmacy->id) }}"> الغاء التفغيل</a>
-                                <a href="{{ route('admin.pharmacy.show',$pharmacy->id) }}"> تفاصيل </a>
-                            </td>
+                            @if($pharmacy->is_active)
+                                <td>
+                                    <span class="badge bg-success fs-6">
+                                        نشط
+                                    </span>
+                                </td>
+                                <td class="d-flex justify-content-around">
+{{--                                    <a class="btn btn-primary disabled" href="{{ route('admin.pharmacy.active',$pharmacy->id) }}">تفغيل</a>--}}
+                                    <a class="btn btn-outline-danger" href="{{ route('admin.pharmacy.disActive',$pharmacy->id) }}"> الغاء التفغيل</a>
+                                </td>
+                            @else
+                                <td>
+                                    <span class="badge bg-warning fs-6">
+                                        غير مفعل
+                                    </span>
+                                </td>
+                                <td class="d-flex justify-content-around">
+                                    <a class="btn btn-outline-primary" href="{{ route('admin.pharmacy.active',$pharmacy->id) }}">تفغيل</a>
+{{--                                    <a class="btn btn-danger disabled" href="{{ route('admin.pharmacy.disActive',$pharmacy->id) }}"> الغاء التفغيل</a>--}}
+                                </td>
+                            @endif
                         </tr>
 
                     @endforeach
