@@ -26,7 +26,7 @@ class adminController extends Controller
     {
         try {
             $pharmacies = Pharmacy::all();
-            return view('home')->withPharmacies($pharmacies);
+            return view('pharmacy.pharmacies')->withPharmacies($pharmacies);
         } catch (\Exception $e) {
             return $e->getMessage();
         }

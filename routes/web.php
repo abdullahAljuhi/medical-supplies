@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MedicalController;
 use App\Http\Controllers\PharmacyController;
@@ -61,7 +62,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
         // crud Users
         Route::group(['prefix' => 'users'], function () {
-            Route::get('/', [adminController::class, 'index'])->name('admin.users.index');
+            Route::get('/', [adminController::class, 'users'])->name('admin.users.index');
             Route::get('/create', [UserController::class, 'create'])->name('admin.users.create');
             Route::post('/store', [UserController::class, 'store'])->name('admin.users.store');
             // start profile
@@ -127,6 +128,16 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
         Route::post('update', [UserProfileController::class, 'update'])->name('update.profile');
     });
+
+       //crud order
+            Route::group(['prefix'=>'order'],function(){
+                Route::post('/send',[OrderController::class,'send'])->name('send');
+                Route::get('/create/{pharmacy}',[OrderController::class,'create'])->name('order');
+                Route::get('/show',[OrderController::class,'show'])->name('bill');
+                Route::get('/create',[OrderController::class,'store'])->name('regest');
+    
+    
+            });   
 });
 
 
@@ -147,5 +158,5 @@ Route::get('/partners', function () {
 // main page site
 Route::get('/', [MedicalController::class, 'index'])->name('index');
 
-Route::get('/pharmacies', [MedicalController::class, 'pharmacies'])->name('morePharmacy'); // show all pharmacies
+Route::get('/pharmacies', [MedicalController::class, 'showPharmacies'])->name('morePharmacy'); // show all pharmacies
 

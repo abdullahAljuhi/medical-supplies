@@ -152,9 +152,15 @@
                             </div>
                             <div class="card-footer bg-white">
                                 <div class="my-2">
-                                    <a href="job-details.html" class="btn btn-outline-primary w-100"><span>طلب دواء
-                                        </span>
-                                        <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
+                                    @guest
+                                    <a href="{{ route('login') }}" class="btn btn-outline-primary w-100"><span>طلب دواء
+                                    </span>
+                                    <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
+                                    @else
+                                    <a href="{{ route('order',$pharmacy->id) }}" class="btn btn-outline-primary w-100"><span>طلب دواء
+                                    </span>
+                                    <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
+                                    @endguest                                        
                                 </div>
                             </div>
                         </div>
