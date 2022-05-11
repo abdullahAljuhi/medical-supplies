@@ -113,209 +113,59 @@
             </div>
             <div class="card-group">
                 <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-0 g-sm-5 text-center jobs">
+                    @foreach ($pharmacies as $pharmacy)
+                        @break($loop->index > 5)
                     <div class="col">
-                        <div class="card p-2">
-                            <img src="{{asset('img/phramacy6.png') }}" class="card-img-top py-5 img-card-cus card-img" alt="...">
+                        <div class="card h-100 p-2">
+                            @if($pharmacy->image)
+                            <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}" alt="pharmacy"
+                                class="rounded-circle border p-1">
+                            @else
+                            <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus"
+                                alt="...">
+                            @endif
                             <div class="card-body pb-0">
-                                <h5 class="card-title fs-4 text-primary ">صيدلية رضا الوالدين</h5>
-                                <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
+                                <h5 class="card-title fs-4 text-primary "> {{ $pharmacy->pharmacy_name }}</h5>
+
+                                <p class="card-text fs-5 text-secondary text-center w-100"><i
+                                        class="bi bi-geo-alt  text-primary ms-1"></i>
+                                    {{ $pharmacy->address[0]->governorate->name?? '' }} - {{
+                                    $pharmacy->address[0]->city->name ??''}} </p>
+
                                 <ul class="text-center footer-icons d-flex justify-content-center mb-0">
                                     <li class="list-inline-item text-center">
-                                        <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
-                                                class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                                        <a class="text-light text-decoration-none" target="_blank"
+                                            href="{{ $pharmacy->contact[0]->facebook ?? ''}}">
+                                            <i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
                                     </li>
                                     <li class="list-inline-item  text-center">
                                         <a class="text-light text-decoration-none" target="_blank"
-                                           href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
+                                            href="{{ $pharmacy->contact[0]->instagram ?? 'https://instagram.com/'}}"><i
+                                                class="fab fa-instagram fa-lg fa-fw"></i></a>
                                     </li>
                                     <li class="list-inline-item  text-center">
-                                        <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i
+                                        <a class="text-light text-decoration-none" target="_blank"
+                                            href="{{ $pharmacy->contact[0]->twitter ?? 'https://twitter.com/'}}"><i
                                                 class="fab fa-twitter fa-lg fa-fw"></i></a>
-                                    </li>
-                                    <li class="list-inline-item  text-center">
-                                        <a class="text-light text-decoration-none" target="_blank"
-                                           href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="card-footer bg-white">
                                 <div class="my-2">
-                                    <a href="job-details.html" class="btn btn-outline-primary w-100"><span>طلب دواء  </span>
+                                    <a href="job-details.html" class="btn btn-outline-primary w-100"><span>طلب دواء
+                                        </span>
                                         <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card p-2">
-                            <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus card-img" alt="...">
-                            <div class="card-body pb-0">
-                                <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
-                                <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
-                                <ul class="text-center footer-icons d-flex justify-content-center mb-0">
-                                    <li class="list-inline-item text-center">
-                                        <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
-                                                class="fab fa-facebook-f fa-lg fa-fw"></i></a>
-                                    </li>
-                                    <li class="list-inline-item  text-center">
-                                        <a class="text-light text-decoration-none" target="_blank"
-                                           href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
-                                    </li>
-                                    <li class="list-inline-item  text-center">
-                                        <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i
-                                                class="fab fa-twitter fa-lg fa-fw"></i></a>
-                                    </li>
-                                    <li class="list-inline-item  text-center">
-                                        <a class="text-light text-decoration-none" target="_blank"
-                                           href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="card-footer bg-white">
-                                <div class="my-2">
-                                    <a href="job-details.html" class="btn btn-outline-primary w-100"><span>طلب دواء  </span>
-                                        <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card p-2">
-                            <img src="{{asset('img/phramacy2.png') }}" class="card-img-top py-5 img-card-cus card-img" alt="...">
-                            <div class="card-body pb-0">
-                                <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
-                                <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
-                                <ul class="text-center footer-icons d-flex justify-content-center mb-0">
-                                    <li class="list-inline-item text-center">
-                                        <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
-                                                class="fab fa-facebook-f fa-lg fa-fw"></i></a>
-                                    </li>
-                                    <li class="list-inline-item  text-center">
-                                        <a class="text-light text-decoration-none" target="_blank"
-                                           href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
-                                    </li>
-                                    <li class="list-inline-item  text-center">
-                                        <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i
-                                                class="fab fa-twitter fa-lg fa-fw"></i></a>
-                                    </li>
-                                    <li class="list-inline-item  text-center">
-                                        <a class="text-light text-decoration-none" target="_blank"
-                                           href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="card-footer bg-white">
-                                <div class="my-2">
-                                    <a href="job-details.html" class="btn btn-outline-primary w-100"><span>طلب دواء  </span>
-                                        <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card p-2">
-                            <img src="{{asset('img/phramacy3.png') }}" class="card-img-top py-5 img-card-cus card-img" alt="...">
-                            <div class="card-body pb-0">
-                                <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
-                                <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
-                                <ul class="text-center footer-icons d-flex justify-content-center mb-0">
-                                    <li class="list-inline-item text-center">
-                                        <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
-                                                class="fab fa-facebook-f fa-lg fa-fw"></i></a>
-                                    </li>
-                                    <li class="list-inline-item  text-center">
-                                        <a class="text-light text-decoration-none" target="_blank"
-                                           href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
-                                    </li>
-                                    <li class="list-inline-item  text-center">
-                                        <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i
-                                                class="fab fa-twitter fa-lg fa-fw"></i></a>
-                                    </li>
-                                    <li class="list-inline-item  text-center">
-                                        <a class="text-light text-decoration-none" target="_blank"
-                                           href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="card-footer bg-white">
-                                <div class="my-2">
-                                    <a href="job-details.html" class="btn btn-outline-primary w-100"><span>طلب دواء  </span>
-                                        <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card p-2">
-                            <img src="{{asset('img/phramacy4.png') }}" class="card-img-top py-5 img-card-cus card-img" alt="...">
-                            <div class="card-body pb-0">
-                                <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
-                                <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
-                                <ul class="text-center footer-icons d-flex justify-content-center mb-0">
-                                    <li class="list-inline-item text-center">
-                                        <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
-                                                class="fab fa-facebook-f fa-lg fa-fw"></i></a>
-                                    </li>
-                                    <li class="list-inline-item  text-center">
-                                        <a class="text-light text-decoration-none" target="_blank"
-                                           href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
-                                    </li>
-                                    <li class="list-inline-item  text-center">
-                                        <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i
-                                                class="fab fa-twitter fa-lg fa-fw"></i></a>
-                                    </li>
-                                    <li class="list-inline-item  text-center">
-                                        <a class="text-light text-decoration-none" target="_blank"
-                                           href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="card-footer bg-white">
-                                <div class="my-2">
-                                    <a href="job-details.html" class="btn btn-outline-primary w-100"><span>طلب دواء  </span>
-                                        <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card p-2">
-                            <img src="{{asset('img/phramacy5.png') }}" class="card-img-top py-5 img-card-cus card-img" alt="...">
-                            <div class="card-body pb-0">
-                                <h5 class="card-title fs-4 text-primary">صيدلية رضا الوالدين</h5>
-                                <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
-                                <ul class="text-center footer-icons d-flex justify-content-center mb-0">
-                                    <li class="list-inline-item text-center">
-                                        <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
-                                                class="fab fa-facebook-f fa-lg fa-fw"></i></a>
-                                    </li>
-                                    <li class="list-inline-item  text-center">
-                                        <a class="text-light text-decoration-none" target="_blank"
-                                           href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
-                                    </li>
-                                    <li class="list-inline-item  text-center">
-                                        <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i
-                                                class="fab fa-twitter fa-lg fa-fw"></i></a>
-                                    </li>
-                                    <li class="list-inline-item  text-center">
-                                        <a class="text-light text-decoration-none" target="_blank"
-                                           href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="card-footer bg-white">
-                                <div class="my-2">
-                                    <a href="job-details.html" class="btn btn-outline-primary w-100"><span>طلب دواء  </span>
-                                        <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+
 
                 </div>
             </div>
             <div class="row d-flex justify-content-center align-items-center mt-5">
-                <a href="#" class="btn btn-outline-primary py-2 w-25 rounded fs-5">الاطلاع اكثر <i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+                <a href="{{ route('morePharmacy') }}" class="btn btn-outline-primary py-2 w-25 rounded fs-5">الاطلاع اكثر <i class="fa fa-arrow-left" aria-hidden="true"></i></a>
             </div>
         </div>
     </section>

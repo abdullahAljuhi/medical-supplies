@@ -37,7 +37,8 @@ class HomeController extends Controller
             return redirect(RouteServiceProvider::PHARMACY);
 
         }else{
-            return view('index');
+            
+            return redirect()->route('index');
         }
     }
 }

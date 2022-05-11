@@ -25,70 +25,77 @@
                             <div class="tab-pane show active" id="pharmacy-register">
                                 <div class="pb-2">
                                     <h5 class="card-title text-center pb-0 fs-4">سجل كمالك صيدلية</h5>
-                                    <p class="text-center small">يرجى ادخال بيانات الصيدلية  </p>
+                                    <p class="text-center small">يرجى ادخال بيانات الصيدلية </p>
                                 </div>
                                 <form class="row g-3 needs-validation" novalidate method="POST"
-                                    action="{{ route('admin.pharmacy.store') }}">
+                                    action="{{ route('pharmacy.store') }}">
                                     @csrf
                                     <div class="col-12">
                                         <label for="pharmacy_name" class="form-label">أسم الصيدلية</label>
-                                        <input type="text"  id="pharmacy_name"  class="form-control @error('name') is-invalid @enderror"
-                                            name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                        <input type="text" id="pharmacy_name"
+                                            class="form-control @error('name') is-invalid @enderror" name="name"
+                                            value="{{ old('name') }}" required autocomplete="name" autofocus>
                                         @error('name')
-                                            <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                            </span>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                         @enderror
-                                     </div>
+                                    </div>
                                     <div class="col-12">
                                         <label for="phone" class="form-label">رقم الهاتف</label>
-                                        <input type="tel"  id="phone" class="form-control @error('phone') is-invalid @enderror"
-                                        name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+                                        <input type="tel" id="phone"
+                                            class="form-control @error('phone') is-invalid @enderror" name="phone"
+                                            value="{{ old('phone') }}" required autocomplete="phone" autofocus>
                                         @error('phone')
-                                            <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                            </span>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                         @enderror
                                     </div>
                                     <div class="col-12">
                                         <label for="mobile" class="form-label">رقم الموبايل</label>
-                                        <input type="text"  id="mobile" class="form-control @error('mobile') is-invalid @enderror"
-                                        name="mobile" value="{{ old('mobile') }}" required autocomplete="mobile" autofocus>
+                                        <input type="text" id="mobile"
+                                            class="form-control @error('mobile') is-invalid @enderror" name="mobile"
+                                            value="{{ old('mobile') }}" required autocomplete="mobile" autofocus>
                                         @error('mobile')
-                                            <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                            </span>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                         @enderror
                                     </div>
 
                                     <div class="col-12">
                                         <label for="license" class="form-label">رقم الترخيص</label>
-                                        <input type="file" id="license" class="form-control @error('license') is-invalid @enderror"
-                                        name="license" value="{{ old('license') }}" required autocomplete="license" autofocus>
+                                        <input type="file" id="license"
+                                            class="form-control @error('license') is-invalid @enderror" name="license"
+                                            value="{{ old('license') }}" required autocomplete="license" autofocus>
                                         @error('license')
-                                            <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                            </span>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                         @enderror
                                     </div>
                                     <div class="col-12">
                                         <div class="row">
                                             <div class="col-6">
                                                 <label for="state" class="form-label">المحافظة</label>
-                                                <select class="form-select" aria-label="Default select example" name="state" id="state">
-                                                    <option selected>حدد المحافظة</option>
-                                                    <option value="1">حضرموت</option>
-                                                    <option value="2">عدن</option>
-                                                    <option value="3">تعز</option>
+                                                <select name="governorate" class="form-select select1 mx-2"
+                                                    id="inputGroupSelect01">
+                                                    @foreach ($governorates as $governorat)
+                                                    <option value="{{ $governorat->id }}">
+                                                        {{ $governorat->name }}
+                                                    </option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                             <div class="col-6">
                                                 <label for="city" class="form-label">المدينة</label>
-                                                <select class="form-select" aria-label="Default select example" name="city" id="city">
-                                                    <option selected>حدد المدينة</option>
-                                                    <option value="1">المكلا</option>
-                                                    <option value="2">الديس</option>
-                                                    <option value="3">الشرج</option>
+                                                <select name="city" class="form-select select2 mx-2"
+                                                    id="inputGroupSelect02" style="">
+                                                    @foreach ($cities as $city)
+                                                    <option value="{{ $city->id }}" {{ $pharmacy->address[0]->city_id ==
+                                                        $city->id ? 'selected' : ''}}>{{ $city->name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -96,14 +103,18 @@
                                     <div class="col-12">
                                         <label for="description" class="form-label">تفاصيل اخرى</label>
                                         <div class="form-floating">
-                                            <textarea class="form-control text-right" name="description" placeholder="Leave a comment here" id="description" style="height: 100px"></textarea>
+                                            <textarea class="form-control text-right" name="description"
+                                                placeholder="Leave a comment here" id="description"
+                                                style="height: 100px"></textarea>
                                         </div>
                                     </div>
 
                                     <div class="col-12">
                                         <div class="form-check">
-                                            <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
-                                            <label class="form-check-label" for="acceptTerms">أوافق و اقبل <a href="#">الشروط والسياسات الخاصة بالموقع</a></label>
+                                            <input class="form-check-input" name="terms" type="checkbox" value=""
+                                                id="acceptTerms" required>
+                                            <label class="form-check-label" for="acceptTerms">أوافق و اقبل <a
+                                                    href="#">الشروط والسياسات الخاصة بالموقع</a></label>
                                             <div class="invalid-feedback">يجب ان تقبل بالشروط قبل أنشاء الحساب</div>
                                         </div>
                                     </div>
@@ -112,7 +123,8 @@
                                         <button class="btn btn-primary w-100" type="submit">أنشاء حساب</button>
                                     </div>
                                     <div class="col-12">
-                                        <p class="small mb-0">بالفعل لديك حساب ؟ <a href="{{ route('login') }}">تسجيل الدخول</a>
+                                        <p class="small mb-0">بالفعل لديك حساب ؟ <a href="{{ route('login') }}">تسجيل
+                                                الدخول</a>
                                         </p>
                                     </div>
                                 </form>
