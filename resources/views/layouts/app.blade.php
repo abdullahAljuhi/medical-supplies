@@ -271,7 +271,7 @@
         </li><!-- End Charts Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('show.adv') }}">
+            <a class="nav-link collapsed" href="#">
                 <i class="bi bi-gem"></i><span>اعلانات</span></i>
             </a>
         </li><!-- End Icons Nav -->

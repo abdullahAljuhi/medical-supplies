@@ -24,23 +24,22 @@ class AdvertisementRequest extends FormRequest
     public function rules()
     {
         return [
-            'end_date'=>'required|date',
-            'start_date'=>'required|date',
+            'user_id' => 'exists:app\Models\User,id',
+            'endDate'=>'required',
+            'details'=>'max:1000',
+            'startDate'=>'required|date',
             'image'=>'image',
-            'link'=>'required|url'
             
         ];
     }
     public function messages()
     {
         return [
-            'end_date.required'=>'    يجب ادخال تاريخ الانتهاء',
-            'end_date.date'=>'الرجاء التأكد من كتابة التاريخ بشكل صحيح',
-            'start_date.required'=>'عليك إدخال تارخ بدء عرض الإعلان',
-            'start_date.date'=>'الرجاء التأكد من كتابة التاريخ بشكل صحيح',
-            'image.image'=>'تأكد من صيغة الملف',
-            'link.required'=>'الرجاء كتابة رابط الإعلان',
-            'link.url'=>'تأكد من كتابة الرابط بشكل صحيح'
+            'user_id.exists'=>'المستخدم غير موجود',
+            'endDate.required'=>'    يجب ادخال تاريخ الانتهاء',
+            'startDate.required'=>'عليك إدخال تارخ بدء عرض الإعلان',
+            'startDate.date'=>'الرجاء التأكد من كتابة التاريخ بشكل صحيح',
+            'image.image'=>'تأكد من صيغة الملف'
         ];
     }
 }

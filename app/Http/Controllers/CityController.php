@@ -51,7 +51,9 @@ class CityController extends Controller
     public function edit($id)
     {
         try {
+
             $city = City::findOrFail($id);
+
             // check if city is exist
             if (!$city)
                 return redirect()->back()->with(['error' => 'هذه المدينه غير موجوده']);
