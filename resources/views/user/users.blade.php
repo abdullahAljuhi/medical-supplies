@@ -56,7 +56,6 @@
                 @endforeach
                 </tbody>
             </table>
-            <p>{{ Auth::user()->profile->id }}</p>
 
         </div>
         </div><!-- End Recent Sales -->

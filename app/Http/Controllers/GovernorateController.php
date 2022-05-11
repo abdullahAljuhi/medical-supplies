@@ -14,9 +14,7 @@ class GovernorateController extends Controller
      */
     public function index()
     {
-        $governorates = Governorate::all();
-        return view('pharmacy.governorate.index')
-            ->with('governorates', $governorates);
+        return view('pharmacy.governorate.index');
     }
 
     /**
@@ -26,8 +24,7 @@ class GovernorateController extends Controller
      */
     public function create()
     {
-        $governorates = Governorate::all();
-        return view('admin.state',compact('governorates'));
+        return view('admin.state');
 
     }
 

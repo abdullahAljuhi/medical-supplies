@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('advertisements', function (Blueprint $table) {
             $table->id();
             $table->string('image');
+
             $table->date('start_date');
             $table->date('end_date');
             $table->string('link');
             $table->boolean('is_active')->default(0);
+
             $table->timestamps();
         });
     }

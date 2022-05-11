@@ -70,7 +70,7 @@
                                 <form class="row g-3 needs-validation" novalidate>
                                     <div class="col-12">
                                         <label for="yourName" class="form-label">أسم الصيدلية</label>
-                                        <input type="text" name="name" class="form-control" id="yourName" required>
+                                        <input type="text" name="pharmacy_name" class="form-control" id="yourName" required>
                                         <div class="invalid-feedback">يرجى ادخال اسم الصيدلية</div>
                                     </div>
 
