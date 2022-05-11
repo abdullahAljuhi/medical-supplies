@@ -29,6 +29,8 @@
     <!--  google font  -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{ asset('assets/js/addinput.js') }}"></script>
       <!--
 
     TemplateMo 559 Zay Shop
