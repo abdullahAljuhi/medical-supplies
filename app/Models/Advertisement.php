@@ -9,12 +9,10 @@ class Advertisement extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'startDate',
+        'start_date',
         'image',
-        'endDate',
-        'user_id',
-        'details',
-        'price'
+        'end_date',
+        'link',
     ];
 
     public function user()
