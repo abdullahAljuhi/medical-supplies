@@ -380,6 +380,9 @@
 <script src="{{asset('js/templatemo.js ') }}"></script>
 <script src="{{asset('js/custom.js ') }}"></script>
 <script src="{{asset('js/viewAndList.js ') }}"></script>
+    {{-- pusher js --}}
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+
 <!-- End Script -->
 
 @yield('scripts')

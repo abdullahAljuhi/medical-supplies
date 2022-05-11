@@ -61,7 +61,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
         // crud Users
         Route::group(['prefix' => 'users'], function () {
-            Route::get('/', [adminController::class, 'index'])->name('admin.users.index');
+            Route::get('/', [adminController::class, 'users'])->name('admin.users.index');
             Route::get('/create', [UserController::class, 'create'])->name('admin.users.create');
             Route::post('/store', [UserController::class, 'store'])->name('admin.users.store');
             // start profile
@@ -147,5 +147,5 @@ Route::get('/partners', function () {
 // main page site
 Route::get('/', [MedicalController::class, 'index'])->name('index');
 
-Route::get('/pharmacies', [MedicalController::class, 'pharmacies'])->name('morePharmacy'); // show all pharmacies
+Route::get('/pharmacies', [MedicalController::class, 'showPharmacies'])->name('morePharmacy'); // show all pharmacies
 

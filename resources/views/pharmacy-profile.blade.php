@@ -50,16 +50,16 @@
                 <div class="card">
                     <div class="card-body pt-3">
                         <!-- Bordered Tabs -->
-                        <ul class="nav nav-tabs nav-tabs-bordered justify-content-center">
+                        <ul class="nav nav-tabs nav-tabs justify-content-center">
 
                             <li class="nav-item p-1">
-                                <button class="nav-link active bg-white" data-bs-toggle="tab"
+                                <button class="nav-link active" data-bs-toggle="tab"
                                         data-bs-target="#profile-edit">تعديل ملف الصيدلية
                                 </button>
                             </li>
 
                             <li class="nav-item p-1">
-                                <button class="nav-link bg-white" data-bs-toggle="tab"
+                                <button class="nav-link" data-bs-toggle="tab"
                                         data-bs-target="#profile-change-password">تغيير كلمة
                                     المرور
                                 </button>
@@ -76,7 +76,7 @@
                                     <div class="row mb-3">
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">الصورة
                                             الشخصية</label>
-                                        <div class="col-md-8 col-lg-9 d-flex align-items-center justify-content-center">
+                                        <div class="col-md-8 col-lg-9 d-flex align-items-center justify-content-around">
                                             <div class="pt-2">
                                                 <label class="btn btn-primary text-light">
                                                     <i class="bi bi-upload p-5"></i>
@@ -90,7 +90,7 @@
                                             @if($pharmacy->image)
                                             <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}" alt="Profile" class="rounded-circle border p-1">
                                             @else
-                                            <img src="{{asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
+                                            <img id="blah" src="{{asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
                                             @endif
                                         </div>
                                     </div>

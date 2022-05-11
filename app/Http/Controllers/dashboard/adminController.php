@@ -13,9 +13,9 @@ class adminController extends Controller
     {
         try {
             $pharmacies = Pharmacy::where('check', 0)->get();
-            
+
             return view('home')->withPharmacies($pharmacies);
-            
+
 
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -26,17 +26,17 @@ class adminController extends Controller
     {
         try {
             $pharmacies = Pharmacy::all();
-            return view('home')->withPharmacies($pharmacies);
+            return view('pharmacy.pharmacies')->withPharmacies($pharmacies);
         } catch (\Exception $e) {
             return $e->getMessage();
         }
     }
-    
+
     public function users(){
         $users = User::latest()->where('id', '<>', auth()->id())->get();
-        
-        $types = ['User','Admin','Pharmacy'];
-        
+
+        $types = ['مستخدم','مدير','صيدلية'];
+
         return view('user.users', compact('users','types'));
     }
 }
