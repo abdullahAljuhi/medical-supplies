@@ -54,6 +54,7 @@ class OrderController extends Controller
             'user_id' => Auth::id(),
             'pharmcy_id' => Pharmcy::id(),
         ]);
+        $order->save();
         return redirect()->route('order.orderMass');
     }
 
@@ -65,7 +66,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('order.show')->withOrder($order);
     }
 
     /**
