@@ -1,16 +1,6 @@
 <?php
 
-use App\Http\Controllers\CityController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\dashboardController;
-use App\Http\Controllers\GovernorateController;
-use App\Http\Controllers\MedicalController;
-use App\Http\Controllers\PharmacyController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\UserProfileController;
-use App\Http\Controllers\AdvertisementController;
-use GuzzleHttp\Middleware;
-use Illuminate\Support\Facades\Auth;
+ususe App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,15 +13,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//
-
-Auth::routes(['verify' => true]);
-define('PAGINATION', 10);
-
-Route::group(['middleware' => 'auth'], function () {
 
 
+Route::get('/',[PostController::class,'index']);
 
+<<<<<<< HEAD
     // Route::get('/', [PharmacyController::class, 'index'])->name('admin.pharmacy.index');
 
     // change password
@@ -130,25 +116,26 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('pharmacy/', [PharmacyController::class, 'index'])->name('pharmacy.index');
         Route::get('pharmacy/create', [PharmacyController::class, 'create'])->name('pharmacy.create');
         Route::post('pharmacy/store', [PharmacyController::class, 'store'])->name('admin.pharmacy.store');
+=======
+Route::get('/create',function(){
+return view('create');
+>>>>>>> e533e22f4337346a488a59f6479d707a1b483501
 });
 
+Route::post('/post',[PostController::class,'store']);
+Route::delete('/delete/{id}',[PostController::class,'destroy']);
+Route::get('/edit/{id}',[PostController::class,'edit']);
 
+<<<<<<< HEAD
 // });
 // main page
 // Route::get('/', function () {return view('index');})->middleware('guest');
 Route::get('/', function () {return view('order.order');});
+=======
+Route::delete('/deleteimage/{id}',[PostController::class,'deleteimage']);
+Route::delete('/deletecover/{id}',[PostController::class,'deletecover']);
+>>>>>>> e533e22f4337346a488a59f6479d707a1b483501
 
-// main page after login
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
+Route::put('/update/{id}',[PostController::class,'update']);
 
-// start const route
-Route::get('/about', function () {return view('about');})->name('about');
 
-Route::get('/contact', function () {return view('contact');})->name('contact');
-
-Route::get('/partners', function () {return view('partner');})->name('partners');
-
-Route::get('/pharmacies', function () {return view('pharmacy');})->name('pharmacies');
-
-Route::get('/l', function () {return view('auth.registerNext');})->name('l');
-// end const route

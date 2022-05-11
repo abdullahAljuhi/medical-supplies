@@ -15,7 +15,7 @@ class Pharmacy extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'pharmacy_name',
         'license',
         'user_id',
         'mobile',
