@@ -75,7 +75,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix'=>'advertisement'],function(){
             Route::get('/index',[AdvertisementController::class,'index'])->name('show.adv');
             Route::get('/edit/{id}',[AdvertisementController::class,'edit'])->name('edit.adv');
-            Route::post('/update',[AdvertisementController::class,'update'])->name('update.adv');
+            Route::post('/update/{id}',[AdvertisementController::class,'update'])->name('update.adv');
             Route::post('/save',[AdvertisementController::class,'store'])->name('save.adv');
             Route::get('/add',[AdvertisementController::class,'create'])->name('add.adv');
             Route::get('/active/{adv}', [AdvertisementController::class, 'active'])->name('active.adv');
@@ -136,7 +136,7 @@ Route::group(['middleware' => 'auth'], function () {
 // });
 // main page
 // Route::get('/', function () {return view('index');})->middleware('guest');
-Route::get('/', function () {return view('index');});
+Route::get('/', function () {return view('order.order');});
 
 // main page after login
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');

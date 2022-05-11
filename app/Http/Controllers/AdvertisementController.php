@@ -28,14 +28,14 @@ class AdvertisementController extends Controller
             //     //if()
             // }
             // return $advertisements;
-            return view('adv.ads',['advertisements'=>$advertisements]); 
-            
+            return view('adv.ads',['advertisements'=>$advertisements]);
+
         } catch (\Throwable $th) {
             //throw $th;
         }
-        
 
-        
+
+
         // if ($advertisement->is_active == '1') {
         //     return view('adv.ads');
         // } else {
@@ -72,7 +72,7 @@ class AdvertisementController extends Controller
                     unlink(realpath($fileName));
                 }
                 // save img in public/adv/images
-                $fileName = $this->uploadImage('advs', $request->image);
+                $fileName = $this->uploadImage('advs',$request->image);
             }
             // create advertisement
         $advertisement = Advertisement::create([
@@ -87,7 +87,7 @@ class AdvertisementController extends Controller
             return $ex->getMessage();
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
-        
+
     }
 
     /**
@@ -110,12 +110,9 @@ class AdvertisementController extends Controller
     public function edit($id)
     {
         try {
-            $advertisements =Advertisement::findOrFail($id);
-            // check if city is exist
-            if (!$advertisements)
-                return redirect()->back()->with(['error' => 'هذه المدينه غير موجوده']);
+            $advertisements =Advertisement::find($id);
+            return view('student.edit', compact('advertisements'));
 
-            return view('adv.editAds', ['Advertisements' => $advertisements]);
         } catch (\Exception $ex) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
@@ -132,7 +129,7 @@ class AdvertisementController extends Controller
     {
         $advertisement= Advertisement::findOrFail($id);
         try {
-             
+
             $photo= $advertisement->image;
 
             $fileName = $photo;
@@ -147,8 +144,8 @@ class AdvertisementController extends Controller
                 $fileName = $this->uploadImage('advs', $request->image);
             }
 
-            $input = $request->all();
-            $advertisement->fill($input)->save();
+            // $input = $request->all();
+            // $advertisement->fill($input)->save();
 
             $advertisement->update([
                 'link'=>$request->link,
