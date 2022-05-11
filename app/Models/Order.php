@@ -9,19 +9,14 @@ class Order extends Model
 {
     use HasFactory;
 
-     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'total',
-        'delever',
-        'user_id',
-        'pharmacy_id',
-        'address',
-        'prodect',
-        'price',
-        'status'
-    ];
+   protected $fillable = [
+       'total',
+       'delever',
+       'user_id',
+       'pharmacy_id',
+       'address',
+       'prodect',
+       'price',
+       'status'
+   ];
 }

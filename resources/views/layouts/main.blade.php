@@ -16,10 +16,13 @@
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <link rel="stylesheet" href="{{ asset('css/viewAndList.css') }}">
-
-
+    
+    
+    
+    
+    
     <!-- Load fonts style after rendering the layout styles -->
-
+    
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -31,21 +34,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{ asset('assets/js/addinput.js') }}"></script>
-      <!--
-
-    TemplateMo 559 Zay Shop
-
-    https://templatemo.com/tm-559-zay-shop
-
--->
+    <!--
+        
+        TemplateMo 559 Zay Shop
+        
+        https://templatemo.com/tm-559-zay-shop
+        
+    -->
 </head>
 
 <body style="overflow-x: hidden">
-
-<!-- ======= Header ======= -->
-<header id="header" class="header fixed-top d-flex align-items-center position-absolute">
-
-    <!-- Main Logo -->
+    
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center position-absolute">
+        
+        <!-- Main Logo -->
     <div class="d-flex align-items-center justify-content-between">
         <a href="/" class="logo d-flex align-items-center">
             <img class="mx-4 h-100" src="{{ asset('assets/img/logo.png') }}" alt="">
@@ -382,6 +385,9 @@
 <script src="{{asset('js/templatemo.js ') }}"></script>
 <script src="{{asset('js/custom.js ') }}"></script>
 <script src="{{asset('js/viewAndList.js ') }}"></script>
+    {{-- pusher js --}}
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+
 <!-- End Script -->
 
 @yield('scripts')

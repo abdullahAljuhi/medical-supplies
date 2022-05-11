@@ -13,26 +13,35 @@
                     </li>
                 </ul>
             </div>
-            <form action="{{ route('morePharmacy') }}" method="get">
-                <select name="governorate" class="form-select select1 mx-2"
-                id="inputGroupSelect01">
-                @foreach ($governorates as $governorat)
-                <option value="{{ $governorat->id }}">
-                    {{ $governorat->name }}
-                </option>
-                @endforeach
-              </select>
-                <select name="city" class="form-select select2 mx-2" id="inputGroupSelect02" style="">
-                    @foreach ($cities as $city)
-                    <option value="{{ $city->id }}">
-                        {{ $city->name }}
-                    </option>
-                    @endforeach
-                </select>
-                        <input type="text" class=" border-0" style="width: 95%;outline:0ch" placeholder="البحث "
+            <form action="{{ route('morePharmacy') }}" method="get" class="col-md-11 col-sm-12">
+                <div class="row">
+                    <div class="col-md-6 d-flex border ps-0 mb-3 mb-md-0 ">
+                        <input type="text" class=" border-0 py-1" style="width: 90%;outline:0ch" placeholder="البحث "
                             aria-label="Example text with button addon" aria-describedby="button-addon1" name="name">
-                        <i class="bi bi-search" style="width: 5%"></i>
-                <input type="submit" name="search" id="">
+                        <button type="submit" name="search" id="" style="width: 10%;border:0;background: transparent;outline:0ch" class="bg-primary text-white" >
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <select name="governorate" class="form-select select1 mx-2"
+                        id="inputGroupSelect01">
+                        @foreach ($governorates as $governorat)
+                        <option value="{{ $governorat->id }}">
+                            {{ $governorat->name }}
+                        </option>
+                        @endforeach
+                    </select>
+                    <select name="city" class="form-select select2 mx-2 " id="inputGroupSelect02" style="">
+                        @foreach ($cities as $city)
+                        <option value="{{ $city->id }}">
+                            {{ $city->name }}
+                        </option>
+                        @endforeach
+                    </select>
+                    </div>
+                </div>
+
+
             </form>
         </div>
     </div>
@@ -43,7 +52,7 @@
             <div class="view_wrap list-view" style="display: block;">
                 <div class="  mt-0 bg-white ">
                     @foreach ($pharmacies as $pharmacy)
-                    <a href="" class="row  py-2 border-bottom text-content text-black ">
+                    <div class="row  py-2 border-bottom text-content text-black ">
                         <div
                             class="col-md-1 col-4 mb-md-0 mb-4 d-flex justify-content-center fw-bold align-self-center fs-5">
                             {{ $loop->index }}
@@ -55,27 +64,26 @@
                             <div class="row w-100">
                                 <div class="col-6">
                                     <i class="bi bi-geo-alt  text-primary ms-3"></i>
-                                    <span>{{$pharmacy->address[0]->governorate->name ??''}}</span>
+                                    <span>{{$pharmacy->governorate_name ??''}}</span>
                                 </div>
                                 <div class="col-6">
                                     <i class="bi bi-hospital   text-primary ms-3"></i>
-                                    <span>{{$pharmacy->address[0]->city->name ??''}}</span>
+                                    <span>{{$pharmacy->city_name ??''}}</span>
                                 </div>
 
                             </div>
                         </div>
                         <div class="col-md-4 mb-2 mb-md-0 d-flex justify-content-strat  align-self-center">
                             <i class="bi bi-map   text-primary ms-3"></i>
-                            <span> {{ $pharmacy->address[0]->street?? '' }}</span>
+                            <span> {{ $pharmacy->street?? '' }}</span>
                         </div>
-                        <div
-                            class="col-md-2 mb-2 mb-md-0 text-center d-flex justify-content-center fw-bold align-self-center">
-                            <button type="button" class="btn btn-outline-primary px-4">
+                        <div class="col-md-2 mb-2 mb-md-0 text-center d-flex justify-content-center fw-bold align-self-center">
+                            <a href="" class="btn btn-outline-primary px-4">
                                 <span style="font-size: 18px">طلب </span>
                                 <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i>
-                            </button>
+                            </a>
                         </div>
-                    </a>
+                    </div>
                     @endforeach
                 </div>
 
@@ -85,7 +93,7 @@
 
                 <div class="card-group p-lg-5">
                     <div class="row row-cols-1 row-cols-md-3 g-5 text-center jobs">
-
+f
                         @foreach ($pharmacies as $pharmacy)
                         <div class="col">
                             <div class="card h-100 p-2">
@@ -101,8 +109,8 @@
 
                                     <p class="card-text fs-5 text-secondary text-center w-100"><i
                                             class="bi bi-geo-alt  text-primary ms-1"></i>
-                                        {{ $pharmacy->address[0]->governorate->name?? '' }} - {{
-                                        $pharmacy->address[0]->city->name ??''}} </p>
+                                        {{ $pharmacy->governorate_name?? '' }} - {{
+                                        $pharmacy->city_name ??''}} </p>
 
                                     <ul class="text-center footer-icons d-flex justify-content-center mb-0">
                                         <li class="list-inline-item text-center">

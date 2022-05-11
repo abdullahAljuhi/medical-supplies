@@ -6,40 +6,50 @@
 
 
                 <div class="col-xl-4 ">
-                  <div class="card  shadow bg-body  d-flex justify-content-center align-items-center" style=" padding: 0 0 1rem 0 ; overflow: hidden;border-radius: 1rem;">
-                      <div class="row card-img-top w-100 mb-2 h-100 " >
-                       <img src="{{ asset('img/phramacy5.png') }}" class="card-img-top w-100 img-card-cus card-pharmacy p-0"  alt="...">
-                      </div>
-                       <!-- strat info  -->
-                       <div class="card-body pb-2">
-                        <h5 class="card-title fs-4 text-primary text-center">صيدلية ماهر </h5>
-                        <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-telephone text-primary ms-1"></i>05303030  -    772725220 </p>
-                        <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-telephone text-primary ms-1"></i>05303030  -    772725220 </p>
-                        <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> حضرموت -  المكلا </p>
-                        <p class="card-text fs-5 text-secondary text-center w-100"> الشارع العام</p>
- 
-                        <ul class="text-center footer-icons d-flex justify-content-center mb-0">
-                            <li class="list-inline-item text-center">
-                                <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
-                                        class="fab fa-facebook-f fa-lg fa-fw"></i></a>
-                            </li>
-                            <li class="list-inline-item  text-center">
-                                <a class="text-light text-decoration-none" target="_blank"
-                                   href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
-                            </li>
-                            <li class="list-inline-item  text-center">
-                                <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i
-                                        class="fab fa-twitter fa-lg fa-fw"></i></a>
-                            </li>
-                            <li class="list-inline-item  text-center">
-                                <a class="text-light text-decoration-none" target="_blank"
-                                   href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
-                            </li>
-                        </ul>
+                    <div class="col">
+                        <div class="card h-100 p-2">
+                            @if($pharmacy->image)
+                            <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}" alt="pharmacy"
+                                class="rounded-circle border p-1">
+                            @else
+                            <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus"
+                                alt="...">
+                            @endif
+                            <div class="card-body pb-0">
+                                <h5 class="card-title fs-4 text-primary "> {{ $pharmacy->pharmacy_name }}</h5>
+
+                                <p class="card-text fs-5 text-secondary text-center w-100"><i
+                                        class="bi bi-geo-alt  text-primary ms-1"></i>
+                                    {{ $pharmacy->governorate_name?? '' }} - {{
+                                    $pharmacy->city_name ??''}} </p>
+
+                                <ul class="text-center footer-icons d-flex justify-content-center mb-0">
+                                    <li class="list-inline-item text-center">
+                                        <a class="text-light text-decoration-none" target="_blank"
+                                            href="{{ $pharmacy->contact[0]->facebook ?? ''}}">
+                                            <i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                                    </li>
+                                    <li class="list-inline-item  text-center">
+                                        <a class="text-light text-decoration-none" target="_blank"
+                                            href="{{ $pharmacy->contact[0]->instagram ?? 'https://instagram.com/'}}"><i
+                                                class="fab fa-instagram fa-lg fa-fw"></i></a>
+                                    </li>
+                                    <li class="list-inline-item  text-center">
+                                        <a class="text-light text-decoration-none" target="_blank"
+                                            href="{{ $pharmacy->contact[0]->twitter ?? 'https://twitter.com/'}}"><i
+                                                class="fab fa-twitter fa-lg fa-fw"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-footer bg-white">
+                                <div class="my-2">
+                                    <a href="job-details.html" class="btn btn-outline-primary w-100"><span>طلب دواء
+                                        </span>
+                                        <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-
-                     </div>
                  </div>
 
 
@@ -65,7 +75,7 @@
 
                       <div class="tab-pane fade  show active" id="profile-settings">
                         <form class=" needs-validation" novalidate method="POST"
-                                action="" enctype="multipart/form-data">
+                                action="{{ route ('send')}}" enctype="multipart/form-data">
                                 @csrf
 
                           <div class="row m-2">
@@ -74,7 +84,9 @@
                                 <span class="  me-1  fw-bold" style="font-size: 15px"> (اضغط على + من اجل اضافة المزيد)</span></label>
                                 <div class=" mb-3  field_wrapper">
                                     <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
-                                    name="order_name[]" autofocus>
+                                    "name='products[]' autofocus>
+                                    <input type="hidden" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
+                                    "name='user' value="{{ Auth::user()->id }}">
                                     <a href="javascript:void(0);" class="add_button col-1  pe-2" title="Add field"><i class="bi fs-3 bi-plus-circle-fill"></i></a>
                                 </div>
                             </div>
@@ -86,19 +98,21 @@
                                         <div class="col-6">
                                             <label for="inputState" class="form-label">المحافظة</label>
                                             <select name="governorate" class="form-select select1 mx-2"
-                                                id="inputGroupSelect01">
-
-                                                <option value="">
-
-                                                </option>
-
+                                                    id="inputGroupSelect01">
+                                                    @foreach ($governorates as $governorat)
+                                                    <option value="{{ $governorat->name }}" >
+                                                        {{ $governorat->name }}
+                                                    </option>
+                                                    @endforeach
                                             </select>
                                         </div>
                                         <div class="col-6">
                                             <label for="inputState" class="form-label">المدينة</label>
                                             <select name="city" class="form-select select2 mx-2" id="inputGroupSelect02"
-                                                style="">
-
+                                                    style="">
+                                                    @foreach ($cities as $city)
+                                                    <option value="{{ $city->name }}" >{{ $city->name }}</option>
+                                                    @endforeach
                                             </select>
 
                                         </div>

@@ -19,19 +19,19 @@ class MedicalController extends Controller
             $pharmacies = DB::table('pharmacies')
             ->join('addresses', 'pharmacies.id', '=', 'addresses.pharmacy_id')
             ->join('users', 'users.id', '=', 'pharmacies.user_id')
-            ->join('cities', 'cities.id', '=', 'addresses.city_id')
             ->join('governorates', 'governorates.id', '=', 'addresses.governorate_id')
-            ->select('pharmacies.*', 'addresses.*','cities.name as city_name','governorates.name as governorate_name')
+            ->join('cities', 'cities.id', '=', 'addresses.city_id')
+            ->select('pharmacies.*', 'addresses.*','cities.name as city_name','cities.governorate_id as gId','governorates.name as governorate_name')
                 ->when($request->search, function ($q) use ($request) {
                     return $q->where('pharmacy_name', 'like', '%' . $request->name . '%');
                 })
                 ->when($request->city, function ($q) use ($request)  {
                     return $q->where('city_id', $request->city);
-                })->when($request->city, function ($q) use ($request)  {
-                    return $q->where('city_id', $request->city);
-                }, function ($query) {
-                })->get();
-            return view('pharmacy', ['pharmacies' => $pharmacies]);
+                })
+                ->get();
+               
+                $pharmacies= $pharmacies->where('governorate_id',$request->governorate);
+            return view('pharmacies', ['pharmacies' => $pharmacies]);
         } catch (\Exception $e) {
             return $e->getMessage();
         }
