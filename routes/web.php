@@ -46,7 +46,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     // admin
     Route::group(['prefix' => 'dashboard', 'middleware' => 'checkType:admin'], function () {
-        
+
         Route::get('/', [adminController::class, 'index'])->name('dashboard'); // dashboard
 
         // Setting Routs
@@ -140,9 +140,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                 Route::get('/create/{pharmacy}',[OrderController::class,'create'])->name('order');
                 Route::get('/show',[OrderController::class,'show'])->name('bill');
                 Route::get('/create',[OrderController::class,'store'])->name('regest');
-    
-    
-            });   
+
+
+            });
 });
 
 
@@ -171,4 +171,7 @@ Route::get('/partners', function () {
 Route::get('/', [MedicalController::class, 'index'])->name('index');
 
 Route::get('/pharmacies', [MedicalController::class, 'showPharmacies'])->name('morePharmacy'); // show all pharmacies
+Route::get('/l', function () {
+    return view('order.productImage');
+})->name('l');
 

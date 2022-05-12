@@ -20,7 +20,7 @@ class UserProfileController extends Controller
      */
     public function index()
     {
-        
+
         $user = User::with('profile')->find(Auth::id());
 
         if( $user->type == 2 ){
@@ -73,7 +73,7 @@ class UserProfileController extends Controller
     {
 
 
-        $user = User::find(Auth::user()->id);        
+        $user = User::with('profile')->find(Auth::user()->id);
         if( $user->type == 2 ){
             return redirect()->route('pharmacy.edit');
         }
