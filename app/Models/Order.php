@@ -15,8 +15,10 @@ class Order extends Model
        'user_id',
        'pharmacy_id',
        'address',
-       'prodect',
-       'price',
+       'products',
        'status'
    ];
+//    protected $casts = [
+//     'products' => 'array',
+// ];
 }

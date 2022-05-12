@@ -16,8 +16,8 @@
                     <div class="tab-content p-4 py-1">
 
                       <div class="tab-pane fade  show active" id="profile-settings">
-                        <form class=" needs-validation" novalidate method="POST"
-                                action="" enctype="multipart/form-data">
+                        <form class=" needs-validation" novalidate method="get"
+                                action="{{ route('home') }}" enctype="multipart/form-data">
                                 @csrf
 
                            
