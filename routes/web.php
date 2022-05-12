@@ -138,8 +138,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::group(['prefix'=>'order'],function(){
                 Route::post('/send',[OrderController::class,'send'])->name('send');
                 Route::get('/create/{pharmacy}',[OrderController::class,'create'])->name('order');
+                Route::get('/edit/{id?}',[OrderController::class,'edit'])->name('order.edit');
                 Route::get('/show',[OrderController::class,'show'])->name('bill');
-                Route::get('/create',[OrderController::class,'store'])->name('regest');
+                Route::post('/update/{id}',[OrderController::class,'update'])->name('order.store');
     
     
             });   

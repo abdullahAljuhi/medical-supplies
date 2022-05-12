@@ -338,6 +338,13 @@
 
     {{-- pusher js --}}
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script>
+        Pusher.logToConsole = true;
+    
+        var pusher = new Pusher('e4b4e21e1f468b8bddf2', {
+            cluster: 'mt1'
+        });
+    </script>
 
 @yield('scripts')
 </body>

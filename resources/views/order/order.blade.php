@@ -87,6 +87,7 @@
                                     "name='products[]' autofocus>
                                     <input type="hidden" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
                                     "name='user' value="{{ Auth::user()->id }}">
+                                    <input type="hidden" id="name" name='pharmacy' value="{{ $pharmacy->id }}">
                                     <a href="javascript:void(0);" class="add_button col-1  pe-2" title="Add field"><i class="bi fs-3 bi-plus-circle-fill"></i></a>
                                 </div>
                             </div>
