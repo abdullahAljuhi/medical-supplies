@@ -15,13 +15,13 @@
                             <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus"
                                 alt="...">
                             @endif
-                            <div class="card-body pb-0">
+                            <div class="card-body pb-0 text-center">
                                 <h5 class="card-title fs-4 text-primary "> {{ $pharmacy->pharmacy_name }}</h5>
 
                                 <p class="card-text fs-5 text-secondary text-center w-100"><i
-                                        class="bi bi-geo-alt  text-primary ms-1"></i>
-                                    {{ $pharmacy->governorate_name?? '' }} - {{
-                                    $pharmacy->city_name ??''}} </p>
+                                    class="bi bi-geo-alt  text-primary ms-1"></i>
+                                {{ $pharmacy->address[0]->governorate->name?? '' }} - {{
+                                $pharmacy->address[0]->city->name ??''}} </p>
 
                                 <ul class="text-center footer-icons d-flex justify-content-center mb-0">
                                     <li class="list-inline-item text-center">
@@ -41,13 +41,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="card-footer bg-white">
-                                <div class="my-2">
-                                    <a href="job-details.html" class="btn btn-outline-primary w-100"><span>طلب دواء
-                                        </span>
-                                        <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                  </div>
@@ -79,23 +73,24 @@
                                 @csrf
 
                           <div class="row m-2">
-                                <label for="name" class="col-md-12 col-form-label"> 
-                                    قم بكتابة اسم العلاج
-                                <span class="  me-1  fw-bold" style="font-size: 15px"> (اضغط على + من اجل اضافة المزيد)</span></label>
+                                <label for="name" class="col-md-12 col-form-label fw-bold">
+                                    قم بكتابة اسم العلاج مع تحديد الكمية
+                                    <span class="  me-1  fw-bold" style="font-size: 15px"> (اضغط على + من اجل اضافة المزيد)</span></label>
                                 <div class=" mb-3  field_wrapper">
-                                    <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
-                                    "name='products[]' autofocus>
+                                    <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-8 form-control-custome
+                                    "name='products[name][]' autofocus>
+                                    <input type="text" id="name" placeholder="حدد الكمية" class=" col-3 form-control-custome
+                                    "name='products[quantity][]' autofocus>
                                     <input type="hidden" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
                                     "name='user' value="{{ Auth::user()->id }}">
                                     <input type="hidden" id="name" name='pharmacy' value="{{ $pharmacy->id }}">
                                     <a href="javascript:void(0);" class="add_button col-1  pe-2" title="Add field"><i class="bi fs-3 bi-plus-circle-fill"></i></a>
                                 </div>
                             </div>
-                            <div class="row border py-3 px-2 ">
+                            <div class="row   py-3 px-2 ">
                                 <div class="col-12">
                                     <div class="row mb-3   ">
-                                        <label for="inputState" class="form-label">عنوان التوصيل</label>
-
+                                        <label for="inputState" class="form-label  fw-bold">اضف عنوان التوصيل</label>
                                         <div class="col-6">
                                             <label for="inputState" class="form-label">المحافظة</label>
                                             <select name="governorate" class="form-select select1 mx-2"
@@ -141,11 +136,11 @@
                             action="" enctype="multipart/form-data">
                             @csrf
                             <div class="row mb-3">
-                                <label for="phote" class="col-md-12  col-form-label">صورة الوصفة الطبية او صورة من العلاج   
+                                <label for="phote" class="col-md-12  col-form-label fw-bold">صورة الوصفة الطبية او صورة من العلاج
                                     <span class="  me-1  fw-bold" style="font-size: 15px"> (يمكنك تحديد اكثر من صورة)</span></label>
 
-                                <div class="col-md-12 mb-3">
-                                    <input type="file"  class="form-control @error('phote') is-invalid @enderror"
+                                <div class="col-9 mb-3">
+                                    <input type="file"  class="form-control m-0 @error('phote') is-invalid @enderror"
                                     name="image[]" value="{{ old('phote') }}" required autocomplete="phote" autofocus>
                                     @error('phote')
                                         <span class="invalid-feedback" role="alert">
@@ -153,33 +148,38 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="row border py-3 px-2 ">
+                                <div class="col-3">
+                                    <input type="text" id="name" placeholder="حدد الكمية" class=" w-100 form-control-custome
+                                    "name='products[quantity][]' autofocus>
+                                </div>
+
+                                <div class="row  py-3 px-2 ">
                                     <div class="col-12">
                                         <div class="row mb-3   ">
-                                            <label for="inputState" class="form-label">عنوان التوصيل</label>
-    
+                                            <label for="inputState" class="form-label  fw-bold">اضف عنوان التوصيل</label>
+
                                             <div class="col-6">
                                                 <label for="inputState" class="form-label">المحافظة</label>
                                                 <select name="governorate" class="form-select select1 mx-2"
                                                     id="inputGroupSelect01">
-    
+
                                                     <option value="">
-    
+
                                                     </option>
-    
+
                                                 </select>
                                             </div>
                                             <div class="col-6">
                                                 <label for="inputState" class="form-label">المدينة</label>
                                                 <select name="city" class="form-select select2 mx-2" id="inputGroupSelect02"
                                                     style="">
-    
+
                                                 </select>
-    
+
                                             </div>
                                         </div>
                                     </div>
-    
+
                                     <div class="col-12 mx-2">
                                         <label for="fullName" class="form-label">
                                             تفاصيل اخرى عن العنوان
@@ -188,7 +188,7 @@
                                         <div class="invalid-feedback">يرجى ادخال رقم الترخيص </div>
                                     </div>
                                 </div>
-                                 
+
                             </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">ارسال الطلب</button>

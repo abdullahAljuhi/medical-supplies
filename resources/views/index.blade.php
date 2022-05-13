@@ -111,20 +111,21 @@
                     </p>
                 </div>
             </div>
-            <div class="card-group">
-                <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-0 g-sm-5 text-center jobs">
+
+                <div class="row  ">
                     @foreach ($pharmacies as $pharmacy)
                         @break($loop->index > 5)
-                    <div class="col">
+                    <div class="col-md-4 mb-2  ">
                         <div class="card h-100 p-2">
                             @if($pharmacy->image)
                             <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}" alt="pharmacy"
-                                class="rounded-circle border p-1">
+                            class="card-img-top py-5 img-card-cus w-100"style="height: 250px;"
+                            alt="..." >
                             @else
-                            <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus"
-                                alt="...">
+                                <img src="{{asset('img/phramacy3.png') }}" class="card-img-top py-5 img-card-cus w-100"style="height: 250px;"
+                                alt="..." >
                             @endif
-                            <div class="card-body pb-0">
+                            <div class="card-body pb-0 text-center">
                                 <h5 class="card-title fs-4 text-primary "> {{ $pharmacy->pharmacy_name }}</h5>
 
                                 <p class="card-text fs-5 text-secondary text-center w-100"><i
@@ -160,7 +161,7 @@
                                     <a href="{{ route('order',$pharmacy->id) }}" class="btn btn-outline-primary w-100"><span>طلب دواء
                                     </span>
                                     <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
-                                    @endguest                                        
+                                    @endguest
                                 </div>
                             </div>
                         </div>
@@ -169,9 +170,9 @@
 
 
                 </div>
-            </div>
+
             <div class="row d-flex justify-content-center align-items-center mt-5">
-                <a href="{{ route('morePharmacy') }}" class="btn btn-outline-primary py-2 w-25 rounded fs-5">الاطلاع اكثر <i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+                <a href="{{ route('morePharmacy') }}" class="btn btn-outline-primary py-2 w-auto px-5 rounded fs-5">الاطلاع اكثر <i class="fa fa-arrow-left" aria-hidden="true"></i></a>
             </div>
         </div>
     </section>
@@ -336,6 +337,8 @@
     </section>
 
 @endsection
+@auth
+
 @section('scripts')
 <script>
     var notificationsWrapper = $('.dropdown-notifications');
@@ -348,7 +351,7 @@
     // Subscribe to the channel we specified in our Laravel Event
     var channel = pusher.subscribe("order{{  Auth::user()-> id }}");
     // Bind a function to a Event (the full Laravel class)
-  
+
     channel.bind('App\\Events\\Messages', function(data) {
     //   console.log(data.order.pharmacy_id);
       var existingNotifications = notifications.html();
@@ -365,3 +368,4 @@
     });
   </script>
 @endsection
+@endauth

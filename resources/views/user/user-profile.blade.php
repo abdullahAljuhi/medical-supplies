@@ -83,23 +83,29 @@
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">الصورة
                                             الشخصية</label>
                                         <div class="col-md-8 col-lg-9 d-flex align-items-center justify-content-center">
-                                            <div class="pt-2">
-                                                <label class="btn btn-primary text-light">
-                                                    <i class="bi bi-upload p-5"></i>
-                                                    <input type="file" id="imgInp" name="image" hidden>
+                                        <div class="row">
+                                            @if(isset(Auth::user()->profile->image))
+                                            <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile"
+                                                class="mx-auto rounded-circle border p-1" id="blah" style="width: 120px;
+                                                height: 120px;">
+                                        @else
+                                            <img src="{{asset('assets/img/user.png') }}" alt="Profile"
+                                                class="mx-auto rounded-circle border p-1" id="blah" style="width: 120px;
+                                                height: 120px;">
+                                        @endif
+                                            <div style="transform: translate(-25px,-35px);">
+                                                <label class="btn bg-white border rounded-circle ">
+                                                    <i class="bi bi-camera-fill"></i>
+                                                    <input type="file" id="imgInp" name="image" hidden >
                                                 </label>
                                                 <a href="#" class="btn btn-danger btn-sm d-none"
-                                                   title="Remove my profile image">
+                                                title="Remove my profile image">
                                                     <i class="bi bi-trash"></i>
                                                 </a>
                                             </div>
-                                            @if(isset(Auth::user()->profile->image))
-                                                <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile"
-                                                     class="mx-auto rounded-circle border p-1" id="blah">
-                                            @else
-                                                <img src="{{asset('assets/img/user.png') }}" alt="Profile"
-                                                     class="mx-auto rounded-circle border p-1" id="blah">
-                                            @endif
+                                        </div>
+
+
                                         </div>
                                     </div>
 
@@ -151,7 +157,7 @@
                                 </form><!-- End Profile Edit Form -->
                             </div>
 
-                            
+
                             <div class="tab-pane fade pt-3" id="profile-change-password">
                                 <!-- Change Password Form -->
                                 <form>

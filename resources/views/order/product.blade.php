@@ -22,7 +22,7 @@
                                 <p class="fs-5 py-0 my-0  mx-3">رقم الطلب :
                                      {{ $order->id }}
                                 </p>
-                            </div> 
+                            </div>
                             <div class="col-md-8 col-sm-12 mb-2" >
                                 <p class="fs-5 py-0 my-0  mx-3">  اسم المستخدم :
                                     {{ $user->name }}
@@ -52,13 +52,16 @@
                                     <div class="col-md-2 col-sm-12 mb-2 border-1">
                                         <label for="name" >{{ $product }} </label>
                                     </div>
-                                    <div class="col-md-8 col-sm-12">
+                                     <div class="col-md-2 col-sm-12 mb-2 border-1">
+                                        <label for="name" >{{ $quantity }} </label>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
                                         <input type="text" name="prices[]" class="form-control col-6" id="name" required placeholder="يرجى ادخال سعر هذا المنتج">
                                     </div>
                                 </div>
                                     @endforeach
-                                  
-                                
+
+
                                 <div class="row">
                                     <div class="col-md-2 col-sm-12 mb-2 border-1">
                                         <label for="name" >سعر التوصيل</label>

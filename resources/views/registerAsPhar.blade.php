@@ -1,5 +1,5 @@
 @extends('layouts.auth-layout')
-@section('title','Pharmacy Register')
+@section('title','انشأ حساب كمالك صيدلية ')
 @section('content')
 
 <div class="container">
