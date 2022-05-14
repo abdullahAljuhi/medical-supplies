@@ -7,12 +7,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MedicalController;
 use App\Http\Controllers\PharmacyController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\GovernorateController;
 use App\Http\Controllers\UserProfileController;
+
 use App\Http\Controllers\dashboard\adminController;
 use App\Http\Controllers\dashboard\PharmacyController as MangePharmacy;
 
@@ -73,11 +75,15 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
 
         //crud advertisement
-        Route::group(['prefix' => 'advertisement'], function () {
-            Route::get('/show', [AdvertisementController::class, 'show'])->name('show.adv');
-            Route::get('/edit', [AdvertisementController::class, 'edit'])->name('edit.adv');
-            Route::post('/update', [AdvertisementController::class, 'update'])->name('update.adv');
-            Route::get('/delete', [AdvertisementController::class, 'remove'])->name('delete.adv');
+        Route::group(['prefix'=>'advertisement'],function(){
+            Route::get('/index',[AdvertisementController::class,'index'])->name('show.adv');
+            Route::get('/edit/{id}',[AdvertisementController::class,'edit'])->name('edit.adv');
+            Route::post('/update/{id}',[AdvertisementController::class,'update'])->name('update.adv');
+            Route::post('/save',[AdvertisementController::class,'store'])->name('save.adv');
+            Route::get('/add',[AdvertisementController::class,'create'])->name('add.adv');
+            Route::get('/active/{adv}', [AdvertisementController::class, 'active'])->name('active.adv');
+            Route::get('/disActive/{adv}', [AdvertisementController::class, 'disActive'])->name('disActive.adv');
+
         });
 
 
@@ -127,7 +133,24 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
         Route::post('update', [UserProfileController::class, 'update'])->name('update.profile');
     });
+
+       //crud order
+            Route::group(['prefix'=>'order'],function(){
+                Route::post('/send',[OrderController::class,'send'])->name('send');
+                Route::get('/create/{pharmacy}',[OrderController::class,'create'])->name('order');
+                Route::get('/show',[OrderController::class,'show'])->name('bill');
+                Route::get('/create',[OrderController::class,'store'])->name('regest');
+    
+    
+            });   
 });
+
+
+
+// });
+// main page
+// Route::get('/', function () {return view('index');})->middleware('guest');
+Route::get('/', function () {return view('order.order');});
 
 
 

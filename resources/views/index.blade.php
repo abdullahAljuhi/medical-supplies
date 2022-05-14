@@ -157,10 +157,10 @@
                                     </span>
                                     <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
                                     @else
-                                    <a href="#" class="btn btn-outline-primary w-100"><span>طلب دواء
+                                    <a href="{{ route('order',$pharmacy->id) }}" class="btn btn-outline-primary w-100"><span>طلب دواء
                                     </span>
                                     <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
-                                    @endguest                                        
+                                    @endguest
                                 </div>
                             </div>
                         </div>
