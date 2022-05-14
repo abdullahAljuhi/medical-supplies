@@ -84,7 +84,24 @@
                                 <span class="  me-1  fw-bold" style="font-size: 15px"> (اضغط على + من اجل اضافة المزيد)</span></label>
                                 <div class=" mb-3  field_wrapper">
                                     <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
-                                    "name='products[]' autofocus>
+                                    "name='products[name][]' autofocus>
+                                    <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
+                                    "name='products[quantity][]' autofocus>
+                                    
+                                    <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
+                                    "name='products[name][]' autofocus>
+                                    <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
+                                    "name='products[quantity][]' autofocus>
+                                    
+                                    <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
+                                    "name='products[name][]' autofocus>
+                                    <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
+                                    "name='products[quantity][]' autofocus>
+                                    
+                                    <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
+                                    "name='products[name][]' autofocus>
+                                    <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
+                                    "name='products[quantity][]' autofocus>
                                     <input type="hidden" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
                                     "name='user' value="{{ Auth::user()->id }}">
                                     <input type="hidden" id="name" name='pharmacy' value="{{ $pharmacy->id }}">

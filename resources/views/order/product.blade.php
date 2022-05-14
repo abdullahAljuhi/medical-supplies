@@ -25,14 +25,14 @@
                             </div> 
                             <div class="col-md-8 col-sm-12 mb-2" >
                                 <p class="fs-5 py-0 my-0  mx-3">  اسم المستخدم :
-                                    {{ $user->name }}
+                                    {{ $order->user['name'] }}
                                 </p>
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-md-4 col-sm-12 mb-2">
                                 <p class="fs-5 py-0 my-0  mx-3">    تاريخ الطلب :
-                                    {{ $order->created_at }}
+                                    {{ $order->created_at->diffForHumans() }}
                                 </p>
                             </div>
                             <div class="col-md-8 col-sm-12 mb-2">
@@ -50,7 +50,8 @@
                                 @foreach ($products as $product)
                                 <div class="row mb-2">
                                     <div class="col-md-2 col-sm-12 mb-2 border-1">
-                                        <label for="name" >{{ $product }} </label>
+                                        <label for="name" >{{ $product['name'] }} </label>
+                                        <label for="name" >{{ $product['quantity'] }} </label>
                                     </div>
                                     <div class="col-md-8 col-sm-12">
                                         <input type="text" name="prices[]" class="form-control col-6" id="name" required placeholder="يرجى ادخال سعر هذا المنتج">
