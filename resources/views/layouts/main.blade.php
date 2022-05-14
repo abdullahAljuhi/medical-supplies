@@ -191,7 +191,7 @@
                             <hr class="dropdown-divider">
                         </li>
 
-                        @if(Auth::user()->profile)
+                        @if(Auth::user()->profile || Auth::user()->pharmacy)
 
                             <li>
                                 <a class="dropdown-item d-flex align-items-center" href="{{ route('home') }}">
@@ -285,7 +285,7 @@
         </div>
     </div>
 </header>
-<div id="spliter" class="py-5"></div>
+{{--<div id="spliter" class="py-5"></div>--}}
 
 <!-- End Header -->
 
