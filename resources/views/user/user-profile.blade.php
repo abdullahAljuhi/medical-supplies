@@ -3,7 +3,7 @@
 @section('content')
     <!-- Page Title -->
     <div class="pagetitle">
-        <h1>Profile</h1>
+        <h1>اعدادات الحساب</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="../index.blade.php">Home</a></li>
