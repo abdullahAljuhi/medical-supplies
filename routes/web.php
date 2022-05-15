@@ -15,7 +15,7 @@ use App\Http\Controllers\PharmacyController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\GovernorateController;
 use App\Http\Controllers\UserProfileController;
-
+use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\dashboard\adminController;
 use App\Http\Controllers\dashboard\PharmacyController as MangePharmacy;
 use App\Http\Controllers\PaymentController;

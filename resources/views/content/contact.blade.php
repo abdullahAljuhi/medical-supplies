@@ -36,13 +36,13 @@
                 <div class="col-md-6 col-sm-12">
                     <label for="image" class="form-label"> صورة  تعبر عن الوصف</label>
                     <input id="image" type="file"
-                                            class="form-control custom-file-input @error('image') is-invalid @enderror" name="image"
-                                            value="{{ old('image') }}" required autocomplete="image" autofocus>
-                                        @error('image')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
+                            class="form-control custom-file-input @error('image') is-invalid @enderror" name="image"
+                            value="{{ old('image') }}" required autocomplete="image" autofocus>
+                            @error('image')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                 </div>
                 <div class="col-12">
                     <label for="inputState" class="form-label">الوصف</label>

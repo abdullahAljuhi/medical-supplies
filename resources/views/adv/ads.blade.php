@@ -108,7 +108,6 @@
                             </div>
                         </a>
                     </div>
-                    @endforeach
 
                 </div>
 
@@ -126,6 +125,8 @@
                                          </p>
 
                                     </div>
+                                    @endforeach
+
                                     <div class="card-footer bg-white border-0" >
                                         <div class="my-2">
                                             <a href="job-details.html" class="btn btn-outline-primary w-100">

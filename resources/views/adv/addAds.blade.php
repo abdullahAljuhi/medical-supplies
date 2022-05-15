@@ -47,7 +47,7 @@
                 <div class="col-md-6 col-sm-12">
                     <label for="strat_date" class="form-label"> تاريخ البداء</label>
                     <input id="strat_date" type="date"
-                                            class="form-control @error('strat_date') is-invalid @enderror" name="start_date"
+                                            class="form-control check_date @error('strat_date') is-invalid @enderror" name="start_date"
                                             value="{{ old('strat_date') }}" required autocomplete="strat_date" autofocus>
                                         @error('start_date')
                                         <span class="invalid-feedback" role="alert">
@@ -58,7 +58,7 @@
                 <div class="col-md-6 col-sm-12">
                     <label for="end_date" class="form-label">  تاريخ الانتهاء </label>
                     <input id="end_date" type="date"
-                                            class="form-control @error('end_date') is-invalid @enderror" name="end_date"
+                                            class="form-control check_date  @error('end_date') is-invalid @enderror" name="end_date"
                                             value="{{ old('end_date') }}" required autocomplete="end_date" autofocus>
                                         @error('end_date')
                                         <span class="invalid-feedback" role="alert">
@@ -70,7 +70,7 @@
                 <div class="col-md-6 col-sm-12">
                     <button class="btn btn-primary w-50" type="submit">حفظ</button>
                 </div>
-               
+              
             </form>
             </div>
         </div>
