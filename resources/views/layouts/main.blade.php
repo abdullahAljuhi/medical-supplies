@@ -44,7 +44,7 @@
 <body style="overflow-x: hidden">
 
 <!-- ======= Header ======= -->
-<header id="header" class="header fixed-top d-flex align-items-center position-absolute">
+<header id="header" class="header d-flex align-items-center">
 
     <!-- Main Logo -->
     <div class="d-flex align-items-center justify-content-between">

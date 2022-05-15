@@ -105,15 +105,15 @@
                 </div>
 
                 <div class="view_wrap grid-view " style="display: none;">
-                    <div class="card-group">
-                        <div class="row row-cols-1 row-cols-md-3 g-5 text-center jobs">
+                    <div class="card-group justify-content-center">
+                        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-5 text-center jobs justify-content-center">
                             @foreach ($pharmacies as $pharmacy)
                                 <div class="col">
                                     <div class="card h-100 p-2">
                                         @if($pharmacy->image)
                                             <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}"
                                                  alt="pharmacy"
-                                                 class="rounded-circle border p-1">
+                                                 class="border-bottom p-md-5">
                                         @else
                                             <img src="{{asset('img/phramacy1.png') }}"
                                                  class="card-img-top py-5 img-card-cus"

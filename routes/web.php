@@ -35,7 +35,6 @@ Auth::routes(['verify' => true]);
 define('PAGINATION', 10);
 
 
-
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
     // main page after login
@@ -46,7 +45,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     // admin
     Route::group(['prefix' => 'dashboard', 'middleware' => 'checkType:admin'], function () {
-        
+
         Route::get('/', [adminController::class, 'index'])->name('dashboard'); // dashboard
 
         // Setting Routs
@@ -75,17 +74,16 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
 
         //crud advertisement
-        Route::group(['prefix'=>'advertisement'],function(){
-            Route::get('/index',[AdvertisementController::class,'index'])->name('show.adv');
-            Route::get('/edit/{id}',[AdvertisementController::class,'edit'])->name('edit.adv');
-            Route::post('/update/{id}',[AdvertisementController::class,'update'])->name('update.adv');
-            Route::post('/save',[AdvertisementController::class,'store'])->name('save.adv');
-            Route::get('/add',[AdvertisementController::class,'create'])->name('add.adv');
+        Route::group(['prefix' => 'advertisement'], function () {
+            Route::get('/index', [AdvertisementController::class, 'index'])->name('show.adv');
+            Route::get('/edit/{id}', [AdvertisementController::class, 'edit'])->name('edit.adv');
+            Route::post('/update/{id}', [AdvertisementController::class, 'update'])->name('update.adv');
+            Route::post('/save', [AdvertisementController::class, 'store'])->name('save.adv');
+            Route::get('/add', [AdvertisementController::class, 'create'])->name('add.adv');
             Route::get('/active/{adv}', [AdvertisementController::class, 'active'])->name('active.adv');
             Route::get('/disActive/{adv}', [AdvertisementController::class, 'disActive'])->name('disActive.adv');
 
         });
-
 
 
         // crud pharmacy contact
@@ -134,25 +132,25 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::post('update', [UserProfileController::class, 'update'])->name('update.profile');
     });
 
-       //crud order
-            Route::group(['prefix'=>'order'],function(){
-                Route::post('/send',[OrderController::class,'send'])->name('send');
-                Route::get('/create/{pharmacy}',[OrderController::class,'create'])->name('order');
-                Route::get('/edit/{id?}',[OrderController::class,'edit'])->name('order.edit');
-                Route::get('/show',[OrderController::class,'show'])->name('bill');
-                Route::post('/update/{id}',[OrderController::class,'update'])->name('order.store');
-    
-    
-            });   
-});
+    //crud order
+    Route::group(['prefix' => 'order'], function () {
+        Route::post('/send', [OrderController::class, 'send'])->name('send');
+        Route::get('/create/{pharmacy}', [OrderController::class, 'create'])->name('order');
+        Route::get('/edit/{id?}', [OrderController::class, 'edit'])->name('order.edit');
+        Route::get('/show', [OrderController::class, 'show'])->name('bill');
+        Route::post('/update/{id}', [OrderController::class, 'update'])->name('order.store');
 
+
+    });
+});
 
 
 // });
 // main page
 // Route::get('/', function () {return view('index');})->middleware('guest');
-Route::get('/', function () {return view('order.order');});
-
+Route::get('/', function () {
+    return view('order.order');
+});
 
 
 // start const route
