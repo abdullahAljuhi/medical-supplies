@@ -67,7 +67,7 @@
                                     <div class="col-12">
                                         <label for="license" class="form-label">رقم الترخيص</label>
                                         <input type="file" id="license"
-                                            class="form-control @error('license') is-invalid @enderror" name="license"
+                                            class="form-control custom-file-input @error('license') is-invalid @enderror" name="license"
                                             value="{{ old('license') }}" required autocomplete="license" autofocus>
                                         @error('license')
                                         <span class="invalid-feedback" role="alert">

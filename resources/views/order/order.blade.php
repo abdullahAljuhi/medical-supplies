@@ -140,7 +140,7 @@
                                     <span class="  me-1  fw-bold" style="font-size: 15px"> (يمكنك تحديد اكثر من صورة)</span></label>
 
                                 <div class="col-9 mb-3">
-                                    <input type="file"  class="form-control m-0 @error('phote') is-invalid @enderror"
+                                    <input type="file"  class="form-control custom-file-input m-0 @error('phote') is-invalid @enderror"
                                     name="image[]" value="{{ old('phote') }}" required autocomplete="phote" autofocus>
                                     @error('phote')
                                         <span class="invalid-feedback" role="alert">

@@ -19,7 +19,7 @@
         <div class="wrapper">
             <div class="view_main container shadow ">
                 <form class="row g-3 needs-validation" novalidate method="POST"
-                action="{{ route('save.adv') }}" enctype="multipart/form-data">
+                action="{{ route('save.adv') }}" enctype="multipart/form-data" >
                 @csrf
                 <div class="col-md-6 col-sm-12">
                     <label for="title" class="form-label">العنوان</label>
@@ -33,17 +33,19 @@
                                         </span>
                                         @enderror
                 </div>
+                
                 <div class="col-md-6 col-sm-12">
                     <label for="image" class="form-label"> صورة  تعبر عن الوصف</label>
                     <input id="image" type="file"
-                                            class="form-control @error('image') is-invalid @enderror" name="image"
-                                            value="{{ old('image') }}" required autocomplete="image" autofocus>
-                                        @error('image')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
+                        class="form-control custom-file-input @error('image') is-invalid @enderror" name="image"
+                        value="{{ old('image') }}" required autocomplete="image" autofocus>
+                        @error('image')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                 </div>
+                
                 <div class="col-12">
                     <label for="inputState" class="form-label">الوصف</label>
                     <div class="form-floating">
@@ -117,6 +119,33 @@
             const [file] = imgInp.files
             if (file) {
                 blah.src = URL.createObjectURL(file)
+            }
+        }
+
+        //validation image upload  
+        const  img = document.forms['myform']['img_upload'];
+        var validExt =['jpeg','png','jpg'];
+        function validation()
+        {
+            if(img.value!='')
+            {
+                var img_ext =img.substring(img.value.lastIndexOf('.')+1);
+                var result =validExt.includes(img_ext);
+                if(result == false)
+                {
+                    alert('يرجى اختيار ملف من نوع صورة');
+                    return false;
+                }
+                else
+                {
+                    alert(' شكرا');
+                    return false;
+                }
+            }
+            else
+            {
+                alert('يرجى اختيار ملف  6من نوع صورة');
+                return false;
             }
         }
     </script>

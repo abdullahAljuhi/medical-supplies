@@ -38,7 +38,7 @@
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/ar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
-
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 
     <!-- =======================================================
@@ -69,6 +69,8 @@
 <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
 <script src="assets/vendor/tinymce/tinymce.min.js"></script>
 <script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="{{asset('js/validationIamge.js') }}"></script>
+
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>

@@ -34,6 +34,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{ asset('assets/js/addinput.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!--
         
         TemplateMo 559 Zay Shop
@@ -313,6 +314,8 @@
     <script src="{{asset('js/templatemo.js ') }}"></script>
     <script src="{{asset('js/custom.js ') }}"></script>
     <script src="{{asset('js/viewAndList.js ') }}"></script>
+    <script src="{{asset('js/validationIamge.js ') }}"></script>
+
     {{-- pusher js --}}
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <script>

@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <label for="image" class="form-label"> صورة الاعلان</label>
-                    <input type="file" name="image" class="form-control" id="image" required value="{{ $advertisements->image }}">
+                    <input type="file" name="image" class="form-control custom-file-input" id="image" required value="{{ $advertisements->image }}">
                     <div class="invalid-feedback">يرجى اسم الصيدلية </div>
                 </div>
                 <div class="col-md-6 col-sm-12">

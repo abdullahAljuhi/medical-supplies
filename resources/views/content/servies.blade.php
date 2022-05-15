@@ -36,7 +36,7 @@
                 <div class="col-md-6 col-sm-12">
                     <label for="image" class="form-label"> صورة  تعبر عن الوصف</label>
                     <input id="image" type="file"
-                                            class="form-control @error('image') is-invalid @enderror" name="image"
+                                            class="form-control custom-file-input @error('image') is-invalid @enderror" name="image"
                                             value="{{ old('image') }}" required autocomplete="image" autofocus>
                                         @error('image')
                                         <span class="invalid-feedback" role="alert">

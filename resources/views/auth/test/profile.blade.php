@@ -30,7 +30,7 @@
                             <label for="img" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="file" type="file" class="form-control @error('image') is-invalid @enderror" name="img" value="{{ old('img') }}" required autocomplete="email">
+                                <input id="file" type="file" class="form-control custom-file-input @error('image') is-invalid @enderror" name="img" value="{{ old('img') }}" required autocomplete="email">
 
                                 @error('img')
                                     <span class="invalid-feedback" role="alert">
