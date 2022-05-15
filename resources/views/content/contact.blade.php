@@ -15,19 +15,19 @@
     <!-- End Page Title -->
 
     <section class="section profile min-vh-100 overflow-hidden">
-        
+
         <div class="wrapper">
             <div class="view_main container shadow ">
                 <form class="row g-3 needs-validation" novalidate method="POST"
                 action="{{ route('save.adv') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="col-md-6 col-sm-12">
-                    <label for="link" class="form-label">العنوان</label>
+                    <label for="title" class="form-label">العنوان</label>
                     <div class="invalid-feedback">يرجى تحديد  العنوان  </div>
-                    <input id="link" type="url"
-                                            class="form-control @error('link') is-invalid @enderror" name="link"
-                                            value="{{ old('link') }}" required autocomplete="name" autofocus>
-                                        @error('link')
+                    <input id="title" type="text"
+                                            class="form-control @error('title') is-invalid @enderror" name="title"
+                                            value="{{ old('title') }}" required autocomplete="name" autofocus>
+                                        @error('title')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -55,45 +55,30 @@
                 <div class="col-md-6 col-sm-12">
                     <button class="btn btn-primary w-50" type="submit">حفظ</button>
                 </div>
-               
+
             </form>
             </div>
         </div>
         <div class="w-100 bg-light py-5">
             <div class="container">
                 <div class="col-md text-center">
-                    
+
                     <div class="row">
 
                         <div class="col-md-6 col-lg-4 pb-5  ">
-                            <div class="h-100 py-5 services-icon-wap shadow ">
+                            <div class="h-100 pt-5 pb-3 services-icon-wap shadow ">
                                 <div class="h1 text-primary text-center "><i class="bi bi-telephone-fill"></i></div>
                                 <h2 class="h5 mt-4 text-center">الهاتف</h2>
                                 <p>
                                     772725220
                                 </p>
+                                <div class="row my-2">
+                                    <a class="btn btn-primary w-75 mt-2 mx-auto" href="">تعديل</a>
+                                    <a class="btn btn-danger w-75 mt-2 mx-auto" href="">حذف</a>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-md-6 col-lg-4 pb-5">
-                            <div class="h-100 py-5 services-icon-wap shadow">
-                                <div class="h1 text-primary text-center"><i class="bi bi-geo-alt-fill"></i></div>
-                                <h2 class="h5 mt-4 text-center">العنوان</h2>
-                                <p>
-                                    اليمن / حضرموت /المكلا
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 col-lg-4 pb-5">
-                            <div class="h-100 py-5 services-icon-wap shadow">
-                                <div class="h1 text-primary text-center"><i class="bi bi-envelope-fill"></i></div>
-                                <h2 class="h5 mt-4 text-center">البريد الالكتروني</h2>
-                                <p>
-                                    MedicalSublies@gmail.com
-                                </p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

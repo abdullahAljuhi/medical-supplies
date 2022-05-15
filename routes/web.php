@@ -48,7 +48,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     // admin
     Route::group(['prefix' => 'dashboard', 'middleware' => 'checkType:admin'], function () {
-        
+
         Route::get('/', [adminController::class, 'index'])->name('dashboard'); // dashboard
 
          // content Routs
@@ -69,7 +69,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::get('/state', [GovernorateController::class, 'create'])->name('add-state');
             Route::post('/state/store', [GovernorateController::class, 'store'])->name('store-state');
         }); // end users
-
 
         // crud Users
         Route::group(['prefix' => 'users'], function () {
@@ -153,8 +152,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                 Route::post('/update/{id}',[OrderController::class,'update'])->name('order.store');
                 Route::get('/bill/{id?}',[OrderController::class,'Bill'])->name('order.userBill');
 
-                
-            });   
+
+            });
 });
 
 
@@ -188,7 +187,7 @@ Route::get('test', [PaymentController::class, 'index'])->name('test');
 
 Route::get('/test/response/{info}',function(){
     $info = Route::current()->parameter('info');
-   
+
     $info=base64_decode($info);
     $data= $arrayFormat=json_decode($info,true);
     return $data;

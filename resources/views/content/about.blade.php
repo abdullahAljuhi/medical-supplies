@@ -15,7 +15,7 @@
     <!-- End Page Title -->
 
     <section class="section profile min-vh-100 overflow-hidden">
-        
+
         <div class="wrapper">
             <div class="view_main container shadow ">
                 <form class="row g-3 needs-validation" novalidate method="POST"
@@ -24,8 +24,8 @@
                 <div class="col-md-6 col-sm-12">
                     <label for="link" class="form-label">العنوان</label>
                     <div class="invalid-feedback">يرجى تحديد  العنوان  </div>
-                    <input id="link" type="url"
-                                            class="form-control @error('link') is-invalid @enderror" name="link"
+                    <input id="link" type="text"
+                                            class="form-control @error('link') is-invalid @enderror" name="title"
                                             value="{{ old('link') }}" required autocomplete="name" autofocus>
                                         @error('link')
                                         <span class="invalid-feedback" role="alert">
@@ -55,7 +55,7 @@
                 <div class="col-md-6 col-sm-12">
                     <button class="btn btn-primary w-50" type="submit">حفظ</button>
                 </div>
-               
+
             </form>
             </div>
         </div>

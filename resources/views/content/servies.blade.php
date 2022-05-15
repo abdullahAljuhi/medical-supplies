@@ -15,19 +15,19 @@
     <!-- End Page Title -->
 
     <section class="section profile min-vh-100 overflow-hidden">
-        
+
         <div class="wrapper">
             <div class="view_main container shadow ">
                 <form class="row g-3 needs-validation" novalidate method="POST"
                 action="{{ route('save.adv') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="col-md-6 col-sm-12">
-                    <label for="link" class="form-label">العنوان</label>
+                    <label for="title" class="form-label">العنوان</label>
                     <div class="invalid-feedback">يرجى تحديد  العنوان  </div>
-                    <input id="link" type="url"
-                                            class="form-control @error('link') is-invalid @enderror" name="link"
-                                            value="{{ old('link') }}" required autocomplete="name" autofocus>
-                                        @error('link')
+                    <input id="title" type="text"
+                                            class="form-control @error('title') is-invalid @enderror" name="title"
+                                            value="{{ old('title') }}" required autocomplete="name" autofocus>
+                                        @error('title')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -44,45 +44,29 @@
                                         </span>
                                         @enderror
                 </div>
-              
+
                 <div class="col-md-6 col-sm-12">
                     <button class="btn btn-primary w-50" type="submit">حفظ</button>
                 </div>
-               
+
             </form>
             </div>
         </div>
           <!-- Recent Sales -->
           <div class="container">
-            
+
             <div class="row">
 
-                <div class="col-md-6 col-lg-3 pb-5  ">
-                    <div class="h-100 py-5 services-icon-wapp shadow-sm border ">
+                <div class="col-md-6 col-lg-3 pb-5">
+                    <div class="h-100 pt-5 services-icon-wapp shadow-sm border ">
                         <div class="h1 text-primary text-center "><i class="fa fa-truck fa-lg "></i></div>
-                        <h2 class="h5 mt-4 text-center">توصيل</h2>
+                        <h2 class="h5 my-4 text-center">توصيل</h2>
+                        <div class="row my-2">
+                            <a class="btn btn-primary w-75 mt-2 mx-auto" href="">تعديل</a>
+                            <a class="btn btn-danger w-75 mt-2 mx-auto" href="">حذف</a>
+                        </div>
                     </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 pb-5">
-                    <div class="h-100 py-5 services-icon-wapp shadow-sm border">
-                        <div class="h1 text-primary text-center"><i class="bi bi-credit-card-fill"></i></div>
-                        <h2 class="h5 mt-4 text-center">دفع الالكتروني</h2>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 pb-5">
-                    <div class="h-100 py-5 services-icon-wapp shadow-sm border">
-                        <div class="h1 text-primary text-center"><i class="bi bi-display-fill"></i></div>
-                        <h2 class="h5 mt-4 text-center">عروض</h2>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 pb-5">
-                    <div class="h-100 py-5 services-icon-wapp shadow-sm border">
-                        <div class="h1 text-primary text-center"><i class="bi bi-alarm"></i></div>
-                        <h2 class="h5 mt-4 text-center">خدمة على مدار 24 ساعة</h2>
-                    </div>
+                   
                 </div>
             </div>
         </div>
