@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Content;
 use App\Http\Controllers\MedicalController;
 use App\Http\Controllers\PharmacyController;
 use App\Http\Controllers\dashboardController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\UserProfileController;
 
 use App\Http\Controllers\dashboard\adminController;
 use App\Http\Controllers\dashboard\PharmacyController as MangePharmacy;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +50,14 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::group(['prefix' => 'dashboard', 'middleware' => 'checkType:admin'], function () {
         
         Route::get('/', [adminController::class, 'index'])->name('dashboard'); // dashboard
+
+         // content Routs
+         Route::group(['prefix' => 'content'], function () {
+            Route::get('/content/create-header', [Content::class, 'header'])->name('create-header');
+            Route::get('/content/create-about', [Content::class, 'about'])->name('create-about');
+            Route::get('/content/create-contact', [Content::class, 'contact'])->name('create-contact');
+            Route::get('/content/create-servies', [Content::class, 'servies'])->name('create-servies');
+        });
 
         // Setting Routs
         Route::group(['prefix' => 'settings'], function () {
@@ -141,8 +151,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                 Route::get('/edit/{id?}',[OrderController::class,'edit'])->name('order.edit');
                 Route::get('/show',[OrderController::class,'show'])->name('bill');
                 Route::post('/update/{id}',[OrderController::class,'update'])->name('order.store');
-    
-    
+                Route::get('/bill/{id?}',[OrderController::class,'Bill'])->name('order.userBill');
+
+                
             });   
 });
 
@@ -151,7 +162,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 // });
 // main page
 // Route::get('/', function () {return view('index');})->middleware('guest');
-Route::get('/', function () {return view('order.order');});
+Route::get('/test', function () {return view('content.header');});
 
 
 
@@ -173,3 +184,13 @@ Route::get('/', [MedicalController::class, 'index'])->name('index');
 
 Route::get('/pharmacies', [MedicalController::class, 'showPharmacies'])->name('morePharmacy'); // show all pharmacies
 
+Route::get('test', [PaymentController::class, 'index'])->name('test');
+
+Route::get('/test/response/{info}',function(){
+    $info = Route::current()->parameter('info');
+   
+    $info=base64_decode($info);
+    $data= $arrayFormat=json_decode($info,true);
+    return $data;
+});
+// http://127.0.0.1:8000/test/response

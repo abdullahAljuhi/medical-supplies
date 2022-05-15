@@ -19,12 +19,12 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('pharmacy_id');
             $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('prodect');
-            $table->flaot('delever');
+            $table->string('prodects');
+            $table->decimal('delever');
             $table->string('address');
             $table->tinyInteger('status');
             $table->string('price');
-            $table->flaot('total');
+            $table->float('total');
             $table->timestamps();
         });
     }

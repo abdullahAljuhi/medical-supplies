@@ -16,23 +16,23 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-title">
+                    <div class="card-title" style="padding-bottom: 0">
                         <div class="row mb-2">
-                            <div class="col-md-4 col-sm-12 mb-2">
+                            <div class="col-md-4 col-sm-12 mb-1">
                                 <p class="fs-5 py-0 my-0  mx-3">رقم الطلب :
                                      {{ $order->id }}
                                 </p>
                             </div>
                             <div class="col-md-8 col-sm-12 mb-2" >
                                 <p class="fs-5 py-0 my-0  mx-3">  اسم المستخدم :
-                                    {{ $user->name }}
+                                    {{ $order->user['name'] }}
                                 </p>
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-md-4 col-sm-12 mb-2">
                                 <p class="fs-5 py-0 my-0  mx-3">    تاريخ الطلب :
-                                    {{ $order->created_at }}
+                                    {{ $order->created_at->diffForHumans() }}
                                 </p>
                             </div>
                             <div class="col-md-8 col-sm-12 mb-2">
@@ -43,17 +43,31 @@
                         </div>
                         <hr>
                     </div>
+                    
                     <div class="card-body">
                         <div class="tab-content">
+                            
                             <form method="post" action="{{ route('order.store',$order->id ) }}">
                                 @csrf
+                                <div class="row mb-2   fw-bold">
+                                    <div class="col-md-2 col-6 mb-2 ">
+                                        <label for="name" >اسم العلاج </label>
+                                    </div>
+                                     <div class="col-md-2 col-6 mb-2 border-1">
+                                        <label for="name" >الكمية</label>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 text-center">
+                                        <label for="name" >السعر</label>     
+                                     </div>
+                                </div>
+                                <hr>
                                 @foreach ($products as $product)
                                 <div class="row mb-2">
-                                    <div class="col-md-2 col-sm-12 mb-2 border-1">
-                                        <label for="name" >{{ $product }} </label>
+                                    <div class="col-md-2 col-6 mb-2 border-1">
+                                        <label for="name" >{{ $product['name'] }} </label>
                                     </div>
-                                     <div class="col-md-2 col-sm-12 mb-2 border-1">
-                                        <label for="name" >{{ $quantity }} </label>
+                                     <div class="col-md-2 col-6 mb-2 border-1">
+                                        <label for="name" >{{ $product['quantity'] }} </label>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <input type="text" name="prices[]" class="form-control col-6" id="name" required placeholder="يرجى ادخال سعر هذا المنتج">
@@ -66,7 +80,10 @@
                                     <div class="col-md-2 col-sm-12 mb-2 border-1">
                                         <label for="name" >سعر التوصيل</label>
                                     </div>
-                                    <div class="col-md-8 col-sm-12">
+                                    <div class="col-md-2 col-sm-12 mb-2 border-1">
+                                        
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
                                         <input type="text" name="delever" class="form-control w-100" id="name" required placeholder="يرجى ادخال سعر التوصيل ">
                                     </div>
                                 </div>

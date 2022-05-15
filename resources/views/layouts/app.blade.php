@@ -278,7 +278,7 @@
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#orders-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-gear"></i><span>اعدادات</span><i class="bi bi-chevron-down me-auto"></i>
+                <i class="bi bi-gear"></i><span>ادارة العنوان</span><i class="bi bi-chevron-down me-auto"></i>
             </a>
             <ul id="orders-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li class="px-4">
@@ -289,6 +289,33 @@
                 <li class="px-4">
                     <a href="{{ route('add-city') }}">
                         <i class="bi bi-circle"></i><span>ادارة المدن</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Charts Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#content-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-gear"></i><span>ادارة المحتوى </span><i class="bi bi-chevron-down me-auto"></i>
+            </a>
+            <ul id="content-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li class="px-4">
+                    <a href="{{ route('create-header')}}">
+                        <i class="bi bi-circle"></i><span>ادارة راس الصفحة</span>
+                    </a>
+                </li>
+                <li class="px-4">
+                    <a href="{{ route('create-servies') }}">
+                        <i class="bi bi-circle"></i><span>ادارة  الخدمات</span>
+                    </a>
+                </li>
+                <li class="px-4">
+                    <a href="{{ route('create-about') }}">
+                        <i class="bi bi-circle"></i><span>حولنا</span>
+                    </a>
+                </li>
+                <li class="px-4">
+                    <a href="{{ route('create-contact') }}">
+                        <i class="bi bi-circle"></i><span>التواصل</span>
                     </a>
                 </li>
             </ul>
