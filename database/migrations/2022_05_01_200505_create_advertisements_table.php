@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('end_date');
             $table->string('link');
             $table->boolean('is_active')->default(0);
+
             $table->timestamps();
         });
     }

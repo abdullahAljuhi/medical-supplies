@@ -3,16 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Http\Requests\StoreOrderRequest;
-use App\Http\Requests\UpdateOrderRequest;
+use App\Models\Pharmacy;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         try {
@@ -29,77 +25,45 @@ class OrderController extends Controller
             
         }
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(Pharmacy $pharmacy)
     {
-        return view('order.order');
+        return view('order.order',compact('pharmacy'));
+    }
+    public function send(Request $request)
+    {
+       // return $request['order_name'];
+        $address=$request['governorate'].' - '.$request['city'].' - '.$request['details'];
+        
+        $products=implode(',',$request['products']);
+        // return $products;
+      $order=new Order();
+      $order->products=$products;
+      $order->user_id=Auth::user()->id;
+      $order->address=$address;
+    $order->save();
+       
+        //return $order;
+
+        return view('order.orderMass');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreOrderRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreOrderRequest $request)
+    public function store(Request $request)
     {
+        
+        $address=$request['governorate'].' - '.$request['city'].' - '.$request['details'];
+        
+        $products=implode(',',$request['order_name']);
         $order= Order::create([
-            'prodect'=>$request['prodect'],
-            'address'=>$request['adress'],
+            'product'=>$products,
+            'address'=>$adress,
+            'price'=>$request['price'],
+            'status'=>$request['status'],
+            'total'=>$request['total'],
+            'delever'=>$request['delever'],
             'user_id' => Auth::id(),
             'pharmcy_id' => Pharmcy::id(),
         ]);
         $order->save();
-        return redirect()->route('order.orderMass');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order $order)
-    {
-        return view('order.show')->withOrder($order);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateOrderRequest  $request
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateOrderRequest $request, Order $order)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Order $order)
-    {
-        //
+        
     }
 }

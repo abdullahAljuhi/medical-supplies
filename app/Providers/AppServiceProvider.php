@@ -29,5 +29,5 @@ class AppServiceProvider extends ServiceProvider
         // $governorates = Governorate::all();
         // $cities = City::all();
         // View::share(['governorates'=> $governorates,'cities'=>$cities]);
-    }
+     }
 }

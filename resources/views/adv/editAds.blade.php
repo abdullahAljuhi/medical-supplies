@@ -32,7 +32,7 @@
                 <div class="col-md-6 col-sm-12">
                     <label for="image" class="form-label"> صورة الاعلان</label>
                     <input type="file" name="image" class="form-control" id="image" required value="{{ $advertisements->image }}">
-                    <div class="invalid-feedback">يرجى اسم الصيدلية </div>
+                    <div class="invalid-feedback">يرجى إدراج صورة للإعلان </div>
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <label for="strat_date" class="form-label"> تاريخ البداء</label>

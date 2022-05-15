@@ -16,10 +16,13 @@
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <link rel="stylesheet" href="{{ asset('css/viewAndList.css') }}">
-
-
+    
+    
+    
+    
+    
     <!-- Load fonts style after rendering the layout styles -->
-
+    
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -31,21 +34,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{ asset('assets/js/addinput.js') }}"></script>
-      <!--
-
-    TemplateMo 559 Zay Shop
-
-    https://templatemo.com/tm-559-zay-shop
-
--->
+    <!--
+        
+        TemplateMo 559 Zay Shop
+        
+        https://templatemo.com/tm-559-zay-shop
+        
+    -->
 </head>
 
 <body style="overflow-x: hidden">
-
-<!-- ======= Header ======= -->
-<header id="header" class="header fixed-top d-flex align-items-center position-absolute">
-
-    <!-- Main Logo -->
+    
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center position-absolute">
+        
+        <!-- Main Logo -->
     <div class="d-flex align-items-center justify-content-between">
         <a href="/" class="logo d-flex align-items-center">
             <img class="mx-4 h-100" src="{{ asset('assets/img/logo.png') }}" alt="">
@@ -58,7 +61,7 @@
     <nav class="header-nav w-100">
         <ul class="d-flex align-items-center flex-fill justify-content-center d-md-flex d-none">
             <li class="nav-item">
-                <a class="nav-link text-dark" href="{{ route('pharmacies') }}">{{ __('الصيدليات') }}</a>
+                <a class="nav-link text-dark" href="{{ route('morePharmacy') }}">{{ __('الصيدليات') }}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark" href="{{ route('partners') }}">{{ __('الشركاء') }}</a>
@@ -90,82 +93,82 @@
                     </li>
                 @endif
             @else
-            <!-- Notification Nav -->
-                <li class="nav-item dropdown">
+       <!-- Notification Nav -->
+       <li class="nav-item dropdown dropdown-notifications">
 
-                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-                        <i class="bi bi-bell"></i>
-                        <span class="badge bg-primary badge-number">4</span>
-                    </a><!-- End Notification Icon -->
+        <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-primary badge-number" data-count="4">4</span>
+        </a><!-- End Notification Icon -->
 
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                        <li class="dropdown-header">
-                            لديك 4 اشعارات جديدة
-                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">عرض الكل</span></a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <li class="dropdown-header">
+                لديك 4 اشعارات جديدة
+                <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">عرض الكل</span></a>
+            </li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
 
-                        <li class="notification-item">
-                            <i class="bi bi-exclamation-circle text-warning"></i>
-                            <div>
-                                <h4>محمد زبير</h4>
-                                <p>وصفة طبية مستعجلة</p>
-                                <p>منذ 30 دقيقة</p>
-                            </div>
-                        </li>
+            <li class="notification-item scrollable-container">
+                <i class="bi bi-exclamation-circle text-warning"></i>
+                <div>
+                    <h4>محمد زبير</h4>
+                    <p>وصفة طبية مستعجلة</p>
+                    <p>منذ 30 دقيقة</p>
+                </div>
+            </li>
 
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
 
-                        <li class="notification-item">
-                            <i class="bi bi-x-circle text-danger"></i>
-                            <div>
-                                <h4>محمد زبير</h4>
-                                <p>وصفة طبية مستعجلة</p>
-                                <p>منذ 30 دقيقة</p>
-                            </div>
-                        </li>
+            <li class="notification-item">
+                <i class="bi bi-x-circle text-danger"></i>
+                <div>
+                    <h4>محمد زبير</h4>
+                    <p>وصفة طبية مستعجلة</p>
+                    <p>منذ 30 دقيقة</p>
+                </div>
+            </li>
 
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
 
-                        <li class="notification-item">
-                            <i class="bi bi-check-circle text-success"></i>
-                            <div>
-                                <h4>محمد زبير</h4>
-                                <p>وصفة طبية مستعجلة</p>
-                                <p>منذ 30 دقيقة</p>
-                            </div>
-                        </li>
+            <li class="notification-item">
+                <i class="bi bi-check-circle text-success"></i>
+                <div>
+                    <h4>محمد زبير</h4>
+                    <p>وصفة طبية مستعجلة</p>
+                    <p>منذ 30 دقيقة</p>
+                </div>
+            </li>
 
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
 
-                        <li class="notification-item">
-                            <i class="bi bi-info-circle text-primary"></i>
-                            <div>
-                                <h4>محمد زبير</h4>
-                                <p>وصفة طبية مستعجلة</p>
-                                <p>منذ 30 دقيقة</p>
-                            </div>
-                        </li>
+            <li class="notification-item">
+                <i class="bi bi-info-circle text-primary"></i>
+                <div>
+                    <h4>محمد زبير</h4>
+                    <p>وصفة طبية مستعجلة</p>
+                    <p>منذ 30 دقيقة</p>
+                </div>
+            </li>
 
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li class="dropdown-footer">
-                            <a href="#">عرض جميع الاشعارات</a>
-                        </li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li class="dropdown-footer">
+                <a href="#">عرض جميع الاشعارات</a>
+            </li>
 
-                    </ul><!-- End Notification Dropdown Items -->
+        </ul><!-- End Notification Dropdown Items -->
 
-                </li>
-                <!-- End Notification Nav -->
+    </li>
+    <!-- End Notification Nav -->
 
                 <!-- Profile Nav -->
                 <li class="nav-item dropdown pe-3">
@@ -188,6 +191,7 @@
                             <hr class="dropdown-divider">
                         </li>
 
+                        @if(Auth::user()->profile)
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="{{ route('profile') }}">
                                 <i class="bi bi-person"></i>
@@ -197,13 +201,14 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-
+                        
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="{{ route('edit.profile') }}">
                                 <i class="bi bi-gear"></i>
                                 <span>اعدادات الحساب</span>
                             </a>
                         </li>
+                        @endif                         
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -380,6 +385,9 @@
 <script src="{{asset('js/templatemo.js ') }}"></script>
 <script src="{{asset('js/custom.js ') }}"></script>
 <script src="{{asset('js/viewAndList.js ') }}"></script>
+    {{-- pusher js --}}
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+
 <!-- End Script -->
 
 @yield('scripts')

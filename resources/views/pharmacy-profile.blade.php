@@ -24,7 +24,7 @@
                         @else
                         <img src="{{asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
                         @endif
-                       <h5 class="card-title fs-4 text-primary text-center">{{ $pharmacy->name }} </h5>
+                       <h5 class="card-title fs-4 text-primary text-center">{{ $pharmacy->pharmacy_name }} </h5>
                         <p class="card-text fs-5 text-secondary text-center w-100"><i class="bi bi-geo-alt  text-primary ms-1"></i> {{ $pharmacy->address[0]->governorate->name?? '' }} -  {{ $pharmacy->address[0]->city->name ??''}} </p>
                         <ul class="text-center footer-icons d-flex justify-content-center mb-0">
                             <li class="list-inline-item text-center">
@@ -36,14 +36,10 @@
                                    href="{{ $pharmacy->contact[0]->instagram ?? 'https://www.instagram.com'}}><i class="fab fa-instagram fa-lg fa-fw"></i></a>
                             </li>
                             <li class="list-inline-item  text-center">
-                                <a class=" text-decoration-none" target="_blank" href="{{ $pharmacy->contact[0]->instagram ?? 'https://twitter.com/'}}"><i
+                                <a class=" text-decoration-none" target="_blank" href="{{ $pharmacy->contact[0]->twitter ?? 'https://twitter.com/'}}"><i
                                         class="fab fa-twitter fa-lg fa-fw"></i></a>
                             </li>
-                            <li class="list-inline-item  text-center">
-                                <a class=" text-decoration-none" target="_blank"
-                                   href="{{ $pharmacy->contact[0]->instagram ?? 'https://www.linkedin.com/'}}"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
-                            </li>
-                           </ul>
+                        </ul>
                     </div>
 
                 </div>
@@ -75,7 +71,7 @@
 
 
                                 <!-- Profile Edit Form -->
-                                <form method="POST" action="{{ route('pharmacy.update',$pharmacy->id) }}" enctype="multipart/form-data">
+                                <form method="POST" action="{{ route('pharmacy.update') }}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row mb-3">
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">الصورة
@@ -103,8 +99,8 @@
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">اسم
                                             الكامل</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="name" type="text" class="form-control" id="fullName"
-                                                   value="{{ $pharmacy->name }}">
+                                            <input name="pharmacy_name" type="text" class="form-control" id="fullName"
+                                                   value="{{ $pharmacy->pharmacy_name }}">
                                         </div>
                                     </div>
 
