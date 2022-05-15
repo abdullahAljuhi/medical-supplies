@@ -21,7 +21,8 @@
                                     <h1 class="h1">علاجي كوم </h1>
 
                                     <p>
-                                        اطلب الذي تريد من اي مكان وفي اي وقت سوف نوفر عنك الذهاب االى الصيدلية وسوف نوفر لك العلاج في اسرع وقت وباسهل طريقة
+                                        اطلب الذي تريد من اي مكان وفي اي وقت سوف نوفر عنك الذهاب االى الصيدلية وسوف نوفر
+                                        لك العلاج في اسرع وقت وباسهل طريقة
                                     </p>
                                 </div>
                             </div>
@@ -39,7 +40,7 @@
                                     <h1 class="h1">خدمة دفع الالكتروني</h1>
 
                                     <p>
-                                        يوفر موقع علاجي كوم  خدمة الدفع الالكتروني التي سوف تسهل عليك الاجراءت االمالية
+                                        يوفر موقع علاجي كوم خدمة الدفع الالكتروني التي سوف تسهل عليك الاجراءت االمالية
                                     </p>
                                 </div>
                             </div>
@@ -56,7 +57,7 @@
                                 <div class="text-align-left">
                                     <h1 class="h1">خدمة توصيل</h1>
                                     <p>
-                                        يوفر موقع علاجي كوم  خدمة توصسيل الى المنازل والاماكن البعيدة
+                                        يوفر موقع علاجي كوم خدمة توصسيل الى المنازل والاماكن البعيدة
                                     </p>
                                 </div>
                             </div>
@@ -115,63 +116,65 @@
                 <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-0 g-sm-5 text-center jobs">
                     @foreach ($pharmacies as $pharmacy)
                         @break($loop->index > 5)
-                    <div class="col">
-                        <div class="card h-100 p-2">
-                            @if($pharmacy->image)
-                            <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}" alt="pharmacy"
-                                class="rounded-circle border p-1">
-                            @else
-                            <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus"
-                                alt="...">
-                            @endif
-                            <div class="card-body pb-0">
-                                <h5 class="card-title fs-4 text-primary "> {{ $pharmacy->pharmacy_name }}</h5>
+                        <div class="col">
+                            <div class="card h-100 p-2">
+                                @if($pharmacy->image)
+                                    <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}" alt="pharmacy"
+                                         class="rounded-circle border p-1">
+                                @else
+                                    <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus"
+                                         alt="...">
+                                @endif
+                                <div class="card-body pb-0">
+                                    <h5 class="card-title fs-4 text-primary "> {{ $pharmacy->pharmacy_name }}</h5>
 
-                                <p class="card-text fs-5 text-secondary text-center w-100"><i
-                                        class="bi bi-geo-alt  text-primary ms-1"></i>
-                                    {{ $pharmacy->address[0]->governorate->name?? '' }} - {{
+                                    <p class="card-text fs-5 text-secondary text-center w-100"><i
+                                            class="bi bi-geo-alt  text-primary ms-1"></i>
+                                        {{ $pharmacy->address[0]->governorate->name?? '' }} - {{
                                     $pharmacy->address[0]->city->name ??''}} </p>
 
-                                <ul class="text-center footer-icons d-flex justify-content-center mb-0">
-                                    <li class="list-inline-item text-center">
-                                        <a class="text-light text-decoration-none" target="_blank"
-                                            href="{{ $pharmacy->contact[0]->facebook ?? ''}}">
-                                            <i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
-                                    </li>
-                                    <li class="list-inline-item  text-center">
-                                        <a class="text-light text-decoration-none" target="_blank"
-                                            href="{{ $pharmacy->contact[0]->instagram ?? 'https://instagram.com/'}}"><i
-                                                class="fab fa-instagram fa-lg fa-fw"></i></a>
-                                    </li>
-                                    <li class="list-inline-item  text-center">
-                                        <a class="text-light text-decoration-none" target="_blank"
-                                            href="{{ $pharmacy->contact[0]->twitter ?? 'https://twitter.com/'}}"><i
-                                                class="fab fa-twitter fa-lg fa-fw"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="card-footer bg-white">
-                                <div class="my-2">
-                                    @guest
-                                    <a href="{{ route('login') }}" class="btn btn-outline-primary w-100"><span>طلب دواء
+                                    <ul class="text-center footer-icons d-flex justify-content-center mb-0">
+                                        <li class="list-inline-item text-center">
+                                            <a class="text-light text-decoration-none" target="_blank"
+                                               href="{{ $pharmacy->contact[0]->facebook ?? ''}}">
+                                                <i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                                        </li>
+                                        <li class="list-inline-item  text-center">
+                                            <a class="text-light text-decoration-none" target="_blank"
+                                               href="{{ $pharmacy->contact[0]->instagram ?? 'https://instagram.com/'}}"><i
+                                                    class="fab fa-instagram fa-lg fa-fw"></i></a>
+                                        </li>
+                                        <li class="list-inline-item  text-center">
+                                            <a class="text-light text-decoration-none" target="_blank"
+                                               href="{{ $pharmacy->contact[0]->twitter ?? 'https://twitter.com/'}}"><i
+                                                    class="fab fa-twitter fa-lg fa-fw"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-footer bg-white">
+                                    <div class="my-2">
+                                        @guest
+                                            <a href="{{ route('login') }}" class="btn btn-outline-primary w-100"><span>طلب دواء
                                     </span>
-                                    <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
-                                    @else
-                                    <a href="{{ route('order',$pharmacy->id) }}" class="btn btn-outline-primary w-100"><span>طلب دواء
+                                                <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
+                                        @else
+                                            <a href="{{ route('order',$pharmacy->id) }}"
+                                               class="btn btn-outline-primary w-100"><span>طلب دواء
                                     </span>
-                                    <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
-                                    @endguest                                        
+                                                <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
+                                        @endguest
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
 
 
                 </div>
             </div>
             <div class="row d-flex justify-content-center align-items-center mt-5">
-                <a href="{{ route('morePharmacy') }}" class="btn btn-outline-primary py-2 w-25 rounded fs-5">الاطلاع اكثر <i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+                <a href="{{ route('morePharmacy') }}" class="btn btn-outline-primary py-2 w-25 rounded fs-5">الاطلاع
+                    اكثر <i class="fa fa-arrow-left" aria-hidden="true"></i></a>
             </div>
         </div>
     </section>
@@ -246,7 +249,8 @@
 
                         <!--Carousel Wrapper-->
                         <div class="col">
-                            <div class="carousel slide carousel-multi-item pt-2 pt-md-0" id="templatemo-slide-brand" data-bs-ride="carousel">
+                            <div class="carousel slide carousel-multi-item pt-2 pt-md-0" id="templatemo-slide-brand"
+                                 data-bs-ride="carousel">
                                 <!--Slides-->
                                 <div class="carousel-inner product-links-wap" role="listbox">
 
@@ -254,16 +258,24 @@
                                     <div class="carousel-item active">
                                         <div class="row">
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="{{asset('img/brand1.jpg') }}" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img"
+                                                                 src="{{asset('img/brand1.jpg') }}"
+                                                                 alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="{{asset('img/brand2.jpg ') }}" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img"
+                                                                 src="{{asset('img/brand2.jpg ') }}"
+                                                                 alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="{{asset('img/brand3.jpg ') }}" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img"
+                                                                 src="{{asset('img/brand3.jpg ') }}"
+                                                                 alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="{{asset('img/brand4.jpg ') }}" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img"
+                                                                 src="{{asset('img/brand4.jpg ') }}"
+                                                                 alt="Brand Logo"></a>
                                             </div>
 
                                         </div>
@@ -274,16 +286,24 @@
                                     <div class="carousel-item">
                                         <div class="row">
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="{{asset('img/brand5.jpg') }}" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img"
+                                                                 src="{{asset('img/brand5.jpg') }}"
+                                                                 alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="{{asset('img/brand6.png ') }}" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img"
+                                                                 src="{{asset('img/brand6.png ') }}"
+                                                                 alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="{{asset('img/brand7.png ') }}" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img"
+                                                                 src="{{asset('img/brand7.png ') }}"
+                                                                 alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="{{asset('img/brand8.png') }}" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img"
+                                                                 src="{{asset('img/brand8.png') }}"
+                                                                 alt="Brand Logo"></a>
                                             </div>
                                         </div>
                                     </div>
@@ -337,31 +357,33 @@
 
 @endsection
 @section('scripts')
-<script>
-    var notificationsWrapper = $('.dropdown-notifications');
-    var notificationsToggle = notificationsWrapper.find('a[data-toggle]');
-    var notificationsCountElem = notificationsToggle.find('span[data-count]');
-    var notificationsCount = parseInt(notificationsCountElem.data('count'));
-    var notifications = notificationsWrapper.find('li.scrollable-container');
+    @auth()
+        <script>
+            var notificationsWrapper = $('.dropdown-notifications');
+            var notificationsToggle = notificationsWrapper.find('a[data-toggle]');
+            var notificationsCountElem = notificationsToggle.find('span[data-count]');
+            var notificationsCount = parseInt(notificationsCountElem.data('count'));
+            var notifications = notificationsWrapper.find('li.scrollable-container');
 
 
-    // Subscribe to the channel we specified in our Laravel Event
-    var channel = pusher.subscribe("order{{  Auth::user()-> id }}");
-    // Bind a function to a Event (the full Laravel class)
-  
-    channel.bind('App\\Events\\Messages', function(data) {
-    //   console.log(data.order.pharmacy_id);
-      var existingNotifications = notifications.html();
-      var newNotificationHtml = `
+            // Subscribe to the channel we specified in our Laravel Event
+            var channel = pusher.subscribe("order{{  Auth::user()-> id }}");
+            // Bind a function to a Event (the full Laravel class)
+
+            channel.bind('App\\Events\\Messages', function (data) {
+                //   console.log(data.order.pharmacy_id);
+                var existingNotifications = notifications.html();
+                var newNotificationHtml = `
       <form action="{{route('order.edit')}}" method="get">
   <input type="hidden" name='id' value="${data.order.id}">
   <button type="submit"> هناك طلب</button>
   </form>    `;
-      notifications.html(newNotificationHtml + existingNotifications);
-      notificationsCount += 1;
-      notificationsCountElem.attr('data-count', notificationsCount);
-      notificationsWrapper.find('.notify-count').text(notificationsCount);
-      notificationsWrapper.show();
-    });
-  </script>
+                notifications.html(newNotificationHtml + existingNotifications);
+                notificationsCount += 1;
+                notificationsCountElem.attr('data-count', notificationsCount);
+                notificationsWrapper.find('.notify-count').text(notificationsCount);
+                notificationsWrapper.show();
+            });
+        </script>
+    @endauth
 @endsection
