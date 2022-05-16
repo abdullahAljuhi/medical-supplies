@@ -160,6 +160,7 @@ class OrderController extends Controller
 
                 $total_price += $price * $products[$i]['quantity'];
             }
+            $total_price += $request->delivery;
 
              // convert array to json
             $products = json_encode($products, JSON_UNESCAPED_UNICODE);

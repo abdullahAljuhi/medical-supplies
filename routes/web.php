@@ -1,4 +1,5 @@
 <?php
+
 use GuzzleHttp\Middleware;
 use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +44,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     // change password
     Route::post('/changePassword', [UserController::class, 'changePassword'])->name('changePassword.user');
 
+    Route::get('orders', [UserController::class, 'orders'])->name('orders');
     // admin
     Route::group(['prefix' => 'dashboard', 'middleware' => 'checkType:admin'], function () {
 
@@ -81,13 +83,13 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         }); // end users
 
 
-           //crud advertisement
-           Route::group(['prefix'=>'advertisement'],function(){
-            Route::get('/index',[AdvertisementController::class,'index'])->name('show.adv');
-            Route::get('/edit/{id}',[AdvertisementController::class,'edit'])->name('edit.adv');
-            Route::post('/update/{id}',[AdvertisementController::class,'update'])->name('update.adv');
-            Route::post('/save',[AdvertisementController::class,'store'])->name('save.adv');
-            Route::get('/add',[AdvertisementController::class,'create'])->name('add.adv');
+        //crud advertisement
+        Route::group(['prefix' => 'advertisement'], function () {
+            Route::get('/index', [AdvertisementController::class, 'index'])->name('show.adv');
+            Route::get('/edit/{id}', [AdvertisementController::class, 'edit'])->name('edit.adv');
+            Route::post('/update/{id}', [AdvertisementController::class, 'update'])->name('update.adv');
+            Route::post('/save', [AdvertisementController::class, 'store'])->name('save.adv');
+            Route::get('/add', [AdvertisementController::class, 'create'])->name('add.adv');
             Route::get('/active/{id}', [AdvertisementController::class, 'active'])->name('active.adv');
 
         });
@@ -126,6 +128,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('/edit', [PharmacyController::class, 'edit'])->name('pharmacy.edit');
 
         Route::post('/update', [PharmacyController::class, 'update'])->name('pharmacy.update');
+
+        Route::get('/order/{id}', [PharmacyController::class, 'order'])->name('pharmacy.order');
     }); // pharmacy crud end
 
 
@@ -140,22 +144,18 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     });
 
 
-       //crud order
-            Route::group(['prefix'=>'order'],function(){
-                Route::post('/send',[OrderController::class,'send'])->name('send');
-                Route::get('/create/{pharmacy}',[OrderController::class,'create'])->name('order');
-                Route::get('/edit/{id?}',[OrderController::class,'edit'])->name('order.edit');
-                Route::get('/show',[OrderController::class,'show'])->name('bill');
-                Route::post('/update/{id}',[OrderController::class,'update'])->name('order.store');
-                Route::get('/bill/{id?}',[OrderController::class,'Bill'])->name('order.userBill');
-            });
-            Route::get('/orders', [UserController::class, 'orders'])->name('use.orders');
+    //crud order
+    Route::group(['prefix' => 'order'], function () {
+        Route::post('/send', [OrderController::class, 'send'])->name('send');
+        Route::get('/create/{pharmacy}', [OrderController::class, 'create'])->name('order');
+        Route::get('/edit/{id?}', [OrderController::class, 'edit'])->name('order.edit');
+        Route::get('/show', [OrderController::class, 'show'])->name('bill');
+        Route::post('/update/{id}', [OrderController::class, 'update'])->name('order.store');
+        Route::get('/bill/{id?}', [OrderController::class, 'Bill'])->name('order.userBill');
+    });
 
 
 });
-
-
-
 
 
 // });
@@ -188,11 +188,11 @@ Route::get('test', [PaymentController::class, 'index'])->name('test');
 Route::get('t/{id}', [PaymentController::class, 't']);
 
 
-Route::get('/test/response/{info}',function(){
+Route::get('/test/response/{info}', function () {
     $info = Route::current()->parameter('info');
 
-    $info=base64_decode($info);
-    $data= $arrayFormat=json_decode($info,true);
+    $info = base64_decode($info);
+    $data = $arrayFormat = json_decode($info, true);
     return $data;
 });
 // http://127.0.0.1:8000/test/responsetest
