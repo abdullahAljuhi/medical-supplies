@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\notfiy;
-use App\Helpers\Helper;
 use App\Models\City;
 use App\Models\User;
+use App\Models\Order;
+use App\Events\notfiy;
+use App\Helpers\Helper;
 use App\Models\Pharmacy;
 use App\Models\Governorate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\PharmacyRequest;
 use App\Notifications\ActivePharmacy;
-use Illuminate\Support\Facades\Notification;
+use App\Http\Requests\PharmacyRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Notification;
 
 class PharmacyController extends Controller
 {
@@ -250,7 +251,22 @@ class PharmacyController extends Controller
         }
     }
 
-    
+    // show order
+    public function order($id)
+    {
+        try {
+
+            $order = Order::find($id);
+
+            if ($order) {
+                return redirect()->back();
+            } else {
+                return view('order.list');
+            }
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
 
 
 }

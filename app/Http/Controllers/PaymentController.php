@@ -22,14 +22,16 @@ class PaymentController extends Controller
         $id = $request->id;
         $order = Order::with('pharmacy', 'user')->find($id);
         if (Auth::id() == $order->user_id && $order->status == 1) {
+            //  var_dump( $order->products);
+
             $products = json_decode($order->products, true);
 
             return $products;
             $data = [
                 "order_reference" => "123412",
-                "products" =>[ $products],
+                "products" =>$products,
                  "currency" => "YER",
-                "total_amount" => $order->total,
+                "total_amount" => $order->total_price,
                 "success_url" => "http://127.0.0.1:8000/test/response",
                 "cancel_url" => "http://127.0.0.1:8000/test/cancel",
                 "metadata" => [
@@ -66,23 +68,27 @@ class PaymentController extends Controller
 
             $response = curl_exec($curl);
             $err = curl_error($curl);
-
+        
             curl_close($curl);
-
+        
             if ($err) {
-                echo " Error #:" . $err;
+              echo " Error #:" . $err;
             } else {
-                //    print_r(json_decode($response,true));
-                $result = json_decode($response, true);
-                return $result;
-                $next_url = $result['invoice']['next_url'];
-                //    $next_url=substr_replace('//','/ ',$result['invoice']['next_url']);
-
-                return redirect($next_url);
-                //  echo $next_url;
-
-
+              echo $response;
             }
+            //     //    print_r(json_decode($response,true));
+            //     $result = json_decode($response, true);
+            //     return $result;
+            //     $next_url = $result['invoice']['next_url'];
+            //     //    $next_url=substr_replace('//','/ ',$result['invoice']['next_url']);
+
+            //     return redirect($next_url);
+            //     //  echo $next_url;
+
+
+            // }
         }
     }
+
+
 }

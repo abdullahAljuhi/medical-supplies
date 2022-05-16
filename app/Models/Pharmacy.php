@@ -46,6 +46,9 @@ class Pharmacy extends Model
     public function user(){
         return $this->belongsTo(User::class,'user_id');
     }
+    public function governorate(){
+        return $this -> hasMany('App\Models\Doctor','hospital_id','id');
+    }
 
     // public function getIsActiveAttribute($value)
     // {
