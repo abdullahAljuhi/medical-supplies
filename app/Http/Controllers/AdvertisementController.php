@@ -21,17 +21,11 @@ class AdvertisementController extends Controller
     {
         try {
             $advertisements= Advertisement::all();
-            // if(empty($adv))
-            // {
-            //     return redirect()->route('adv.add');
-            // }else{
-            //     //if()
-            // }
-            // return $advertisements;
+
             return view('adv.ads',['advertisements'=>$advertisements]);
 
         } catch (\Throwable $th) {
-            //throw $th;
+            throw $th;
         }
 
 
@@ -63,8 +57,7 @@ class AdvertisementController extends Controller
     public function store(Request $request)
     {
         try {
-            // return $request;
-            // start transaction
+           
             $fileName = '';
             if ($request->has('image')) {
                 if($fileName != null){

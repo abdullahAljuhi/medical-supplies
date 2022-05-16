@@ -19,8 +19,6 @@
 
 
 
-
-
     <!-- Load fonts style after rendering the layout styles -->
 
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
@@ -31,15 +29,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!--  google font  -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
+          rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{ asset('assets/js/addinput.js') }}"></script>
     <!--
-        
+
         TemplateMo 559 Zay Shop
-        
+
         https://templatemo.com/tm-559-zay-shop
-        
+
     -->
 </head>
 
@@ -79,6 +78,7 @@
         <nav class="header-nav d-sm-block d-none">
             <ul class="d-flex align-items-center">
                 @guest
+
                 @if (Route::has('register'))
                 <li class="nav-item">
                     <a class="nav-link text-primary mx-2 text-nowrap py-1" href="{{ route('register') }}">{{ __('انشاء حساب') }}</a>
@@ -90,6 +90,7 @@
                     <a class="nav-link btn btn-outline-primary mx-2 text-nowrap py-1" href="{{ route('login') }}">{{ __('تسجيل الدخول') }}</a>
                 </li>
                 @endif
+
                 @else
                 <!-- Notification Nav -->
                 <li class="nav-item dropdown dropdown-notifications">
@@ -115,9 +116,11 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         @if(isset(Auth::user()->profile->image))
-                        <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile" class="rounded-circle border p-1">
+                            <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile"
+                                 class="rounded-circle border p-1">
                         @else
-                        <img src="{{asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
+                            <img src="{{asset('assets/img/user.png') }}" alt="Profile"
+                                 class="rounded-circle border p-1">
                         @endif
                     </a><!-- End Profile Iamge Icon -->
 
@@ -131,23 +134,33 @@
                             <hr class="dropdown-divider">
                         </li>
 
-                        @if(Auth::user()->profile)
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{{ route('profile') }}">
-                                <i class="bi bi-person"></i>
-                                <span>الملف الشخصي</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{{ route('edit.profile') }}">
-                                <i class="bi bi-gear"></i>
-                                <span>اعدادات الحساب</span>
-                            </a>
-                        </li>
+                        @if(Auth::user()->profile || Auth::user()->pharmacy)
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route('home') }}">
+                                    <i class="bi bi-grid"></i>
+                                    <span>لوحة التحكم</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route('profile') }}">
+                                    <i class="bi bi-person"></i>
+                                    <span>الملف الشخصي</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route('edit.profile') }}">
+                                    <i class="bi bi-gear"></i>
+                                    <span>اعدادات الحساب</span>
+                                </a>
+                            </li>
+
                         @endif
                         <li>
                             <hr class="dropdown-divider">
@@ -210,7 +223,10 @@
                 </ul>
             </div>
         </div>
-    </header>
+    </div>
+</header>
+{{--<div id="spliter" class="py-5"></div>--}}
+
 
 
     <!-- End Header -->

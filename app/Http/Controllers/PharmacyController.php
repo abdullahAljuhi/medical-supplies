@@ -82,7 +82,7 @@ class PharmacyController extends Controller
             $fileName = "";
 
             if ($request->has('license')) {
-
+                //  store licenses in public/images/pharmacies/licenses
                 $fileName = $this->uploadImage('licenses', $request->license);
             }
 
@@ -249,6 +249,8 @@ class PharmacyController extends Controller
             //throw $th;
         }
     }
+
+    
 
 
 }

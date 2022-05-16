@@ -25,14 +25,14 @@
                             </div> 
                             <div class="col-md-8 col-sm-12 mb-2" >
                                 <p class="fs-5 py-0 my-0  mx-3">  اسم المستخدم :
-                                    {{ $user->name }}
+                                    {{ $order->user['name'] }}
                                 </p>
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-md-4 col-sm-12 mb-2">
                                 <p class="fs-5 py-0 my-0  mx-3">    تاريخ الطلب :
-                                    {{ $order->created_at }}
+                                    {{ $order->created_at->diffForHumans() }}
                                 </p>
                             </div>
                             <div class="col-md-8 col-sm-12 mb-2">
@@ -50,7 +50,13 @@
                                 @foreach ($products as $product)
                                 <div class="row mb-2">
                                     <div class="col-md-2 col-sm-12 mb-2 border-1">
-                                        <label for="name" >{{ $product }} </label>
+                                        @if($order->type == 1)
+                                            <img src="{{asset('assets/images/orders/'.$product['product_name'])}}" alt="" srcset="">
+                                        @else
+                                        <label for="name" >{{ $product['product_name'] }} </label>
+                                        @endif
+                                        
+                                        <label for="name" >{{ $product['quantity'] }} </label>
                                     </div>
                                     <div class="col-md-8 col-sm-12">
                                         <input type="text" name="prices[]" class="form-control col-6" id="name" required placeholder="يرجى ادخال سعر هذا المنتج">
@@ -64,7 +70,7 @@
                                         <label for="name" >سعر التوصيل</label>
                                     </div>
                                     <div class="col-md-8 col-sm-12">
-                                        <input type="text" name="delever" class="form-control w-100" id="name" required placeholder="يرجى ادخال سعر التوصيل ">
+                                        <input type="text" name="delivery" class="form-control w-100" id="name" required placeholder="يرجى ادخال سعر التوصيل ">
                                     </div>
                                 </div>
                                 <hr>

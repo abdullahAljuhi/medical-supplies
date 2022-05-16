@@ -12,7 +12,7 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
+    <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -54,7 +54,7 @@
             <span class="d-none d-lg-block">علاجي كوم</span>
         </a>
         @auth
-        <i class="bi bi-list toggle-sidebar-btn"></i>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
         @endauth
     </div>
     <!-- End Logo -->
@@ -76,7 +76,7 @@
                     </li>
                 @endif
             @else
-                <!-- Notification Nav -->
+            <!-- Notification Nav -->
                 <li class="nav-item dropdown dropdown-notifications">
 
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
@@ -100,63 +100,21 @@
 
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                         <i class="bi bi-chat-left-text"></i>
-                        <span class="badge bg-success badge-number">3</span>
+                        <span class="badge bg-success badge-number">0</span>
                     </a><!-- End Messages Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
                         <li class="dropdown-header">
-                            لديك 3 رسائل جديدة
-                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">عرض الجميع</span></a>
+                            ليس لديك اي رسائل جديدة
+{{--                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">عرض الجميع</span></a>--}}
                         </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+{{--                        <li>--}}
+{{--                            <hr class="dropdown-divider">--}}
+{{--                        </li>--}}
 
-                        <li class="message-item">
-                            <a href="#">
-                                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
-                                <div>
-                                    <h4>ناصر الغيثي</h4>
-                                    <p>ممكن دواء بديل للصداع</p>
-                                    <p>منذ 4 ساعات</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="message-item">
-                            <a href="#">
-                                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
-                                <div>
-                                    <h4>ناصر الغيثي</h4>
-                                    <p>ممكن دواء بديل للصداع</p>
-                                    <p>منذ 4 ساعات</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="message-item">
-                            <a href="#">
-                                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-                                <div>
-                                    <h4>ناصر الغيثي</h4>
-                                    <p>ممكن دواء بديل للصداع</p>
-                                    <p>منذ 4 ساعات</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="#">عرض جميع الرسائل</a>
-                        </li>
+{{--                        <li class="dropdown-footer">--}}
+{{--                            <a href="#">عرض جميع الرسائل</a>--}}
+{{--                        </li>--}}
 
                     </ul><!-- End Messages Dropdown Items -->
 
@@ -168,9 +126,11 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         @if(isset(Auth::user()->profile->image))
-                        <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile" class="rounded-circle border p-1">
+                            <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile"
+                                 class="rounded-circle border p-1">
                         @else
-                        <img src="{{asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
+                            <img src="{{asset('assets/img/user.png') }}" alt="Profile"
+                                 class="rounded-circle border p-1">
                         @endif
                     </a><!-- End Profile Iamge Icon -->
 
@@ -182,6 +142,13 @@
                         </li>
                         <li>
                             <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('home') }}">
+                                <i class="bi bi-grid"></i>
+                                <span>لوحة التحكم</span>
+                            </a>
                         </li>
 
                         <li>
@@ -228,7 +195,7 @@
                     </ul><!-- End Profile Dropdown Items -->
                 </li>
                 <!-- End Profile Nav -->
-        @endguest
+            @endguest
 
         </ul>
     </nav>
@@ -238,73 +205,98 @@
 <!-- End Header -->
 
 @auth
-<!-- ======= Sidebar ======= -->
-<aside id="sidebar" class="sidebar">
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
 
-    <ul class="sidebar-nav" id="sidebar-nav">
+        <ul class="sidebar-nav" id="sidebar-nav">
 
-        <li class="nav-item">
-            <a class="nav-link " href="{{ route('dashboard') }}">
-                <i class="bi bi-grid"></i>
-                <span>لوحة التحكم</span>
-            </a>
-        </li><!-- End Dashboard Nav -->
+            <li class="nav-item">
+                <a class="nav-link " href="{{ route('home') }}">
+                    <i class="bi bi-grid"></i>
+                    <span>لوحة التحكم</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('admin.pharmacies.all') }}">
-                <i class="bi bi-flower1"></i>
-                <span>الصيدليات</span>
-            </a>
-        </li><!-- End Users Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('admin.users.index') }}">
-                <i class="bi bi-person"></i>
-                <span>المستخدمين</span>
-            </a>
-        </li><!-- End Users Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#">
-                <i class="bi bi-cash"></i><span>الدفع</span>
-            </a>
-        </li><!-- End Charts Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('show.adv') }}">
-                <i class="bi bi-gem"></i><span>اعلانات</span></i>
-            </a>
-        </li><!-- End Icons Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#orders-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-gear"></i><span>اعدادات</span><i class="bi bi-chevron-down me-auto"></i>
-            </a>
-            <ul id="orders-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li class="px-4">
-                    <a href="{{ route('add-state') }}">
-                        <i class="bi bi-circle"></i><span>ادارة المحافظات</span>
+            @if(Auth::user()->type == 1)
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="{{ route('admin.pharmacies.all') }}">
+                        <i class="bi bi-flower1"></i>
+                        <span>الصيدليات</span>
                     </a>
-                </li>
-                <li class="px-4">
-                    <a href="{{ route('add-city') }}">
-                        <i class="bi bi-circle"></i><span>ادارة المدن</span>
+                </li><!-- End Users Nav -->
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="{{ route('admin.users.index') }}">
+                        <i class="bi bi-person"></i>
+                        <span>المستخدمين</span>
                     </a>
-                </li>
-            </ul>
-        </li><!-- End Charts Nav -->
+                </li><!-- End Users Nav -->
 
-    </ul>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#">
+                        <i class="bi bi-cash"></i><span>الدفع</span>
+                    </a>
+                </li><!-- End Charts Nav -->
 
-</aside>
-<!-- End Sidebar-->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#">
+                        <i class="bi bi-gem"></i><span>اعلانات</span></i>
+                    </a>
+                </li><!-- End Icons Nav -->
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#orders-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-gear"></i><span>اعدادات</span><i class="bi bi-chevron-down me-auto"></i>
+                    </a>
+                    <ul id="orders-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li class="px-4">
+                            <a href="{{ route('add-state') }}">
+                                <i class="bi bi-circle"></i><span>ادارة المحافظات</span>
+                            </a>
+                        </li>
+                        <li class="px-4">
+                            <a href="{{ route('add-city') }}">
+                                <i class="bi bi-circle"></i><span>ادارة المدن</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li><!-- End Charts Nav -->
+            @endif
+
+            @if(Auth::user()->type == 2)
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#">
+                        <i class="bi bi-cart"></i>
+                        <span>جميع الطلبات</span>
+                    </a>
+                </li><!-- End Users Nav -->
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#">
+                        <i class="bi bi-flower1"></i>
+                        <span>الطلبات الجديدة</span>
+                    </a>
+                </li><!-- End Users Nav -->
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#">
+                        <i class="bi bi-bell"></i>
+                        <span>الاشعارات</span>
+                    </a>
+                </li><!-- End Users Nav -->
+            @endif
+
+        </ul>
+
+    </aside>
+    <!-- End Sidebar-->
 @endauth
 
 <main id="main" class="main">
-<div class="alert alert-success" style="display: none" role="alert" id=pharmcy>
+    <div class="alert alert-success" style="display: none" role="alert" id=pharmcy>
 
-        </div>
-@yield('content')
+    </div>
+    @yield('content')
 </main>
 
 <!-- ======= Footer ======= -->
