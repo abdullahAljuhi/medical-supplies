@@ -132,6 +132,7 @@ class UserController extends Controller
             if($user->type == 2){
 
                 $orders = Order::where('pharmacy_id',$user->pharmacy->id)->get();
+                return view('order.index',compact('orders'));
 
             // if user is admin
             }else if($user->type == 1){

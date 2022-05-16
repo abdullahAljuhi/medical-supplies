@@ -265,7 +265,7 @@
 
             @if(Auth::user()->type == 2)
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="{{ route('pharmacy.orders') }}">
+                    <a class="nav-link collapsed" href="{{ route('orders') }}">
                         <i class="bi bi-cart"></i>
                         <span>جميع الطلبات</span>
                     </a>
