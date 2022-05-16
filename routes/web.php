@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\MedicalController;
 use App\Http\Controllers\PharmacyController;
 use App\Http\Controllers\dashboardController;

@@ -15,7 +15,20 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $service = Service::where('pharmacy_id',Pharmacy::id())->first();
+
+            if(empty($service)) {
+                return redirect()->route('service.create');
+            } else {
+                return view('service.list');
+               
+            }
+
+        } catch (\Exception $e) {
+            return $e->getMessage();
+            
+        }
     }
 
     /**
@@ -25,7 +38,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view('service.serviceg');
+        return view('service.service');
     }
 
     /**
@@ -39,7 +52,6 @@ class ServiceController extends Controller
         try {
 
             // start transaction
-            DB::beginTransaction();
 
             $fileName = "";
 

@@ -10,8 +10,6 @@ class Header extends Model
     use HasFactory;
 
     protected $fillable = [
-        'titel',
         'image',
-        'description',
     ];
 }

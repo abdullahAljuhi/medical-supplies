@@ -25,9 +25,7 @@ class HeaderRequest extends FormRequest
     {
         return [
             
-                'titel'=>'required',
-                'image'=>'required|image',
-                'description'=>'required|max:255',
+            'image'=>'required|image',
             
         ];
     }
@@ -35,12 +33,9 @@ class HeaderRequest extends FormRequest
     public function messages()
     {
         return [
-            'titel.required'=>'يجب إضافة عنوان',
             'image.required'=>'يجب إدراج صورة',
             'image.image'=>'تأكد من صيغة الملف',
-            'description.required'=>'أضف وصف للمحتوى',
-            'description.max:255'=>'عدد الأحرف أكبر من المسموح بة',
-
+            
         ];
     }
 }

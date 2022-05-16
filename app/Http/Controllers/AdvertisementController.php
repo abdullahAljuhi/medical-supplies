@@ -53,6 +53,8 @@ class AdvertisementController extends Controller
     public function store(Request $request)
     {
         try {
+
+            
             
             // start transaction
             $fileName = "";
@@ -67,19 +69,20 @@ class AdvertisementController extends Controller
             }
             
             // create advertisement
-        $advertisement = Advertisement::create([
+        $advertisements = Advertisement::create([
             'start_date' => $request['start_date'],
             'end_date' => $request['end_date'],
             'image' => $fileName,
             'link' => $request['link'],
         ]);
-            $advertisement->save();
+            $advertisements->save();
             return redirect()->route('show.adv');
+        
         } catch (\Exception $ex) {
             return $ex->getMessage();
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
-        
+
 
     }
 
@@ -120,10 +123,10 @@ class AdvertisementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $advertisement= Advertisement::findOrFail($id);
+        $advertisements= Advertisement::findOrFail($id);
         try {
 
-            $fileName = $advertisement->image;
+            $fileName = $advertisements->image;
 
 
             if ($request->has('image')) {

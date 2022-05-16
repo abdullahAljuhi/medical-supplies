@@ -18,8 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('pharmacy_id');
             $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onUpdate('cascade')->onDelete('cascade');
             $table->string('image');
-            $table->string('description');
-            $table->string('tital');
             $table->timestamps();
         });
     }
