@@ -41,63 +41,25 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">اسم العميل</th>
-                    <th scope="col">عدد الطلبات</th>
+                    <th scope="col">عدد المنتجات</th>
                     <th scope="col">العنوان</th>
                     <th scope="col">تاريخ الطلب</th>
                     <th scope="col">الحالة</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr style='cursor: pointer; cursor: hand;'
-                    onclick="window.location='';">
-                    <th scope="row"><a href="#">#12</a></th>
-                    <td>عبدالله عمر باعبود</td>
-                    <td>5</td>
-                    <td><a href="#" class="text-dark">حضرموت المكلا فوه</a></td>
-                    <td>2020/05/12</td>
-                    <td><span class="badge bg-success fs-6">مقبول</span>
-                    </td>
-                </tr>
-                <tr style='cursor: pointer; cursor: hand;'
-                    onclick="window.location='';">
-                    <th scope="row"><a href="#">#13</a></th>
-                    <td>عبدالله عمر باعبود</td>
-                    <td>5</td>
-                    <td><a href="#" class="text-dark">حضرموت المكلا فوه</a></td>
-                    <td>2020/05/12</td>
-                    <td><span class="badge bg-danger fs-6">مرفوض</span>
-                    </td>
-                </tr>
-                <tr style='cursor: pointer; cursor: hand;'
-                    onclick="window.location='';">
-                    <th scope="row"><a href="#">#13</a></th>
-                    <td>عبدالله عمر باعبود</td>
-                    <td>5</td>
-                    <td><a href="#" class="text-dark">حضرموت المكلا فوه</a></td>
-                    <td>2020/05/12</td>
-                    <td><span class="badge bg-secondary fs-6">غير متوفر</span>
-                    </td>
-                </tr>
-                <tr style='cursor: pointer; cursor: hand;'
-                    onclick="window.location='';">
-                    <th scope="row"><a href="#">#13</a></th>
-                    <td>عبدالله عمر باعبود</td>
-                    <td>5</td>
-                    <td><a href="#" class="text-dark">حضرموت المكلا فوه</a></td>
-                    <td>2020/05/12</td>
-                    <td><span class="badge bg-primary fs-6">جديد</span>
-                    </td>
-                </tr>
-                <tr style='cursor: pointer; cursor: hand;'
-                    onclick="window.location='';">
-                    <th scope="row"><a href="#">#13</a></th>
-                    <td>عبدالله عمر باعبود</td>
-                    <td>5</td>
-                    <td><a href="#" class="text-dark">حضرموت المكلا فوه</a></td>
-                    <td>2020/05/12</td>
-                    <td><span class="badge bg-warning fs-6">قيد الانتظار</span>
-                    </td>
-                </tr>
+                @foreach($orders as $order)
+                    <tr style='cursor: pointer; cursor: hand;'
+                        onclick="window.location='';">
+                        <th scope="row"><a href="#">{{ $order->id }}</a></th>
+                        <td>{{ $order->user['name'] }}</td>
+                        <td>{{ count(json_decode($order->products)) }}</td>
+                        <td><a href="#" class="text-dark">{{ $order->address }}</a></td>
+                        <td>{{ \Carbon\Carbon::parse($order->created_at)->diffForHumans() }}</td>
+                        <td><span class="badge bg-primary fs-6">جديد</span>
+                        </td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
 

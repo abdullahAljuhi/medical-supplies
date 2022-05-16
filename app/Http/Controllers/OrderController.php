@@ -49,7 +49,7 @@ class OrderController extends Controller
 
 
     // this show page that pharmacy can add price
-    
+
     public function edit(Request $request, $id = '')
     {
 
@@ -57,7 +57,7 @@ class OrderController extends Controller
             //code...
             $order = Order::with('pharmacy','user')->find($request->id);
 
-            // check if the pharmacy auth is has the order 
+            // check if the pharmacy auth is has the order
             if($order->pharmacy->user_id==Auth::id()){
 
                 // convert json to array
@@ -66,7 +66,7 @@ class OrderController extends Controller
                 return view('order.product', compact('order','products'));
             }
             return redirect()->back();
-         
+
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -79,12 +79,12 @@ class OrderController extends Controller
     public function send(Request $request)
     {
         try {
-        
+
             $address = $request['governorate'] . ' - ' . $request['city'] . ' - ' . $request['details'];
             $type=0;
             $products = [];
             if($request->type==1){
-                
+
                 // check if request has file image
             if ($request->hasFile('images')) {
                 $type=1;
@@ -117,10 +117,9 @@ class OrderController extends Controller
             $order->type = $type;
             $order->pharmacy_id = $request->pharmacy;
             $order->save();
-            
-            // send notification for pharmacy 
+
+            // send notification for pharmacy
             event(new Messages($order, $request->pharmacy));
-            return $order;
 
             return view('order.orderMass');
 
@@ -140,7 +139,7 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
         try {
-           
+
 
             $order = Order::find($id);
 
@@ -159,7 +158,7 @@ class OrderController extends Controller
 
                 $total_price += $price * $products[$i]['quantity'];
             }
-            
+
              // convert array to json
             $products = json_encode($products, JSON_UNESCAPED_UNICODE);
 
@@ -170,7 +169,7 @@ class OrderController extends Controller
                 'status' => '1',
             ]);
 
-            // send notification for user who send order 
+            // send notification for user who send order
             event(new Messages($order, $order->user_id));
 
         } catch (\Throwable $th) {
@@ -182,7 +181,7 @@ class OrderController extends Controller
     public function Bill(Request $request)
     {
         try {
-            
+
             $id = $request->id;
 
             $order = Order::with('pharmacy', 'user')->find($id);

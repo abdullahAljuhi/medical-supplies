@@ -30,7 +30,7 @@ class PharmacyController extends Controller
         try {
             $pharmacy = Pharmacy::where('user_id', Auth::id())->first();
 
-            if(empty($pharmacy)) {
+            if (empty($pharmacy)) {
                 return redirect()->route('pharmacy.create');
             } else {
                 if ($pharmacy->is_active == '1') {
@@ -43,7 +43,7 @@ class PharmacyController extends Controller
 
         } catch (\Exception $e) {
             return $e->getMessage();
-            
+
         }
     }
 
@@ -66,7 +66,7 @@ class PharmacyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorePharmacyRequest  $request
+     * @param \App\Http\Requests\StorePharmacyRequest $request
      * @return \Illuminate\Http\Response
      */
     // PharmacyRequest
@@ -99,7 +99,6 @@ class PharmacyController extends Controller
             ]);
 
 
-
             // add address to pharmacy
             $address = $pharmacy->address()->create([
                 'city_id' => $request['city'],
@@ -123,7 +122,7 @@ class PharmacyController extends Controller
         } catch (\Exception $ex) {
 
 
-            // 
+            //
             DB::rollback();
             return $ex->getMessage();
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
@@ -135,16 +134,16 @@ class PharmacyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Pharmacy  $pharmacy
+     * @param \App\Models\Pharmacy $pharmacy
      * @return \Illuminate\Http\Response
      */
     // Pharmacy $pharmacy
     public function edit()
     {
-        $pharmacy = Pharmacy::where('user_id','=',Auth::user()->id)->first();
+        $pharmacy = Pharmacy::where('user_id', '=', Auth::user()->id)->first();
         try {
             if ($pharmacy == '') {
-                return $pharmacy ;
+                return $pharmacy;
             }
             return view('pharmacy-profile')->withPharmacy($pharmacy);
 
@@ -156,8 +155,8 @@ class PharmacyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePharmacyRequest  $request
-     * @param  \App\Models\Pharmacy  $pharmacy
+     * @param \App\Http\Requests\UpdatePharmacyRequest $request
+     * @param \App\Models\Pharmacy $pharmacy
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
@@ -167,16 +166,16 @@ class PharmacyController extends Controller
 
         try {
 
-            $pharmacy=Pharmacy::where('user_id',Auth::user()->id)->first();
-            
+            $pharmacy = Pharmacy::where('user_id', Auth::user()->id)->first();
+
             // start transaction
             DB::beginTransaction();
 
             $fileName = $pharmacy->image;
 
             if ($request->has('image')) {
-                if($fileName != null){
-                    $fileName = public_path('assets/images/pharmacies/'.$fileName);
+                if ($fileName != null) {
+                    $fileName = public_path('assets/images/pharmacies/' . $fileName);
                     unlink(realpath($fileName));
                 }
 
@@ -192,7 +191,7 @@ class PharmacyController extends Controller
                 'fax' => $request['fax'],
                 'description' => $request['description'],
             ]);
-            
+
             // add address to pharmacy
             $address = $pharmacy->address()->update([
                 'city_id' => $request['city'],
@@ -200,13 +199,13 @@ class PharmacyController extends Controller
                 'street' => $request['street'],
                 'details' => $request['details'],
             ]);
-            
+
             $address = $pharmacy->contact()->updateOrCreate([
                 'twitter' => $request['twitter'],
                 'facebook' => $request['facebook'],
                 'instagram' => $request['instagram'],
             ]);
-            
+
             if ($request->has('lat')) {
 
                 $address->lat = $request['lat'];
@@ -230,7 +229,7 @@ class PharmacyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Pharmacy  $pharmacy
+     * @param \App\Models\Pharmacy $pharmacy
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -239,7 +238,7 @@ class PharmacyController extends Controller
             $pharmacy = Pharmacy::findOrFail($id);
             if ($pharmacy->image !== '') { // check if pharmacy has image
                 // remove image
-                $fileName=public_path('assets/images/pharmacies/'.$pharmacy->image);
+                $fileName = public_path('assets/images/pharmacies/' . $pharmacy->image);
                 unlink(realpath($fileName));
             }
 
@@ -250,7 +249,20 @@ class PharmacyController extends Controller
         }
     }
 
-    
+    public function orders()
+    {
+        try {
+            $orders = app('App\Http\Controllers\UserController')->orders();
+            return view('order.index',compact('orders'));
+        } catch (\Exception $ex) {
+
+            // return  insert date
+
+            DB::rollback();
+            return $ex->getMessage();
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
+    }
 
 
 }

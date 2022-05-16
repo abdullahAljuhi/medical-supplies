@@ -120,6 +120,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('/edit', [PharmacyController::class, 'edit'])->name('pharmacy.edit');
 
         Route::post('/update', [PharmacyController::class, 'update'])->name('pharmacy.update');
+
+        Route::get('/orders', [PharmacyController::class, 'orders'])->name('pharmacy.orders');
     }); // pharmacy crud end
 
 
@@ -142,7 +144,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                 Route::get('/show',[OrderController::class,'show'])->name('bill');
                 Route::post('/update/{id}',[OrderController::class,'update'])->name('order.store');
                 Route::get('/bill/{id?}',[OrderController::class,'Bill'])->name('order.userBill');
-            });  
+            });
             Route::get('/orders', [UserController::class, 'orders'])->name('use.orders');
 
 
@@ -184,7 +186,7 @@ Route::get('t/{id}', [PaymentController::class, 't']);
 
 Route::get('/test/response/{info}',function(){
     $info = Route::current()->parameter('info');
-   
+
     $info=base64_decode($info);
     $data= $arrayFormat=json_decode($info,true);
     return $data;

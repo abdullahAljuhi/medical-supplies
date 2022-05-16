@@ -1,6 +1,6 @@
 @extends("layouts.main")
 @section('content')
-    <section class="mt-5 py-3 min-vh-100">
+    <section class="mt-5 py-3 min-vh-100 px-2">
         <div class="container  my-3 bg-white shadow">
             <div class="row py-3  px-1">
                 <div class="col-md-1 col-sm-2 links  ">
@@ -91,12 +91,16 @@
                                     <i class="bi bi-map   text-primary ms-3"></i>
                                     <span> {{ $pharmacy->street?? '' }}</span>
                                 </div>
-                                <div
-                                    class="col-md-2 mb-2 mb-md-0 text-center d-flex justify-content-center fw-bold align-self-center">
-                                    <a href="" class="btn btn-outline-primary px-4">
-                                        <span style="font-size: 18px">طلب </span>
-                                        <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i>
-                                    </a>
+                                <div class="col-md-2 mb-2 mb-md-0 text-center d-flex justify-content-center fw-bold align-self-center">
+                                    @guest
+                                        <a href="{{ route('login') }}"
+                                           class="btn btn-outline-primary"><span>طلب دواء</span>
+                                            <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
+                                    @else
+                                        <a href="{{ route('order',$pharmacy->id) }}"
+                                           class="btn btn-outline-primary"><span>طلب دواء</span>
+                                            <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
+                                    @endguest
                                 </div>
                             </div>
                         @endforeach
@@ -106,14 +110,15 @@
 
                 <div class="view_wrap grid-view " style="display: none;">
                     <div class="card-group justify-content-center">
-                        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-5 text-center jobs justify-content-center">
+                        <div
+                            class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-0 g-sm-5 text-center jobs justify-content-center w-100">
                             @foreach ($pharmacies as $pharmacy)
                                 <div class="col">
                                     <div class="card h-100 p-2">
                                         @if($pharmacy->image)
                                             <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}"
                                                  alt="pharmacy"
-                                                 class="border-bottom p-md-5">
+                                                 class="border-bottom p-4">
                                         @else
                                             <img src="{{asset('img/phramacy1.png') }}"
                                                  class="card-img-top py-5 img-card-cus"
@@ -147,9 +152,15 @@
                                         </div>
                                         <div class="card-footer bg-white">
                                             <div class="my-2">
-                                                <a href="job-details.html" class="btn btn-outline-primary w-100"><span>طلب دواء
-                                            </span>
-                                                    <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
+                                                @guest
+                                                    <a href="{{ route('login') }}"
+                                                       class="btn btn-outline-primary w-100"><span>طلب دواء</span>
+                                                        <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
+                                                @else
+                                                    <a href="{{ route('order',$pharmacy->id) }}"
+                                                       class="btn btn-outline-primary w-100"><span>طلب دواء</span>
+                                                        <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
+                                                @endguest
                                             </div>
                                         </div>
                                     </div>

@@ -19,8 +19,8 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('pharmacy_id')->nullable();
             $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('product');
-            $table->d('delivery')->nullable();
+            $table->string('products');
+            $table->decimal('delivery')->nullable();
             $table->string('address');
             $table->tinyInteger('status')->nullable();
             $table->boolean('is_show')->default(0);

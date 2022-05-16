@@ -265,7 +265,7 @@
 
             @if(Auth::user()->type == 2)
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#">
+                    <a class="nav-link collapsed" href="{{ route('pharmacy.orders') }}">
                         <i class="bi bi-cart"></i>
                         <span>جميع الطلبات</span>
                     </a>
@@ -332,7 +332,7 @@
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <script>
         Pusher.logToConsole = true;
-    
+
         var pusher = new Pusher('e4b4e21e1f468b8bddf2', {
             cluster: 'mt1'
         });

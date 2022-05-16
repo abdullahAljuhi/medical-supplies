@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-       
+
     }
 
     /**
@@ -125,14 +125,14 @@ class UserController extends Controller
     public function orders()
     {
         try {
-            
+
             $user = User::with('pharmacy')->find(Auth::id());
 
             // if user is pharmacy
             if($user->type == 2){
 
                 $orders = Order::where('pharmacy_id',$user->pharmacy->id)->get();
-
+                return $orders;
             // if user is admin
             }else if($user->type == 1){
                 $order = Order::all();
@@ -152,5 +152,5 @@ class UserController extends Controller
             return $e->getMessage();
         }
     }
-    
+
 }

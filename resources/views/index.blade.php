@@ -116,15 +116,15 @@
             </div>
 
         </div>
-        <div class="card-group">
-            <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-0 g-sm-5 text-center jobs">
+        <div class="card-group justify-content-center">
+            <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-0 g-sm-5 text-center jobs justify-content-center">
                 @foreach ($pharmacies as $pharmacy)
                 @break($loop->index > 5)
                 <div class="col">
                     <div class="card h-100 p-2">
                         @if($pharmacy->image)
                         <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}" alt="pharmacy"
-                            class="rounded-circle border p-1">
+                            class="border-bottom p-4">
                         @else
                         <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
                         @endif
@@ -367,7 +367,7 @@
     // Subscribe to the channel we specified in our Laravel Event
     var channel = pusher.subscribe("order{{  Auth::user()-> id }}");
     // Bind a function to a Event (the full Laravel class)
-  
+
     channel.bind('App\\Events\\Messages', function(data) {
     //   console.log(data.order.pharmacy_id);
       var existingNotifications = notifications.html();
@@ -383,7 +383,7 @@
       notificationsWrapper.find('.notify-count').text(notificationsCount);
       notificationsWrapper.show();
     });
-</script>    
+</script>
 @endauth
 
 @endsection
