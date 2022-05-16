@@ -256,12 +256,13 @@ class PharmacyController extends Controller
     {
         try {
 
-            $order = Order::find($id);
+            $order = Order::with('pharmacy','user')->find($id);
 
             if ($order) {
-                return redirect()->back();
+                $products = json_decode($order->products, JSON_UNESCAPED_UNICODE);
+                return view('order.product',compact('order','products'));
             } else {
-                return view('order.list');
+                return redirect()->back();
             }
         } catch (\Exception $e) {
             return $e->getMessage();

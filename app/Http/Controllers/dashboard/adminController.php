@@ -48,9 +48,9 @@ class adminController extends Controller
             $order = Order::with('pharmacy','user')->find($id);
 
             if ($order) {
-                return redirect()->back();
-            } else {
                 return view('order.list');
+            } else {
+                return redirect()->back();
             }
         } catch (\Exception $e) {
             return $e->getMessage();

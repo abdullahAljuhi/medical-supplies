@@ -66,8 +66,7 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
-                
+
             </div>
         </div>
         <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel"
@@ -337,7 +336,7 @@
                     </div>
                 </div>
             @endforeach
-                
+
             </div>
         </div>
     </div>

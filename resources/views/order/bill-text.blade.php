@@ -20,7 +20,7 @@
                         <div class="row mb-2">
                             <div class="col-md-4 col-sm-12 mb-2">
                                 <p class="fs-5 py-0 my-0  mx-3">رقم الطلب :
-                                     {{ $order->id }}
+                                    {{ $order->id }}
                                 </p>
                             </div>
                             <div class="col-md-8 col-sm-12 mb-2" >
@@ -51,37 +51,47 @@
                                     <div class="table-responsive  pb-3 px-3">
                                         <table class="table border ">
                                             <thead class="bg-light">
-                                                <tr class="border-0">
-                                                    <th class="border-0">رقم</th>
-                                                    <th class="border-0">اسم المنتج</th>
-                                                    <th class="border-0">سعر المنتج</th>
-                                                    <th class="border-0">كمية المنتج</th>
+                                            <tr class="border-0">
+                                                <th class="border-0">رقم</th>
+                                                <th class="border-0">اسم المنتج</th>
+                                                <th class="border-0">سعر المنتج</th>
+                                                <th class="border-0">كمية المنتج</th>
 
-                                                </tr>
+                                            </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($products as $product )
-                                                    {{-- {{$product  }} --}}
-                                                <tr>
-                                                    <td>{{ $loop->index }}</td>
-                                                    @if($order->type == 1)
-                                                    <img src="{{asset('assets/images/orders/'.$product['product_name'])}}" alt="" srcset="">
+                                            @foreach ($products as $product )
+                                                {{-- {{$product  }} --}}
+                                                @if($order->type == 1)
+                                                    <tr>
+                                                        <td>{{ $loop->index }}</td>
+                                                        <td>
+                                                            <img src="{{asset('assets/images/orders/'.$product['product_name'])}}" alt="" class=" border" srcset="" style=";height:50px;width:50px">
+                                                        </td>
+                                                        <td>{{ $product['unit_amount'] }} </td>
+                                                        <td>{{ $product['quantity'] }} </td>
+                                                    </tr>
                                                 @else
-                                                <label for="name" >{{ $product['product_name'] }} </label>
+                                                    <tr>
+                                                        <td>{{ $loop->index }}</td>
+                                                        <td>{{ $product['product_name'] }}</td>
+                                                        <td>{{ $product['unit_amount'] }} </td>
+                                                        <td>{{ $product['quantity'] }} </td>
+                                                    </tr>
                                                 @endif
-                                            </td>
-                                                    <td>{{ $product['unit_amount'] }} </td>
-                                                    <td>{{ $product['quantity'] }} </td>
-
-                                                </tr>
-                                                @endforeach
+                                            @endforeach
+                                            <tr>
+                                                <td>#</td>
+                                                <td>سعر  التوصيل</td>
+                                                <td colspan="2">{{ $order->delivery }} </td>
+                                            </tr>
                                             </tbody>
                                             <tfoot>
-                                                <tr>
-                                                  <td  colspan="2">الاجمالي</td>
-                                                  <td>{{ $order->total_price }}</td>
-                                                </tr>
-                                              </tfoot>
+                                            <tr>
+                                                <td  colspan="2">الاجمالي</td>
+                                                <td>{{ $order->total_price }}</td>
+                                            </tr>
+                                            </tfoot>
                                         </table>
                                         <form action="{{ route('test') }}" method="get" class="overflow-hidden mx-3">
                                             <div class="tab-pane fade show active mt-3 row" id="profile-overview">
