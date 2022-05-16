@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
+use App\Models\Advertisement;
+use App\Http\Requests\AdvertisementRequest;
+use App\Models\Pharmacy;
+use App\Http\Requests\PharmacyRequest;
+use App\Helpers\Helper;
 
 class HomeController extends Controller
 {

@@ -1,5 +1,4 @@
 <?php
-
 use GuzzleHttp\Middleware;
 use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Auth;
@@ -9,12 +8,12 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\MedicalController;
 use App\Http\Controllers\PharmacyController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\GovernorateController;
 use App\Http\Controllers\UserProfileController;
-
 use App\Http\Controllers\dashboard\adminController;
 use App\Http\Controllers\dashboard\PharmacyController as MangePharmacy;
 use App\Http\Controllers\PaymentController;
@@ -56,8 +55,16 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             })->name('location');
             Route::get('/city', [CityController::class, 'create'])->name('add-city');
             Route::post('/city/store', [CityController::class, 'store'])->name('store-city');
+            Route::get('/city/edit/{id}', [CityController::class, 'edit'])->name('edit-city');
+            Route::post('/city/update/{id}', [CityController::class, 'update'])->name('update-city');
+            Route::get('/city/active/{id}', [CityController::class, 'active'])->name('active.city');
+           
             Route::get('/state', [GovernorateController::class, 'create'])->name('add-state');
             Route::post('/state/store', [GovernorateController::class, 'store'])->name('store-state');
+            Route::get('/state/edit/{id}', [GovernorateController::class, 'edit'])->name('edit-state');
+            Route::post('/state/update/{id}', [GovernorateController::class, 'update'])->name('update-state');
+            Route::get('/state/active/{id}', [GovernorateController::class, 'active'])->name('active.state');
+           
         }); // end users
 
 
@@ -81,9 +88,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::post('/update/{id}',[AdvertisementController::class,'update'])->name('update.adv');
             Route::post('/save',[AdvertisementController::class,'store'])->name('save.adv');
             Route::get('/add',[AdvertisementController::class,'create'])->name('add.adv');
-            Route::get('/active/{adv}', [AdvertisementController::class, 'active'])->name('active.adv');
-            Route::get('/disActive/{adv}', [AdvertisementController::class, 'disActive'])->name('disActive.adv');
-
+            Route::get('/active/{id}', [AdvertisementController::class, 'active'])->name('active.adv');
+           
         });
 
 
