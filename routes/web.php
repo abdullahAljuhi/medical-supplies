@@ -74,13 +74,13 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         }); // end users
 
 
-        //crud advertisement
-        Route::group(['prefix' => 'advertisement'], function () {
-            Route::get('/index', [AdvertisementController::class, 'index'])->name('show.adv');
-            Route::get('/edit/{id}', [AdvertisementController::class, 'edit'])->name('edit.adv');
-            Route::post('/update/{id}', [AdvertisementController::class, 'update'])->name('update.adv');
-            Route::post('/save', [AdvertisementController::class, 'store'])->name('save.adv');
-            Route::get('/add', [AdvertisementController::class, 'create'])->name('add.adv');
+           //crud advertisement
+           Route::group(['prefix'=>'advertisement'],function(){
+            Route::get('/index',[AdvertisementController::class,'index'])->name('show.adv');
+            Route::get('/edit/{id}',[AdvertisementController::class,'edit'])->name('edit.adv');
+            Route::post('/update/{id}',[AdvertisementController::class,'update'])->name('update.adv');
+            Route::post('/save',[AdvertisementController::class,'store'])->name('save.adv');
+            Route::get('/add',[AdvertisementController::class,'create'])->name('add.adv');
             Route::get('/active/{adv}', [AdvertisementController::class, 'active'])->name('active.adv');
             Route::get('/disActive/{adv}', [AdvertisementController::class, 'disActive'])->name('disActive.adv');
 

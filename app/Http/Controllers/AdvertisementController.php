@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use App\Models\Advertisement;
 use App\Helpers\Helper;
-
 use App\Http\Requests\AdvertisementRequest;
 use Illuminate\Http\Request;
 
@@ -21,21 +20,18 @@ class AdvertisementController extends Controller
     {
         try {
             $advertisements= Advertisement::all();
-
-            return view('adv.ads',['advertisements'=>$advertisements]);
+            if(empty($advertisements))
+            {
+                return redirect()->route('adv.add');
+            }else{
+                return view('adv.ads')->with('advertisements',$advertisements);
+            }
+            
 
         } catch (\Throwable $th) {
-            throw $th;
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        
         }
-
-
-
-        // if ($advertisement->is_active == '1') {
-        //     return view('adv.ads');
-        // } else {
-        //     return view('auth.verifyAdvertisement');
-
-        // }
     }
 
     /**
@@ -57,29 +53,36 @@ class AdvertisementController extends Controller
     public function store(Request $request)
     {
         try {
-           
-            $fileName = '';
+
+            
+            
+            // start transaction
+            $fileName = "";
             if ($request->has('image')) {
                 if($fileName != null){
                     $fileName=public_path('assets/images/advs/'.$fileName);
-                    unlink(realpath($fileName));
+                    link(realpath($fileName));
                 }
+                
                 // save img in public/adv/images
                 $fileName = $this->uploadImage('advs',$request->image);
             }
+            
             // create advertisement
-        $advertisement = Advertisement::create([
+        $advertisements = Advertisement::create([
             'start_date' => $request['start_date'],
             'end_date' => $request['end_date'],
             'image' => $fileName,
             'link' => $request['link'],
         ]);
-            $advertisement->save();
-           // return redirect()->route('home');
+            $advertisements->save();
+            return redirect()->route('show.adv');
+        
         } catch (\Exception $ex) {
             return $ex->getMessage();
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
+
 
     }
 
@@ -91,7 +94,7 @@ class AdvertisementController extends Controller
      */
     public function show(Advertisement $advertisement)
     {
-        //return view('advertisement')->withAdvertisement($advertisement);
+    
     }
 
     /**
@@ -120,16 +123,15 @@ class AdvertisementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $advertisement= Advertisement::findOrFail($id);
+        $advertisements= Advertisement::findOrFail($id);
         try {
 
-            $photo= $advertisement->image;
+            $fileName = $advertisements->image;
 
-            $fileName = $photo;
 
             if ($request->has('image')) {
                 if($fileName != null){
-                    $fileName=public_path('assets/images/advs/'.$photo);
+                    $fileName=public_path('assets/images/advs/'.$fileName);
                     unlink(realpath($fileName));
                 }
 
@@ -140,13 +142,14 @@ class AdvertisementController extends Controller
             // $input = $request->all();
             // $advertisement->fill($input)->save();
 
-            $advertisement->update([
-                'link'=>$request->link,
-                'image'=>$fileName,
-                'start_date'=>$request->start_date,
-                'end_date'=>$request->end_date,
+            $advertisements->update([
+                'start_date' => $request['start_date'],
+                'end_date' => $request['end_date'],
+                'image' => $fileName,
+                'link' => $request['link'],
             ]);
 
+            return redirect()->route('show.adv');
             return redirect()->back()->with(['success' => 'تم التحديث بنجاح']);
 
         } catch (\Exception $e) {
@@ -168,20 +171,24 @@ class AdvertisementController extends Controller
     }
 
     // active advertisement
-    public function active(Advertisement $advertisement)
-    {
-        $advertisement->is_active = 1;
-        $advertisement->save();
-
-
-        return redirect()->back();
-    }
-
-    // dis_active advertisement
-    public function disActive(Advertisement $advertisement)
-    {
-        $advertisement->is_active = 0;
-        $advertisement->save();
-        return redirect()->back();
-    }
+    public function active($id )
+     {
+        
+        $advertisements= Advertisement::findOrFail($id);
+        $ac=$advertisements->is_active ;
+          
+         if($ac == 0)
+         {
+             $ac=1;
+ 
+         }else{
+             $ac=0;
+         }
+         
+            $advertisements->is_active=$ac;
+ 
+         
+         $advertisements->save();
+         return redirect()->back();
+     }
 }
