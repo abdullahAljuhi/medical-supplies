@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Pharmacy;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -38,5 +39,21 @@ class adminController extends Controller
         $types = ['مستخدم','مدير','صيدلية'];
 
         return view('user.users', compact('users','types'));
+    }
+
+    public function order($id)
+    {
+        try {
+
+            $order = Order::with('pharmacy','user')->find($id);
+
+            if ($order) {
+                return redirect()->back();
+            } else {
+                return view('order.list');
+            }
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 }

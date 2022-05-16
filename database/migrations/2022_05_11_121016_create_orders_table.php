@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('pharmacy_id')->nullable();
             $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onUpdate('cascade')->onDelete('cascade');
             $table->string('products');
-            $table->decimal('delivery')->nullable();
+            $table->integer('delivery_price')->nullable();
             $table->string('address');
             $table->tinyInteger('status')->nullable();
             $table->boolean('is_show')->default(0);

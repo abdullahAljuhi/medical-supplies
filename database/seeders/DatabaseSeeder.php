@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserProfileSeeder::class);
         $this->call(GovernorateSeeder::class);
         $this->call(CitySeeder::class);
-
+        $this->call(UserProfileSeeder::class);
     }
 }

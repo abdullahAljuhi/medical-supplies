@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\notfiy;
-use App\Helpers\Helper;
 use App\Models\City;
 use App\Models\User;
+use App\Models\Order;
+use App\Events\notfiy;
+use App\Helpers\Helper;
 use App\Models\Pharmacy;
 use App\Models\Governorate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\PharmacyRequest;
 use App\Notifications\ActivePharmacy;
-use Illuminate\Support\Facades\Notification;
+use App\Http\Requests\PharmacyRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Notification;
 
 class PharmacyController extends Controller
 {
@@ -30,7 +31,7 @@ class PharmacyController extends Controller
         try {
             $pharmacy = Pharmacy::where('user_id', Auth::id())->first();
 
-            if (empty($pharmacy)) {
+            if(empty($pharmacy)) {
                 return redirect()->route('pharmacy.create');
             } else {
                 if ($pharmacy->is_active == '1') {
@@ -66,7 +67,7 @@ class PharmacyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \App\Http\Requests\StorePharmacyRequest $request
+     * @param  \App\Http\Requests\StorePharmacyRequest  $request
      * @return \Illuminate\Http\Response
      */
     // PharmacyRequest
@@ -97,6 +98,7 @@ class PharmacyController extends Controller
                 'license' => $fileName,
                 'description' => $request['description'],
             ]);
+
 
 
             // add address to pharmacy
@@ -134,16 +136,16 @@ class PharmacyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\Pharmacy $pharmacy
+     * @param  \App\Models\Pharmacy  $pharmacy
      * @return \Illuminate\Http\Response
      */
     // Pharmacy $pharmacy
     public function edit()
     {
-        $pharmacy = Pharmacy::where('user_id', '=', Auth::user()->id)->first();
+        $pharmacy = Pharmacy::where('user_id','=',Auth::user()->id)->first();
         try {
             if ($pharmacy == '') {
-                return $pharmacy;
+                return $pharmacy ;
             }
             return view('pharmacy-profile')->withPharmacy($pharmacy);
 
@@ -155,8 +157,8 @@ class PharmacyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \App\Http\Requests\UpdatePharmacyRequest $request
-     * @param \App\Models\Pharmacy $pharmacy
+     * @param  \App\Http\Requests\UpdatePharmacyRequest  $request
+     * @param  \App\Models\Pharmacy  $pharmacy
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
@@ -166,7 +168,7 @@ class PharmacyController extends Controller
 
         try {
 
-            $pharmacy = Pharmacy::where('user_id', Auth::user()->id)->first();
+            $pharmacy=Pharmacy::where('user_id',Auth::user()->id)->first();
 
             // start transaction
             DB::beginTransaction();
@@ -174,8 +176,8 @@ class PharmacyController extends Controller
             $fileName = $pharmacy->image;
 
             if ($request->has('image')) {
-                if ($fileName != null) {
-                    $fileName = public_path('assets/images/pharmacies/' . $fileName);
+                if($fileName != null){
+                    $fileName = public_path('assets/images/pharmacies/'.$fileName);
                     unlink(realpath($fileName));
                 }
 
@@ -229,7 +231,7 @@ class PharmacyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Pharmacy $pharmacy
+     * @param  \App\Models\Pharmacy  $pharmacy
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -238,7 +240,7 @@ class PharmacyController extends Controller
             $pharmacy = Pharmacy::findOrFail($id);
             if ($pharmacy->image !== '') { // check if pharmacy has image
                 // remove image
-                $fileName = public_path('assets/images/pharmacies/' . $pharmacy->image);
+                $fileName=public_path('assets/images/pharmacies/'.$pharmacy->image);
                 unlink(realpath($fileName));
             }
 
@@ -249,18 +251,20 @@ class PharmacyController extends Controller
         }
     }
 
-    public function orders()
+    // show order
+    public function order($id)
     {
         try {
-            $orders = app('App\Http\Controllers\UserController')->orders();
-            return view('order.index',compact('orders'));
-        } catch (\Exception $ex) {
 
-            // return  insert date
+            $order = Order::find($id);
 
-            DB::rollback();
-            return $ex->getMessage();
-            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+            if ($order) {
+                return redirect()->back();
+            } else {
+                return view('order.list');
+            }
+        } catch (\Exception $e) {
+            return $e->getMessage();
         }
     }
 

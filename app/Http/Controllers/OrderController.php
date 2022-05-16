@@ -35,6 +35,7 @@ class OrderController extends Controller
     }
 
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -47,30 +48,6 @@ class OrderController extends Controller
 
 
 
-
-    // this show page that pharmacy can add price
-
-    public function edit(Request $request, $id = '')
-    {
-
-        try {
-            //code...
-            $order = Order::with('pharmacy','user')->find($request->id);
-
-            // check if the pharmacy auth is has the order
-            if($order->pharmacy->user_id==Auth::id()){
-
-                // convert json to array
-                $products = json_decode($order->products, true);
-                // return $products;
-                return view('order.product', compact('order','products'));
-            }
-            return redirect()->back();
-
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-    }
 
 
 
@@ -105,7 +82,7 @@ class OrderController extends Controller
             foreach ($request->quantity as $i => $quantity) {
                 $products[$i]['quantity'] = $quantity;
             };
-            // return $products;
+            // var_dump($products);
             $products = json_encode($products, JSON_UNESCAPED_UNICODE);
 
             // $products=implode(',',$products);
@@ -120,6 +97,7 @@ class OrderController extends Controller
 
             // send notification for pharmacy
             event(new Messages($order, $request->pharmacy));
+            return $order;
 
             return view('order.orderMass');
 
@@ -127,6 +105,30 @@ class OrderController extends Controller
             throw $th;
         }
     }
+
+       // this show page that pharmacy can add price
+
+       public function edit(Request $request, $id = '')
+       {
+
+           try {
+               //code...
+               $order = Order::with('pharmacy','user')->find($request->id);
+
+               // check if the pharmacy auth is has the order
+               if($order->pharmacy->user_id==Auth::id()){
+
+                   // convert json to array
+                   $products = json_decode($order->products, true);
+                //    return var_dump($products);
+                   return view('order.product', compact('order','products'));
+               }
+               return redirect()->back();
+
+           } catch (\Throwable $th) {
+               throw $th;
+           }
+       }
 
     /**
      * Store a newly created resource in storage.
@@ -171,6 +173,7 @@ class OrderController extends Controller
 
             // send notification for user who send order
             event(new Messages($order, $order->user_id));
+            return redirect('/pharmacy');
 
         } catch (\Throwable $th) {
             throw $th;

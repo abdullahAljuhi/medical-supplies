@@ -132,10 +132,11 @@ class UserController extends Controller
             if($user->type == 2){
 
                 $orders = Order::where('pharmacy_id',$user->pharmacy->id)->get();
-                return $orders;
+
             // if user is admin
             }else if($user->type == 1){
                 $order = Order::all();
+
             }else{
 
              // if user is normal user
@@ -152,5 +153,19 @@ class UserController extends Controller
             return $e->getMessage();
         }
     }
+    public function order($id)
+    {
+        try {
 
+            $order = Order::find($id);
+
+            if ($order) {
+                return redirect()->back();
+            } else {
+                return view('order.list');
+            }
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }
