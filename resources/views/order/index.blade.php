@@ -43,6 +43,7 @@
                     <th scope="col">اسم العميل</th>
                     <th scope="col">عدد المنتجات</th>
                     <th scope="col">العنوان</th>
+                    <th scope="col">نو</th>
                     <th scope="col">تاريخ الطلب</th>
                     <th scope="col">الحالة</th>
                 </tr>
