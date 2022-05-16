@@ -30,7 +30,10 @@ class MedicalController extends Controller
                 })
                 ->get();
                
-                $pharmacies= $pharmacies->where('governorate_id',$request->governorate);
+                $pharmacies= $pharmacies->when($request->governorate, function ($q) use ($request) {
+                    return $q->where('governorate_id',$request->governorate);
+
+                });
             return view('pharmacies', ['pharmacies' => $pharmacies]);
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -48,12 +51,15 @@ class MedicalController extends Controller
         }
     
     }
+
+    // 
     public function pharmacies(Request $request)
     {
         try {
             $pharmacies = Pharmacy::all();
         
             return view('pharmacies', ['pharmacies' => $pharmacies]);
+            
         } catch (\Exception $e) {
             return $e->getMessage();
         }

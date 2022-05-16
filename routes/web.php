@@ -17,6 +17,7 @@ use App\Http\Controllers\UserProfileController;
 
 use App\Http\Controllers\dashboard\adminController;
 use App\Http\Controllers\dashboard\PharmacyController as MangePharmacy;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -138,11 +139,14 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::group(['prefix'=>'order'],function(){
                 Route::post('/send',[OrderController::class,'send'])->name('send');
                 Route::get('/create/{pharmacy}',[OrderController::class,'create'])->name('order');
+                Route::get('/edit/{id?}',[OrderController::class,'edit'])->name('order.edit');
                 Route::get('/show',[OrderController::class,'show'])->name('bill');
-                Route::get('/create',[OrderController::class,'store'])->name('regest');
-    
-    
-            });   
+                Route::post('/update/{id}',[OrderController::class,'update'])->name('order.store');
+                Route::get('/bill/{id?}',[OrderController::class,'Bill'])->name('order.userBill');
+            });  
+            Route::get('/orders', [UserController::class, 'orders'])->name('use.orders');
+
+
 });
 
 
@@ -172,3 +176,15 @@ Route::get('/', [MedicalController::class, 'index'])->name('index');
 
 Route::get('/pharmacies', [MedicalController::class, 'showPharmacies'])->name('morePharmacy'); // show all pharmacies
 
+Route::get('test', [PaymentController::class, 'index'])->name('test');
+Route::get('t/{id}', [PaymentController::class, 't']);
+
+
+Route::get('/test/response/{info}',function(){
+    $info = Route::current()->parameter('info');
+   
+    $info=base64_decode($info);
+    $data= $arrayFormat=json_decode($info,true);
+    return $data;
+});
+// http://127.0.0.1:8000/test/responsetest
