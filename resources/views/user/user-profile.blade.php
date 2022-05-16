@@ -1,36 +1,35 @@
 @extends(Auth::user()->type == 0 ? 'layouts.main' : 'layouts.app')
 @section('title', 'الملف الشخصي')
 @section('content')
-@include('alerts.errors')
-@include('alerts.success')
     <!-- Page Title -->
-    <div class="pagetitle">
-        <h1>Profile</h1>
+    <div class="pagetitle mt-3 px-5">
+        <h1>اعدادات الحساب</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../index.blade.php">Home</a></li>
-                <li class="breadcrumb-item">Users</li>
-                <li class="breadcrumb-item active">Profile</li>
+{{--                <li class="breadcrumb-item"><a href="../index.blade.php">Home</a></li>--}}
+{{--                <li class="breadcrumb-item">Users</li>--}}
+{{--                <li class="breadcrumb-item active">Profile</li>--}}
             </ol>
         </nav>
     </div>
     <!-- End Page Title -->
 
 
-<!-- End Page Title -->
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-@include('alerts.success')
-@include('alerts.errors')
+    <!-- End Page Title -->
+    @include('alerts.success')
+    @include('alerts.errors')
 
-    <section class="section profile min-vh-100 overflow-hidden">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <section class="section profile min-vh-100 overflow-hidden py-2 px-5">
         <div class="row">
             <div class="col-xl-4">
 
@@ -39,12 +38,13 @@
 
                         @if(isset(Auth::user()->profile->image))
                             <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile"
-                                 class="rounded-circle border p-1">
+                                 class="rounded-circle border p-1" style="width: 120px;
+                                                height: 120px;">
                         @else
                             <img src="{{asset('assets/img/user.png') }}" alt="Profile"
                                  class="rounded-circle border p-1">
                         @endif
-{{--                        <img src="{{$user->profile['image']?asset('assets/images/users/'.$user->profile['image']) : asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">--}}
+                        {{--                        <img src="{{$user->profile['image']?asset('assets/images/users/'.$user->profile['image']) : asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">--}}
                         <h2>{{ Auth::user()->name }}</h2>
                         <h3>{{ Auth::user()->email }}</h3>
                     </div>
@@ -77,29 +77,35 @@
                             <div class="tab-pane fade profile-edit show active pt-3" id="profile-edit">
 
                                 <!-- Profile Edit Form -->
-                                <form method="POST" action="{{ route('update.profile') }}" enctype="multipart/form-data">
+                                <form method="POST" action="{{ route('update.profile') }}"
+                                      enctype="multipart/form-data">
                                     @csrf
                                     <div class="row mb-3">
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">الصورة
                                             الشخصية</label>
                                         <div class="col-md-8 col-lg-9 d-flex align-items-center justify-content-center">
-                                            <div class="pt-2">
-                                                <label class="btn btn-primary text-light">
-                                                    <i class="bi bi-upload p-5"></i>
-                                                    <input type="file" id="imgInp" name="image" hidden>
-                                                </label>
-                                                <a href="#" class="btn btn-danger btn-sm d-none"
-                                                   title="Remove my profile image">
-                                                    <i class="bi bi-trash"></i>
-                                                </a>
+                                            <div class="row">
+                                                @if(isset(Auth::user()->profile->image))
+                                                    <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}"
+                                                         alt="Profile"
+                                                         class="mx-auto rounded-circle border p-1" id="blah" style="width: 120px;
+                                                height: 120px;">
+                                                @else
+                                                    <img src="{{asset('assets/img/user.png') }}" alt="Profile"
+                                                         class="mx-auto rounded-circle border p-1" id="blah" style="width: 120px;
+                                                height: 120px;">
+                                                @endif
+                                                <div style="transform: translate(-25px,-35px);">
+                                                    <label class="btn bg-white border rounded-circle ">
+                                                        <i class="bi bi-camera-fill fs-5"></i>
+                                                        <input type="file" id="imgInp" name="image" hidden>
+                                                    </label>
+                                                    <a href="#" class="btn btn-danger btn-sm d-none"
+                                                       title="Remove my profile image">
+                                                        <i class="bi bi-trash"></i>
+                                                    </a>
+                                                </div>
                                             </div>
-                                            @if(isset(Auth::user()->profile->image))
-                                                <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile"
-                                                     class="mx-auto rounded-circle border p-1" id="blah">
-                                            @else
-                                                <img src="{{asset('assets/img/user.png') }}" alt="Profile"
-                                                     class="mx-auto rounded-circle border p-1" id="blah">
-                                            @endif
                                         </div>
                                     </div>
 
@@ -113,19 +119,11 @@
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="company" class="col-md-4 col-lg-3 col-form-label">العنوان</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="company" type="text" class="form-control" id="company"
-                                                   value="حضرموت - المكلا - المساكن">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
                                         <label for="Job" class="col-md-4 col-lg-3 col-form-label">تاريخ الميلاد</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input style="direction: ltr" name="birthday" type="date"
                                                    class="form-control"
-                                                   id="Job" value="770-552-517">
+                                                   id="birthday">
                                         </div>
                                     </div>
 
@@ -133,17 +131,25 @@
                                         <label for="Job" class="col-md-4 col-lg-3 col-form-label">الهاتف</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="phone" type="text" class="form-control" id="Job"
-                                                   value="770-552-517">
+                                                   value="{{ $user->profile['phone'] }}">
                                         </div>
                                     </div>
 
-                                    <div class="row mb-3">
-                                        <label for="fullName" class="col-md-4 col-lg-3 col-form-label">الشارع</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="street" type="text" class="form-control" id="fullName"
-                                                   value="امام مسجد الصديق">
-                                        </div>
-                                    </div>
+{{--                                    <div class="row mb-3">--}}
+{{--                                        <label for="company" class="col-md-4 col-lg-3 col-form-label">العنوان</label>--}}
+{{--                                        <div class="col-md-8 col-lg-9">--}}
+{{--                                            <input name="company" type="text" class="form-control" id="company"--}}
+{{--                                                   value="{{ Auth::user()->address }}">--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+
+{{--                                    <div class="row mb-3">--}}
+{{--                                        <label for="fullName" class="col-md-4 col-lg-3 col-form-label">الشارع</label>--}}
+{{--                                        <div class="col-md-8 col-lg-9">--}}
+{{--                                            <input name="street" type="text" class="form-control" id="fullName"--}}
+{{--                                                   value="{{ $user->profile['address'] }}">--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
@@ -151,7 +157,7 @@
                                 </form><!-- End Profile Edit Form -->
                             </div>
 
-                            
+
                             <div class="tab-pane fade pt-3" id="profile-change-password">
                                 <!-- Change Password Form -->
                                 <form>
@@ -210,5 +216,8 @@
                 blah.src = URL.createObjectURL(file)
             }
         }
+        var birth = "{{date("Y-m-d", strtotime($user->profile['birthday']))}}";
+        document.getElementById("birthday").defaultValue = birth;
+        // $('#birthday').value(birth);
     </script>
 @endsection

@@ -20,6 +20,7 @@
                             <div class="text-align-left">
                                 <h1 class="h1">علاجي كوم </h1>
 
+
                                 <p>
                                     اطلب الذي تريد من اي مكان وفي اي وقت سوف نوفر عنك الذهاب االى الصيدلية وسوف نوفر لك
                                     العلاج في اسرع وقت وباسهل طريقة
@@ -39,6 +40,7 @@
                             <div class="text-align-left">
                                 <h1 class="h1">خدمة دفع الالكتروني</h1>
 
+
                                 <p>
                                     يوفر موقع علاجي كوم خدمة الدفع الالكتروني التي سوف تسهل عليك الاجراءت االمالية
                                 </p>
@@ -46,6 +48,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
             <div class="carousel-item">
                 <div class="container">
@@ -111,6 +114,7 @@
                     يمكن الطلب من الصيدلية التي تريد وسوف يتم ايصال الطلب الى باب بيتك
                 </p>
             </div>
+
         </div>
         <div class="card-group">
             <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-0 g-sm-5 text-center jobs">
@@ -131,6 +135,7 @@
                                     class="bi bi-geo-alt  text-primary ms-1"></i>
                                 {{ $pharmacy->address[0]->governorate->name?? '' }} - {{
                                 $pharmacy->address[0]->city->name ??''}} </p>
+
 
                             <ul class="text-center footer-icons d-flex justify-content-center mb-0">
                                 <li class="list-inline-item text-center">
@@ -228,6 +233,7 @@
 
 <!-- End Featured Product -->
 
+
 <!-- Start Brands -->
 <section class="bg-light py-5">
     <div class="container-fluid my-4">
@@ -276,6 +282,7 @@
                                     </div>
                                 </div>
                                 <!--End First slide-->
+
 
                                 <!--Second slide-->
                                 <div class="carousel-item">

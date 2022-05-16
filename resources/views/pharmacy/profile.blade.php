@@ -20,12 +20,10 @@
 
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                        @if(empty($pharmacy->image))
-                            <img src="{{asset('assets/images/users/'.$pharmacy->image)}}" alt="Profile"
-                                 class="rounded-circle border p-1">
+                        @if($pharmacy->image)
+                            <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}" alt="Profile" class="rounded-circle border p-1">
                         @else
-                            <img src="{{asset('assets/img/user.png') }}" alt="Profile"
-                                 class="rounded-circle border p-1">
+                            <img id="blah" src="{{asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
                         @endif
                         {{--                        <img src="{{$user->profile['image']?asset('assets/images/users/'.$user->profile['image']) : asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle">--}}
                         <h2>{{ $pharmacy->name }}</h2>
@@ -42,7 +40,7 @@
                         </div>
                     </div>
 
-            
+
                 </div>
             </div>
 
@@ -68,7 +66,7 @@
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label ">اسم الصيدلية</div>
-                                    <div class="col-lg-9 col-md-8">{{ $pharmacy->name }}</div>
+                                    <div class="col-lg-9 col-md-8">{{ $pharmacy->pharmacy_name }}</div>
                                 </div>
 
                                 <div class="row">
@@ -89,21 +87,22 @@
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">العنوان</div>
-                                    <div class="col-lg-9 col-md-8">
-                                        حضرموت - المكلا
-                                    </div>
+                                    <div class="col-lg-9 col-md-8">{{  ($pharmacy->address[0]->governorate->name) ." - ". ($pharmacy->address[0]->city->name)}}</div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">الشارع</div>
-                                    <div class="col-lg-9 col-md-8">بجانب مسجد القدس</div>
+                                    <div class="col-lg-9 col-md-8">{{ $pharmacy->address[0]->street }}</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">تفاصيل العنوان</div>
+                                    <div class="col-lg-9 col-md-8">{{ $pharmacy->address[0]->details }}</div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">وصف الصيدلية</div>
-                                    <div class="col-lg-9 col-md-8">صيدلية حضرموت تم انشائها عام 2000 لتعزيز البنية
-                                        التحتية في القطاع الصحي
-                                    </div>
+                                    <div class="col-lg-9 col-md-8">{{ $pharmacy->description }}</div>
                                 </div>
 
                                 <div class="row bg-white">
@@ -121,7 +120,7 @@
                                                 <div class="accordion-body text-center">
                                                     @if($pharmacy->license)
                                                     <img src="{{asset('assets/images/pharmacies/licenses/'.$pharmacy->license)}}" alt="pharmacy"
-                                                        class="rounded-circle border p-1">
+                                                        class="border p-1">
                                                     @else
                                                     <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus"
                                                         alt="...">
