@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('products');
             $table->integer('delivery_price')->nullable();
             $table->string('address');
-            $table->tinyInteger('status')->nullable();
+            $table->tinyInteger('status')->default(0);
             $table->boolean('is_show')->default(0);
             $table->integer('total_price')->default(0);
             $table->boolean('type')->default(0); // this check if order is order by image
