@@ -136,6 +136,7 @@
                                 {{ $pharmacy->address[0]->governorate->name?? '' }} - {{
                                 $pharmacy->address[0]->city->name ??''}} </p>
 
+
                             <ul class="text-center footer-icons d-flex justify-content-center mb-0">
                                 <li class="list-inline-item text-center">
                                     <a class="text-light text-decoration-none" target="_blank"
@@ -171,7 +172,6 @@
                     </div>
                 </div>
                 @endforeach
-
 
 
             </div>
@@ -283,7 +283,7 @@
                                 </div>
                                 <!--End First slide-->
 
-      
+
                                 <!--Second slide-->
                                 <div class="carousel-item">
                                     <div class="row">
@@ -355,7 +355,6 @@
 
 @endsection
 @section('scripts')
-
 @auth
 <script>
     var notificationsWrapper = $('.dropdown-notifications');
@@ -364,9 +363,10 @@
     var notificationsCount = parseInt(notificationsCountElem.data('count'));
     var notifications = notificationsWrapper.find('li.scrollable-container');
 
-            // Subscribe to the channel we specified in our Laravel Event
-            var channel = pusher.subscribe("order{{  Auth::user()-> id }}");
-            // Bind a function to a Event (the full Laravel class)
+
+    // Subscribe to the channel we specified in our Laravel Event
+    var channel = pusher.subscribe("order{{  Auth::user()-> id }}");
+    // Bind a function to a Event (the full Laravel class)
   
     channel.bind('App\\Events\\Messages', function(data) {
     //   console.log(data.order.pharmacy_id);

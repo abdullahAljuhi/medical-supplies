@@ -37,6 +37,7 @@ class MedicalController extends Controller
                 return $q->where('governorate_id', $request->governorate);
             });
 
+
             return view('pharmacies', ['pharmacies' => $pharmacies]);
         } catch (\Exception $e) {
             return $e->getMessage();
