@@ -50,7 +50,12 @@
                                 @foreach ($products as $product)
                                 <div class="row mb-2">
                                     <div class="col-md-2 col-sm-12 mb-2 border-1">
-                                        <label for="name" >{{ $product['name'] }} </label>
+                                        @if($order->type == 1)
+                                            <img src="{{asset('assets/images/orders/'.$product['product_name'])}}" alt="" srcset="">
+                                        @else
+                                        <label for="name" >{{ $product['product_name'] }} </label>
+                                        @endif
+                                        
                                         <label for="name" >{{ $product['quantity'] }} </label>
                                     </div>
                                     <div class="col-md-8 col-sm-12">
@@ -65,7 +70,7 @@
                                         <label for="name" >سعر التوصيل</label>
                                     </div>
                                     <div class="col-md-8 col-sm-12">
-                                        <input type="text" name="delever" class="form-control w-100" id="name" required placeholder="يرجى ادخال سعر التوصيل ">
+                                        <input type="text" name="delivery" class="form-control w-100" id="name" required placeholder="يرجى ادخال سعر التوصيل ">
                                     </div>
                                 </div>
                                 <hr>

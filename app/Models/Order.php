@@ -10,14 +10,17 @@ class Order extends Model
     use HasFactory;
 
    protected $fillable = [
-       'total',
-       'delever',
+       'total_price',
+       'delivery',
        'user_id',
        'pharmacy_id',
        'address',
        'products',
-       'status'
+       'status',
+       'type',
    ];
+   
+  
    public function pharmacy(){
     return $this->belongsTo(Pharmacy::class,'pharmacy_id');
 
@@ -26,7 +29,9 @@ class Order extends Model
     return $this->belongsTo(User::class,'user_id');
 
    }
-//    protected $casts = [
-//     'products' => 'array',
-// ];
+
+   public function orders(){
+       return $this->hasMany(Order::class,'user_id');
+   }
+
 }

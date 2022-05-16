@@ -20,11 +20,12 @@ return new class extends Migration
             $table->unsignedBigInteger('pharmacy_id')->nullable();
             $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onUpdate('cascade')->onDelete('cascade');
             $table->string('product');
-            $table->float('delever')->nullable();
+            $table->d('delivery')->nullable();
             $table->string('address');
             $table->tinyInteger('status')->nullable();
             $table->boolean('is_show')->default(0);
-            $table->integer('total')->default(0);
+            $table->integer('total_price')->default(0);
+            $table->boolean('type')->default(0); // this check if order is order by image
             $table->timestamps();
         });
     }

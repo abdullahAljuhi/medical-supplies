@@ -26,7 +26,7 @@ class OrderRequest extends FormRequest
         return [
             'prodect'=>'required',
             'price'=>'required',
-            'delever'=>'required|numeric',
+            'delivery'=>'required|numeric',
             'address'=>'required',
             'user_id'=>'required|exists:app\Models\User,id',
             'pharmcy_id'=>'required|exists:app\Models\Pharmcy,id'
@@ -37,8 +37,8 @@ class OrderRequest extends FormRequest
         return [
             'prodect.required' => 'يجب إدخال اسم المنتج',
             'price.required'=>'يجب إخال سعر المنتج',
-            'delever.required'=>'يجب إخال سعر المنتج',
-            'delever.numeric'=>'يجب ملئ الحقل بأرقام فقط',
+            'delivery.required'=>'يجب إخال سعر المنتج',
+            'delivery.numeric'=>'يجب ملئ الحقل بأرقام فقط',
             'address.required'=>'يجب كتابة العنوان',
             'user_id.required'=>'يجب تحديد المستخدم',
             'user_id.exists'=>'المستخدم غير موجود',

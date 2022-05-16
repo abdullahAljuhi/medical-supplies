@@ -64,7 +64,12 @@
                                                     {{-- {{$product  }} --}}
                                                 <tr>
                                                     <td>{{ $loop->index }}</td>
-                                                    <td>{{ $product['name'] }}</td>
+                                                    @if($order->type == 1)
+                                                    <img src="{{asset('assets/images/orders/'.$product['product_name'])}}" alt="" srcset="">
+                                                @else
+                                                <label for="name" >{{ $product['product_name'] }} </label>
+                                                @endif
+                                            </td>
                                                     <td>{{ $product['unit_amount'] }} </td>
                                                     <td>{{ $product['quantity'] }} </td>
 
@@ -74,7 +79,7 @@
                                             <tfoot>
                                                 <tr>
                                                   <td  colspan="2">الاجمالي</td>
-                                                  <td>{{ $order->total }}</td>
+                                                  <td>{{ $order->total_price }}</td>
                                                 </tr>
                                               </tfoot>
                                         </table>

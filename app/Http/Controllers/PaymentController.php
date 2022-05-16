@@ -23,18 +23,12 @@ class PaymentController extends Controller
         $order = Order::with('pharmacy', 'user')->find($id);
         if (Auth::id() == $order->user_id && $order->status == 1) {
             $products = json_decode($order->products, true);
-               foreach ($products as $i=>$product ) {
-                    // $products[$i]['unit_amount']= $price;
-                    $products[$i]['product_name'] = $product['name'];
-                    // dd( $product['product_name']);
 
-                    // $total+=$price;
-                }
-            // return $products;
+            return $products;
             $data = [
                 "order_reference" => "123412",
-
-                "products" => $products, "currency" => "YER",
+                "products" =>[ $products],
+                 "currency" => "YER",
                 "total_amount" => $order->total,
                 "success_url" => "http://127.0.0.1:8000/test/response",
                 "cancel_url" => "http://127.0.0.1:8000/test/cancel",
