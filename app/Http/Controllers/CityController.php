@@ -62,7 +62,7 @@ class CityController extends Controller
 
 
     public function edit($id)
-    {
+     {//return $id;
         try {
             $city = City::findOrFail($id);
            
@@ -70,7 +70,7 @@ class CityController extends Controller
             if (!$city)
                 return redirect()->back()->with(['error' => 'هذه المدينه غير موجوده']);
 
-            return view('City.edit', ['City' => $city]);
+            return view('admin.editCity', ['city' => $city]);
         } catch (\Exception $ex) {
             
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
@@ -89,7 +89,39 @@ class CityController extends Controller
                 return redirect()->back()->with(['error' => 'هذه المدينه غير موجوده']);
 
             $city->name = $request->name;
+            $city->governorate_id = $request->governorate;
             $city->save();
+
+            $governorates = Governorate::all();
+            $cities = City::with('governorate')->get();
+            return view('admin.city',['cities'=>$cities, 'governorates'=>$governorates]);
+        
+        } catch (\Exception $ex) {
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
+    }
+
+    public function active($id){
+        try {
+            $city = City::find($id);
+            $acti=$city->is_active ;
+          
+            if($acti == 0)
+            {
+               $acti=1;
+ 
+            }else{
+             $acti=0;
+            }
+         
+            $city->is_active=$acti;
+ 
+         
+            $city->save();
+            
+            $governorates = Governorate::all();
+            $cities = City::with('governorate')->get();
+            return redirect()->back();
         } catch (\Exception $ex) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }

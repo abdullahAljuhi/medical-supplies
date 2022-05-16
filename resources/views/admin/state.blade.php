@@ -64,6 +64,8 @@
                         <th scope="col">#</th>
                         <th scope="col">المحافظة</th>
                         <th scope="col">تاريخ الاضافة</th>
+                        <th scope="col">تعديل </th>
+                        <th scope="col">تفعيل </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -72,6 +74,22 @@
                             <th scope="row"><a href="#">{{ $governorate->id }}</a></th>
                             <td>{{ $governorate->name }}</td>
                             <td>{{ $governorate->created_at }}</td>
+                            <td><a href="{{ route('edit-state', $governorate->id) }}"><button class="btn  px-4">تعديل</button></td>
+                            <td><a href="{{ route('active.state', $governorate->id) }}" >
+                            <button type="button" class="btn ">
+                                        @if( $governorate->is_active)
+                                            <span style="font-size: 14px"class=" badge bg-success fs-6" >
+                                             مفعل /إلغاء التفعيل 
+                                           </span>
+                                        @else
+                                            <span style="font-size: 14px" class="badge bg-danger fs-6">
+                                               غير مفعل/تفعيل
+                                            </span>
+                                        @endif
+                                    
+                                    </button>
+                               </a>
+                            </td>
                         </tr>
                     @endforeach
 

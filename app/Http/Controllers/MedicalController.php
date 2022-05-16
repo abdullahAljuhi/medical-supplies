@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pharmacy;
+use App\Models\Advertisement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -49,7 +50,9 @@ class MedicalController extends Controller
     {
         try {
             $pharmacies = Pharmacy::all();
-            return view('index', ['pharmacies' => $pharmacies]);
+            $advertisements= Advertisement::all();
+
+            return view('index', ['pharmacies' => $pharmacies,'advertisements'=>$advertisements]);
         } catch (\Exception $e) {
             return $e->getMessage();
         }

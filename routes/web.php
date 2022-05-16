@@ -1,5 +1,4 @@
 <?php
-
 use GuzzleHttp\Middleware;
 use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Auth;
@@ -9,12 +8,12 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\MedicalController;
 use App\Http\Controllers\PharmacyController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\GovernorateController;
 use App\Http\Controllers\UserProfileController;
-
 use App\Http\Controllers\dashboard\adminController;
 use App\Http\Controllers\dashboard\PharmacyController as MangePharmacy;
 use App\Http\Controllers\PaymentController;
@@ -44,8 +43,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     // change password
     Route::post('/changePassword', [UserController::class, 'changePassword'])->name('changePassword.user');
 
-    Route::post('/orders', [UserController::class, 'orders'])->name('orders');
-
     // admin
     Route::group(['prefix' => 'dashboard', 'middleware' => 'checkType:admin'], function () {
 
@@ -58,8 +55,16 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             })->name('location');
             Route::get('/city', [CityController::class, 'create'])->name('add-city');
             Route::post('/city/store', [CityController::class, 'store'])->name('store-city');
+            Route::get('/city/edit/{id}', [CityController::class, 'edit'])->name('edit-city');
+            Route::post('/city/update/{id}', [CityController::class, 'update'])->name('update-city');
+            Route::get('/city/active/{id}', [CityController::class, 'active'])->name('active.city');
+
             Route::get('/state', [GovernorateController::class, 'create'])->name('add-state');
             Route::post('/state/store', [GovernorateController::class, 'store'])->name('store-state');
+            Route::get('/state/edit/{id}', [GovernorateController::class, 'edit'])->name('edit-state');
+            Route::post('/state/update/{id}', [GovernorateController::class, 'update'])->name('update-state');
+            Route::get('/state/active/{id}', [GovernorateController::class, 'active'])->name('active.state');
+
         }); // end users
 
 
@@ -76,15 +81,14 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         }); // end users
 
 
-        //crud advertisement
-        Route::group(['prefix' => 'advertisement'], function () {
-            Route::get('/index', [AdvertisementController::class, 'index'])->name('show.adv');
-            Route::get('/edit/{id}', [AdvertisementController::class, 'edit'])->name('edit.adv');
-            Route::post('/update/{id}', [AdvertisementController::class, 'update'])->name('update.adv');
-            Route::post('/save', [AdvertisementController::class, 'store'])->name('save.adv');
-            Route::get('/add', [AdvertisementController::class, 'create'])->name('add.adv');
-            Route::get('/active/{adv}', [AdvertisementController::class, 'active'])->name('active.adv');
-            Route::get('/disActive/{adv}', [AdvertisementController::class, 'disActive'])->name('disActive.adv');
+           //crud advertisement
+           Route::group(['prefix'=>'advertisement'],function(){
+            Route::get('/index',[AdvertisementController::class,'index'])->name('show.adv');
+            Route::get('/edit/{id}',[AdvertisementController::class,'edit'])->name('edit.adv');
+            Route::post('/update/{id}',[AdvertisementController::class,'update'])->name('update.adv');
+            Route::post('/save',[AdvertisementController::class,'store'])->name('save.adv');
+            Route::get('/add',[AdvertisementController::class,'create'])->name('add.adv');
+            Route::get('/active/{id}', [AdvertisementController::class, 'active'])->name('active.adv');
 
         });
 
@@ -136,19 +140,22 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     });
 
 
-    //crud order
-    Route::group(['prefix' => 'order'], function () {
-        Route::post('/send', [OrderController::class, 'send'])->name('send');
-        Route::get('/create/{pharmacy}', [OrderController::class, 'create'])->name('order');
-        Route::get('/edit/{id?}', [OrderController::class, 'edit'])->name('order.edit');
-        Route::get('/show', [OrderController::class, 'show'])->name('bill');
-        Route::post('/update/{id}', [OrderController::class, 'update'])->name('order.store');
-        Route::get('/bill/{id?}', [OrderController::class, 'Bill'])->name('order.userBill');
-    });
-    Route::get('/orders', [UserController::class, 'orders'])->name('use.orders');
+       //crud order
+            Route::group(['prefix'=>'order'],function(){
+                Route::post('/send',[OrderController::class,'send'])->name('send');
+                Route::get('/create/{pharmacy}',[OrderController::class,'create'])->name('order');
+                Route::get('/edit/{id?}',[OrderController::class,'edit'])->name('order.edit');
+                Route::get('/show',[OrderController::class,'show'])->name('bill');
+                Route::post('/update/{id}',[OrderController::class,'update'])->name('order.store');
+                Route::get('/bill/{id?}',[OrderController::class,'Bill'])->name('order.userBill');
+            });
+            Route::get('/orders', [UserController::class, 'orders'])->name('use.orders');
 
 
 });
+
+
+
 
 
 // });
@@ -181,11 +188,11 @@ Route::get('test', [PaymentController::class, 'index'])->name('test');
 Route::get('t/{id}', [PaymentController::class, 't']);
 
 
-Route::get('/test/response/{info}', function () {
+Route::get('/test/response/{info}',function(){
     $info = Route::current()->parameter('info');
 
-    $info = base64_decode($info);
-    $data = $arrayFormat = json_decode($info, true);
+    $info=base64_decode($info);
+    $data= $arrayFormat=json_decode($info,true);
     return $data;
 });
 // http://127.0.0.1:8000/test/responsetest

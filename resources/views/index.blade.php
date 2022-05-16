@@ -66,6 +66,8 @@
                         </div>
                     </div>
                 </div>
+            @endforeach
+                
             </div>
         </div>
         <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel"
@@ -323,31 +325,19 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!--End Brands-->
-<section class="bg-white ads p-4">
-    <div class="  p-4">
-        <div class="row">
-            <div class="col-md-6 col-lg-3 ">
-                <div class="mb-5 ">
-                    <img class="img-fluid" src="{{asset('img/pro1.jpg ') }}" alt="">
+    </section>
+    <!--End Brands-->
+    <section class="bg-white ads">
+        <div class="  p-4">
+            <div class="row">
+            @foreach($advertisements as $ads)
+                <div class="col-md-6 col-lg-3 ">
+                    <div class="mb-5 ">
+                        <img class="img-fluid" src="{{asset('assets/images/advs/'.$ads->image) }}" alt="">
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-lg-3 ">
-                <div class="mb-5 ">
-                    <img class="img-fluid" src="{{asset('img/pro3.jpg ') }}" alt="">
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 ">
-                <div class="mb-5 ">
-                    <img class="img-fluid" src="{{asset('img/pro3.jpg ') }}" alt="">
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 ">
-                <div class="mb-5 ">
-                    <img class="img-fluid" src="{{asset('img/pro3.jpg ') }}" alt="">
-                </div>
+            @endforeach
+                
             </div>
         </div>
     </div>

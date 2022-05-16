@@ -98,9 +98,20 @@
                             <div class="col-md-3 mb-2 mb-md-0 text-center d-flex justify-content-center fw-bold align-self-center">
                               <div class="row">
                                <div class="col-12">
-                                <button type="button" class="btn btn-outline-primary px-4">
-                                    <span style="font-size: 14px"> تفعيل</span>
-                                </button>
+                               <a href="{{ route('active.adv', $ads->id) }}" class="btn btn-outline-primary  d-flex justify-content-center align-self-center">
+                                   <button type="button" class="btn btn-outline-primary px-4">
+                                        @if( $ads->is_active)
+                                            <span style="font-size: 14px" >
+                                             إلغاء التفعيل
+                                           </span>
+                                        @else
+                                            <span style="font-size: 14px">
+                                               تفعيل
+                                            </span>
+                                        @endif
+                                    
+                                    </button>
+                               </a>
                                </div>
 
                               </div>
@@ -114,6 +125,50 @@
 
                 <div class="view_wrap grid-view " style="display: none;">
 
+<<<<<<< HEAD
+@foreach($advertisements as $ads)
+    <div class="card-group p-lg-5 row  text-center jobs">
+
+            <div class="col-md-4 col-sm-12">
+                <div class="card w-100 p-2">
+                    <img src="{{asset('assets/images/advs/'.$ads->image) }}" class="card-img-top py-5 img-card-cus" alt="...">
+                    <div class="card-body pb-0">
+                        <p class="card-text fs-5 text-secondary text-center w-100">
+                            <span class="text-primary ps-2"> الحالة</span>
+                            @if( $ads->is_active)
+                               <span class="badge bg-success fs-6">
+                                  نشط
+                               </span>
+                            @else
+                               <span class="badge bg-danger fs-6">
+                                 غير مفعل
+                               </span>
+                            @endif
+                        </p>
+
+                    </div>
+                    <div class="card-footer bg-white border-0" >
+                        <div class="my-2">
+                            <a href="{{ route('active.adv', $ads->id) }}" class="btn btn-outline-primary w-100">
+                              @if( $ads->is_active)
+                                 <span >
+                                     إلغاء التفعيل
+                                  </span>
+                                @else
+                                  <span >
+                                    تفعيل
+                                   </span>
+                                @endif 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    @endforeach
+</div>
+            </div>
+=======
                     <div class="card-group p-lg-5 row  text-center jobs">
 
                             <div class="col-md-4 col-sm-12">
@@ -138,6 +193,7 @@
                     </div>
                 </div>
             </div>
+>>>>>>> b042d9b680f4cd80cfa0fe41e46d74b7b77938ba
         </div>
     </section>
 

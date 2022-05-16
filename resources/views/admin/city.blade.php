@@ -72,6 +72,8 @@
                         <th scope="col">اسم المدينة</th>
                         <th scope="col">اسم المحافظة</th>
                         <th scope="col">تاريخ الاضافة</th>
+                        <th scope="col">تعديل </th>
+                        <th scope="col">تفعيل </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -81,6 +83,23 @@
                             <td>{{ $city->name }}</td>
                             <td> {{ $city->governorate['name'] }}</td>
                             <td>{{ $city->created_at }}</td>
+                            <td><a href="{{ route('edit-city', $city->id) }}"><button class="btn ">تعديل</button></td>
+                            <td><a href="{{ route('active.city', $city->id) }}" >
+                                   <button type="button" class="btn ">
+                                        @if( $city->is_active)
+                                            <span style="font-size: 14px"class=" badge bg-success fs-6" >
+                                             مفعل /إلغاء التفعيل 
+                                           </span>
+                                        @else
+                                            <span style="font-size: 14px" class="badge bg-danger fs-6">
+                                               غير مفعل/تفعيل
+                                            </span>
+                                        @endif
+                                    
+                                    </button>
+                               </a>
+                            </td>
+
                         </tr>
                     @endforeach
 

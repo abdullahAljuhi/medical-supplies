@@ -24,7 +24,9 @@ class GovernorateController extends Controller
      */
     public function create()
     {
-        return view('admin.state');
+        $governorates = Governorate::all();
+        return view('admin.state',compact('governorates'));
+
 
     }
 
@@ -63,7 +65,7 @@ class GovernorateController extends Controller
             if (!$governorate)
                 return redirect()->back()->with(['error' => 'هذه الحافظه غير موجوده']);
 
-            return view('pharmacy.governorate.edit', ['governorate' => $governorate]);
+            return view('admin.editState', ['governorate' => $governorate]);
         } catch (\Exception $ex) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
@@ -88,6 +90,32 @@ class GovernorateController extends Controller
 
             $governorate->name = $request->name;
             $governorate->save();
+            $governorates = Governorate::all();
+        return view('admin.state',compact('governorates'));
+        } catch (\Exception $ex) {
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
+    }
+
+
+    public function active($id){
+        try {
+            $governorate = Governorate::find($id);
+            $acti=$governorate->is_active ;
+          
+            if($acti == 0)
+            {
+               $acti=1;
+ 
+            }else{
+             $acti=0;
+            }
+         
+            $governorate->is_active=$acti;
+ 
+         
+            $governorate->save();
+            return redirect()->back();
         } catch (\Exception $ex) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
