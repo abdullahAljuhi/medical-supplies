@@ -28,6 +28,7 @@ class MedicalController extends Controller
                     if ($request->city == 0)
                         return '';
                     return $q->where('city_id', $request->city);
+
                 })->get();
 
             $pharmacies = $pharmacies->when($request->governorate, function ($q) use ($request) {
@@ -35,6 +36,7 @@ class MedicalController extends Controller
                     return '';
                 return $q->where('governorate_id', $request->governorate);
             });
+
             return view('pharmacies', ['pharmacies' => $pharmacies]);
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -53,12 +55,14 @@ class MedicalController extends Controller
 
     }
 
+
     public function pharmacies(Request $request)
     {
         try {
             $pharmacies = Pharmacy::all();
 
             return view('pharmacies', ['pharmacies' => $pharmacies]);
+            
         } catch (\Exception $e) {
             return $e->getMessage();
         }

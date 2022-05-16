@@ -84,7 +84,24 @@
                                 <span class="  me-1  fw-bold" style="font-size: 15px"> (اضغط على + من اجل اضافة المزيد)</span></label>
                                 <div class=" mb-3  field_wrapper">
                                     <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
-                                    "name='products[]' autofocus>
+                                    "name='product_name[]' autofocus>
+                                    <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
+                                    "name='quantity[]' autofocus>
+                                    
+                                    <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
+                                    "name='product_name[]' autofocus>
+                                    <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
+                                    "name='quantity[]' autofocus>
+                                    
+                                    <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
+                                    "name='product_name[]' autofocus>
+                                    <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
+                                    "name='quantity[]' autofocus>
+                                    
+                                    <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
+                                    "name='product_name[]' autofocus>
+                                    <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
+                                    "name='quantity[]' autofocus>
                                     <input type="hidden" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
                                     "name='user' value="{{ Auth::user()->id }}">
                                     <input type="hidden" id="name" name='pharmacy' value="{{ $pharmacy->id }}">
@@ -138,7 +155,7 @@
                     <div class="tab-pane fade pt-0" id="profile-change-password">
 
                         <form class=" needs-validation" novalidate method="POST"
-                            action="" enctype="multipart/form-data">
+                                enctype="multipart/form-data"  action="{{ route ('send')}}">
                             @csrf
                             <div class="row mb-3">
                                 <label for="phote" class="col-md-12  col-form-label">صورة الوصفة الطبية او صورة من العلاج   
@@ -146,7 +163,16 @@
 
                                 <div class="col-md-12 mb-3">
                                     <input type="file"  class="form-control @error('phote') is-invalid @enderror"
-                                    name="image[]" value="{{ old('phote') }}" required autocomplete="phote" autofocus>
+                                    name="images[]" value="{{ old('phote') }}" required autocomplete="phote" autofocus multiple>
+                                           
+                                    <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
+                                    "name='quantity[]' autofocus >
+                                    
+                                    <input type="file"  class="form-control @error('phote') is-invalid @enderror"
+                                    name="images[]" value="{{ old('phote') }}" required autocomplete="phote" autofocus multiple>
+                                    
+                                    <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
+                                    "name='quantity[]' autofocus >
                                     @error('phote')
                                         <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -161,20 +187,22 @@
                                             <div class="col-6">
                                                 <label for="inputState" class="form-label">المحافظة</label>
                                                 <select name="governorate" class="form-select select1 mx-2"
-                                                    id="inputGroupSelect01">
-    
-                                                    <option value="">
-    
-                                                    </option>
-    
-                                                </select>
+                                                id="inputGroupSelect01">
+                                                @foreach ($governorates as $governorat)
+                                                <option value="{{ $governorat->name }}" >
+                                                    {{ $governorat->name }}
+                                                </option>
+                                                @endforeach
+                                        </select>
                                             </div>
                                             <div class="col-6">
                                                 <label for="inputState" class="form-label">المدينة</label>
-                                                <select name="city" class="form-select select2 mx-2" id="inputGroupSelect02"
+                                                   <select name="city" class="form-select select2 mx-2" id="inputGroupSelect02"
                                                     style="">
-    
-                                                </select>
+                                                    @foreach ($cities as $city)
+                                                    <option value="{{ $city->name }}" >{{ $city->name }}</option>
+                                                    @endforeach
+                                            </select>
     
                                             </div>
                                         </div>
@@ -188,10 +216,10 @@
                                         <div class="invalid-feedback">يرجى ادخال رقم الترخيص </div>
                                     </div>
                                 </div>
-                                 
+                                 <input type="hidden" name='pharmacy' value="{{ $pharmacy->id }}">
                             </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">ارسال الطلب</button>
+                                    <button type="submit" name='type'  value='1' class="btn btn-primary">ارسال الطلب</button>
                                 </div>
                         </form>
 
