@@ -42,9 +42,9 @@ class OrderController extends Controller
       $order->address=$address;
     $order->save();
        
-        //return $order;
+        return $order;
 
-        return view('order.orderMass');
+       // return view('order.orderMass');
     }
 
     public function store(Request $request)

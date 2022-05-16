@@ -83,7 +83,6 @@ class AdvertisementController extends Controller
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
 
-
     }
 
     /**

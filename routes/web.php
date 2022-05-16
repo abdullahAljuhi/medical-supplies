@@ -1,5 +1,4 @@
 <?php
-namespace App;
 use GuzzleHttp\Middleware;
 use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Auth;
@@ -56,8 +55,16 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             })->name('location');
             Route::get('/city', [CityController::class, 'create'])->name('add-city');
             Route::post('/city/store', [CityController::class, 'store'])->name('store-city');
+            Route::get('/city/edit/{id}', [CityController::class, 'edit'])->name('edit-city');
+            Route::post('/city/update/{id}', [CityController::class, 'update'])->name('update-city');
+            Route::get('/city/active/{id}', [CityController::class, 'active'])->name('active.city');
+           
             Route::get('/state', [GovernorateController::class, 'create'])->name('add-state');
             Route::post('/state/store', [GovernorateController::class, 'store'])->name('store-state');
+            Route::get('/state/edit/{id}', [GovernorateController::class, 'edit'])->name('edit-state');
+            Route::post('/state/update/{id}', [GovernorateController::class, 'update'])->name('update-state');
+            Route::get('/state/active/{id}', [GovernorateController::class, 'active'])->name('active.state');
+           
         }); // end users
 
 
