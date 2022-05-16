@@ -3,12 +3,12 @@
 @section('content')
     <!-- Page Title -->
     <div class="pagetitle">
-        <h1>Profile</h1>
+        <h1>الملف الشخصي</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../index.blade.php">Home</a></li>
-                <li class="breadcrumb-item">Users</li>
-                <li class="breadcrumb-item active">Profile</li>
+{{--                <li class="breadcrumb-item">الملف الشخصي</li>--}}
+{{--                <li class="breadcrumb-item">Users</li>--}}
+{{--                <li class="breadcrumb-item active">Profile</li>--}}
             </ol>
         </nav>
     </div>
@@ -28,7 +28,7 @@
                                  class="rounded-circle border p-1">
                         @endif
                         {{--                        <img src="{{$user->profile['image']?asset('assets/images/users/'.$user->profile['image']) : asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle">--}}
-                        <h2>{{ $user->name }}</h2>
+                        <h2 class="my-3">{{ $user->name }}</h2>
                         <h3>{{ $user->email }}</h3>
                     </div>
                 </div>
@@ -52,14 +52,25 @@
                                     <div class="col-lg-9 col-md-8">{{ $user->name }}</div>
                                 </div>
 
+
+                                @isset($user->profile['address'])
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">العنوان</div>
                                     <div class="col-lg-9 col-md-8">
-                                        @isset($user->profile['address'])
                                             {{$user->profile['address']}}
-                                        @endisset
                                     </div>
                                 </div>
+                                @endisset
+
+                                @isset($user->profile['birthday'])
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">العمر</div>
+                                        <div class="col-lg-9 col-md-8">
+{{--                                            {{$user->profile['birthday']}}--}}
+                                            {{\Carbon\Carbon::parse($user->profile['birthday'])->diff(\Carbon\Carbon::now())->format('%y سنة')}}
+                                        </div>
+                                    </div>
+                                @endisset
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">هاتف</div>
