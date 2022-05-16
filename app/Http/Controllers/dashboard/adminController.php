@@ -15,7 +15,7 @@ class adminController extends Controller
         try {
             $pharmacies = Pharmacy::where('check', 0)->get();
             
-            return view('home')->withPharmacies($pharmacies);
+            return view('home')->withPharmacies($pharmacies); 
             
 
         } catch (\Exception $e) {
