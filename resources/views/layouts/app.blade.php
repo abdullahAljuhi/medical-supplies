@@ -12,7 +12,7 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
+    <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -100,63 +100,21 @@
 
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                         <i class="bi bi-chat-left-text"></i>
-                        <span class="badge bg-success badge-number">3</span>
+                        <span class="badge bg-success badge-number">0</span>
                     </a><!-- End Messages Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
                         <li class="dropdown-header">
-                            لديك 3 رسائل جديدة
-                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">عرض الجميع</span></a>
+                            ليس لديك اي رسائل جديدة
+{{--                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">عرض الجميع</span></a>--}}
                         </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+{{--                        <li>--}}
+{{--                            <hr class="dropdown-divider">--}}
+{{--                        </li>--}}
 
-                        <li class="message-item">
-                            <a href="#">
-                                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
-                                <div>
-                                    <h4>ناصر الغيثي</h4>
-                                    <p>ممكن دواء بديل للصداع</p>
-                                    <p>منذ 4 ساعات</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="message-item">
-                            <a href="#">
-                                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
-                                <div>
-                                    <h4>ناصر الغيثي</h4>
-                                    <p>ممكن دواء بديل للصداع</p>
-                                    <p>منذ 4 ساعات</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="message-item">
-                            <a href="#">
-                                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-                                <div>
-                                    <h4>ناصر الغيثي</h4>
-                                    <p>ممكن دواء بديل للصداع</p>
-                                    <p>منذ 4 ساعات</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="#">عرض جميع الرسائل</a>
-                        </li>
+{{--                        <li class="dropdown-footer">--}}
+{{--                            <a href="#">عرض جميع الرسائل</a>--}}
+{{--                        </li>--}}
 
                     </ul><!-- End Messages Dropdown Items -->
 
@@ -184,6 +142,13 @@
                         </li>
                         <li>
                             <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('home') }}">
+                                <i class="bi bi-grid"></i>
+                                <span>لوحة التحكم</span>
+                            </a>
                         </li>
 
                         <li>
@@ -363,8 +328,15 @@
 <!-- Jquery -->
 <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 
-{{-- pusher js --}}
-<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    {{-- pusher js --}}
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script>
+        Pusher.logToConsole = true;
+    
+        var pusher = new Pusher('e4b4e21e1f468b8bddf2', {
+            cluster: 'mt1'
+        });
+    </script>
 
 @yield('scripts')
 </body>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -119,4 +120,37 @@ class UserController extends Controller
             //throw $th;
         }
     }
+
+    // get all orders for user auth
+    public function orders()
+    {
+        try {
+            
+            $user = User::with('pharmacy')->find(Auth::id());
+
+            // if user is pharmacy
+            if($user->type == 2){
+
+                $orders = Order::where('pharmacy_id',$user->pharmacy->id)->get();
+
+            // if user is admin
+            }else if($user->type == 1){
+                $order = Order::all();
+            }else{
+
+             // if user is normal user
+                $orders = Order::where('user_id',Auth::id())->get();
+            }
+
+            if ($orders) {
+
+                return $orders;
+            } else {
+                // return view('order.list');
+            }
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+    
 }

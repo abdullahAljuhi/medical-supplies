@@ -17,6 +17,7 @@ use App\Http\Controllers\UserProfileController;
 
 use App\Http\Controllers\dashboard\adminController;
 use App\Http\Controllers\dashboard\PharmacyController as MangePharmacy;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,6 @@ Auth::routes(['verify' => true]);
 define('PAGINATION', 10);
 
 
-
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
     // main page after login
@@ -46,7 +46,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     // admin
     Route::group(['prefix' => 'dashboard', 'middleware' => 'checkType:admin'], function () {
-        
+
         Route::get('/', [adminController::class, 'index'])->name('dashboard'); // dashboard
 
         // Setting Routs
@@ -74,8 +74,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         }); // end users
 
 
-        //crud advertisement
-        Route::group(['prefix'=>'advertisement'],function(){
+           //crud advertisement
+           Route::group(['prefix'=>'advertisement'],function(){
             Route::get('/index',[AdvertisementController::class,'index'])->name('show.adv');
             Route::get('/edit/{id}',[AdvertisementController::class,'edit'])->name('edit.adv');
             Route::post('/update/{id}',[AdvertisementController::class,'update'])->name('update.adv');
@@ -85,7 +85,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::get('/disActive/{adv}', [AdvertisementController::class, 'disActive'])->name('disActive.adv');
 
         });
-
 
 
         // crud pharmacy contact
@@ -134,24 +133,31 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::post('update', [UserProfileController::class, 'update'])->name('update.profile');
     });
 
+
        //crud order
             Route::group(['prefix'=>'order'],function(){
                 Route::post('/send',[OrderController::class,'send'])->name('send');
                 Route::get('/create/{pharmacy}',[OrderController::class,'create'])->name('order');
+                Route::get('/edit/{id?}',[OrderController::class,'edit'])->name('order.edit');
                 Route::get('/show',[OrderController::class,'show'])->name('bill');
-                Route::get('/create',[OrderController::class,'store'])->name('regest');
-    
-    
-            });   
+                Route::post('/update/{id}',[OrderController::class,'update'])->name('order.store');
+                Route::get('/bill/{id?}',[OrderController::class,'Bill'])->name('order.userBill');
+            });  
+            Route::get('/orders', [UserController::class, 'orders'])->name('use.orders');
+
+
 });
+
+
 
 
 
 // });
 // main page
 // Route::get('/', function () {return view('index');})->middleware('guest');
-Route::get('/', function () {return view('order.order');});
-
+Route::get('/', function () {
+    return view('order.order');
+});
 
 
 // start const route
@@ -172,3 +178,15 @@ Route::get('/', [MedicalController::class, 'index'])->name('index');
 
 Route::get('/pharmacies', [MedicalController::class, 'showPharmacies'])->name('morePharmacy'); // show all pharmacies
 
+Route::get('test', [PaymentController::class, 'index'])->name('test');
+Route::get('t/{id}', [PaymentController::class, 't']);
+
+
+Route::get('/test/response/{info}',function(){
+    $info = Route::current()->parameter('info');
+   
+    $info=base64_decode($info);
+    $data= $arrayFormat=json_decode($info,true);
+    return $data;
+});
+// http://127.0.0.1:8000/test/responsetest
