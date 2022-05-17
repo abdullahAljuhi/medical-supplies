@@ -38,6 +38,10 @@
     <!-- Costume CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/css/ar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    {{-- validation image  --}}
+    <script src="{{asset('js/validationIamge.js') }}"></script>
+
     @yield('extra-style')
 
 </head>

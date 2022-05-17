@@ -120,7 +120,7 @@
                                                تفعيل
                                             </span>
                                         @endif
-                                    
+
                                     </button>
                                </a>
                                <!--</div>
@@ -168,7 +168,7 @@
                                   <span >
                                     تفعيل
                                    </span>
-                                @endif 
+                                @endif
                             </a>
                         </div>
                     </div>

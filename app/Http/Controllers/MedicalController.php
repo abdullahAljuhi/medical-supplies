@@ -51,8 +51,8 @@ class MedicalController extends Controller
     public function index(Request $request)
     {
         try {
-            $pharmacies = Pharmacy::limit(6)->get();
-            $advertisements= Advertisement::limit(6)->get();
+            $pharmacies = Pharmacy::all();
+            $advertisements= Advertisement::all();
 
             return view('index', ['pharmacies' => $pharmacies,'advertisements'=>$advertisements]);
         } catch (\Exception $e) {

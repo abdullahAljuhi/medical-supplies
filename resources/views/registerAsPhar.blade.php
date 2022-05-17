@@ -71,7 +71,9 @@
 
                                 <div class="col-12">
                                     <label for="liscen" class="form-label">صورة الترخيص</label>
-                                    <input type="file" name="license" class="form-control @error('license') is-invalid @enderror" id="liscen" required>
+                                    <input type="file" name="license" class="form-control custom-file-input @error('license') is-invalid @enderror" id="liscen" required>
+                                                                  <div class="message-error">يرجى ادخال ملف من نوع صورة</div>
+                                        <div class="invalid-feedback">يرجى ادخال رقم الترخيص</div>
                                     @error('license')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

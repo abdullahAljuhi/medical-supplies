@@ -18,7 +18,7 @@
     <!-- End Page Title -->
 
     <section class="section profile min-vh-100 overflow-hidden">
-        
+
         <div class="wrapper">
             <div class="view_main container shadow ">
                 <form class="row g-3 needs-validation" novalidate method="POST"
@@ -39,8 +39,9 @@
                 <div class="col-md-6 col-sm-12">
                     <label for="image" class="form-label"> صورة الاعلان</label>
                     <input id="image" type="file"
-                                            class="form-control @error('image') is-invalid @enderror" name="image"
+                                            class="form-control custom-file-input  @error('image') is-invalid @enderror" name="image"
                                             value="{{ old('image') }}" required autocomplete="image" autofocus>
+                                            <div class="message-error">يرجى ادخال ملف من نوع صورة</div>
                                         @error('image')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -69,11 +70,11 @@
                                         </span>
                                         @enderror
                 </div>
-                
+
                 <div class="col-md-6 col-sm-12">
                     <button class="btn btn-primary w-50" type="submit">حفظ</button>
                 </div>
-               
+
             </form>
             </div>
         </div>

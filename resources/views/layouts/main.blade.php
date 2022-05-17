@@ -33,6 +33,9 @@
           rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{ asset('assets/js/addinput.js') }}"></script>
+        {{-- validation image  --}}
+    <script src="{{asset('js/validationIamge.js') }}"></script>
+
     <!--
 
         TemplateMo 559 Zay Shop

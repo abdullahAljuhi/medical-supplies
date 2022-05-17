@@ -23,13 +23,13 @@
     <!-- End Page Title -->
 
     <section class="section profile min-vh-100 overflow-hidden">
-        
+
         <div class="wrapper">
             <div class="view_main container shadow ">
                 <form class="row g-3 needs-validation" novalidate method="POST"
                 action="{{ route('update.adv',$advertisements->id) }}" enctype="multipart/form-data">
                 @csrf
-                
+
                 <div class="col-md-6 col-sm-12">
                     <label for="link" class="form-label">رابط الاعلان</label>
                     <input type="url" name="link" class="form-control form-control @error('link') is-invalid @enderror" id="link" value="{{ $advertisements->link }}" required>
@@ -41,12 +41,16 @@
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <label for="image" class="form-label"> صورة الاعلان</label>
-                    <input type="file" name="image" class="form-control form-control @error('image') is-invalid @enderror" id="image" required value="{{ $advertisements->image }}">
-                    @error('image')
+
+                    <input type="file" name="image" class="form-control custom-file-input" id="image" required value="{{ $advertisements->image }}">
+                    <div class="message-error">يرجى ادخال ملف من نوع صورة</div>
+                    <div class="invalid-feedback">يرجى إدراج صورة للإعلان </div>
+                   @error('image')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
+
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <label for="strat_date" class="form-label"> تاريخ البداء</label>
@@ -66,11 +70,11 @@
                         </span>
                     @enderror
                 </div>
-                 
+
                 <div class="col-md-6 col-sm-12">
                     <button class="btn btn-primary w-50" type="submit">تعديل</button>
                 </div>
-               
+
             </form>
             </div>
         </div>

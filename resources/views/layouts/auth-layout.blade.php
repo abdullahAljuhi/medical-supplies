@@ -40,6 +40,9 @@
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+        {{-- validation image  --}}
+        <script src="{{asset('js/validationIamge.js') }}"></script>
+
 
     <!-- =======================================================
     * Template Name: NiceAdmin - v2.2.2
