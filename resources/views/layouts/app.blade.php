@@ -233,6 +233,12 @@
                 </li><!-- End Users Nav -->
 
                 <li class="nav-item">
+                    <a class="nav-link collapsed" href="{{ route('admin.orders') }}">
+                        <i class="bi bi-cart"></i><span>جميع الطلبات</span>
+                    </a>
+                </li><!-- End Charts Nav -->
+
+                <li class="nav-item">
                     <a class="nav-link collapsed" href="#">
                         <i class="bi bi-cash"></i><span>الدفع</span>
                     </a>
@@ -265,7 +271,7 @@
 
             @if(Auth::user()->type == 2)
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="{{ route('orders') }}">
+                    <a class="nav-link collapsed" href="{{ route('pharmacy.orders') }}">
                         <i class="bi bi-cart"></i>
                         <span>جميع الطلبات</span>
                     </a>

@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends(Auth::user()->type == 0 ? 'layouts.main' : 'layouts.app')
 @section('title', 'الصفحة الرئيسية')
 @section('content')
     <!-- Page Title -->
-    <div class="pagetitle">
+    <div class="pagetitle mx-5 mt-3">
         <h1>جميع الطلبات</h1>
         <nav>
             <ol class="breadcrumb">
@@ -13,7 +13,7 @@
     </div>
     <!-- End Page Title -->
 
-    <section class="section">
+    <section class="section mx-5">
 
         <!-- Recent Sales -->
         <div class="card  recent-sales overflow-auto p-3">
@@ -40,7 +40,12 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
+                    @if(Auth::user()->type != 2)
+                    <th scope="col">اسم الصيدلية</th>
+                    @endif
+                    @if(Auth::user()->type != 0)
                     <th scope="col">اسم العميل</th>
+                    @endif
                     <th scope="col">عدد المنتجات</th>
                     <th scope="col">نوع الطلب</th>
                     <th scope="col">العنوان</th>
@@ -51,14 +56,19 @@
                 <tbody>
                 @foreach($orders as $order)
                     <tr style='cursor: pointer; cursor: hand;'
-                        onclick="window.location='{{ route('pharmacy.order',$order->id) }}';">
+                        onclick="window.location='{{ route($route,$order->id) }}';">
                         <th scope="row"><a href="#">{{ $order->id }}</a></th>
+                        @if(Auth::user()->type != 2)
+                        <td>{{ $order->pharmacy['pharmacy_name'] }}</td>
+                        @endif
+                        @if(Auth::user()->type != 0)
                         <td>{{ $order->user['name'] }}</td>
+                        @endif
                         <td>{{ count(json_decode($order->products)) }}</td>
                         <td>{{ $order->type?'وصفة طبية':'اسم العلاج' }}</td>
                         <td><a href="#" class="text-dark">{{ $order->address }}</a></td>
                         <td>{{ \Carbon\Carbon::parse($order->created_at)->diffForHumans() }}</td>
-                        <td><span class="badge bg-primary fs-6">{{ $order->status }}</span></td>
+                        <td><span class="badge bg-{{ $type[1][(int)$order->status] }} fs-6">{{ $type[0][(int)$order->status] }}</span></td>
                     </tr>
                 @endforeach
                 </tbody>

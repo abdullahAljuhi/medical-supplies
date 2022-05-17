@@ -110,7 +110,7 @@ class UserController extends Controller
             if ($user->image !== '') { // check if user has image
                 // remove image
                 // Storage::disk('users')->delete($user->image);
-                $fileName=public_path('assets/images/users/'.$photo);
+                $fileName=public_path('assets/images/users/'.$user->image);
                 unlink(realpath($fileName));
             }
 
@@ -124,32 +124,12 @@ class UserController extends Controller
     // get all orders for user auth
     public function orders()
     {
+        $type = [['جديد','قيد الانتظار','مكتمل','غير متوفر','مرفوض','مسترجع'],['primary','warning','success','secondary','danger','orange']];
+        $route = 'user.order';
         try {
-
-            $user = User::with('pharmacy')->find(Auth::id());
-
-            // if user is pharmacy
-            if($user->type == 2){
-
-                $orders = Order::where('pharmacy_id',$user->pharmacy->id)->get();
-                return view('order.index',compact('orders'));
-
-            // if user is admin
-            }else if($user->type == 1){
-                $order = Order::all();
-
-            }else{
-
              // if user is normal user
                 $orders = Order::where('user_id',Auth::id())->get();
-            }
-
-            if ($orders) {
-
-                return $orders;
-            } else {
-                // return view('order.list');
-            }
+                return view('order.index', compact('orders','route','type'));
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -157,13 +137,16 @@ class UserController extends Controller
     public function order($id)
     {
         try {
-
             $order = Order::find($id);
-
             if ($order) {
-                return redirect()->back();
+                $products = json_decode($order->products, JSON_UNESCAPED_UNICODE);
+                if ($order->status == 0) {
+                    return redirect()->back();
+                } else {
+                    return view('order.bill-text', compact('order', 'products'));
+                }
             } else {
-                return view('order.list');
+                return redirect()->back();
             }
         } catch (\Exception $e) {
             return $e->getMessage();

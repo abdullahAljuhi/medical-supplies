@@ -13,7 +13,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -24,7 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
     ];
-    
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -56,7 +56,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Advertisement::class,'user_id');
     }
 
-    
+
     public function admin(){
         if($this->type == 1){
             return true;
@@ -72,5 +72,9 @@ class User extends Authenticatable implements MustVerifyEmail
         }
     }
 
- 
+    public function orders(){
+        return $this->hasMany(Order::class,'user_id');
+    }
+
+
 }
