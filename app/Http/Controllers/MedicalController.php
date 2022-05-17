@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Pharmacy;
-use App\Models\Advertisement;
 use Illuminate\Http\Request;
+use App\Models\Advertisement;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class MedicalController extends Controller
@@ -71,5 +73,20 @@ class MedicalController extends Controller
             return $e->getMessage();
         }
 
+    }
+
+       // show orders that for pharmacy 
+       public function OrderNotification(){
+
+        $q = Order::with(['user'=>function($q){
+            return $q->where('id',Auth::id());
+        }],'pharmacy')->where('status',1);
+
+        $orders=$q->limit(6)->get();
+
+        $count=$q->count();
+    
+        return ['orders'=>$orders,'count'=>$count];
+    
     }
 }
