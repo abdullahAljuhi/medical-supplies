@@ -5,14 +5,16 @@ namespace App\Models;
 use App\Models\Order;
 use App\Models\UserProfile;
 use Laravel\Sanctum\HasApiTokens;
+use Bavix\Wallet\Traits\HasWallet;
+use Bavix\Wallet\Interfaces\Wallet;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail , Wallet
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasWallet;
 
     
     /**
