@@ -38,14 +38,13 @@ class HomeController extends Controller
 
         }else if(Auth::user()->pharmacyType()){
 
-                //  this rout for pharmacy/
+            //  this rout for pharmacy/
             return redirect(RouteServiceProvider::PHARMACY);
 
         }else{
-            $advertisements= Advertisement::all();
-            $pharmacies = Pharmacy::all();
-            return view('index',compact('advertisements','pharmacies'));
         
+            //  this rout for user
+            return redirect()->route('index');
         }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
@@ -18,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-       
+
     }
 
     /**
@@ -110,7 +111,7 @@ class UserController extends Controller
             if ($user->image !== '') { // check if user has image
                 // remove image
                 // Storage::disk('users')->delete($user->image);
-                $fileName=public_path('assets/images/users/'.$photo);
+                $fileName=public_path('assets/images/users/'.$user->image);
                 unlink(realpath($fileName));
             }
 
@@ -118,6 +119,38 @@ class UserController extends Controller
             return redirect()->route('user.home');
         } catch (\Exception $e) {
             //throw $th;
+        }
+    }
+
+    // get all orders for user auth
+    public function orders()
+    {
+        $type = [['جديد','قيد الانتظار','مكتمل','غير متوفر','مرفوض','مسترجع'],['primary','warning','success','secondary','danger','orange']];
+        $route = 'user.order';
+        try {
+             // if user is normal user
+                $orders = Order::where('user_id',Auth::id())->get();
+                return view('order.index', compact('orders','route','type'));
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+    public function order($id)
+    {
+        try {
+            $order = Order::find($id);
+            if ($order) {
+                $products = json_decode($order->products, JSON_UNESCAPED_UNICODE);
+                if ($order->status == 0) {
+                    return redirect()->back();
+                } else {
+                    return view('order.bill-text', compact('order', 'products'));
+                }
+            } else {
+                return redirect()->back();
+            }
+        } catch (\Exception $e) {
+            return $e->getMessage();
         }
     }
 }

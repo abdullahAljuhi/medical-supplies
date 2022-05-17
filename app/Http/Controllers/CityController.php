@@ -16,8 +16,15 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities=City::all();
-        return view('city.index',['cities'=>$cities]);
+        try {
+
+            $cities=City::all();
+
+            return view('city.index',['cities'=>$cities]);
+
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
 
     }
 
@@ -29,7 +36,9 @@ class CityController extends Controller
     public function create()
     {
         $governorates = Governorate::all();
+
         $cities = City::with('governorate')->get();
+
         return view('admin.city',['cities'=>$cities, 'governorates'=>$governorates]);
     }
 
@@ -37,10 +46,12 @@ class CityController extends Controller
     public function store(CityRequest $request)
     {
         try {
+
             $city = new City();
             $city->name = $request->name;
             $city->governorate_id = $request->governorate;
             $city->save();
+
             return redirect()->back()->with(['success' => 'تم  الاضافه بنجاح']);
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -54,12 +65,14 @@ class CityController extends Controller
      {//return $id;
         try {
             $city = City::findOrFail($id);
-           // check if city is exist
+           
+            // check if city is exist
             if (!$city)
                 return redirect()->back()->with(['error' => 'هذه المدينه غير موجوده']);
 
             return view('admin.editCity', ['city' => $city]);
         } catch (\Exception $ex) {
+            
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }

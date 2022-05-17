@@ -10,13 +10,24 @@ class Order extends Model
     use HasFactory;
 
    protected $fillable = [
-       'total',
-       'delever',
+       'total_price',
+       'delivery',
        'user_id',
        'pharmacy_id',
        'address',
-       'prodect',
-       'price',
-       'status'
+       'products',
+       'status',
+       'type',
    ];
+
+
+   public function pharmacy(){
+    return $this->belongsTo(Pharmacy::class,'pharmacy_id');
+
+   }
+   public function user(){
+    return $this->belongsTo(User::class,'user_id');
+
+   }
+
 }

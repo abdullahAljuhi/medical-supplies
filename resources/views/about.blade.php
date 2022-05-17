@@ -108,7 +108,8 @@
 
                         <!--Carousel Wrapper-->
                         <div class="col">
-                            <div class="carousel slide carousel-multi-item pt-2 pt-md-0" id="templatemo-slide-brand" data-bs-ride="carousel">
+                            <div class="carousel slide carousel-multi-item pt-2 pt-md-0" id="templatemo-slide-brand"
+                                 data-bs-ride="carousel">
                                 <!--Slides-->
                                 <div class="carousel-inner product-links-wap" role="listbox">
 
@@ -116,36 +117,45 @@
                                     <div class="carousel-item active">
                                         <div class="row">
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="imgs/brand1.jpg" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img"
+                                                                 src="{{asset('img/brand1.jpg') }}" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="imgs/brand2.jpg" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img"
+                                                                 src="{{asset('img/brand2.jpg ') }}" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="imgs/brand3.jpg" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img"
+                                                                 src="{{asset('img/brand3.jpg ') }}" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="imgs/brand4.jpg" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img"
+                                                                 src="{{asset('img/brand4.jpg ') }}" alt="Brand Logo"></a>
                                             </div>
 
                                         </div>
                                     </div>
                                     <!--End First slide-->
 
+
                                     <!--Second slide-->
                                     <div class="carousel-item">
                                         <div class="row">
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="imgs/brand5.jpg" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img"
+                                                                 src="{{asset('img/brand5.jpg') }}" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="imgs/brand6.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img"
+                                                                 src="{{asset('img/brand6.png ') }}" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="imgs/brand7.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img"
+                                                                 src="{{asset('img/brand7.png ') }}" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="imgs/brand8.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img"
+                                                                 src="{{asset('img/brand8.png') }}" alt="Brand Logo"></a>
                                             </div>
                                         </div>
                                     </div>

@@ -17,14 +17,15 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('pharmacy_id');
+            $table->unsignedBigInteger('pharmacy_id')->nullable();
             $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('prodect');
-            $table->decimal('delever_price');
+            $table->string('products');
+            $table->integer('delivery_price')->nullable();
             $table->string('address');
-            $table->tinyInteger('status');
-            $table->string('price');
-            $table->decimal('total');
+            $table->tinyInteger('status')->default(0);
+            $table->boolean('is_show')->default(0);
+            $table->integer('total_price')->default(0);
+            $table->boolean('type')->default(0); // this check if order is order by image
             $table->timestamps();
         });
     }

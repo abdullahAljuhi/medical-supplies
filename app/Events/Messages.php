@@ -40,7 +40,7 @@ class Messages implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        // return new PrivateChannel('order2');
+        
         return ['order'.$this->id];
 
     }
