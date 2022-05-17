@@ -43,7 +43,7 @@
                     <th scope="col">اسم العميل</th>
                     <th scope="col">عدد المنتجات</th>
                     <th scope="col">العنوان</th>
-                    <th scope="col">نو</th>
+                    <th scope="col">نوع الطلب</th>
                     <th scope="col">تاريخ الطلب</th>
                     <th scope="col">الحالة</th>
                 </tr>
@@ -54,7 +54,7 @@
                         onclick="window.location='';">
                         <th scope="row"><a href="#">{{ $order->id }}</a></th>
                         <td>{{ $order->user['name'] }}</td>
-                        <td>{{ count(json_decode($order->products)) }}</td>
+                        {{-- <td>{{ count(json_decode($order->products, true)) }}</td> --}}
                         <td><a href="#" class="text-dark">{{ $order->address }}</a></td>
                         <td>{{ \Carbon\Carbon::parse($order->created_at)->diffForHumans() }}</td>
                         <td><span class="badge bg-primary fs-6">جديد</span>

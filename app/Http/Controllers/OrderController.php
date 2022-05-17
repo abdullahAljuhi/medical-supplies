@@ -68,12 +68,14 @@ class OrderController extends Controller
                 // images
                 foreach ($request->file('images') as $i => $image) {
                     // upload images to public/assets/images/orders
+                    $products[$i]['id'] = $i;
                     $products[$i]['product_name'] = $this->uploadImage("orders", $image);
                 }
             }
             }else{
 
                 foreach ($request->product_name as $i => $name) {
+                    $products[$i]['id'] = $i;
                     $products[$i]['product_name'] = $name;
                 };
 
@@ -82,7 +84,7 @@ class OrderController extends Controller
             foreach ($request->quantity as $i => $quantity) {
                 $products[$i]['quantity'] = $quantity;
             };
-            // var_dump($products);
+            // return($products);
             $products = json_encode($products, JSON_UNESCAPED_UNICODE);
 
             // $products=implode(',',$products);
@@ -97,7 +99,7 @@ class OrderController extends Controller
 
             // send notification for pharmacy
             event(new Messages($order, $request->pharmacy));
-            return $order;
+            // return $order;
 
             return view('order.orderMass');
 

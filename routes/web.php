@@ -149,7 +149,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                 Route::post('/update/{id}',[OrderController::class,'update'])->name('order.store');
                 Route::get('/bill/{id?}',[OrderController::class,'Bill'])->name('order.userBill');
             });
-            Route::get('/orders', [UserController::class, 'orders'])->name('use.orders');
+            Route::get('/orders', [UserController::class, 'orders'])->name('orders');
 
 
 });
@@ -185,8 +185,11 @@ Route::get('/', [MedicalController::class, 'index'])->name('index');
 Route::get('/pharmacies', [MedicalController::class, 'showPharmacies'])->name('morePharmacy'); // show all pharmacies
 
 Route::get('test', [PaymentController::class, 'index'])->name('test');
-Route::get('t/{id}', [PaymentController::class, 't']);
+// Route::get('t/{id}', [PaymentController::class, 't']);
 
+Route::get('/o', [PharmacyController::class, 'OrderNotification']);
+
+Route::get('/uo', [PharmacyController::class, 'OrderNotification']);
 
 Route::get('/test/response/{info}',function(){
     $info = Route::current()->parameter('info');

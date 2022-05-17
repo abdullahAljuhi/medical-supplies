@@ -132,6 +132,8 @@ class UserController extends Controller
             if($user->type == 2){
 
                 $orders = Order::where('pharmacy_id',$user->pharmacy->id)->get();
+                // $products=json_decode($orders->products, true);
+                // return $products; 
                 return view('order.index',compact('orders'));
 
             // if user is admin
@@ -157,7 +159,7 @@ class UserController extends Controller
     public function order($id)
     {
         try {
-
+            // if($order)
             $order = Order::find($id);
 
             if ($order) {
@@ -168,5 +170,12 @@ class UserController extends Controller
         } catch (\Exception $e) {
             return $e->getMessage();
         }
+    }
+
+    public function OrderNotification(){
+        $orders = Order::where('status',0)->where('user_id',Auth::id())->get();
+        return $orders;
+        // $orders = Order::where('pharmacy_id',$user->pharmacy->id)->get();
+
     }
 }

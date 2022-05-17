@@ -251,22 +251,39 @@ class PharmacyController extends Controller
         }
     }
 
-    // show order
+    // show pharmacy order 
     public function order($id)
     {
         try {
+            // get auth user
+            $user = User::with('pharmacy')->find(Auth::id());
 
             $order = Order::find($id);
 
+            // check if order is founded
             if ($order) {
-                return redirect()->back();
-            } else {
+
+            // check if user he can see this order
+            if(!$order->pharmacy_id == $user->pharmacy->id ){
+
                 return view('order.list');
+
             }
+                return redirect()->back();
+        }
         } catch (\Exception $e) {
+
             return $e->getMessage();
         }
     }
 
+    public function OrderNotification(){
+        $orders = Pharmacy::with(['orders'=>function($q){
+            return $q->where('status',0);
+        }])->where('user_id',Auth::id())->first()->orders;
+        return $orders;
+        // $orders = Order::where('pharmacy_id',$user->pharmacy->id)->get();
+
+    }
 
 }

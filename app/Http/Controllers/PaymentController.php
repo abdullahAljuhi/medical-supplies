@@ -22,11 +22,9 @@ class PaymentController extends Controller
         $id = $request->id;
         $order = Order::with('pharmacy', 'user')->find($id);
         if (Auth::id() == $order->user_id && $order->status == 1) {
-            //  var_dump( $order->products);
-
+            
             $products = json_decode($order->products, true);
-
-            return $products;
+            
             $data = [
                 "order_reference" => "123412",
                 "products" =>$products,
