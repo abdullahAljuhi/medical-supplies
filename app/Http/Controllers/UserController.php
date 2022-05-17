@@ -121,43 +121,7 @@ class UserController extends Controller
         }
     }
 
-    // get all orders for user auth
-    public function orders()
-    {
-        try {
 
-            $user = User::with(['pharmacy',function($q){
-                return $q->where('user_id',Auth::id());
-            }])->find(Auth::id());
-
-            // if user is pharmacy
-            if($user->type == 2){
-
-                $orders = Order::where('pharmacy_id',$user->pharmacy->id)->get();
-                // $products=json_decode($orders->products, true);
-                // return $products; 
-                return view('order.index',compact('orders'));
-
-            // if user is admin
-            }else if($user->type == 1){
-                $order = Order::all();
-
-            }else{
-
-             // if user is normal user
-                $orders = Order::where('user_id',Auth::id())->get();
-            }
-
-            if ($orders) {
-
-                return $orders;
-            } else {
-                // return view('order.list');
-            }
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
-    }
     public function order($id)
     {
         try {
@@ -174,10 +138,10 @@ class UserController extends Controller
         }
     }
 
+    // show user order's
     public function OrderNotification(){
         $orders = Order::where('status',0)->where('user_id',Auth::id())->get();
         return $orders;
-        // $orders = Order::where('pharmacy_id',$user->pharmacy->id)->get();
 
     }
 }

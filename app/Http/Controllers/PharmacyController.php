@@ -35,7 +35,11 @@ class PharmacyController extends Controller
                 return redirect()->route('pharmacy.create');
             } else {
                 if ($pharmacy->is_active == '1') {
-                    return view('pharmacy.home');
+
+                    $orders = $this->OrderNotification();
+
+                    return view('pharmacy.home',compact('orders') );
+
                 } else {
                     return view('auth.verifyPharmacy');
                 }
@@ -279,10 +283,17 @@ class PharmacyController extends Controller
 
     // show orders that for pharmacy 
     public function OrderNotification(){
-        $orders = Order::with(['pharmacy'=>function($q){
+
+        $q = Order::with(['pharmacy'=>function($q){
             return $q->where('user_id',Auth::id());
-        }])->where('status',0)->get();
-        return $orders;
+        }],'user')->where('status',1);
+
+        $orders=$q->limit(6)->get();
+
+        $count=$q->count();
+    
+        return ['orders'=>$orders,'count'=>$count];
+    
     }
 
 }
