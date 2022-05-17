@@ -10,7 +10,9 @@
     <link rel="shortcut icon" type="image/x-icon" href=" {{ asset('img/favicon.ico') }}">
     <!-- Favicons -->
     <link href="assets/img/favicon.png" rel="icon">
-
+    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/templatemo.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
