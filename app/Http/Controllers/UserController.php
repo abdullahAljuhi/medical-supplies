@@ -126,7 +126,9 @@ class UserController extends Controller
     {
         try {
 
-            $user = User::with('pharmacy')->find(Auth::id());
+            $user = User::with(['pharmacy',function($q){
+                return $q->where('user_id',Auth::id());
+            }])->find(Auth::id());
 
             // if user is pharmacy
             if($user->type == 2){

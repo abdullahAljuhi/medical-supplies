@@ -277,13 +277,12 @@ class PharmacyController extends Controller
         }
     }
 
+    // show orders that for pharmacy 
     public function OrderNotification(){
-        $orders = Pharmacy::with(['orders'=>function($q){
-            return $q->where('status',0);
-        }])->where('user_id',Auth::id())->first()->orders;
+        $orders = Order::with(['pharmacy'=>function($q){
+            return $q->where('user_id',Auth::id());
+        }])->where('status',0)->get();
         return $orders;
-        // $orders = Order::where('pharmacy_id',$user->pharmacy->id)->get();
-
     }
 
 }

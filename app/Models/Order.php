@@ -23,15 +23,12 @@ class Order extends Model
   
    public function pharmacy(){
     return $this->belongsTo(Pharmacy::class,'pharmacy_id');
-
    }
    public function user(){
     return $this->belongsTo(User::class,'user_id');
 
    }
 
-   public function orders(){
-       return $this->hasMany(Order::class,'user_id');
-   }
+
 
 }

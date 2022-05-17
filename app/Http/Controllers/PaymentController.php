@@ -26,7 +26,7 @@ class PaymentController extends Controller
             $products = json_decode($order->products, true);
             
             $data = [
-                "order_reference" => "123412",
+                "order_reference" => $order->id,
                 "products" =>$products,
                  "currency" => "YER",
                 "total_amount" => $order->total_price,
@@ -73,20 +73,48 @@ class PaymentController extends Controller
               echo " Error #:" . $err;
             } else {
               echo $response;
+              $result = json_decode($response, true);
+              $next_url = $result['invoice']['next_url'];
+              return redirect($next_url);
             }
-            //     //    print_r(json_decode($response,true));
-            //     $result = json_decode($response, true);
-            //     return $result;
-            //     $next_url = $result['invoice']['next_url'];
-            //     //    $next_url=substr_replace('//','/ ',$result['invoice']['next_url']);
-
-            //     return redirect($next_url);
-            //     //  echo $next_url;
-
-
-            // }
         }
     }
+
+      /**
+   * This function is used to show the success page with the amount and the other details
+   */
+  public function showTest()
+  {
+    $info = Route::current()->parameter('info');
+
+    $info = base64_decode($info);
+    $data = $arrayFormat = json_decode($info, true);
+
+    
+    for ($i = 0; $i < count($data); $i++) {
+      $status = array_column($arrayFormat, 'status');
+      $paid_amount = array_column($arrayFormat, 'paid_amount');
+      $card_holder = array_column($arrayFormat, 'card_holder');
+      $card_type = array_column($arrayFormat, 'card_type');
+      $created_at = array_column($arrayFormat, 'created_at');
+      $updated_at = array_column($arrayFormat, 'updated_at');
+    }
+    $card_type = str_replace('+', ' ', $card_type[0]);
+    $card_holder = str_replace('+', ' ', $card_holder[0]);
+    if($data['status']=='success'){
+
+    }else{
+
+    }
+    // echo $card_type . '<br>';
+    // echo $card_holder . '<br>';
+    // // print_r($paidatad_amount) ;
+    // echo '<br>';
+    // print_r($status) ;
+    //  echo '<br>';
+    // die();
+    return view('paymentViews.testResponse', compact('paid_amount', 'status', 'card_holder', 'card_type', 'created_at'));
+  }
 
 
 }

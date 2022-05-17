@@ -191,11 +191,5 @@ Route::get('/o', [PharmacyController::class, 'OrderNotification']);
 
 Route::get('/uo', [PharmacyController::class, 'OrderNotification']);
 
-Route::get('/test/response/{info}',function(){
-    $info = Route::current()->parameter('info');
-
-    $info=base64_decode($info);
-    $data= $arrayFormat=json_decode($info,true);
-    return $data;
-});
+Route::get('/test/response/{info}',[PaymentController::class,'showTest']);
 // http://127.0.0.1:8000/test/responsetest

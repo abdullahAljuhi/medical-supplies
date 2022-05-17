@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Order;
 use App\Models\UserProfile;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -72,5 +73,7 @@ class User extends Authenticatable implements MustVerifyEmail
         }
     }
 
- 
+    public function orders(){
+        return $this->hasMany(Order::class,'user_id');
+    }
 }
