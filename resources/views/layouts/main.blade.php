@@ -48,7 +48,7 @@
 <body style="overflow-x: hidden">
 
     <!-- ======= Header ======= -->
-    <header id="header" class="header fixed-top d-flex align-items-center position-absolute">
+    <header id="header" class="header d-flex align-items-center">
 
         <!-- Main Logo -->
         <div class="d-flex align-items-center justify-content-between">
@@ -139,18 +139,26 @@
 
 
                         @if(Auth::user()->profile || Auth::user()->pharmacy)
-
+                            @if(Auth::user()->type != 0)
                             <li>
                                 <a class="dropdown-item d-flex align-items-center" href="{{ route('home') }}">
                                     <i class="bi bi-grid"></i>
                                     <span>لوحة التحكم</span>
                                 </a>
                             </li>
+                            @endif
 
                             <li>
                                 <a class="dropdown-item d-flex align-items-center" href="{{ route('profile') }}">
                                     <i class="bi bi-person"></i>
                                     <span>الملف الشخصي</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route('user.orders') }}">
+                                    <i class="bi bi-cart"></i>
+                                    <span>الطلبات</span>
                                 </a>
                             </li>
                             <li>

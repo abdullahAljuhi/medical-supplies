@@ -45,12 +45,15 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/changePassword', [UserController::class, 'changePassword'])->name('changePassword.user');
 
     Route::get('orders', [UserController::class, 'orders'])->name('orders');
+
+    Route::get('/orders', [UserController::class, 'orders'])->name('user.orders'); // all orders
+    Route::get('/order/{id}', [UserController::class, 'order'])->name('user.order'); // show order
     // admin
     Route::group(['prefix' => 'dashboard', 'middleware' => 'checkType:admin'], function () {
 
         Route::get('/', [adminController::class, 'index'])->name('dashboard'); // dashboard
-        Route::get('/orders', [adminController::class, 'orders'])->name('admmin.orders'); // all orders
-        Route::get('/order/{id}', [adminController::class, 'order'])->name('admin.order.show'); // show order
+        Route::get('/orders', [adminController::class, 'orders'])->name('admin.orders'); // all orders
+        Route::get('/order/{id}', [adminController::class, 'order'])->name('admin.order'); // show order
 
         // Setting Routs
         Route::group(['prefix' => 'settings'], function () {

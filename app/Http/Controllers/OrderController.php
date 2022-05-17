@@ -14,7 +14,7 @@ class OrderController extends Controller
 {
     use Helper;
 
-   /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -35,7 +35,6 @@ class OrderController extends Controller
     }
 
 
-
     /**
      * Show the form for creating a new resource.
      *
@@ -47,31 +46,25 @@ class OrderController extends Controller
     }
 
 
-
-
-
-
-
     // this function use for send request (order)
     public function send(Request $request)
     {
         try {
-
             $address = $request['governorate'] . ' - ' . $request['city'] . ' - ' . $request['details'];
-            $type=0;
+            $type = 0;
             $products = [];
-            if($request->type==1){
+            if ($request->type == 1) {
 
                 // check if request has file image
-            if ($request->hasFile('images')) {
-                $type=1;
-                // images
-                foreach ($request->file('images') as $i => $image) {
-                    // upload images to public/assets/images/orders
-                    $products[$i]['product_name'] = $this->uploadImage("orders", $image);
+                if ($request->hasFile('images')) {
+                    $type = 1;
+                    // images
+                    foreach ($request->file('images') as $i => $image) {
+                        // upload images to public/assets/images/orders
+                        $products[$i]['product_name'] = $this->uploadImage("orders", $image);
+                    }
                 }
-            }
-            }else{
+            } else {
 
                 foreach ($request->product_name as $i => $name) {
                     $products[$i]['product_name'] = $name;
@@ -97,7 +90,6 @@ class OrderController extends Controller
 
             // send notification for pharmacy
             event(new Messages($order, $request->pharmacy));
-            return $order;
 
             return view('order.orderMass');
 
@@ -106,34 +98,34 @@ class OrderController extends Controller
         }
     }
 
-       // this show page that pharmacy can add price
+    // this show page that pharmacy can add price
 
-       public function edit(Request $request, $id = '')
-       {
+    public function edit(Request $request, $id = '')
+    {
 
-           try {
-               //code...
-               $order = Order::with('pharmacy','user')->find($request->id);
+        try {
+            //code...
+            $order = Order::with('pharmacy', 'user')->find($request->id);
 
-               // check if the pharmacy auth is has the order
-               if($order->pharmacy->user_id==Auth::id()){
+            // check if the pharmacy auth is has the order
+            if ($order->pharmacy->user_id == Auth::id()) {
 
-                   // convert json to array
-                   $products = json_decode($order->products, true);
+                // convert json to array
+                $products = json_decode($order->products, true);
                 //    return var_dump($products);
-                   return view('order.product', compact('order','products'));
-               }
-               return redirect()->back();
+                return view('order.product', compact('order', 'products'));
+            }
+            return redirect()->back();
 
-           } catch (\Throwable $th) {
-               throw $th;
-           }
-       }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
 
@@ -162,7 +154,7 @@ class OrderController extends Controller
             }
             $total_price += $request->delivery;
 
-             // convert array to json
+            // convert array to json
             $products = json_encode($products, JSON_UNESCAPED_UNICODE);
 
             $order->update([
@@ -190,7 +182,7 @@ class OrderController extends Controller
 
             $order = Order::with('pharmacy', 'user')->find($id);
 
-                // check if the user auth is the owner of the order and order status is not paid
+            // check if the user auth is the owner of the order and order status is not paid
             if (Auth::id() == $order->user_id && $order->status == 1) {
 
                 // convert json to array
