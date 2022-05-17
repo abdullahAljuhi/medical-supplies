@@ -41,6 +41,7 @@ class PharmacyController extends Controller
                     return view('pharmacy.home',compact('orders') );
 
                 } else {
+                    event(new notfiy($pharmacy));
                     return view('auth.verifyPharmacy');
                 }
             }

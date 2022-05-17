@@ -41,9 +41,6 @@
     });
     
 </script>
-    @if(Auth::user()->id==1)
-    <script src="{{asset('js/pusherNotifications.js')}}"></script>
-    @else
-        
-    @endif
+<script src="{{('/js/pusherNotifications.js')}}">
+</script>
 @endsection
