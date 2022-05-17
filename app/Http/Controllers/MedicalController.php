@@ -53,8 +53,8 @@ class MedicalController extends Controller
         try {
             $pharmacies = Pharmacy::limit(6)->get();
             $advertisements= Advertisement::limit(6)->get();
-
-            return view('index', ['pharmacies' => $pharmacies,'advertisements'=>$advertisements]);
+            $orders = $this->OrderNotification();
+            return view('index', ['pharmacies' => $pharmacies,'advertisements'=>$advertisements,'orders'=>$orders]);
         } catch (\Exception $e) {
             return $e->getMessage();
         }

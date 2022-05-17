@@ -92,7 +92,7 @@
                 @endif
 
                 @else
-                <!-- Notification Nav -->
+                {{-- <!-- Notification Nav -->
                 <li class="nav-item dropdown dropdown-notifications">
 
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
@@ -109,7 +109,38 @@
                     </ul><!-- End Notification Dropdown Items -->
 
                 </li>
-                <!-- End Notification Nav -->
+                <!-- End Notification Nav --> --}}
+
+                    <!-- Notification Nav -->
+                    <li class="nav-item dropdown dropdown-notifications">
+
+                        <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
+                            <i class="bi bi-bell"></i>
+    
+                            <span class="badge bg-primary badge-number notify-count"
+                                data-count="{{ $orders['count']??'0' }}">{{ $orders['count'??'0'] }}</span>
+                        </a><!-- End Notification Icon -->
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                            @isset($orders['orders'])
+                            @foreach ($orders['orders'] as $order )
+                            <li class="notification-item scrollable-container">
+                                {{ $order->pharmacy->pharmacy_name}}
+                            </li>
+                            @endforeach
+                            <li>
+    
+                                <hr class="dropdown-divider">
+                            </li>
+    
+                            <li class="dropdown-footer">
+                                <a href="{{ route('orders') }}">عرض جميع الطلبات</a>
+                            </li>
+                            @endisset
+                            <li class="notification-item scrollable-container">
+                            </li>
+    
+                        </ul><!-- End Notification Dropdown Items -->
+                    </li>
 
                 <!-- Profile Nav -->
                 <li class="nav-item dropdown pe-3">
