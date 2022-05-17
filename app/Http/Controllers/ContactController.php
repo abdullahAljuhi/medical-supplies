@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use App\Http\Requests\ContactRequest;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Expr\AssignOp\Concat;
 
@@ -23,7 +24,7 @@ class ContactController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(ContactRequest $request)
     {
         try {
             $contact = new Contact();
@@ -58,7 +59,7 @@ class ContactController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(ContactRequest $request, $id)
     {
         try {
 

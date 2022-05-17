@@ -1,6 +1,13 @@
 @extends('layouts.app')
 @section('title', 'الملف الشخصي')
 @section('content')
+
+<!--Display Error-->
+<!-- @if($errors->any())
+    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
+@endif -->
+
+
     <!-- Page Title -->
     <div class="pagetitle">
         <h1>المدن</h1>
@@ -19,6 +26,8 @@
 
                 <div class="card">
                     <div class="card-body pt-3">
+                    @include('alerts.success')
+                    @include('alerts.errors')
                         <!-- Bordered Tabs -->
                         <div class="tab-content pt-2">
                             <form method="post" action="{{ route('update-city',$city->id) }}">
@@ -33,9 +42,14 @@
                                         </select>
                                     </div>
                                     <div class="col-6">
-                                        <label for="city" class="form-label">يرجى تعديل اسم المدينة</label>
+                                        <label for="city" class="form-label"> تعديل اسم المدينة</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="name" type="text" class="form-control" id="city" value="{{$city->name}}">
+                                            <input name="name" type="text" class="form-control form-control @error('name') is-invalid @enderror" id="city" value="{{$city->name}}">
+                                            @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                         </div>
                                     </div>
 

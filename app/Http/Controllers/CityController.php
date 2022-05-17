@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Models\City;
 use App\Http\Requests\CityRequest;
 use App\Models\Governorate;
+use App\Http\Requests\GovernorateRequest;
 
 class CityController extends Controller
 {
@@ -51,10 +52,9 @@ class CityController extends Controller
             $city->governorate_id = $request->governorate;
             $city->save();
 
-            return redirect()->route('city.all')->with(['success' => 'تم  الاضافه بنجاح']);
-
+            return redirect()->back()->with(['success' => 'تم  الاضافه بنجاح']);
         } catch (\Exception $e) {
-
+            return $e->getMessage();
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
@@ -103,18 +103,28 @@ class CityController extends Controller
 
     public function active($id){
         try {
-            $city = City::find($id);
-            $acti=$city->is_active ;
+
+            $city = City::with("Governorate")->find($id);
+            $active=$city->is_active ;
           
-            if($acti == 0)
+             $governorate = Governorate::find($id);
+             $activegov=$governorate->is_active ;
+
+            //$city->Governorate =  $city
+            if($activegov==0)
             {
-               $acti=1;
+                return redirect()->back()->with(['error' => 'يرجى تفعيل المحافظة أولاً']);
+
+            }else{
+            if($active == 0)
+            {
+               $active=1;
  
             }else{
-             $acti=0;
+             $active=0;
             }
-         
-            $city->is_active=$acti;
+        }
+            $city->is_active=$active;
  
          
             $city->save();

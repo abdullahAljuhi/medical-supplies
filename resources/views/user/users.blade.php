@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('title', 'الصفحة الرئيسية')
 @section('content')
+
+@include('alerts.errors')
+@include('alerts.success')
     <!-- Page Title -->
     <div class="pagetitle">
         <h1>Dashboard</h1>
@@ -12,6 +15,14 @@
         </nav>
     </div>
     <!-- End Page Title -->
+
+
+ <!--Display Error-->
+<!-- @if($errors->any())
+    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
+@endif -->
+
+
 
     <section class="section">
 

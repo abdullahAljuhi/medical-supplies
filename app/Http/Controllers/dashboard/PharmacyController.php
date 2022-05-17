@@ -4,6 +4,7 @@ namespace App\Http\Controllers\dashboard;
 
 use App\Models\Pharmacy;
 use Illuminate\Http\Request;
+use App\Http\Requests\pharmacyRequest;
 use App\Http\Controllers\Controller;
 use App\Notifications\ActivePharmacy;
 use Illuminate\Support\Facades\Notification;
@@ -40,7 +41,7 @@ class PharmacyController extends Controller
         return redirect()->back();
     }
 
-    public function checkPharmacy(Request $request, $id = '')
+    public function checkPharmacy(PharmacyRequest $request, $id = '')
     {
         if ($id == '') {
             $id = $request->pharmacy;

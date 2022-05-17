@@ -1,5 +1,14 @@
 @extends("layouts.main")
 @section('content')
+
+<!--Display Error-->
+<!-- @if($errors->any())
+    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
+@endif -->
+
+@include('alerts.errors')
+@include('alerts.success')
+
     <div class="container  my-5  pt-5">
         <section class="section   profile">
             <div class="row">
@@ -55,6 +64,7 @@
                     <div class=" p-5  shadow  cust-card" style="margin-bottom: 0px; overflow: hidden;border-radius: 1rem;">
                         <div class="card-body p-0" >
 
+
                             <div class="row m-2 fw-bold">
                                 اطلب عن طريق :
                             </div>
@@ -83,6 +93,7 @@
                                             <div class=" mb-3  field_wrapper">
                                                 <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-12 col-md-8 mb-2 form-control-custome
                                     "name='product_name[]' autofocus>
+                                    
                                                 <input type="text" id="name" placeholder="حدد الكمية" class=" col-md-3 col-12 form-control-custome mb-2
                                     "name='quantity[]' autofocus>
                                                 <input type="hidden" id="name" name='user' value="{{ Auth::user()->id }}">
@@ -122,14 +133,19 @@
                                                 <label for="fullName" class="form-label">
                                                     تفاصيل اخرى عن العنوان
                                                 </label>
-                                                <input type="text" name="details" class="form-control" id="yourPassword" required>
-                                                <div class="invalid-feedback">يرجى ادخال رقم الترخيص </div>
+                                                       <input type="text" name="details" class="form-control @error('details') is-invalid @enderror" id="details" required>
+                                    @error('details')
+                                       <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                      </span>
+                                    @enderror
                                             </div>
                                         </div>
                                         <div class="text-center mt-3">
                                             <button type="submit" class="btn btn-primary">ارسال الطلب</button>
                                         </div>
                                     </form>
+
 
                                 </div>
 

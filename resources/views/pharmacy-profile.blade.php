@@ -2,6 +2,13 @@
 @section('title', 'الملف الشخصي')
 @section('content')
 
+@include('alerts.errors')
+@include('alerts.success')
+<!--Display Error-->
+<!-- @if($errors->any())
+    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
+@endif -->
+
     <!-- Page Title -->
     <div class="pagetitle">
         <h1>ملف الصيدلية</h1>
@@ -132,23 +139,38 @@
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">اسم
                                             الكامل</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="pharmacy_name" type="text" class="form-control" id="fullName"
+                                            <input name="pharmacy_name" type="text" class="form-control @error('pharmacy_name') is-invalid @enderror" id="fullName"
                                                    value="{{ $pharmacy->pharmacy_name }}">
+                                            @error('pharmacy_name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                               </span>
+                                           @enderror
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="company" class="col-md-4 col-lg-3 col-form-label">رقم الهاتف</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="phone" type="tel" class="form-control" id="company"
+                                            <input name="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" id="company"
                                                    value="{{ $pharmacy->phone }}">
+                                            @error('phone')
+                                               <span class="invalid-feedback" role="alert">
+                                                   <strong>{{ $message }}</strong>
+                                              </span>
+                                           @enderror
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="company" class="col-md-4 col-lg-3 col-form-label">رثم الموبايل</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="mobile" type="text" class="form-control" id="company"
+                                            <input name="mobile" type="text" class="form-control @error('mobile') is-invalid @enderror" id="company"
                                                    value="{{ $pharmacy->mobile ?? ''}}">
+                                            @error('mobile')
+                                                <span class="invalid-feedback" role="alert">
+                                                      <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -175,43 +197,73 @@
                                     <div class="row mb-3">
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">الشارع</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="street" type="text" class="form-control" id="fullName"
+                                            <input name="street" type="text" class="form-control @error('street') is-invalid @enderror" id="fullName"
                                                    value="{{ $pharmacy->address[0]->street??''}}">
+                                            @error('street')
+                                               <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                               </span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">تفاصيل العنوان</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="details" type="text" class="form-control" id="fullName"
+                                            <input name="details" type="text" class="form-control @error('details') is-invalid @enderror" id="fullName"
                                             value="{{ $pharmacy->address[0]->details??''}}">
+                                            @error('details')
+                                             <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                           </span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="company" class="col-md-4 col-lg-3 col-form-label">رابط الفيسبوك</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="facebook" type="url" class="form-control" id="company"
+                                            <input name="facebook" type="url" class="form-control @error('facebook') is-invalid @enderror" id="company"
                                                    value="{{ $pharmacy->contact[0]->facebook?? ''}}">
+                                                   @error('facebook')
+                                                   <span class="invalid-feedback" role="alert">
+                                                      <strong>{{ $message }}</strong>
+                                                          </span>
+                                                  @enderror
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="company" class="col-md-4 col-lg-3 col-form-label">رابط الانستقرام</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="instgram" type="url" class="form-control" id="company"
+                                            <input name="instgram" type="url" class="form-control @error('instgram') is-invalid @enderror" id="company"
                                             value="{{ $pharmacy->contact[0]->instagram?? ''}}">
+                                            @error('instgram')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="company" class="col-md-4 col-lg-3 col-form-label">رابط تويتر</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="twitter" type="url" class="form-control" id="company"
+                                            <input name="twitter" type="url" class="form-control @error('twitter') is-invalid @enderror" id="company"
                                             value="{{ $pharmacy->contact[0]->twitter?? ''}}">
+                                            @error('twitter')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="company" class="col-md-4 col-lg-3 col-form-label">رابط لاينكدن</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="linkdin" type="url" class="form-control" id="company"
+                                            <input name="linkdin" type="url" class="form-control @error('linkdin') is-invalid @enderror" id="company"
                                             value="{{ $pharmacy->contact[0]->linkdin?? ''}}">
+                                            @error('linkdin')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -238,8 +290,13 @@
                                         <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">كلمة
                                             المرور الحالية</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="password" type="password" class="form-control"
+                                            <input name="password" type="password" class="form-control @error('password') is-invalid @enderror"
                                                    id="currentPassword">
+                                                   @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                                         </div>
                                     </div>
 
@@ -247,8 +304,13 @@
                                         <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">كلمة المرور
                                             الجديدة</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="newpassword" type="password" class="form-control"
+                                            <input name="newpassword" type="password" class="form-control @error('newpassword') is-invalid @enderror"
                                                    id="newPassword">
+                                                   @error('newPassword')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                                         </div>
                                     </div>
 
@@ -257,8 +319,13 @@
                                             المرور
                                             الجديدة</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="renewpassword" type="password" class="form-control"
+                                            <input name="renewpassword" type="password" class="form-control @error('renewpassword') is-invalid @enderror"
                                                    id="renewPassword">
+                                                   @error('renewpassword')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                                         </div>
                                     </div>
 

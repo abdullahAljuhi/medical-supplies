@@ -2,6 +2,9 @@
 @section('title', 'ادارة الاعلانات')
 @section('content')
 
+@include('alerts.errors')
+@include('alerts.success')
+
     <!-- Page Title -->
     <div class="pagetitle">
         <h1>ادارة الاعلانات</h1>
