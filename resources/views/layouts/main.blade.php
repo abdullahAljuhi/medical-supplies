@@ -6,27 +6,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="{{ asset('img/apple-icon.png') }} ">
-    <link rel="shortcut icon" type="image/x-icon" href=" {{ asset('img/favicon.ico') }}">
+    <link rel="apple-touch-icon" href='img/apple-icon.png'>
+    <link rel="shortcut icon" type="image/x-icon" href='img/favicon.ico'>
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/templatemo.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/viewAndList.css') }}">
+    <link href='assets/img/favicon.png' rel="icon">
+    <link href='assets/vendor/bootstrap/css/bootstrap.min.css' rel="stylesheet">
+    <link href='assets/vendor/bootstrap-icons/bootstrap-icons.css' rel="stylesheet">
+    <link rel="stylesheet" href='css/bootstrap.min.css'>
+    <link rel="stylesheet" href='css/templatemo.css'>
+    <link rel="stylesheet" href='css/custom.css'>
+    <link rel="stylesheet" href='css/index.css'>
+    <link rel="stylesheet" href='css/viewAndList.css'>
 
 
 
     <!-- Load fonts style after rendering the layout styles -->
 
-    <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href='css/fontawesome.min.css'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/ar.css') }}">
+    <link rel="stylesheet" href='assets/css/style.css'>
+    <link rel="stylesheet" href='assets/css/ar.css'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!--  google font  -->
@@ -34,7 +33,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
           rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="{{ asset('assets/js/addinput.js') }}"></script>
+    <script src='assets/js/addinput.js'></script>
     <!--
 
         TemplateMo 559 Zay Shop
@@ -52,7 +51,7 @@
         <!-- Main Logo -->
         <div class="d-flex align-items-center justify-content-between">
             <a href="/" class="logo d-flex align-items-center">
-                <img class="mx-4 h-100" src="{{ asset('assets/img/logo.png') }}" alt="">
+                <img class="mx-4 h-100" src='assets/img/logo.png' alt="">
                 <span class="text-nowrap">علاجي كوم</span>
             </a>
         </div>
