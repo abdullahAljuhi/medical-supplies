@@ -1,5 +1,14 @@
 @extends("layouts.main")
 @section('content')
+
+<!--Display Error-->
+<!-- @if($errors->any())
+    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
+@endif -->
+
+@include('alerts.errors')
+@include('alerts.success')
+
     <div class="container  my-5  pt-5">
         <section class="section   profile">
             <div class="row">
@@ -83,10 +92,20 @@
                                     قم بكتابة اسم العلاج
                                 <span class="  me-1  fw-bold" style="font-size: 15px"> (اضغط على + من اجل اضافة المزيد)</span></label>
                                 <div class=" mb-3  field_wrapper">
-                                    <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
-                                    "name='products[]' autofocus>
-                                    <input type="hidden" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome
-                                    "name='user' value="{{ Auth::user()->id }}">
+                                    <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome @error('products[]') is-invalid @enderror"
+                                    name='products[]' autofocus>
+                                    @error('products[]')
+                                       <span class="invalid-feedback" role="alert">
+                                           <strong>{{ $message }}</strong>
+                                       </span>
+                                   @enderror
+                                    <input type="hidden" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-11 form-control-custome @error('user') is-invalid @enderror"
+                                    name='user' value="{{ Auth::user()->id }}">
+                                    @error('user')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                     <a href="javascript:void(0);" class="add_button col-1  pe-2" title="Add field"><i class="bi fs-3 bi-plus-circle-fill"></i></a>
                                 </div>
                             </div>
@@ -107,7 +126,7 @@
                                             </select>
                                         </div>
                                         <div class="col-6">
-                                            <label for="inputState" class="form-label">المدينة</label>
+                                            <label for="inputState" class="form-label ">المدينة</label>
                                             <select name="city" class="form-select select2 mx-2" id="inputGroupSelect02"
                                                     style="">
                                                     @foreach ($cities as $city)
@@ -123,7 +142,12 @@
                                     <label for="fullName" class="form-label">
                                         تفاصيل اخرى عن العنوان
                                     </label>
-                                    <input type="text" name="details" class="form-control" id="yourPassword" required>
+                                    <input type="text" name="details" class="form-control @error('details') is-invalid @enderror" id="yourPassword" required>
+                                    @error('details')
+                                       <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                      </span>
+                                    @enderror
                                     <div class="invalid-feedback">يرجى ادخال رقم الترخيص </div>
                                 </div>
                             </div>

@@ -1,5 +1,10 @@
 @extends("layouts.main")
 @section('content')
+
+
+
+
+
         <!-- Start Brands -->
         <section class=" py-5 container mt-5" >
             <div class="row">

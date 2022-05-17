@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Pharmacy;
+use App\Http\Requests\PharmacyRequest;
+use App\Http\Requests\OrderRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,7 +31,7 @@ class OrderController extends Controller
     {
         return view('order.order',compact('pharmacy'));
     }
-    public function send(Request $request)
+    public function send(OrderRequest $request)
     {
        // return $request['order_name'];
         $address=$request['governorate'].' - '.$request['city'].' - '.$request['details'];
@@ -47,7 +49,7 @@ class OrderController extends Controller
        // return view('order.orderMass');
     }
 
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
         
         $address=$request['governorate'].' - '.$request['city'].' - '.$request['details'];

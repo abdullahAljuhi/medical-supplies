@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\PharmacyController;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Http\Requests\UserRequest;
 use App\Services\PharmacyService;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;

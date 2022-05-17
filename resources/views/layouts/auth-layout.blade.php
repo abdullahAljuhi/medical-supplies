@@ -51,6 +51,7 @@
 
 <body>
 
+
 <main>
     <div class="container">
         @yield('content')

@@ -45,6 +45,13 @@
 <main>
     <div class="container">
 
+<!--Display Error-->
+<!-- @if($errors->any())
+    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
+@endif -->
+
+@include('alerts.errors')
+@include('alerts.success')
         <section
             class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
             <div class="container">
@@ -70,27 +77,47 @@
                                 <form class="row g-3 needs-validation" novalidate>
                                     <div class="col-12">
                                         <label for="yourName" class="form-label">أسم الصيدلية</label>
-                                        <input type="text" name="pharmacy_name" class="form-control" id="yourName" required>
+                                        <input type="text" name="pharmacy_name" class="form-control @error('pharmacy_name') is-invalid @enderror" id="yourName" required>
+                                        @error('pharmacy_name')
+                                            <span class="invalid-feedback" role="alert">
+                                                 <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                         <div class="invalid-feedback">يرجى ادخال اسم الصيدلية</div>
                                     </div>
 
                                     <div class="col-12">
                                         <label for="yourName" class="form-label">أسم المستخدم</label>
-                                        <input type="text" name="name" class="form-control" id="yourName" required>
+                                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="yourName" required>
+                                        @error('name')
+                                           <span class="invalid-feedback" role="alert">
+                                              <strong>{{ $message }}</strong>
+                                           </span>
+                                        @enderror
                                         <div class="invalid-feedback">يرجى ادخال اسم المستخدم</div>
                                     </div>
 
                                     <div class="col-12">
                                         <label for="yourEmail" class="form-label">البريد الالكتروني</label>
-                                        <input type="email" name="email" class="form-control" id="yourEmail"
+                                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="yourEmail"
                                                required>
+                                        @error('email')
+                                           <span class="invalid-feedback" role="alert">
+                                               <strong>{{ $message }}</strong>
+                                           </span>
+                                        @enderror
                                         <div class="invalid-feedback">يرجى ادخال بريد الكتروني صالح !</div>
                                     </div>
 
                                     <div class="col-12">
                                         <label for="license" class="form-label">الترخيص</label>
-                                        <input type="file" name="license" class="form-control" id="license"
+                                        <input type="file" name="license" class="form-control @error('license') is-invalid @enderror" id="license"
                                                required>
+                                        @error('license')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                         <div class="invalid-feedback">يرجى ادخال بريد رفع صورة من الترخيص !</div>
                                     </div>
 
@@ -115,16 +142,26 @@
                                     </div>
 
                                     <div class="col-12">
-                                        <label for="yourPassword" class="form-label">كلمة المرور</label>
+                                        <label for="yourPassword" class="form-label @error('password') is-invalid @enderror">كلمة المرور</label>
                                         <input type="password" name="password" class="form-control"
                                                id="yourPassword" required>
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror       
                                         <div class="invalid-feedback">يرجى ادخال كلمة مرور</div>
                                     </div>
 
                                     <div class="col-12">
                                         <div class="form-check">
-                                            <input class="form-check-input" name="terms" type="checkbox" value=""
+                                            <input class="form-check-input @error('terms') is-invalid @enderror" name="terms" type="checkbox" value=""
                                                    id="acceptTerms" required>
+                                        @error('terms')
+                                            <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                             <label class="form-check-label" for="acceptTerms">أوافق و اقبل <a
                                                     href="#">الشروط والسياسات الخاصة بالموقع</a></label>
                                             <div class="invalid-feedback">يجب ان تقبل بالشروط قبل أنشاء الحساب</div>

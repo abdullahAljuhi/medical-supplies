@@ -17,6 +17,12 @@
     <!-- End Page Title -->
 
 
+<!--Display Error-->
+<!-- @if($errors->any())
+    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
+@endif -->
+
+
 <!-- End Page Title -->
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -86,7 +92,13 @@
                                             <div class="pt-2">
                                                 <label class="btn btn-primary text-light">
                                                     <i class="bi bi-upload p-5"></i>
-                                                    <input type="file" id="imgInp" name="image" hidden>
+                                                    <input type="file" id="imgInp" name="image" class="@error('end_date') is-invalid @enderror" hidden>
+                                                    @error('image')
+                                                       <span class="invalid-feedback" role="alert">
+                                                              <strong>{{ $message }}</strong>
+                                                       </span>
+                                                    @enderror
+                                                    
                                                 </label>
                                                 <a href="#" class="btn btn-danger btn-sm d-none"
                                                    title="Remove my profile image">
@@ -107,16 +119,27 @@
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">اسم
                                             الكامل</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="name" type="text" class="form-control" id="fullName"
+                                            <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="fullName"
                                                    value="{{ $user->name }}">
+                                            @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                               </span>
+                                            @enderror
+                                                   
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="company" class="col-md-4 col-lg-3 col-form-label">العنوان</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="company" type="text" class="form-control" id="company"
+                                            <input name="company" type="text" class="form-control @error('company') is-invalid @enderror" id="company"
                                                    value="حضرموت - المكلا - المساكن">
+                                            @error('company')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -124,24 +147,39 @@
                                         <label for="Job" class="col-md-4 col-lg-3 col-form-label">تاريخ الميلاد</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input style="direction: ltr" name="birthday" type="date"
-                                                   class="form-control"
+                                                   class="form-control @error('birthday') is-invalid @enderror"
                                                    id="Job" value="770-552-517">
+                                           @error('birthday')
+                                               <span class="invalid-feedback" role="alert">
+                                                   <strong>{{ $message }}</strong>
+                                               </span>
+                                            @enderror
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="Job" class="col-md-4 col-lg-3 col-form-label">الهاتف</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="phone" type="text" class="form-control" id="Job"
+                                            <input name="phone" type="text" class="form-control @error('phone') is-invalid @enderror" id="Job"
                                                    value="770-552-517">
+                                            @error('phone')
+                                                <span class="invalid-feedback" role="alert">
+                                                   <strong>{{ $message }}</strong>
+                                               </span>
+                                            @enderror
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">الشارع</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="street" type="text" class="form-control" id="fullName"
+                                            <input name="street" type="text" class="form-control @error('street') is-invalid @enderror" id="fullName"
                                                    value="امام مسجد الصديق">
+                                            @error('street')
+                                                <span class="invalid-feedback" role="alert">
+                                                   <strong>{{ $message }}</strong>
+                                               </span>
+                                           @enderror
                                         </div>
                                     </div>
 
@@ -160,8 +198,13 @@
                                         <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">كلمة
                                             المرور الحالية</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="password" type="password" class="form-control"
+                                            <input name="password" type="password" class="form-control @error('password') is-invalid @enderror"
                                                    id="currentPassword">
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                               </span>
+                                           @enderror
                                         </div>
                                     </div>
 
@@ -169,8 +212,13 @@
                                         <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">كلمة المرور
                                             الجديدة</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="newpassword" type="password" class="form-control"
+                                            <input name="newpassword" type="password" class="form-control @error('newPassword') is-invalid @enderror"
                                                    id="newPassword">
+                                            @error('newPassword')
+                                               <span class="invalid-feedback" role="alert">
+                                                      <strong>{{ $message }}</strong>
+                                               </span>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -179,8 +227,13 @@
                                             المرور
                                             الجديدة</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="renewpassword" type="password" class="form-control"
+                                            <input name="renewpassword" type="password" class="form-control @error('renewPassword') is-invalid @enderror"
                                                    id="renewPassword">
+                                            @error('renewPassword')
+                                               <span class="invalid-feedback" role="alert">
+                                                   <strong>{{ $message }}</strong>
+                                               </span>
+                                           @enderror
                                         </div>
                                     </div>
 

@@ -1,6 +1,11 @@
 @extends("layouts.main")
 @section('content')
 
+<!--Display Error-->
+<!-- @if($errors->any())
+    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
+@endif -->
+
 
     <!-- Modal -->
 

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Header;
-use App\Http\Requests\StoreHeaderRequest;
-use App\Http\Requests\UpdateHeaderRequest;
+use App\Http\Requests\HeaderRequest;
+use Illuminate\Http\Request;
 
 class HeaderController extends Controller
 {
@@ -34,7 +34,7 @@ class HeaderController extends Controller
      * @param  \App\Http\Requests\StoreHeaderRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreHeaderRequest $request)
+    public function store(HeaderRequest $request)
     {
         //
     }
@@ -68,7 +68,7 @@ class HeaderController extends Controller
      * @param  \App\Models\Header  $header
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateHeaderRequest $request, Header $header)
+    public function update(HeaderRequest $request, Header $header)
     {
         //
     }

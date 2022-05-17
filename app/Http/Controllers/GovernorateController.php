@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Http\Requests\GovernorateRequest;
 use App\Models\Governorate;
+use App\Http\Requests\CityRequest;
+use App\Models\City;
 
 class GovernorateController extends Controller
 {
@@ -86,12 +88,12 @@ class GovernorateController extends Controller
 
             // check if governorate is exist
             if (!$governorate)
-                return redirect()->back()->with(['error' => 'هذه الحافظه غير موجوده']);
+                return redirect()->back()->with(['error' => 'هذه المحافظه غير موجوده']);
 
             $governorate->name = $request->name;
             $governorate->save();
             $governorates = Governorate::all();
-        return view('admin.state',compact('governorates'));
+        return view('admin.state',compact('governorates'))->with(['success' => 'تم  الاضافه بنجاح']);
         } catch (\Exception $ex) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
@@ -100,18 +102,25 @@ class GovernorateController extends Controller
 
     public function active($id){
         try {
-            $governorate = Governorate::find($id);
-            $acti=$governorate->is_active ;
+            $governorate = Governorate::with("cities")->find($id);
+            $active=$governorate->is_active ;
+            // $accity=$cities->is_active;
           
-            if($acti == 0)
+            if($active == 0)
             {
-               $acti=1;
+               $active=1;
  
             }else{
-             $acti=0;
+             $active=0;
+             foreach ($governorate->cities as  $city) {
+                 $city->is_active =0;
+                 $city->save();
+             }
+             
+
             }
          
-            $governorate->is_active=$acti;
+            $governorate->is_active=$active;
  
          
             $governorate->save();

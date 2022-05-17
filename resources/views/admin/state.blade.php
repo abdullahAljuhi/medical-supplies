@@ -1,6 +1,15 @@
 @extends('layouts.app')
 @section('title', 'المحافظات')
 @section('content')
+
+@include('alerts.errors')
+@include('alerts.success')
+<!--Display Error-->
+ <!-- @if($errors->any())
+    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
+@endif  -->
+
+
     <!-- Page Title -->
     <div class="pagetitle">
         <h1>المحافظات</h1>
@@ -28,10 +37,15 @@
                             <form method="post" action="{{ route('store-state') }}">
                                 @csrf
                                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label"> يرجى ادخال اسم
+                                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">  ادخل اسم
                                         المحافظة</label>
                                     <div class="col-md-8 col-lg-9">
-                                        <input name="name" type="text" class="form-control" id="fullName" value="">
+                                        <input name="name" type="text" class="form-control form-control @error('name') is-invalid @enderror" id="state" value="">
+                                        @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="tab-pane fade show active profile-overview mt-3" id="profile-overview">
@@ -48,6 +62,9 @@
                 </div>
             </div>
 
+            
+                 @include('alerts.success')
+                 @include('alerts.errors')
         </div>
         </div>
     </section>
@@ -65,6 +82,7 @@
                         <th scope="col">المحافظة</th>
                         <th scope="col">تاريخ الاضافة</th>
                         <th scope="col">تعديل </th>
+                        <th scope="col">الحالة </th>
                         <th scope="col">تفعيل </th>
                     </tr>
                     </thead>
@@ -75,15 +93,27 @@
                             <td>{{ $governorate->name }}</td>
                             <td>{{ $governorate->created_at }}</td>
                             <td><a href="{{ route('edit-state', $governorate->id) }}"><button class="btn  px-4">تعديل</button></td>
+                            <td>
+                                @if( $governorate->is_active)
+                                    <span style="font-size: 14px"class=" badge text-success fs-6" >
+                                        مفعل  
+                                    </span>
+                                @else
+                                    <span style="font-size: 14px" class="badge text-danger fs-6">
+                                        غير مفعل
+                                    </span>
+                                @endif
+                               
+                            </td>
                             <td><a href="{{ route('active.state', $governorate->id) }}" >
-                            <button type="button" class="btn ">
+                                   <button type="button" class="btn ">
                                         @if( $governorate->is_active)
-                                            <span style="font-size: 14px"class=" badge bg-success fs-6" >
-                                             مفعل /إلغاء التفعيل 
+                                            <span style="font-size: 14px"class=" badge text-danger fs-6" >
+                                             إلغاء التفعيل 
                                            </span>
                                         @else
-                                            <span style="font-size: 14px" class="badge bg-danger fs-6">
-                                               غير مفعل/تفعيل
+                                            <span style="font-size: 14px" class="badge text-success fs-6">
+                                             تفعيل
                                             </span>
                                         @endif
                                     

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\dashboard;
 use App\Models\User;
 use App\Models\Pharmacy;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+use App\Http\Requests\PharmacyRequest;
 use App\Http\Controllers\Controller;
 
 class adminController extends Controller

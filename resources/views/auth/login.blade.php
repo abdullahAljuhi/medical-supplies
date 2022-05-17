@@ -1,6 +1,16 @@
 @extends('layouts.auth-layout')
 @section('title', 'تسجيل الدخول')
 @section('content')
+
+<!--Display Error-->
+<!-- @if($errors->any())
+    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
+@endif -->
+
+
+@include('alerts.errors')
+@include('alerts.success')
+
     <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
             <div class="row justify-content-center">
@@ -27,7 +37,7 @@
                                 @csrf
                                 <div class="col-12">
                                     <label for="yourEmail" class="form-label">البريد الالكتروني</label>
-                                    <input class="form-control"id="email" type="email" @error('email') is-invalid @enderror"
+                                    <input class="form-control @error('email') is-invalid @enderror"id="email" type="email" 
                                     name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                     @error('email')
                                     <p class="text-danger mt-2">

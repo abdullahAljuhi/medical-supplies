@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Pharmacy;
 use App\Models\Advertisement;
+use App\Http\Requests\AdvertisementRequest;
+use App\Http\Requests\PharmacyRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,7 +16,7 @@ class MedicalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showPharmacies(Request $request)
+    public function showPharmacies(PharmacyRequest $request)
     {
         try {
             $pharmacies = DB::table('pharmacies')
@@ -51,7 +53,7 @@ class MedicalController extends Controller
         }
     
     }
-    public function pharmacies(Request $request)
+    public function pharmacies(PharmacyRequest $request)
     {
         try {
             $pharmacies = Pharmacy::all();
