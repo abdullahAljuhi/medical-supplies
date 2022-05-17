@@ -142,13 +142,14 @@
                                                 <span class="  me-1  fw-bold" style="font-size: 15px"> (يمكنك تحديد اكثر من صورة)</span>
                                             </label>
                                             <div class=" mb-3  field_wrapper_file">
-                                                <input type="file" class=" col-12 col-md-8 mb-2 form-control-custome @error('phote') is-invalid @enderror"
+                                                <input type="file" class=" col-12 col-md-8 mb-2 form-control-custome custom-file-input @error('phote') is-invalid @enderror"
                                                        name="images[]" value="{{ old('phote') }}" required autocomplete="phote" autofocus >
                                                 <input type="text" id="name" placeholder="حدد الكمية" class=" col-md-3 col-12 form-control-custome mb-2 py-2
-                                    "name='quantity[]' autofocus>
+                                                "name='quantity[]' autofocus>
                                                 <input type="hidden" id="name" name='user' value="{{ Auth::user()->id }}">
                                                 <input type="hidden" id="name" name='pharmacy' value="{{ $pharmacy->id }}">
                                                 <a href="javascript:void(0);" class="add_button_file col-md-1 col-12 text-center  pe-2" title="Add field"><i class="bi fs-3 bi-plus-circle-fill"></i></a>
+                                                <div class="message-error col-12">يرجى ادخال ملف من نوع صورة</div>
                                             </div>
                                             <div class="row   py-3 px-2 ">
                                                 <div class="col-12">

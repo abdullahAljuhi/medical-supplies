@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Pharmacy;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class adminController extends Controller
 {
@@ -39,6 +40,26 @@ class adminController extends Controller
         $types = ['مستخدم','مدير','صيدلية'];
 
         return view('user.users', compact('users','types'));
+    }
+
+    // get all orders for user auth
+    public function orders()
+    {
+        try {
+
+            $user = User::with('pharmacy')->find(Auth::id());
+
+                $orders = Order::all();
+
+            if ($orders) {
+
+                return $orders;
+            } else {
+                // return view('order.list');
+            }
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     public function order($id)

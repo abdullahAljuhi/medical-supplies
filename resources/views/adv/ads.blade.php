@@ -109,7 +109,7 @@
                                                تفعيل
                                             </span>
                                         @endif
-                                    
+
                                     </button>
                                </a>
                                </div>
@@ -125,7 +125,6 @@
 
                 <div class="view_wrap grid-view " style="display: none;">
 
-<<<<<<< HEAD
 @foreach($advertisements as $ads)
     <div class="card-group p-lg-5 row  text-center jobs">
 
@@ -158,7 +157,7 @@
                                   <span >
                                     تفعيل
                                    </span>
-                                @endif 
+                                @endif
                             </a>
                         </div>
                     </div>
@@ -168,32 +167,6 @@
     @endforeach
 </div>
             </div>
-=======
-                    <div class="card-group p-lg-5 row  text-center jobs">
-
-                            <div class="col-md-4 col-sm-12">
-                                <div class="card w-100 p-2">
-                                    <img src="{{asset('assets/images/advs/'.$ads->image) }}" class="card-img-top py-5 img-card-cus" alt="...">
-                                    <div class="card-body pb-0">
-                                         <p class="card-text fs-5 text-secondary text-center w-100">
-                                            <span class="text-primary ps-2"> الحالة</span>
-                                            <span>مفعل</span>
-                                         </p>
-
-                                    </div>
-                                    <div class="card-footer bg-white border-0" >
-                                        <div class="my-2">
-                                            <a href="job-details.html" class="btn btn-outline-primary w-100">
-                                               الغاء التفعيل
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-            </div>
->>>>>>> b042d9b680f4cd80cfa0fe41e46d74b7b77938ba
         </div>
     </section>
 

@@ -89,8 +89,9 @@
 
                                     <div class="col-12">
                                         <label for="license" class="form-label">الترخيص</label>
-                                        <input type="file" name="license" class="form-control" id="license"
+                                        <input type="file" name="license" class="form-control custom-file-input" id="license"
                                                required>
+                                               <div class="message-error">يرجى ادخال ملف من نوع صورة</div>
                                         <div class="invalid-feedback">يرجى ادخال بريد رفع صورة من الترخيص !</div>
                                     </div>
 

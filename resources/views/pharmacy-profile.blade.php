@@ -73,7 +73,40 @@
                                 <!-- Profile Edit Form -->
                                 <form method="POST" action="{{ route('pharmacy.update') }}" enctype="multipart/form-data">
                                     @csrf
+
                                     <div class="row mb-3">
+                                        <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">الصورة
+                                            الشخصية</label>
+                                        <div class="col-md-8 col-lg-9 d-flex align-items-center justify-content-center">
+                                            <div class="row">
+                                                @if($pharmacy->image)
+                                                    <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}"
+                                                         alt="Profile"
+                                                         class="mx-auto rounded-circle border p-1" id="blah" style="width: 120px;
+                                                height: 120px;">
+                                                @else
+                                                    <img src="{{asset('assets/img/user.png') }}" alt="Profile"
+                                                         class="mx-auto rounded-circle border p-1" id="blah" style="max-width: 120px;
+                                                max-height: 120px;">
+                                                @endif
+                                                <div style="transform: translate(-25px,-35px);">
+                                                    <label class="btn bg-white border rounded-circle ">
+                                                        <i class="bi bi-camera-fill fs-5"></i>
+                                                        <input type="file" id="imgInp" name="image" hidden class="custom-file-input">
+                                                    </label>
+                                                    <a href="#" class="btn btn-danger btn-sm d-none"
+                                                       title="Remove my profile image">
+                                                        <i class="bi bi-trash"></i>
+                                                    </a>
+                                                </div>
+                                            </div>                                 
+                                        </div>
+                                        <div class="row">
+                                            <div class="message-error col-12 text-center">يرجى ادخال ملف من نوع صورة</div>
+                                        </div>
+                                    </div>
+
+                                    {{-- <div class="row mb-3">
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">الصورة
                                             الشخصية</label>
                                         <div class="col-md-8 col-lg-9 d-flex align-items-center justify-content-around">
@@ -93,7 +126,7 @@
                                             <img id="blah" src="{{asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
                                             @endif
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="row mb-3">
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">اسم

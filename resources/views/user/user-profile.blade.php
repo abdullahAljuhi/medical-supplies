@@ -98,14 +98,17 @@
                                                 <div style="transform: translate(-25px,-35px);">
                                                     <label class="btn bg-white border rounded-circle ">
                                                         <i class="bi bi-camera-fill fs-5"></i>
-                                                        <input type="file" id="imgInp" name="image" hidden>
+                                                        <input type="file" id="imgInp" name="image" hidden class="custom-file-input">
                                                     </label>
                                                     <a href="#" class="btn btn-danger btn-sm d-none"
                                                        title="Remove my profile image">
                                                         <i class="bi bi-trash"></i>
                                                     </a>
                                                 </div>
-                                            </div>
+                                            </div>                                 
+                                        </div>
+                                        <div class="row">
+                                            <div class="message-error col-12 text-center">يرجى ادخال ملف من نوع صورة</div>
                                         </div>
                                     </div>
 

@@ -26,8 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $governorates = Governorate::all();
-        $cities = City::all();
-        View::share(['governorates'=> $governorates,'cities'=>$cities]);
+       
     }
 }

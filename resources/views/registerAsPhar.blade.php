@@ -46,7 +46,8 @@
 
                                     <div class="col-12">
                                         <label for="liscen" class="form-label">صورة الترخيص</label>
-                                        <input type="file" name="license" class="form-control" id="liscen" required>
+                                        <input type="file" name="license" class="form-control custom-file-input" id="liscen" required>
+                                        <div class="message-error">يرجى ادخال ملف من نوع صورة</div>
                                         <div class="invalid-feedback">يرجى ادخال رقم الترخيص</div>
                                     </div>
                                     <div class="col-12">
