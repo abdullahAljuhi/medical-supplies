@@ -1,12 +1,23 @@
 @extends( 'layouts.app')
 @section('title', 'ادارة الاعلانات')
 @section('content')
+
+@include('alerts.errors')
+@include('alerts.success')
+
+<!-- Display Error
+@if($errors->any())
+    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
+@endif -->
+
+
+
     <!-- Page Title -->
     <div class="pagetitle">
         <h1>ادارة الاعلانات</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../index.blade.php">الرائيسية</a></li>
+                <li class="breadcrumb-item"><a href="../index.blade.php">الرئيسية</a></li>
                 <li class="breadcrumb-item active">الاعلانات</li>
             </ol>
         </nav>
@@ -65,15 +76,15 @@
                         </div>
                     </div>
                     @foreach($advertisements as $ads)
-                    <div class="mt-2 bg-white ">
-                        <a href="{{ route('edit.adv', $ads->id) }}" class="row  py-2 border-bottom text-content text-black ">
+                    <div class="mt-2 bg-white border-bottom py-2 row">
+                        <a href="{{ route('edit.adv', $ads->id) }}" class="row col-md-10    text-content text-black ">
                             <div class="col-md-1 col-4 mb-md-0 mb-4 d-flex justify-content-center  align-self-center fs-5">
                                 {{ $ads->id}}
                             </div>
-                            <div class="col-md-2 col-8  d-flex justify-content-strat  align-self-center overflow-hidden">
+                            <div class="col-md-3 col-8  d-flex justify-content-strat  align-self-center overflow-hidden">
                                 {{ $ads->link}}
                             </div>
-                            <div class="col-md-4  mb-2 mb-md-0   d-flex justify-content-strat  align-self-center">
+                            <div class="col-md-5  mb-2 mb-md-0   d-flex justify-content-strat  align-self-center">
                                 <div class="row w-100">
                                     <div class="col-6">
                                         <span >{{ $ads->start_date}}</span>
@@ -84,22 +95,22 @@
 
                                 </div>
                             </div>
-                            <div class="col-md-2 mb-2 mb-md-0 d-flex justify-content-strat  align-self-center">
+                            <div class="col-md-3 mb-2 mb-md-0 d-flex justify-content-strat  align-self-center">
                                 @if( $ads->is_active)
-                                    <span class="badge bg-success fs-6">
+                                    <span class="badge text-success fs-6">
                                     نشط
                                 </span>
                                 @else
-                                    <span class="badge bg-danger fs-6">
+                                    <span class="badge text-danger fs-6">
                                 غير مفعل
                                 </span>
                                 @endif
                             </div>
-                            <div class="col-md-3 mb-2 mb-md-0 text-center d-flex justify-content-center fw-bold align-self-center">
-                              <div class="row">
-                               <div class="col-12">
-                               <a href="{{ route('active.adv', $ads->id) }}" class="btn btn-outline-primary  d-flex justify-content-center align-self-center">
-                                   <button type="button" class="btn btn-outline-primary px-4">
+                            <div class="col-md-2 mb-2 mb-md-0  text-center d-flex justify-content-center fw-bold align-self-center">
+                             <!-- <div class=" border">-->
+                               <!--<div class="col-10 border">-->
+                               <a href="{{ route('active.adv', $ads->id) }}" class=" ">
+                                   <button type="button" class="btn btn-outline-primary px-3">
                                         @if( $ads->is_active)
                                             <span style="font-size: 14px" >
                                              إلغاء التفعيل
@@ -112,9 +123,9 @@
 
                                     </button>
                                </a>
-                               </div>
+                               <!--</div>
 
-                              </div>
+                              </div>-->
 
                             </div>
                         </a>

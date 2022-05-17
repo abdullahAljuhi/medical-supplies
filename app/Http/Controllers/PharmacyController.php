@@ -12,6 +12,11 @@ use App\Models\Governorate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\PharmacyRequest;
+use App\Http\Requests\UserRequest;
+use App\Http\Requests\CityRequest;
+use App\Http\Requests\GovernorateRequest;
+
 use App\Notifications\ActivePharmacy;
 use App\Http\Requests\PharmacyRequest;
 use Illuminate\Support\Facades\Storage;

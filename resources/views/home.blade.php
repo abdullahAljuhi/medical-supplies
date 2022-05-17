@@ -1,6 +1,13 @@
 @extends('layouts.app')
 @section('title', 'Home')
 @section('content')
+
+<!--Display Error-->
+<!-- @if($errors->any())
+    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
+@endif -->
+
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

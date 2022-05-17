@@ -1,5 +1,13 @@
 @extends("layouts.main")
 @section('content')
+
+<!--Display Error-->
+<!-- @if($errors->any())
+    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
+@endif -->
+
+
+
     <div class="container  my-5  pt-5">
         <section class="section   profile">
             <div class="row">

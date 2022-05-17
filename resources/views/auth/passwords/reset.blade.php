@@ -1,6 +1,17 @@
 @extends('layouts.auth-layout')
 
 @section('content')
+
+<!--Display Error-->
+<!-- @if($errors->any())
+    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
+@endif -->
+
+
+@include('alerts.errors')
+@include('alerts.success')
+
+
     <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
             <div class="d-flex justify-content-center py-4">
@@ -60,8 +71,13 @@
                                            class="col-md-4 col-form-label text-md-end">{{ __('تأكيد كلمة المرور') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="password-confirm" type="password" class="form-control"
+                                        <input id="password-confirm" type="password" class="form-control @error('password') is-invalid @enderror"
                                                name="password_confirmation" required autocomplete="new-password">
+                                        @error('password_confirmation')
+                                           <span class="invalid-feedback" role="alert">
+                                                 <strong>{{ $message }}</strong>
+                                           </span>
+                                        @enderror
                                     </div>
                                 </div>
 

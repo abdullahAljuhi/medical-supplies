@@ -4,6 +4,16 @@
     <link href="{{ asset('css/index.css') }}" rel="stylesheet">
 @endsection
 @section('content')
+
+@include('alerts.errors')
+@include('alerts.success')
+
+<!--Display Error-->
+<!-- @if($errors->any())
+    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
+@endif -->
+
+
     <ul class="nav nav-tabs w-100 p-0 mt-2 nav-order p-1 rounded overflow justify-content-center bg-white">
 
         <li class="nav-item  w-25 fs-5  d-flex justify-content-center align-items-center">
@@ -29,7 +39,12 @@
                                 <label for="fullName" class="col-md-4 col-lg-3 col-form-label"> يرجى ادخال اسم
                                     المحافظة</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="state" type="text" class="form-control" id="fullName" value="">
+                                    <input name="state" type="text" class="form-control form-control @error('state') is-invalid @enderror" id="state" value="">
+                                    @error('state')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                 </div>
                             </div>
                             <div class="tab-pane fade show active profile-overview mt-3" id="profile-overview">
