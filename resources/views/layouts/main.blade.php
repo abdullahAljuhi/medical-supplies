@@ -6,25 +6,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="{{ secure_asse('img/apple-icon.png') }} ">
-    <link rel="shortcut icon" type="image/x-icon" href=" {{ secure_asse('img/favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset('img/apple-icon.png') }} ">
+    <link rel="shortcut icon" type="image/x-icon" href=" {{ asset('img/favicon.ico') }}">
     <!-- Favicons -->
     <link href="assets/img/favicon.png" rel="icon">
 
-    <link rel="stylesheet" href="{{ secure_asse('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ secure_asse('css/templatemo.css') }}">
-    <link rel="stylesheet" href="{{ secure_asse('css/custom.css') }}">
-    <link rel="stylesheet" href="{{ secure_asse('css/index.css') }}">
-    <link rel="stylesheet" href="{{ secure_asse('css/viewAndList.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/templatemo.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/viewAndList.css') }}">
 
 
 
     <!-- Load fonts style after rendering the layout styles -->
 
-    <link rel="stylesheet" href="{{ secure_asse('css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ secure_asse('assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ secure_asse('assets/css/ar.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/ar.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!--  google font  -->
@@ -32,7 +32,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
           rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="{{ secure_asse('assets/js/addinput.js') }}"></script>
+    <script src="{{ asset('assets/js/addinput.js') }}"></script>
     <!--
 
         TemplateMo 559 Zay Shop
@@ -50,7 +50,7 @@
         <!-- Main Logo -->
         <div class="d-flex align-items-center justify-content-between">
             <a href="/" class="logo d-flex align-items-center">
-                <img class="mx-4 h-100" src="{{ secure_asse('assets/img/logo.png') }}" alt="">
+                <img class="mx-4 h-100" src="{{ asset('assets/img/logo.png') }}" alt="">
                 <span class="text-nowrap">علاجي كوم</span>
             </a>
         </div>
@@ -147,10 +147,10 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         @if(isset(Auth::user()->profile->image))
-                            <img src="{{secure_asse('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile"
+                            <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile"
                                  class="rounded-circle border p-1">
                         @else
-                            <img src="{{secure_asse('assets/img/user.png') }}" alt="Profile"
+                            <img src="{{asset('assets/img/user.png') }}" alt="Profile"
                                  class="rounded-circle border p-1">
                         @endif
                     </a><!-- End Profile Iamge Icon -->
@@ -354,12 +354,12 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center active p-2"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Start Script -->
-    <script src="{{secure_asse('js/jquery-1.11.0.min.js ') }}"></script>
-    <script src="{{secure_asse('js/jquery-migrate-1.2.1.min.js ') }}"></script>
-    <script src="{{secure_asse('js/bootstrap.bundle.min.js ') }}"></script>
-    <script src="{{secure_asse('js/templatemo.js ') }}"></script>
-    <script src="{{secure_asse('js/custom.js ') }}"></script>
-    <script src="{{secure_asse('js/viewAndList.js ') }}"></script>
+    <script src="{{asset('js/jquery-1.11.0.min.js ') }}"></script>
+    <script src="{{asset('js/jquery-migrate-1.2.1.min.js ') }}"></script>
+    <script src="{{asset('js/bootstrap.bundle.min.js ') }}"></script>
+    <script src="{{asset('js/templatemo.js ') }}"></script>
+    <script src="{{asset('js/custom.js ') }}"></script>
+    <script src="{{asset('js/viewAndList.js ') }}"></script>
     {{-- pusher js --}}
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <script>
