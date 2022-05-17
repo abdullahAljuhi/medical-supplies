@@ -58,25 +58,7 @@ class adminController extends Controller
     }
 
     // get all orders for user auth
-    public function orders()
-    {
-        try {
-
-            $user = User::with('pharmacy')->find(Auth::id());
-
-                $orders = Order::all();
-
-            if ($orders) {
-
-                return $orders;
-            } else {
-                // return view('order.list');
-            }
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
-    }
-
+    
     public function order($id)
     {
         try {
