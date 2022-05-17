@@ -9,19 +9,18 @@
 @include('alerts.errors')
 @include('alerts.success')
 
-    <div class="container  my-5  pt-5">
+    <div class="container mt-3">
         <section class="section   profile">
             <div class="row">
 
-
                 <div class="col-xl-4 ">
                     <div class="col">
-                        <div class="card h-100 p-2">
+                        <div class="card h-100">
                             @if($pharmacy->image)
                                 <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}" alt="pharmacy"
                                      class="rounded-circle border p-1">
                             @else
-                                <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus"
+                                <img src="{{asset('img/pharmacy.png') }}" class="card-img-top img-card-cus w-100 h-100 px-5"
                                      alt="...">
                             @endif
                             <div class="card-body pb-5">
@@ -57,14 +56,10 @@
                     </div>
                 </div>
 
-
-
                 <div class="col-xl-8  ">
 
                     <div class=" p-5  shadow  cust-card" style="margin-bottom: 0px; overflow: hidden;border-radius: 1rem;">
                         <div class="card-body p-0" >
-
-
                             <div class="row m-2 fw-bold">
                                 اطلب عن طريق :
                             </div>
@@ -93,7 +88,7 @@
                                             <div class=" mb-3  field_wrapper">
                                                 <input type="text" id="name" placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-12 col-md-8 mb-2 form-control-custome
                                     "name='product_name[]' autofocus>
-                                    
+
                                                 <input type="text" id="name" placeholder="حدد الكمية" class=" col-md-3 col-12 form-control-custome mb-2
                                     "name='quantity[]' autofocus>
                                                 <input type="hidden" id="name" name='user' value="{{ Auth::user()->id }}">

@@ -33,23 +33,28 @@
                         </button>
                     </div>
                     <div class="col-md-6 d-flex">
-                        <select name="governorate" class="form-select select1 mx-2"
-                        id="inputGroupSelect01">
-                        @foreach ($governorates as $governorat)
-                        <option value="{{ $governorat->id }}">
-                            {{ $governorat->name }}
-                        </option>
-                        @endforeach
-                    </select>
-                    <select name="city" class="form-select select2 mx-2 " id="inputGroupSelect02" style="">
-                        @foreach ($cities as $city)
-                        <option value="{{ $city->id }}">
-                            {{ $city->name }}
-                        </option>
-                        @endforeach
-                    </select>
+                        <select name="governorate" id="select1"
+                                class="form-select select1 form-control mx-2"
+                                aria-label=".form-select-lg example">
+
+                            <option value="0" selected>جميع المحافظات</option>
+                            @foreach ($governorates as $governorat)
+                                <option value="{{ $governorat->id }}">
+                                    {{ $governorat->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <select name="city" id="select2"
+                                class="form-select select2 form-control mx-2"
+                                aria-label=".form-select-lg example">
+                            <option value="0" selected>جميع المدن</option>
+                            @foreach ($cities as $city)
+                                <option class="city{{ $city->governorate_id }}"
+                                        value="{{ $city->id }}">{{ $city->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
-          
+
                     </div>
 
 
@@ -59,7 +64,7 @@
 
         <div class="wrapper">
 
-            <div class="view_main container shadow">
+            <div class="view_main container shadow w-100">
                 @if(sizeof($pharmacies) == 0)
                     <h1 class="fs-4 py-5 text-center">لا يوجد اي صيدليات متوفرة</h1>
                 @endif
@@ -116,14 +121,14 @@
                             class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-0 g-sm-5 text-center jobs justify-content-center w-100">
                             @foreach ($pharmacies as $pharmacy)
                                 <div class="col">
-                                    <div class="card h-100 p-2">
+                                    <div class="card h-100 px-2">
                                         @if($pharmacy->image)
                                             <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}"
                                                  alt="pharmacy"
-                                                 class="border-bottom p-4">
+                                                 class="border-bottom">
                                         @else
-                                            <img src="{{asset('img/phramacy1.png') }}"
-                                                 class="card-img-top py-5 img-card-cus"
+                                            <img src="{{asset('img/pharmacy.png') }}"
+                                                 class="card-img-top w-100 h-100 img-card-cus"
                                                  alt="...">
                                         @endif
                                         <div class="card-body pb-0">
@@ -182,7 +187,6 @@
 @section('scripts')
     <script>
         $("#select1").change(select);
-
         function select() {
             if ($(this).data('options') === undefined) {
                 /*Taking an array of all options-2 and kind of embedding it on the select1*/

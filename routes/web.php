@@ -44,8 +44,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     // change password
     Route::post('/changePassword', [UserController::class, 'changePassword'])->name('changePassword.user');
 
-    Route::get('orders', [UserController::class, 'orders'])->name('orders');
-
     Route::get('/orders', [UserController::class, 'orders'])->name('user.orders'); // all orders
     Route::get('/order/{id}', [UserController::class, 'order'])->name('user.order'); // show order
     // admin
@@ -80,8 +78,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::get('/', [adminController::class, 'users'])->name('admin.users.index');
             Route::get('/create', [UserController::class, 'create'])->name('admin.users.create');
             Route::post('/store', [UserController::class, 'store'])->name('admin.users.store');
-            Route::get('/orders', [UserController::class, 'orders'])->name('user.orders'); // all orders
-            Route::get('/order/{id}', [UserController::class, 'order'])->name('user.order'); // show order
+
             // start profile
             Route::group(['prefix' => 'profile'], function () {
                 Route::get('/{id}', [UserProfileController::class, 'show'])->name('show.profile');
