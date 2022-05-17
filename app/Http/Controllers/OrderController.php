@@ -6,6 +6,8 @@ use App\Events\Messages;
 use App\Helpers\Helper;
 use App\Models\Order;
 use App\Models\Pharmacy;
+use App\Http\Requests\PharmacyRequest;
+use App\Http\Requests\OrderRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -97,6 +99,7 @@ class OrderController extends Controller
             throw $th;
         }
     }
+
 
     // this show page that pharmacy can add price
 

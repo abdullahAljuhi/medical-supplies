@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+
+<!--Display Error-->
+<!-- @if($errors->any())
+    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
+@endif -->
+
+
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -30,7 +38,7 @@
                             <label for="img" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="file" type="file" class="form-control @error('image') is-invalid @enderror" name="img" value="{{ old('img') }}" required autocomplete="email">
+                                <input id="file" type="file" class="form-control @error('img') is-invalid @enderror" name="img" value="{{ old('img') }}" required autocomplete="email">
 
                                 @error('img')
                                     <span class="invalid-feedback" role="alert">

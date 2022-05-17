@@ -1,6 +1,16 @@
 @extends('layouts.app')
 @section('title', 'المحافظات')
 @section('content')
+
+@include('alerts.errors')
+@include('alerts.success')
+
+<!--Display Error-->
+<!-- @if($errors->any())
+    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
+@endif -->
+
+
     <!-- Page Title -->
     <div class="pagetitle">
         <h1>المحافظات</h1>
@@ -31,7 +41,12 @@
                                     <label for="fullName" class="col-md-4 col-lg-3 col-form-label"> يرجى تعديل اسم
                                         المحافظة</label>
                                     <div class="col-md-8 col-lg-9">
-                                        <input name="name" type="text" class="form-control" id="fullName" value="{{$governorate->name}}">
+                                        <input name="name" type="text" class="form-control form-control @error('name') is-invalid @enderror" id="gover" value="{{$governorate->name}}">
+                                        @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="tab-pane fade show active profile-overview mt-3" id="profile-overview">

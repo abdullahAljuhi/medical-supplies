@@ -1,6 +1,15 @@
 @extends('layouts.app')
 @section('title', 'الملف الشخصي')
 @section('content')
+
+@include('alerts.errors')
+@include('alerts.success')
+
+<!--Display Error-->
+<!-- @if($errors->any())
+    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
+@endif -->
+
     <!-- Page Title -->
     <div class="pagetitle">
         <h1>المدن</h1>
@@ -12,6 +21,11 @@
         </nav>
     </div>
     <!-- End Page Title -->
+
+    <!--Display Error-->
+@if($errors->any())
+    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
+@endif
 
     <section class="section profile">
         <div class="row">
@@ -33,9 +47,14 @@
                                         </select>
                                     </div>
                                     <div class="col-6">
-                                        <label for="city" class="form-label">يرجى ادخال اسم المدينة</label>
+                                        <label for="city" class="form-label"> ادخل اسم المدينة</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="name" type="text" class="form-control" id="city" value="">
+                                            <input  name="name" type="text" class="form-control" id="city" value="">
+                                            @error('city')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                         </div>
                                     </div>
 
@@ -65,6 +84,8 @@
             <div class="card-body">
                 <h5 class="card-title">جدول المدن  </h5>
 
+                @include('alerts.success')
+                @include('alerts.errors')
                 <table class="table table-hover datatable">
                     <thead>
                     <tr>
@@ -73,6 +94,7 @@
                         <th scope="col">اسم المحافظة</th>
                         <th scope="col">تاريخ الاضافة</th>
                         <th scope="col">تعديل </th>
+                        <th scope="col">الحالة </th>
                         <th scope="col">تفعيل </th>
                     </tr>
                     </thead>
@@ -84,15 +106,27 @@
                             <td> {{ $city->governorate['name'] }}</td>
                             <td>{{ $city->created_at }}</td>
                             <td><a href="{{ route('edit-city', $city->id) }}"><button class="btn ">تعديل</button></td>
+                            <td>
+                                @if( $city->is_active)
+                                    <span style="font-size: 14px"class=" badge text-success fs-6" >
+                                        مفعل  
+                                    </span>
+                                @else
+                                    <span style="font-size: 14px" class="badge text-danger fs-6">
+                                        غير مفعل
+                                    </span>
+                                @endif
+                               
+                            </td>
                             <td><a href="{{ route('active.city', $city->id) }}" >
                                    <button type="button" class="btn ">
                                         @if( $city->is_active)
-                                            <span style="font-size: 14px"class=" badge bg-success fs-6" >
-                                             مفعل /إلغاء التفعيل 
+                                            <span style="font-size: 14px"class=" badge text-danger fs-6" >
+                                             إلغاء التفعيل 
                                            </span>
                                         @else
-                                            <span style="font-size: 14px" class="badge bg-danger fs-6">
-                                               غير مفعل/تفعيل
+                                            <span style="font-size: 14px" class="badge text-success fs-6">
+                                             تفعيل
                                             </span>
                                         @endif
                                     

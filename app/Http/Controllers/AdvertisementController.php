@@ -47,10 +47,10 @@ class AdvertisementController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreAdvertisementRequest  $request
+     * @param  \App\Http\Requests\AdvertisementRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdvertisementRequest $request)
     {
         try {
 
@@ -107,7 +107,7 @@ class AdvertisementController extends Controller
     {
         try {
             $advertisements =Advertisement::find($id);
-            return view('student.edit', compact('advertisements'));
+            return view('adv.editAds', compact('advertisements'));
 
         } catch (\Exception $ex) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
@@ -121,7 +121,7 @@ class AdvertisementController extends Controller
      * @param  \App\Models\Advertisement  $advertisement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdvertisementRequest $request, $id)
     {
         $advertisements= Advertisement::findOrFail($id);
         try {

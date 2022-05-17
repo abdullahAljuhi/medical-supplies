@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
-use App\Http\Requests\StoreAddressRequest;
-use App\Http\Requests\UpdateAddressRequest;
+use App\Http\Requests\AddressRequest;
+use Illuminate\Http\Request;
 
 class AddressController extends Controller
 {
@@ -34,7 +34,7 @@ class AddressController extends Controller
      * @param  \App\Http\Requests\StoreAddressRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAddressRequest $request)
+    public function store(AddressRequest $request)
     {
         //
     }
@@ -68,7 +68,7 @@ class AddressController extends Controller
      * @param  \App\Models\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAddressRequest $request, Address $address)
+    public function update(AddressRequest $request, Address $address)
     {
         //
     }

@@ -1,6 +1,15 @@
 @extends('layouts.auth-layout')
 @section('title','التأكد من البريد الالكتروني')
 @section('content')
+
+<!--Display Error-->
+<!-- @if($errors->any())
+    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
+@endif -->
+
+@include('alerts.errors')
+@include('alerts.success')
+
     <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center">
         <div class="container">
             <div class="d-flex justify-content-center py-4">

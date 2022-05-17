@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\Pharmacy;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+use App\Http\Requests\PharmacyRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
