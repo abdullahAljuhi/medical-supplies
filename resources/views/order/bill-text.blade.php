@@ -86,7 +86,7 @@
                                             <tr>
                                                 <td>#</td>
                                                 <td>سعر التوصيل</td>
-                                                <td colspan="2">{{ $order->delivery }} </td>
+                                                <td colspan="2">{{ $order->delivery_price }} </td>
                                             </tr>
                                             </tbody>
                                             <tfoot>

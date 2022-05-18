@@ -41,6 +41,7 @@ class PharmacyController extends Controller
                 if ($pharmacy->is_active == '1') {
                     return view('pharmacy.home');
                 } else {
+                    event(new notfiy($pharmacy));
                     return view('auth.verifyPharmacy');
                 }
             }

@@ -41,7 +41,7 @@ class PharmacyController extends Controller
         return redirect()->back();
     }
 
-    public function checkPharmacy(PharmacyRequest $request, $id = '')
+    public function checkPharmacy(Request $request, $id = '')
     {
         if ($id == '') {
             $id = $request->pharmacy;

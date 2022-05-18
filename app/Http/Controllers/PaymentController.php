@@ -26,7 +26,7 @@ class PaymentController extends Controller
 
             $products = json_decode($order->products, true);
 
-            return $products;
+            // return $products;
             $data = [
                 "order_reference" => "123412",
                 "products" =>$products,
@@ -76,13 +76,14 @@ class PaymentController extends Controller
             } else {
               echo $response;
             }
-            //     //    print_r(json_decode($response,true));
-            //     $result = json_decode($response, true);
+                //    print_r(json_decode($response,true));
+                $result = json_decode($response, true);
             //     return $result;
-            //     $next_url = $result['invoice']['next_url'];
+                $next_url = $result['invoice']['next_url'];
             //     //    $next_url=substr_replace('//','/ ',$result['invoice']['next_url']);
-
-            //     return redirect($next_url);
+            $order->status=2;
+            $order->save();
+                return redirect($next_url);
             //     //  echo $next_url;
 
 

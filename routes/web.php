@@ -36,7 +36,7 @@ Auth::routes(['verify' => true]);
 define('PAGINATION', 10);
 
 
-Route::group(['middleware' => ['auth', 'verified']], function () {
+Route::group(['middleware' => ['auth', 'verified']], function (){
 
     // main page after login
     Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -58,6 +58,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::get('/location', function () {
                 return view('admin.location');
             })->name('location');
+
             Route::get('/city', [CityController::class, 'create'])->name('add-city');
             Route::post('/city/store', [CityController::class, 'store'])->name('store-city');
             Route::get('/city/edit/{id}', [CityController::class, 'edit'])->name('edit-city');
@@ -70,7 +71,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::post('/state/update/{id}', [GovernorateController::class, 'update'])->name('update-state');
             Route::get('/state/active/{id}', [GovernorateController::class, 'active'])->name('active.state');
 
-        }); // end users
+        });
 
 
         // crud Users
@@ -191,6 +192,7 @@ Route::get('/', [MedicalController::class, 'index'])->name('index');
 Route::get('/pharmacies', [MedicalController::class, 'showPharmacies'])->name('morePharmacy'); // show all pharmacies
 
 Route::get('test', [PaymentController::class, 'index'])->name('test');
+
 Route::get('t/{id}', [PaymentController::class, 't']);
 
 

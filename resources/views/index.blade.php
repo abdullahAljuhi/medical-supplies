@@ -361,8 +361,7 @@
     //   console.log(data.order.pharmacy_id);
       var existingNotifications = notifications.html();
       var newNotificationHtml = `
-        <form action="{{route('order.userBill')}}" method="get">
-        <input type="hidden" name='id' value="${data.order.id}">
+        <form action="/order/${data.order.id}" method="get">
         <button type="submit"> هناك طلب</button>
         </form>`
         ;
