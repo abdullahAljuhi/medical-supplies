@@ -165,9 +165,21 @@ class AdvertisementController extends Controller
      * @param  \App\Models\Advertisement  $advertisement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Advertisement $advertisement)
+    public function delete($id)
     {
-        //
+        try {
+            $advertisement = Advertisement::findOrFail($id);
+            if ($advertisement->image !== '') { // check if advertisement has image
+                // remove image
+                $fileName = public_path('assets/images/advs/' . $advertisement->image);
+                unlink(realpath($fileName));
+            }
+
+            $advertisement->delete();
+            return redirect()->route('show.adv');
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => 'هناك خطا ما يرجي المحاولة فيما بعد']);
+        }
     }
 
     // active advertisement

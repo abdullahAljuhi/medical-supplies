@@ -106,8 +106,8 @@
                                 </span>
                                 @endif
                             </div>
-                            <div class="col-md-2 mb-2 mb-md-0  text-center ">
-                             <!-- <div class=" border">-->
+                            <div class="col-md-2 mb-2 mb-md-0  text-center row">
+                              <div class=" col-6 text-center">
                                <!--<div class="col-10 border">-->
                                
                                    
@@ -116,7 +116,7 @@
                                              إلغاء التفعيل
                                             </a>
                                         @else
-                                        <a href="{{ route('active.adv', $ads->id) }}" class="btn btn-outline-primary   w-100 ">
+                                        <a href="{{ route('active.adv', $ads->id) }}" class="btn btn-outline-primary   ">
                                            
                                                تفعيل
                                             </a>  
@@ -124,9 +124,14 @@
 
                                     
                                
-                               <!--</div>
+                               </div>
 
-                              </div>-->
+                               <div class=" col-6 text-center">
+                               <a href="{{ route('delete.adv', $ads->id) }}" class="btn btn-outline-danger  ">
+                                             حذف 
+                                            </a>
+                               </div>
+                              <!--</div>-->
 
                             </div>
                         </a>
