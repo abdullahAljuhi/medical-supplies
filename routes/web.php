@@ -48,13 +48,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
         Route::get('/', [adminController::class, 'index'])->name('dashboard'); // dashboard
 
-        // // Setting Routs
-        // Route::group(['prefix' => 'settings'], function () {
-        //     Route::get('/location', function () {
-        //         return view('admin.location');
-        //     })->name('location');
-
-            // city CRUD
+        // Setting Routs
+        Route::group(['prefix' => 'settings'], function () {
+            Route::get('/location', function () {
+                return view('admin.location');
+            })->name('location');
             Route::get('/city', [CityController::class, 'create'])->name('add-city');
             Route::post('/city/store', [CityController::class, 'store'])->name('store-city');
             Route::get('/city/edit/{id}', [CityController::class, 'edit'])->name('edit-city');
@@ -67,7 +65,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::post('/state/update/{id}', [GovernorateController::class, 'update'])->name('update-state');
             Route::get('/state/active/{id}', [GovernorateController::class, 'active'])->name('active.state');
 
-        // }); // end users
+        }); // end users
 
 
         // crud Users
@@ -150,8 +148,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                 Route::get('/show',[OrderController::class,'show'])->name('bill');
                 Route::post('/update/{id}',[OrderController::class,'update'])->name('order.store');
                 Route::get('/bill/{id?}',[OrderController::class,'Bill'])->name('order.userBill');
-            });//end order
-
+            });
             Route::get('/orders', [UserController::class, 'orders'])->name('orders');
 
 

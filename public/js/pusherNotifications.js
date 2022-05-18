@@ -6,9 +6,9 @@ var notifications = notificationsWrapper.find('li.scrollable-container');
 
 // Subscribe to the channel we specified in our Laravel Event
 var channel = pusher.subscribe('active-pharmacy');
-
 // Bind a function to a Event (the full Laravel class)
 channel.bind('App\\Events\\notfiy', function (data) {
+    console.log('hello');
     let token=$('meta[name="csrf-token"]').attr('content');
     var existingNotifications = notifications.html();
     var newNotificationHtml = `<a href="${data.pharmacy.id}">

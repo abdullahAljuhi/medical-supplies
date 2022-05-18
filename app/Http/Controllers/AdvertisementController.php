@@ -19,9 +19,7 @@ class AdvertisementController extends Controller
     public function index()
     {
         try {
-
             $advertisements= Advertisement::all();
-
             if(empty($advertisements))
             {
                 return redirect()->route('adv.add');
@@ -63,8 +61,7 @@ class AdvertisementController extends Controller
             if ($request->has('image')) {
                 if($fileName != null){
                     $fileName=public_path('assets/images/advs/'.$fileName);
-
-                    unlink(realpath($fileName));
+                    link(realpath($fileName));
                 }
                 
                 // save img in public/adv/images
@@ -176,27 +173,22 @@ class AdvertisementController extends Controller
     // active advertisement
     public function active($id )
      {
-        try {
-            $advertisements= Advertisement::findOrFail($id);
-
-            $ac = $advertisements->is_active ;
-            
-             if($ac == 0)
-             {
-                 $ac=1;
-     
-             }else{
-                 $ac=0;
-             }
-             
+        
+        $advertisements= Advertisement::findOrFail($id);
+        $ac=$advertisements->is_active ;
+          
+         if($ac == 0)
+         {
+             $ac=1;
+ 
+         }else{
+             $ac=0;
+         }
+         
             $advertisements->is_active=$ac;
-     
-             
-             $advertisements->save();
-             return redirect()->back();
-            } catch (\Throwable $th) {
-                //throw $th;
-            }
-        }
-
+ 
+         
+         $advertisements->save();
+         return redirect()->back();
+     }
 }
