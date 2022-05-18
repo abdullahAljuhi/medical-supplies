@@ -10,7 +10,7 @@
 @include('alerts.success')
 
 
-    <div class="container  mt-3">
+    <div class="container  my-3">
         <section class="section   profile">
             <div class="row">
 
@@ -104,24 +104,28 @@
                                                     <label for="inputState" class="form-label  fw-bold"> عنوان التوصيل</label>
                                                     <div class="col-md-6 col-12 mb-2">
                                                         <label for="inputState" class="form-label">المحافظة</label>
-                                                        <select name="governorate" class="form-select select1 mx-2"
-                                                                id="inputGroupSelect01">
-                                                            @foreach ($governorates as $governorat)
-                                                                <option value="{{ $governorat->name }}" >
-                                                                    {{ $governorat->name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
+                                                        <select name="governorate" id="select1"
+                                                        class="form-select select1 form-control px-2 mx-1 pe-5"
+                                                        aria-label=".form-select-lg example">
+
+                                                    <option value="0" disabled selected>جميع المحافظات</option>
+                                                    @foreach ($governorates as $governorat)
+                                                        <option value="{{ $governorat->id }}">
+                                                            {{ $governorat->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
                                                     </div>
                                                     <div class="col-md-6 col-12 mb-2">
                                                         <label for="inputState" class="form-label">المدينة</label>
-                                                        <select name="city" class="form-select select2 mx-2" id="inputGroupSelect02"
-                                                                style="">
-                                                            @foreach ($cities as $city)
-                                                                <option value="{{ $city->name }}" >{{ $city->name }}</option>
-                                                            @endforeach
-                                                        </select>
-
+                                                        <select name="city" id="select2"
+                    class="form-select select2 form-control p-2 pe-5 mx-1"
+                    aria-label=".form-select-lg example">
+                    @foreach ($cities as $city)
+                    <option class="city{{ $city->governorate_id }}"
+                    value="{{ $city->id }}">{{ $city->name }}</option>
+                    @endforeach
+                </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -170,23 +174,28 @@
                                                         <label for="inputState" class="form-label  fw-bold"> عنوان التوصيل</label>
                                                         <div class="col-md-6 col-12 mb-2">
                                                             <label for="inputState" class="form-label">المحافظة</label>
-                                                            <select name="governorate" class="form-select select1 mx-2"
-                                                                    id="inputGroupSelect01">
+                                                            <select name="governorate" id="select1"
+                                                            class="form-select select1 form-control px-2 mx-1 pe-5"
+                                                            aria-label=".form-select-lg example">
+
+                                                                <option value="0" disabled selected>جميع المحافظات</option>
                                                                 @foreach ($governorates as $governorat)
-                                                                    <option value="{{ $governorat->name }}" >
+                                                                    <option value="{{ $governorat->id }}">
                                                                         {{ $governorat->name }}
                                                                     </option>
                                                                 @endforeach
-                                                            </select>
+                                                        </select>
                                                         </div>
                                                         <div class="col-md-6 col-12 mb-2">
                                                             <label for="inputState" class="form-label">المدينة</label>
-                                                            <select name="city" class="form-select select2 mx-2" id="inputGroupSelect02"
-                                                                    style="">
-                                                                @foreach ($cities as $city)
-                                                                    <option value="{{ $city->name }}" >{{ $city->name }}</option>
-                                                                @endforeach
-                                                            </select>
+                                                            <select name="city" id="select2"
+                                                            class="form-select select2 form-control p-2 pe-5 mx-1"
+                                                            aria-label=".form-select-lg example">
+                                                            @foreach ($cities as $city)
+                                                            <option class="city{{ $city->governorate_id }}"
+                                                            value="{{ $city->id }}">{{ $city->name }}</option>
+                                                            @endforeach
+                                                        </select>
 
                                                         </div>
                                                     </div>
@@ -219,3 +228,23 @@
     </div>
 
 @endsection
+@section('scripts')
+    <script>
+        $("#select1").change(select);
+        function select() {
+            if ($(this).data('options') === undefined) {
+                /*Taking an array of all options-2 and kind of embedding it on the select1*/
+                $(this).data('options', $('#select2 option').clone());
+            }
+            if ($(this).val() == 0) {
+                $('#select2').html($(this).data('options'));
+                return;
+            }
+            var id = $(this).val();
+            var options = $(this).data('options').filter('[class=city' + id + ']');
+            $('#select2').html(options);
+        }
+    </script>
+@endsection
+
+

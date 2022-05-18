@@ -93,8 +93,8 @@
                         <th scope="col">اسم المدينة</th>
                         <th scope="col">اسم المحافظة</th>
                         <th scope="col">تاريخ الاضافة</th>
-                        <th scope="col">تعديل </th>
                         <th scope="col">الحالة </th>
+                        <th scope="col">تعديل </th>
                         <th scope="col">تفعيل </th>
                     </tr>
                     </thead>
@@ -105,34 +105,30 @@
                             <td>{{ $city->name }}</td>
                             <td> {{ $city->governorate['name'] }}</td>
                             <td>{{ $city->created_at }}</td>
-                            <td><a href="{{ route('edit-city', $city->id) }}"><button class="btn ">تعديل</button></td>
                             <td>
                                 @if( $city->is_active)
                                     <span style="font-size: 14px"class=" badge text-success fs-6" >
-                                        مفعل  
+                                        مفعل
                                     </span>
                                 @else
                                     <span style="font-size: 14px" class="badge text-danger fs-6">
                                         غير مفعل
                                     </span>
                                 @endif
-                               
+
                             </td>
-                            <td><a href="{{ route('active.city', $city->id) }}" >
-                                   <button type="button" class="btn ">
-                                        @if( $city->is_active)
-                                            <span style="font-size: 14px"class=" badge text-danger fs-6" >
-                                             إلغاء التفعيل 
-                                           </span>
-                                        @else
-                                            <span style="font-size: 14px" class="badge text-success fs-6">
-                                             تفعيل
-                                            </span>
-                                        @endif
-                                    
-                                    </button>
-                               </a>
+                            <td><a href="{{ route('edit-city', $city->id) }}"><button class="btn   btn-outline-success px-4">تعديل</button></td>
+                                <td>
+                                    @if( $city->is_active)
+                                    <a href="{{ route('active.city', $city->id) }}" class="btn btn-outline-danger   w-100 " >                                         إلغاء التفعيل
+                                        </a>
+                                    @else
+                                    <a href="{{ route('active.city', $city->id) }}" class="btn btn-outline-primary   w-100 " >                                           تفعيل
+                                        </a>
+                                    @endif
+                                    </a>
                             </td>
+                                
 
                         </tr>
                     @endforeach
