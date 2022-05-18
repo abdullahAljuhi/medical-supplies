@@ -33,23 +33,27 @@
                         </button>
                     </div>
                     <div class="col-md-6 d-flex">
-                        <select name="governorate" class="form-select select1 mx-2"
-                        id="inputGroupSelect01">
-                        @foreach ($governorates as $governorat)
+                <select name="governorate" id="select1"
+                        class="form-select select1 form-control px-2 mx-1 pe-5"
+                        aria-label=".form-select-lg example">
+
+                    <option value="0" disabled selected>جميع المحافظات</option>
+                    @foreach ($governorates as $governorat)
                         <option value="{{ $governorat->id }}">
                             {{ $governorat->name }}
                         </option>
-                        @endforeach
-                    </select>
-                    <select name="city" class="form-select select2 mx-2 " id="inputGroupSelect02" style="">
-                        @foreach ($cities as $city)
-                        <option value="{{ $city->id }}">
-                            {{ $city->name }}
-                        </option>
-                        @endforeach
-                    </select>
+                    @endforeach
+                </select>
+                <select name="city" id="select2"
+                    class="form-select select2 form-control p-2 pe-5 mx-1"
+                    aria-label=".form-select-lg example">
+                    @foreach ($cities as $city)
+                    <option class="city{{ $city->governorate_id }}"
+                    value="{{ $city->id }}">{{ $city->name }}</option>
+                    @endforeach
+                </select>
                     </div>
-          
+
                     </div>
 
 
@@ -59,7 +63,7 @@
 
         <div class="wrapper">
 
-            <div class="view_main container shadow">
+            <div class="view_main container shadow w-100">
                 @if(sizeof($pharmacies) == 0)
                     <h1 class="fs-4 py-5 text-center">لا يوجد اي صيدليات متوفرة</h1>
                 @endif
@@ -116,7 +120,7 @@
                             class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-0 g-sm-5 text-center jobs justify-content-center w-100">
                             @foreach ($pharmacies as $pharmacy)
                                 <div class="col">
-                                    <div class="card h-100 p-2">
+                                    <div class="card h-100 px-2">
                                         @if($pharmacy->image)
                                             <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}"
                                                  alt="pharmacy"
@@ -195,7 +199,6 @@
             var id = $(this).val();
             var options = $(this).data('options').filter('[class=city' + id + ']');
             $('#select2').html(options);
-            $('#select2').prepend('<option value="0" selected>جميع المدن</option>');
         }
     </script>
 @endsection

@@ -340,6 +340,11 @@
     <script src="{{asset('js/templatemo.js ') }}"></script>
     <script src="{{asset('js/custom.js ') }}"></script>
     <script src="{{asset('js/viewAndList.js ') }}"></script>
+    <!-- Vendor JS Files -->
+    <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
+    <!-- Template Main JS File -->
+    <script src="{{ asset('assets/js/main.js') }}"></script>
     {{-- pusher js --}}
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <script>

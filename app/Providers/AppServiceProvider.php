@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-       
+        $governorates = Governorate::all();
+        $cities = Governorate::all();
     }
 }

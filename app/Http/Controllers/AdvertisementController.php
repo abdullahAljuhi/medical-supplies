@@ -26,11 +26,10 @@ class AdvertisementController extends Controller
             }else{
                 return view('adv.ads')->with('advertisements',$advertisements);
             }
-            
+
 
         } catch (\Throwable $th) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
-        
         }
     }
 
@@ -54,8 +53,8 @@ class AdvertisementController extends Controller
     {
         try {
 
-            
-            
+
+
             // start transaction
             $fileName = "";
             if ($request->has('image')) {
@@ -63,11 +62,11 @@ class AdvertisementController extends Controller
                     $fileName=public_path('assets/images/advs/'.$fileName);
                     link(realpath($fileName));
                 }
-                
+
                 // save img in public/adv/images
                 $fileName = $this->uploadImage('advs',$request->image);
             }
-            
+
             // create advertisement
         $advertisements = Advertisement::create([
             'start_date' => $request['start_date'],
@@ -77,7 +76,7 @@ class AdvertisementController extends Controller
         ]);
             $advertisements->save();
             return redirect()->route('show.adv');
-        
+
         } catch (\Exception $ex) {
             return $ex->getMessage();
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
@@ -94,7 +93,7 @@ class AdvertisementController extends Controller
      */
     public function show(Advertisement $advertisement)
     {
-    
+
     }
 
     /**
@@ -173,21 +172,21 @@ class AdvertisementController extends Controller
     // active advertisement
     public function active($id )
      {
-        
+
         $advertisements= Advertisement::findOrFail($id);
         $ac=$advertisements->is_active ;
-          
+
          if($ac == 0)
          {
              $ac=1;
- 
+
          }else{
              $ac=0;
          }
-         
+
             $advertisements->is_active=$ac;
- 
-         
+
+
          $advertisements->save();
          return redirect()->back();
      }

@@ -4,11 +4,10 @@
 
 @include('alerts.errors')
 @include('alerts.success')
-
 <!--Display Error-->
-<!-- @if($errors->any())
+ <!-- @if($errors->any())
     {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
-@endif -->
+@endif  -->
 
 
     <!-- Page Title -->
@@ -63,6 +62,10 @@
                 </div>
             </div>
 
+
+                 @include('alerts.success')
+                 @include('alerts.errors')
         </div>
         </div>
     </section>
+@endsection

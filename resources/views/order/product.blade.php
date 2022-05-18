@@ -54,7 +54,7 @@
                                                 <div class="row my-2 text-center">
                                                     <div class="col-12">صورة العلاج</div>
                                                 </div>
-                                                <img src="{{asset('assets/images/orders/'.$product['product_name'])}}" alt="" class="w-100 border" srcset="" style=";height:150px">
+                                                <img src="{{asset('assets/images/orders/'.$product['product_name'])}}" alt="" class="w-100 border myImg" srcset="" style=";height:150px">
                                                 <div class="row my-2">
                                                     <div class="col-8">الكمية :</div>
                                                     <div class="col-4">
@@ -107,4 +107,40 @@
         </div>
         </div>
     </section>
+    <div id="myModal" class="modal">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header py-0">
+                    <button type="button" class="btn-close close fs-1" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img class="modal-content" id="img01">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal">اغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+@section('scripts')
+    <script>
+        // Get the modal
+        var modal = $("#myModal");
+        var modalImg = modal.find('.modal-content');
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = $(".myImg");
+        var captionBox = $("#caption");
+        img.click(function () {
+            modalImg.attr('src', $(this).attr('src'));
+            captionBox.text($(this).attr('alt'));
+            modal.show();
+        });
+        // Get the elements that closes the modal
+        var modalCloser = $(".close");
+        // When the user clicks on the close element, close the modal
+        modalCloser.click(function () {
+            modal.hide();
+        });
+    </script>
 @endsection

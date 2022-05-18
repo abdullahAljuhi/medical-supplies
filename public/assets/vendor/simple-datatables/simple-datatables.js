@@ -698,7 +698,7 @@
                 labels: {
                     placeholder: "Search...",
                     perPage: "{select}",
-                    noRows: "No entries found",
+                    noRows: "لا يوجد اي بيانات",
                     info: "عرض {start} الى {end} من {rows} صف"
                 },
                 layout: {top: "{select}{search}", bottom: "{info}{pager}"}

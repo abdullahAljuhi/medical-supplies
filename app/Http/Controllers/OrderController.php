@@ -163,7 +163,7 @@ class OrderController extends Controller
             $order->update([
                 'products' => $products,
                 'total_price' => $total_price,
-                'delivery' => $request->delivery,
+                'delivery_price' => $request->delivery,
                 'status' => '1',
             ]);
 
