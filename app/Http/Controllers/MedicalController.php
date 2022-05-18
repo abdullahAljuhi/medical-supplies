@@ -55,7 +55,11 @@ class MedicalController extends Controller
     {
         try {
 <<<<<<< HEAD
+<<<<<<< HEAD
             $pharmacies = Pharmacy::where('is_active','1')->limit(6)->get();
+=======
+            $pharmacies = Pharmacy::limit(6)->get();
+>>>>>>> parent of e524fdc (show only active)
             $advertisements = Advertisement::limit(6)->get();
 =======
             $pharmacies = Pharmacy::limit(6)->get();
