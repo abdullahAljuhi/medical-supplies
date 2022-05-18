@@ -121,7 +121,7 @@ class AdvertisementController extends Controller
      * @param  \App\Models\Advertisement  $advertisement
      * @return \Illuminate\Http\Response
      */
-    public function update(AdvertisementRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $advertisements= Advertisement::findOrFail($id);
         try {
@@ -169,15 +169,15 @@ class AdvertisementController extends Controller
     {
         try {
             $advertisement = Advertisement::find($id);
-            if ($advertisement->image !== '') { // check if advertisement has image
-                // remove image
-                $fileName = public_path('assets/images/advs/' . $advertisement->image);
-                unlink(realpath($fileName));
-            }
+            // if ($advertisement->image !== '') { // check if advertisement has image
+            //     // remove image
+            //     $fileName = public_path('assets/images/advs/' . $advertisement->image);
+            //     unlink(realpath($fileName));
+            // }
 
+            $advertisement->delete;
             return redirect()->route('show.adv');
         } catch (\Exception $e) {
-             $advertisement->delete;
             return redirect()->back()->with(['error' => 'هناك خطا ما يرجي المحاولة فيما بعد']);
         }
     }
