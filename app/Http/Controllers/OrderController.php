@@ -204,4 +204,26 @@ class OrderController extends Controller
             //throw $th;
         }
     }
+
+    //
+    public function cancelFormUser(Order $order){
+        if($order->user_id==Auth::user()->id && $order->status < 2){
+            $order->status = 2;
+            $order->save();
+        }else{
+            return redirect()->back();
+        }
+        return redirect()->back()->with(['success' => 'تم  الاضافه بنجاح']);
+
+        return redirect()->back()->with(['success' => 'تم الغاء الطلب ']);
+    }
+
+    public function notFound(Order $order){
+        
+        if($order->pharmacy_id==Auth::user()->pharmacy->id && $order->status == 0){
+            $order->status = 3;
+        }
+        $order->save();
+        return redirect()->back();
+    }
 }

@@ -41,6 +41,7 @@ class PharmacyController extends Controller
                     return view('pharmacy.home',compact('orders') );
 
                 } else {
+                    
                     event(new notfiy($pharmacy));
                     return view('auth.verifyPharmacy');
                 }
@@ -182,7 +183,9 @@ class PharmacyController extends Controller
 
             if ($request->has('image')) {
                 if($fileName != null){
+
                     $fileName = public_path('assets/images/pharmacies/'.$fileName);
+
                     unlink(realpath($fileName));
                 }
 
@@ -222,7 +225,7 @@ class PharmacyController extends Controller
 
 
             DB::commit();
-            return redirect()->back();
+            return redirect()->back()->with(['success' => 'تم التحديث بنجاح']);
         } catch (\Exception $ex) {
 
             // return  insert date
@@ -246,11 +249,12 @@ class PharmacyController extends Controller
             if ($pharmacy->image !== '') { // check if pharmacy has image
                 // remove image
                 $fileName=public_path('assets/images/pharmacies/'.$pharmacy->image);
+
                 unlink(realpath($fileName));
             }
 
             $pharmacy->delete();
-            return redirect()->route('pharmacy.home');
+            return redirect()->back()->with(['success' => 'تم الحذف بنجاح']);
         } catch (\Exception $e) {
             //throw $th;
         }
@@ -292,6 +296,8 @@ class PharmacyController extends Controller
         $orders=$q->limit(6)->get();
 
         $count=$q->count();
+        // 					   		DB::raw('CONCAT(users.country_code, users.phone) AS phone'),
+
     
         return ['orders'=>$orders,'count'=>$count];
     

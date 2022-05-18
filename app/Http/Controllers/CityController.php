@@ -47,8 +47,11 @@ class CityController extends Controller
         try {
 
             $city = new City();
+            
             $city->name = $request->name;
+
             $city->governorate_id = $request->governorate;
+
             $city->save();
 
             return redirect()->route('city.all')->with(['success' => 'تم  الاضافه بنجاح']);

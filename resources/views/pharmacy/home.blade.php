@@ -24,15 +24,7 @@
 @endsection
 @section('scripts')
 @auth
-    <script>
-        Pusher.logToConsole = true;
-
-        var pusher = new Pusher('e4b4e21e1f468b8bddf2', {
-            cluster: 'mt1'
-        });
-
-    </script>
-@if(Auth::user()->id == 2)
+@if(Auth::user()->type == 2)
 <script>
     var notificationsWrapper = $('.dropdown-notifications');
     var notificationsToggle = notificationsWrapper.find('a[data-toggle]');

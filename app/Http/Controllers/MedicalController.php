@@ -31,8 +31,7 @@ class MedicalController extends Controller
                     if ($request->city == 0)
                         return '';
                     return $q->where('city_id', $request->city);
-
-                })->get();
+                })->where('is_active',1)->get();
 
             $pharmacies = $pharmacies->when($request->governorate, function ($q) use ($request) {
                 if ($request->governorate == 0)
@@ -42,23 +41,24 @@ class MedicalController extends Controller
 
 
             return view('pharmacies', ['pharmacies' => $pharmacies]);
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
 
+        } catch (\Exception $e) {
+
+            return $e->getMessage();
+            
+        }
     }
 
     public function index(Request $request)
     {
         try {
             $pharmacies = Pharmacy::limit(6)->get();
-            $advertisements= Advertisement::limit(6)->get();
+            $advertisements = Advertisement::limit(6)->get();
             // $orders = $this->OrderNotification();
-            return view('index', ['pharmacies' => $pharmacies,'advertisements'=>$advertisements]);
+            return view('index', ['pharmacies' => $pharmacies, 'advertisements' => $advertisements]);
         } catch (\Exception $e) {
             return $e->getMessage();
         }
-
     }
 
 
@@ -68,25 +68,23 @@ class MedicalController extends Controller
             $pharmacies = Pharmacy::all();
 
             return view('pharmacies', ['pharmacies' => $pharmacies]);
-            
         } catch (\Exception $e) {
             return $e->getMessage();
         }
-
     }
 
-       // show orders that for pharmacy 
-       public function OrderNotification(){
+    // show orders that for pharmacy 
+    public function OrderNotification()
+    {
 
-        $q = Order::with(['user'=>function($q){
-            return $q->where('id',Auth::id());
-        }],'pharmacy')->where('status',1);
+        $q = Order::with(['user' => function ($q) {
+            return $q->where('id', Auth::id());
+        }], 'pharmacy')->where('status', 1);
 
-        $orders=$q->limit(6)->get();
+        $orders = $q->limit(6)->get();
 
-        $count=$q->count();
+        $count = $q->count();
         // return  $count;
-        return ['orders'=>$orders,'count'=>$count];
-    
+        return ['orders' => $orders, 'count' => $count];
     }
 }

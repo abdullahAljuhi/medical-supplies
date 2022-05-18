@@ -33,14 +33,6 @@
 </div>
 @endsection
 @section('scripts')
-<script>
-    Pusher.logToConsole = true;
-
-    var pusher = new Pusher('e4b4e21e1f468b8bddf2', {
-        cluster: 'mt1'
-    });
-    
-</script>
 <script src="{{('/js/pusherNotifications.js')}}">
 </script>
 @endsection

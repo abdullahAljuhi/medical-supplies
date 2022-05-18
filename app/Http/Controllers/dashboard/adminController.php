@@ -27,8 +27,11 @@ class adminController extends Controller
     {
         try {
             $pharmacies = Pharmacy::all();
+
             return view('pharmacy.pharmacies')->withPharmacies($pharmacies);
+
         } catch (\Exception $e) {
+
             return $e->getMessage();
         }
     }
@@ -53,6 +56,7 @@ class adminController extends Controller
                 return view('order.list');
             }
         } catch (\Exception $e) {
+            
             return $e->getMessage();
         }
     }

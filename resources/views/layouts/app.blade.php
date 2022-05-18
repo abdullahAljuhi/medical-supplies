@@ -39,7 +39,15 @@
     <link rel="stylesheet" href="{{ asset('assets/css/ar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     @yield('extra-style')
-
+    {{-- pusher js --}}
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script>
+        Pusher.logToConsole = true;
+    
+            var pusher = new Pusher('e4b4e21e1f468b8bddf2', {
+                cluster: 'mt1'
+            });
+    </script>
 </head>
 
 <body>
@@ -77,18 +85,17 @@
                 </li>
                 @endif
                 @else
-           
-                   <!-- Notification Nav -->
-                   <li class="nav-item dropdown dropdown-notifications">
+
+                <!-- Notification Nav -->
+                <li class="nav-item dropdown dropdown-notifications">
 
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
                         <i class="bi bi-bell"></i>
 
-                        <span class="badge bg-primary badge-number notify-count"
-                            data-count="0">0</span>
+                        <span class="badge bg-primary badge-number notify-count" data-count="0">0</span>
                     </a><!-- End Notification Icon -->
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                      
+
                         <li class="notification-item scrollable-container">
                         </li>
 
@@ -252,7 +259,8 @@
             class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js') }}">
+    </script>
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/chart.js/chart.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/echarts/echarts.min.js') }}"></script>
@@ -269,8 +277,6 @@
     <!-- Jquery -->
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 
-    {{-- pusher js --}}
-    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 
     @yield('scripts')
 </body>
