@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 
 <head>
+    <title>علاجي كوم </title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -31,6 +32,18 @@
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <link rel="stylesheet" href="{{ asset('css/viewAndList.css') }}">
     {{-- fotn awesom  --}}
+    <!-- Jquery -->
+<script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+
+{{-- pusher js --}}
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+<script>
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('e4b4e21e1f468b8bddf2', {
+        cluster: 'mt1'
+    });
+</script>
 
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
     <!-- Template Main CSS File -->
@@ -81,50 +94,25 @@
                     </li>
                 @endif
             @else
-            <!-- Notification Nav -->
-                <li class="nav-item dropdown dropdown-notifications">
+         <!-- Notification Nav -->
+         <li class="nav-item dropdown dropdown-notifications">
 
-                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
-                        <i class="bi bi-bell"></i>
-                        <span class="badge bg-primary badge-number notify-count" data-count="0">0</span>
-                    </a><!-- End Notification Icon -->
+            <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
+                <i class="bi bi-bell"></i>
+                <span class="badge bg-primary badge-number notify-count" data-count="0">0</span>
+            </a><!-- End Notification Icon -->
 
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
 
-                        <li class="notification-item scrollable-container">
-                        </li>
-
-
-                    </ul><!-- End Notification Dropdown Items -->
-
+                <li class="notification-item scrollable-container">
                 </li>
-                <!-- End Notification Nav -->
 
-                <!-- Messages Nav -->
-                <li class="nav-item dropdown">
 
-                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-                        <i class="bi bi-chat-left-text"></i>
-                        <span class="badge bg-success badge-number">0</span>
-                    </a><!-- End Messages Icon -->
+            </ul><!-- End Notification Dropdown Items -->
 
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-                        <li class="dropdown-header">
-                            ليس لديك اي رسائل جديدة
-{{--                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">عرض الجميع</span></a>--}}
-                        </li>
-{{--                        <li>--}}
-{{--                            <hr class="dropdown-divider">--}}
-{{--                        </li>--}}
+        </li>
+        <!-- End Notification Nav -->
 
-{{--                        <li class="dropdown-footer">--}}
-{{--                            <a href="#">عرض جميع الرسائل</a>--}}
-{{--                        </li>--}}
-
-                    </ul><!-- End Messages Dropdown Items -->
-
-                </li>
-                <!-- End Messages Nav -->
 
                 <!-- Profile Nav -->
                 <li class="nav-item dropdown pe-3">
@@ -336,18 +324,7 @@
 <!-- Template Main JS File -->
 <script src="{{ asset('assets/js/main.js') }}"></script>
 
-<!-- Jquery -->
-<script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 
-    {{-- pusher js --}}
-    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-    <script>
-        Pusher.logToConsole = true;
-
-        var pusher = new Pusher('e4b4e21e1f468b8bddf2', {
-            cluster: 'mt1'
-        });
-    </script>
 
 @yield('scripts')
 </body>

@@ -11,7 +11,7 @@ class Order extends Model
 
    protected $fillable = [
        'total_price',
-       'delivery',
+       'delivery_price',
        'user_id',
        'pharmacy_id',
        'address',

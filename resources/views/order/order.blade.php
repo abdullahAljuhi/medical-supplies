@@ -9,10 +9,10 @@
 @include('alerts.errors')
 @include('alerts.success')
 
+
     <div class="container  mt-3">
         <section class="section   profile">
             <div class="row">
-
 
                 <div class="col-xl-4 ">
                     <div class="col">
@@ -21,7 +21,8 @@
                                 <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}" alt="pharmacy"
                                      class="rounded-circle border p-1">
                             @else
-                                <img src="{{asset('img/phramacy1.png') }}" class="card-img-top img-card-cus w-100 h-100 px-5"
+
+                                <img src="{{asset('img/pharmacy.png') }}" class="card-img-top img-card-cus w-100 h-100 px-5"
                                      alt="...">
                             @endif
                             <div class="card-body pb-5">
@@ -57,14 +58,10 @@
                     </div>
                 </div>
 
-
-
                 <div class="col-xl-8  ">
 
                     <div class=" p-5  shadow  cust-card" style="margin-bottom: 0px; overflow: hidden;border-radius: 1rem;">
                         <div class="card-body p-0" >
-
-
                             <div class="row m-2 fw-bold">
                                 اطلب عن طريق :
                             </div>

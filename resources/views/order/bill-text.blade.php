@@ -23,20 +23,20 @@
                                     {{ $order->id }}
                                 </p>
                             </div>
-                            <div class="col-md-8 col-sm-12 mb-2" >
-                                <p class="fs-5 py-0 my-0  mx-3">  اسم الصيدلية :
+                            <div class="col-md-8 col-sm-12 mb-2">
+                                <p class="fs-5 py-0 my-0  mx-3"> اسم الصيدلية :
                                     {{ $order->pharmacy->pharmacy_name }}
                                 </p>
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-md-4 col-sm-12 mb-2">
-                                <p class="fs-5 py-0 my-0  mx-3">    تاريخ الطلب :
+                                <p class="fs-5 py-0 my-0  mx-3"> تاريخ الطلب :
                                     {{ $order->created_at->diffForHumans() }}
                                 </p>
                             </div>
                             <div class="col-md-8 col-sm-12 mb-2">
-                                <p class="fs-5 py-0 my-0  mx-3">   عنوان التوصيل :
+                                <p class="fs-5 py-0 my-0  mx-3"> عنوان التوصيل :
                                     {{ $order->address }}
                                 </p>
                             </div>
@@ -66,7 +66,10 @@
                                                     <tr>
                                                         <td>{{ $loop->index }}</td>
                                                         <td>
-                                                            <img src="{{asset('assets/images/orders/'.$product['product_name'])}}" alt="" class=" border" srcset="" style=";height:50px;width:50px">
+                                                            <img
+                                                                src="{{asset('assets/images/orders/'.$product['product_name'])}}"
+                                                                alt="" class=" border myImg" srcset=""
+                                                                style=";height:50px;width:50px">
                                                         </td>
                                                         <td>{{ $product['unit_amount'] }} </td>
                                                         <td>{{ $product['quantity'] }} </td>
@@ -82,24 +85,29 @@
                                             @endforeach
                                             <tr>
                                                 <td>#</td>
-                                                <td>سعر  التوصيل</td>
-                                                <td colspan="2">{{ $order->delivery }} </td>
+                                                <td>سعر التوصيل</td>
+                                                <td colspan="2">{{ $order->delivery_price }} </td>
                                             </tr>
                                             </tbody>
                                             <tfoot>
                                             <tr>
-                                                <td  colspan="2">الاجمالي</td>
+                                                <td colspan="2">الاجمالي</td>
                                                 <td>{{ $order->total_price }}</td>
                                             </tr>
                                             </tfoot>
                                         </table>
                                         @if(Auth::user()->type == 0)
-                                        <form action="{{ route('test') }}" method="get" class="overflow-hidden mx-3">
-                                            <div class="tab-pane fade show active mt-3 row" id="profile-overview">
-                                                <button type="submit" name="id" value="{{ $order->id }}" class="btn btn-primary px-3 col-md-2 col-sm-12 mb-2">دفع</button>
-                                                <a type="submit" class="btn btn-danger px-3 col-md-2 col-sm-12   mx-sm-2 mb-2"> رفض</a>
-                                            </div>
-                                        </form>
+                                            <form action="{{ route('test') }}" method="get"
+                                                  class="overflow-hidden mx-3">
+                                                <div class="tab-pane fade show active mt-3 row" id="profile-overview">
+                                                    <button type="submit" name="id" value="{{ $order->id }}"
+                                                            class="btn btn-primary px-3 col-md-2 col-sm-12 mb-2">دفع
+                                                    </button>
+                                                    <a type="submit"
+                                                       class="btn btn-danger px-3 col-md-2 col-sm-12   mx-sm-2 mb-2">
+                                                        رفض</a>
+                                                </div>
+                                            </form>
                                         @endif
                                     </div>
                                 </div>
@@ -141,13 +149,16 @@
         // Get the image and insert it inside the modal - use its "alt" text as a caption
         var img = $(".myImg");
         var captionBox = $("#caption");
+
         img.click(function () {
             modalImg.attr('src', $(this).attr('src'));
             captionBox.text($(this).attr('alt'));
             modal.show();
         });
+
         // Get the elements that closes the modal
         var modalCloser = $(".close");
+
         // When the user clicks on the close element, close the modal
         modalCloser.click(function () {
             modal.hide();

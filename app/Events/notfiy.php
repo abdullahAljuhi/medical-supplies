@@ -12,7 +12,7 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-class notfiy implements ShouldBroadcastNow
+class notfiy implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
