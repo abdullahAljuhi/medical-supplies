@@ -79,6 +79,7 @@ class MedicalController extends Controller
 
         $q = Order::with(['user' => function ($q) {
             return $q->where('id', Auth::id());
+            
         }], 'pharmacy')->where('status', 1);
 
         $orders = $q->limit(6)->get();
