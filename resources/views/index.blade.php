@@ -83,21 +83,26 @@
 <section class="bg-white ads">
     <div class="  p-4">
         <div class="row">
-            @foreach ($advertisements as $advertisement)
-
             <div class="col-md-6 col-lg-3 ">
                 <div class="mb-5 ">
-                    <a href="{{ $advertisement->link }}">
-                        @if($advertisement->image)
-                        <img src="{{asset('assets/images/adv/'.$advertisement->image)}}" alt="pharmacy"
-                            class="border-bottom p-4">
-                        @else
-                        <img class="img-fluid" src="{{asset('img/pro1.jpg') }}" alt="">
-                        @endif
-                    </a>
+                    <img class="img-fluid" src="{{asset('img/pro1.jpg') }}" alt="">
                 </div>
             </div>
-            @endforeach
+            <div class="col-md-6 col-lg-3 ">
+                <div class="mb-5 ">
+                    <img class="img-fluid" src="{{asset('img/pro3.jpg ') }}" alt="">
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 ">
+                <div class="mb-5 ">
+                    <img class="img-fluid" src="{{asset('img/pro3.jpg ') }}" alt="">
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 ">
+                <div class="mb-5 ">
+                    <img class="img-fluid" src="{{asset('img/pro3.jpg ') }}" alt="">
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -115,6 +120,7 @@
         <div class="card-group justify-content-center">
             <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-0 g-sm-5 text-center jobs justify-content-center">
                 @foreach ($pharmacies as $pharmacy)
+                @break($loop->index > 5)
                 <div class="col">
                     <div class="card h-100 p-2">
                         @if($pharmacy->image)
@@ -318,21 +324,21 @@
                 </div>
             </div>
         </div>
-</section>
-<!--End Brands-->
-<section class="bg-white ads">
-    <div class="  p-4">
-        <div class="row">
+    </section>
+    <!--End Brands-->
+    <section class="bg-white ads">
+        <div class="  p-4">
+            <div class="row">
             @foreach($advertisements as $ads)
-            <div class="col-md-6 col-lg-3 ">
-                <div class="mb-5 ">
-                    <img class="img-fluid" src="{{asset('assets/images/advs/'.$ads->image) }}" alt="">
+                <div class="col-md-6 col-lg-3 ">
+                    <div class="mb-5 ">
+                        <img class="img-fluid" src="{{asset('assets/images/advs/'.$ads->image) }}" alt="">
+                    </div>
                 </div>
-            </div>
             @endforeach
 
+            </div>
         </div>
-    </div>
     </div>
 </section>
 
@@ -355,8 +361,7 @@
     //   console.log(data.order.pharmacy_id);
       var existingNotifications = notifications.html();
       var newNotificationHtml = `
-        <form action="{{route('order.userBill')}}" method="get">
-        <input type="hidden" name='id' value="${data.order.id}">
+        <form action="/order/${data.order.id}" method="get">
         <button type="submit"> هناك طلب</button>
         </form>`
         ;

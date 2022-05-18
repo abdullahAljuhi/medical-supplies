@@ -11,7 +11,7 @@ class Order extends Model
 
    protected $fillable = [
        'total_price',
-       'delivery',
+       'delivery_price',
        'user_id',
        'pharmacy_id',
        'address',
@@ -19,8 +19,8 @@ class Order extends Model
        'status',
        'type',
    ];
-   
-  
+
+
    public function pharmacy(){
     return $this->belongsTo(Pharmacy::class,'pharmacy_id');
    }

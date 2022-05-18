@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Pharmacy;
-use Illuminate\Http\Request;
 use App\Models\Advertisement;
+use App\Http\Requests\AdvertisementRequest;
+use App\Http\Requests\PharmacyRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -31,10 +33,6 @@ class MedicalController extends Controller
                     if ($request->city == 0)
                         return '';
                     return $q->where('city_id', $request->city);
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of d5d8942 (heroku)
                 })->get();
 
             $pharmacies = $pharmacies->when($request->governorate, function ($q) use ($request) {
@@ -54,26 +52,11 @@ class MedicalController extends Controller
     public function index(Request $request)
     {
         try {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
             $pharmacies = Pharmacy::where('is_active','1')->limit(6)->get();
-=======
-            $pharmacies = Pharmacy::limit(6)->get();
->>>>>>> parent of e524fdc (show only active)
-=======
-            $pharmacies = Pharmacy::limit(6)->get();
->>>>>>> parent of e524fdc (show only active)
-=======
-            $pharmacies = Pharmacy::limit(6)->get();
->>>>>>> parent of e524fdc (show only active)
-            $advertisements = Advertisement::limit(6)->get();
-=======
-            $pharmacies = Pharmacy::limit(6)->get();
-            $advertisements= Advertisement::limit(6)->get();
->>>>>>> parent of d5d8942 (heroku)
-            // $orders = $this->OrderNotification();
+            $advertisements= Advertisement::where('is_active','1')->limit(6)->get();
+
+
             return view('index', ['pharmacies' => $pharmacies,'advertisements'=>$advertisements]);
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -82,13 +65,14 @@ class MedicalController extends Controller
     }
 
 
+
     public function pharmacies(Request $request)
     {
         try {
             $pharmacies = Pharmacy::all();
 
             return view('pharmacies', ['pharmacies' => $pharmacies]);
-            
+
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -98,16 +82,10 @@ class MedicalController extends Controller
        // show orders that for pharmacy 
        public function OrderNotification(){
 
-<<<<<<< HEAD
         $q = Order::with(['user' => function ($q) {
             return $q->where('id', Auth::id());
 
         }], 'pharmacy')->where('status', 1);
-=======
-        $q = Order::with(['user'=>function($q){
-            return $q->where('id',Auth::id());
-        }],'pharmacy')->where('status',1);
->>>>>>> parent of d5d8942 (heroku)
 
         $orders=$q->limit(6)->get();
 

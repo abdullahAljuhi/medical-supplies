@@ -1,4 +1,5 @@
 <?php
+
 use GuzzleHttp\Middleware;
 use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +36,7 @@ Auth::routes(['verify' => true]);
 define('PAGINATION', 10);
 
 
-Route::group(['middleware' => ['auth', 'verified']], function () {
+Route::group(['middleware' => ['auth', 'verified']], function (){
 
     // main page after login
     Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -43,16 +44,21 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     // change password
     Route::post('/changePassword', [UserController::class, 'changePassword'])->name('changePassword.user');
 
+    Route::get('/orders', [UserController::class, 'orders'])->name('user.orders'); // all orders
+    Route::get('/order/{id}', [UserController::class, 'order'])->name('user.order'); // show order
     // admin
     Route::group(['prefix' => 'dashboard', 'middleware' => 'checkType:admin'], function () {
 
         Route::get('/', [adminController::class, 'index'])->name('dashboard'); // dashboard
+        Route::get('/orders', [adminController::class, 'orders'])->name('admin.orders'); // all orders
+        Route::get('/order/{id}', [adminController::class, 'order'])->name('admin.order'); // show order
 
         // Setting Routs
         Route::group(['prefix' => 'settings'], function () {
             Route::get('/location', function () {
                 return view('admin.location');
             })->name('location');
+
             Route::get('/city', [CityController::class, 'create'])->name('add-city');
             Route::post('/city/store', [CityController::class, 'store'])->name('store-city');
             Route::get('/city/edit/{id}', [CityController::class, 'edit'])->name('edit-city');
@@ -65,7 +71,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::post('/state/update/{id}', [GovernorateController::class, 'update'])->name('update-state');
             Route::get('/state/active/{id}', [GovernorateController::class, 'active'])->name('active.state');
 
-        }); // end users
+        });
 
 
         // crud Users
@@ -73,6 +79,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::get('/', [adminController::class, 'users'])->name('admin.users.index');
             Route::get('/create', [UserController::class, 'create'])->name('admin.users.create');
             Route::post('/store', [UserController::class, 'store'])->name('admin.users.store');
+
             // start profile
             Route::group(['prefix' => 'profile'], function () {
                 Route::get('/{id}', [UserProfileController::class, 'show'])->name('show.profile');
@@ -81,13 +88,13 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         }); // end users
 
 
-           //crud advertisement
-           Route::group(['prefix'=>'advertisement'],function(){
-            Route::get('/index',[AdvertisementController::class,'index'])->name('show.adv');
-            Route::get('/edit/{id}',[AdvertisementController::class,'edit'])->name('edit.adv');
-            Route::post('/update/{id}',[AdvertisementController::class,'update'])->name('update.adv');
-            Route::post('/save',[AdvertisementController::class,'store'])->name('save.adv');
-            Route::get('/add',[AdvertisementController::class,'create'])->name('add.adv');
+        //crud advertisement
+        Route::group(['prefix' => 'advertisement'], function () {
+            Route::get('/index', [AdvertisementController::class, 'index'])->name('show.adv');
+            Route::get('/edit/{id}', [AdvertisementController::class, 'edit'])->name('edit.adv');
+            Route::post('/update/{id}', [AdvertisementController::class, 'update'])->name('update.adv');
+            Route::post('/save', [AdvertisementController::class, 'store'])->name('save.adv');
+            Route::get('/add', [AdvertisementController::class, 'create'])->name('add.adv');
             Route::get('/active/{id}', [AdvertisementController::class, 'active'])->name('active.adv');
 
         });
@@ -126,6 +133,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('/edit', [PharmacyController::class, 'edit'])->name('pharmacy.edit');
 
         Route::post('/update', [PharmacyController::class, 'update'])->name('pharmacy.update');
+
+        Route::get('/orders', [PharmacyController::class, 'orders'])->name('pharmacy.orders'); // all orders
+
+        Route::get('/order/{id}', [PharmacyController::class, 'order'])->name('pharmacy.order'); // show order
     }); // pharmacy crud end
 
 
@@ -140,22 +151,18 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     });
 
 
-       //crud order
-            Route::group(['prefix'=>'order'],function(){
-                Route::post('/send',[OrderController::class,'send'])->name('send');
-                Route::get('/create/{pharmacy}',[OrderController::class,'create'])->name('order');
-                Route::get('/edit/{id?}',[OrderController::class,'edit'])->name('order.edit');
-                Route::get('/show',[OrderController::class,'show'])->name('bill');
-                Route::post('/update/{id}',[OrderController::class,'update'])->name('order.store');
-                Route::get('/bill/{id?}',[OrderController::class,'Bill'])->name('order.userBill');
-            });
-            Route::get('/orders', [UserController::class, 'orders'])->name('orders');
+    //crud order
+    Route::group(['prefix' => 'order'], function () {
+        Route::post('/send', [OrderController::class, 'send'])->name('send');
+        Route::get('/create/{pharmacy}', [OrderController::class, 'create'])->name('order');
+        Route::get('/edit/{id?}', [OrderController::class, 'edit'])->name('order.edit');
+        Route::get('/show', [OrderController::class, 'show'])->name('bill');
+        Route::post('/update/{id}', [OrderController::class, 'update'])->name('order.store');
+        Route::get('/bill/{id?}', [OrderController::class, 'Bill'])->name('order.userBill');
+    });
 
 
 });
-
-
-
 
 
 // });
@@ -185,11 +192,16 @@ Route::get('/', [MedicalController::class, 'index'])->name('index');
 Route::get('/pharmacies', [MedicalController::class, 'showPharmacies'])->name('morePharmacy'); // show all pharmacies
 
 Route::get('test', [PaymentController::class, 'index'])->name('test');
-// Route::get('t/{id}', [PaymentController::class, 't']);
+
+Route::get('t/{id}', [PaymentController::class, 't']);
 
 Route::get('/o', [PharmacyController::class, 'OrderNotification']);
 
-Route::get('/uo', [PharmacyController::class, 'OrderNotification']);
+Route::get('/test/response/{info}', function () {
+    $info = Route::current()->parameter('info');
 
-Route::get('/test/response/{info}',[PaymentController::class,'showTest']);
+    $info = base64_decode($info);
+    $data = $arrayFormat = json_decode($info, true);
+    return $data;
+});
 // http://127.0.0.1:8000/test/responsetest

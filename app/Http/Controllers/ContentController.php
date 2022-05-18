@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Content;
-use App\Http\Requests\StoreContentRequest;
-use App\Http\Requests\UpdateContentRequest;
+use App\Http\Requests\ContentRequest;
+use Illuminate\Http\Request;
 
 class ContentController extends Controller
 {
@@ -34,7 +34,7 @@ class ContentController extends Controller
      * @param  \App\Http\Requests\StoreContentRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreContentRequest $request)
+    public function store(ContentRequest $request)
     {
         //
     }
@@ -68,7 +68,7 @@ class ContentController extends Controller
      * @param  \App\Models\Content  $content
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateContentRequest $request, Content $content)
+    public function update(ContentRequest $request, Content $content)
     {
         //
     }

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserProfileRequest;
+use App\Http\Requests\UserRequest;
 
 class UserProfileController extends Controller
 {
@@ -20,7 +21,7 @@ class UserProfileController extends Controller
      */
     public function index()
     {
-        
+
         $user = User::with('profile')->find(Auth::id());
 
         if( $user->type == 2 ){
@@ -73,7 +74,7 @@ class UserProfileController extends Controller
     {
 
 
-        $user = User::find(Auth::user()->id);        
+        $user = User::find(Auth::user()->id);
         if( $user->type == 2 ){
             return redirect()->route('pharmacy.edit');
         }
@@ -122,7 +123,7 @@ class UserProfileController extends Controller
             return redirect()->back()->with(['success' => 'تم التحديث بنجاح']);
 
         } catch (\Exception $e) {
-
+            return $e->getMessage();
             return redirect()->back()->with(['error' => 'هناك خطا ما يرجي المحاولة فيما بعد']);
 
         }

@@ -23,19 +23,7 @@
     </div>
 @endsection
 @section('scripts')
-    <script>
-        Pusher.logToConsole = true;
 
-        var pusher = new Pusher('e4b4e21e1f468b8bddf2', {
-            cluster: 'mt1'
-        });
-
-    </script>
-    @if(Auth::user()->id==1)
-        <script src="{{asset('js/pusherNotifications.js')}}"></script>
-    @else
-    @section('scripts')
-@auth
 <script>
     var notificationsWrapper = $('.dropdown-notifications');
     var notificationsToggle = notificationsWrapper.find('a[data-toggle]');
@@ -47,13 +35,12 @@
     // Subscribe to the channel we specified in our Laravel Event
     var channel = pusher.subscribe("order{{  Auth::user()-> id }}");
     // Bind a function to a Event (the full Laravel class)
-
+ 
     channel.bind('App\\Events\\Messages', function(data) {
     //   console.log(data.order.pharmacy_id);
       var existingNotifications = notifications.html();
       var newNotificationHtml = `
-        <form action="{{route('order.edit')}}" method="get">
-        <input type="hidden" name='id' value="${data.order.id}">
+        <form action="/pharmacy/order/${data.order.id}" method="get">
         <button type="submit"> هناك طلب</button>
         </form>`
         ;
@@ -64,9 +51,5 @@
       notificationsWrapper.show();
     });
 </script>
-@endauth
-
-@endsection
-    @endif
 @endsection
 

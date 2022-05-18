@@ -1,53 +1,60 @@
 @extends("layouts.main")
 @section('content')
-    <section class="mt-5 py-3 min-vh-100 px-2">
-        <div class="container  my-3 bg-white shadow">
-            <div class="row py-3  px-1">
-                <div class="col-md-1 col-sm-2 links  ">
-                    <ul class="w-100 h-100">
-                        <li data-view="list-view" class="li-list active">
-                            <i class="fas fa-th-list"></i>
-                        </li>
-                        <li data-view="grid-view" class="li-grid">
-                            <i class="fas fa-th-large"></i>
-                        </li>
-                    </ul>
-                </div>
-                <form action="{{ route('morePharmacy') }}" method="get" class="col-md-11 col-sm-12">
-                    <div class="row">
-                        <div class="col-md-6 d-flex border ps-0 mb-3 mb-md-0 ">
-                            <input type="text" class=" border-0 py-1" style="width: 90%;outline:0ch"
-                                   placeholder="البحث "
-                                   aria-label="Example text with button addon" aria-describedby="button-addon1"
-                                   name="name">
-                            <button type="submit" name="search" id=""
-                                    style="width: 10%"
-                                    class="bg-primary text-white border-0">
-                                <i class="bi bi-search"></i>
-                            </button>
-                        </div>
-                        <div class="col-md-6 d-flex">
-                            <select name="governorate" id="select1"
-                                    class="form-select select1 form-control mx-2"
-                                    aria-label=".form-select-lg example">
 
-                                <option value="0" selected>جميع المحافظات</option>
-                                @foreach ($governorates as $governorat)
-                                    <option value="{{ $governorat->id }}">
-                                        {{ $governorat->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            <select name="city" id="select2"
-                                    class="form-select select2 form-control mx-2"
-                                    aria-label=".form-select-lg example">
-                                <option value="0" selected>جميع المدن</option>
-                                @foreach ($cities as $city)
-                                    <option class="city{{ $city->governorate_id }}"
-                                            value="{{ $city->id }}">{{ $city->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+@include('alerts.errors')
+@include('alerts.success')
+<!--Display Error-->
+<!-- @if($errors->any())
+    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
+@endif -->
+
+
+
+<section class="mt-5 py-3">
+    <div class="container  my-3 bg-white shadow">
+        <div class="row py-3  px-1">
+            <div class="col-md-1 col-sm-2 links  ">
+                <ul class="w-100 h-100">
+                    <li data-view="list-view" class="li-list active">
+                        <i class="fas fa-th-list"></i>
+                    </li>
+                    <li data-view="grid-view" class="li-grid">
+                        <i class="fas fa-th-large"></i>
+                    </li>
+                </ul>
+            </div>
+            <form action="{{ route('morePharmacy') }}" method="get" class="col-md-11 col-sm-12">
+                <div class="row">
+                    <div class="col-md-6 d-flex border ps-0 mb-3 mb-md-0 ">
+                        <input type="text" class=" border-0 py-1" style="width: 90%;outline:0ch" placeholder="البحث "
+                            aria-label="Example text with button addon" aria-describedby="button-addon1" name="name">
+                        <button type="submit" name="search" id="" style="width: 10%;border:0;background: transparent;outline:0ch" class="bg-primary text-white" >
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <select name="governorate" id="select1"
+                                class="form-select select1 form-control mx-2"
+                                aria-label=".form-select-lg example">
+
+                            <option value="0" selected>جميع المحافظات</option>
+                            @foreach ($governorates as $governorat)
+                                <option value="{{ $governorat->id }}">
+                                    {{ $governorat->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <select name="city" id="select2"
+                                class="form-select select2 form-control mx-2"
+                                aria-label=".form-select-lg example">
+                            <option value="0" selected>جميع المدن</option>
+                            @foreach ($cities as $city)
+                                <option class="city{{ $city->governorate_id }}"
+                                        value="{{ $city->id }}">{{ $city->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     </div>
 
 
@@ -57,7 +64,7 @@
 
         <div class="wrapper">
 
-            <div class="view_main container shadow">
+            <div class="view_main container shadow w-100">
                 @if(sizeof($pharmacies) == 0)
                     <h1 class="fs-4 py-5 text-center">لا يوجد اي صيدليات متوفرة</h1>
                 @endif
@@ -114,14 +121,14 @@
                             class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-0 g-sm-5 text-center jobs justify-content-center w-100">
                             @foreach ($pharmacies as $pharmacy)
                                 <div class="col">
-                                    <div class="card h-100 p-2">
+                                    <div class="card h-100 px-2">
                                         @if($pharmacy->image)
                                             <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}"
                                                  alt="pharmacy"
-                                                 class="border-bottom p-4">
+                                                 class="border-bottom">
                                         @else
-                                            <img src="{{asset('img/phramacy1.png') }}"
-                                                 class="card-img-top py-5 img-card-cus"
+                                            <img src="{{asset('img/pharmacy.png') }}"
+                                                 class="card-img-top w-100 h-100 img-card-cus"
                                                  alt="...">
                                         @endif
                                         <div class="card-body pb-0">
@@ -180,7 +187,6 @@
 @section('scripts')
     <script>
         $("#select1").change(select);
-
         function select() {
             if ($(this).data('options') === undefined) {
                 /*Taking an array of all options-2 and kind of embedding it on the select1*/

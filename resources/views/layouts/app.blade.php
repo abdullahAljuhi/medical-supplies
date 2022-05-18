@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <title>علاجي كوم </title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -31,6 +32,18 @@
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <link rel="stylesheet" href="{{ asset('css/viewAndList.css') }}">
     {{-- fotn awesom  --}}
+    <!-- Jquery -->
+<script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+
+{{-- pusher js --}}
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+<script>
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('e4b4e21e1f468b8bddf2', {
+        cluster: 'mt1'
+    });
+</script>
 
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
     <!-- Template Main CSS File -->
@@ -38,6 +51,10 @@
     <!-- Costume CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/css/ar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    {{-- validation image  --}}
+    <script src="{{asset('js/validationIamge.js') }}"></script>
+
     @yield('extra-style')
 
 </head>
@@ -77,92 +94,25 @@
                     </li>
                 @endif
             @else
-                <!-- Notification Nav -->
-                <li class="nav-item dropdown dropdown-notifications">
+         <!-- Notification Nav -->
+         <li class="nav-item dropdown dropdown-notifications">
 
-                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
-                        <i class="bi bi-bell"></i>
-                        <span class="badge bg-primary badge-number notify-count" data-count="0">0</span>
-                    </a><!-- End Notification Icon -->
+            <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
+                <i class="bi bi-bell"></i>
+                <span class="badge bg-primary badge-number notify-count" data-count="0">0</span>
+            </a><!-- End Notification Icon -->
 
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
 
-                        <li class="notification-item scrollable-container">
-                        </li>
-
-
-                    </ul><!-- End Notification Dropdown Items -->
-
+                <li class="notification-item scrollable-container">
                 </li>
-                <!-- End Notification Nav -->
 
-                <!-- Messages Nav -->
-                <li class="nav-item dropdown">
 
-                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-                        <i class="bi bi-chat-left-text"></i>
-                        <span class="badge bg-success badge-number">3</span>
-                    </a><!-- End Messages Icon -->
+            </ul><!-- End Notification Dropdown Items -->
 
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-                        <li class="dropdown-header">
-                            لديك 3 رسائل جديدة
-                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">عرض الجميع</span></a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+        </li>
+        <!-- End Notification Nav -->
 
-                        <li class="message-item">
-                            <a href="#">
-                                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
-                                <div>
-                                    <h4>ناصر الغيثي</h4>
-                                    <p>ممكن دواء بديل للصداع</p>
-                                    <p>منذ 4 ساعات</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="message-item">
-                            <a href="#">
-                                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
-                                <div>
-                                    <h4>ناصر الغيثي</h4>
-                                    <p>ممكن دواء بديل للصداع</p>
-                                    <p>منذ 4 ساعات</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="message-item">
-                            <a href="#">
-                                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-                                <div>
-                                    <h4>ناصر الغيثي</h4>
-                                    <p>ممكن دواء بديل للصداع</p>
-                                    <p>منذ 4 ساعات</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="#">عرض جميع الرسائل</a>
-                        </li>
-
-                    </ul><!-- End Messages Dropdown Items -->
-
-                </li>
-                <!-- End Messages Nav -->
 
                 <!-- Profile Nav -->
                 <li class="nav-item dropdown pe-3">
@@ -295,10 +245,70 @@
             </ul>
         </li><!-- End Charts Nav -->
 
-    </ul>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="{{ route('admin.orders') }}">
+                        <i class="bi bi-cart"></i><span>جميع الطلبات</span>
+                    </a>
+                </li><!-- End Charts Nav -->
 
-</aside>
-<!-- End Sidebar-->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#">
+                        <i class="bi bi-cash"></i><span>الدفع</span>
+                    </a>
+                </li><!-- End Charts Nav -->
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#">
+                        <i class="bi bi-gem"></i><span>اعلانات</span></i>
+                    </a>
+                </li><!-- End Icons Nav -->
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#orders-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-gear"></i><span>اعدادات</span><i class="bi bi-chevron-down me-auto"></i>
+                    </a>
+                    <ul id="orders-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li class="px-4">
+                            <a href="{{ route('add-state') }}">
+                                <i class="bi bi-circle"></i><span>ادارة المحافظات</span>
+                            </a>
+                        </li>
+                        <li class="px-4">
+                            <a href="{{ route('add-city') }}">
+                                <i class="bi bi-circle"></i><span>ادارة المدن</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li><!-- End Charts Nav -->
+            @endif
+
+            @if(Auth::user()->type == 2)
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="{{ route('pharmacy.orders') }}">
+                        <i class="bi bi-cart"></i>
+                        <span>جميع الطلبات</span>
+                    </a>
+                </li><!-- End Users Nav -->
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#">
+                        <i class="bi bi-flower1"></i>
+                        <span>الطلبات الجديدة</span>
+                    </a>
+                </li><!-- End Users Nav -->
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#">
+                        <i class="bi bi-bell"></i>
+                        <span>الاشعارات</span>
+                    </a>
+                </li><!-- End Users Nav -->
+            @endif
+
+        </ul>
+
+    </aside>
+    <!-- End Sidebar-->
 @endauth
 
 <main id="main" class="main">
@@ -334,11 +344,7 @@
 <!-- Template Main JS File -->
 <script src="{{ asset('assets/js/main.js') }}"></script>
 
-<!-- Jquery -->
-<script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 
-    {{-- pusher js --}}
-    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 
 @yield('scripts')
 </body>

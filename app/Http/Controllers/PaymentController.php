@@ -24,7 +24,8 @@ class PaymentController extends Controller
         if (Auth::id() == $order->user_id && $order->status == 1) {
             
             $products = json_decode($order->products, true);
-            
+
+            // return $products;
             $data = [
                 "order_reference" => $order->id,
                 "products" =>$products,
@@ -75,6 +76,18 @@ class PaymentController extends Controller
               $next_url = $result['invoice']['next_url'];
               return redirect($next_url);
             }
+                //    print_r(json_decode($response,true));
+                $result = json_decode($response, true);
+            //     return $result;
+                $next_url = $result['invoice']['next_url'];
+            //     //    $next_url=substr_replace('//','/ ',$result['invoice']['next_url']);
+            $order->status=2;
+            $order->save();
+                return redirect($next_url);
+            //     //  echo $next_url;
+
+
+            // }
         }
     }
 

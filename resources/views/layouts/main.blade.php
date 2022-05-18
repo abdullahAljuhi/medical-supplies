@@ -33,7 +33,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
           rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src='/assets/js/addinput.js'></script>
+    <script src="{{ asset('assets/js/addinput.js') }}"></script>
+        {{-- validation image  --}}
+    <script src="{{asset('js/validationIamge.js') }}"></script>
+
     <!--
 
         TemplateMo 559 Zay Shop
@@ -46,7 +49,7 @@
 <body style="overflow-x: hidden">
 
     <!-- ======= Header ======= -->
-    <header id="header" class="header fixed-top d-flex align-items-center position-absolute">
+    <header id="header" class="header d-flex align-items-center">
 
         <!-- Main Logo -->
         <div class="d-flex align-items-center justify-content-between">
@@ -176,18 +179,26 @@
 
 
                         @if(Auth::user()->profile || Auth::user()->pharmacy)
-
+                            @if(Auth::user()->type != 0)
                             <li>
                                 <a class="dropdown-item d-flex align-items-center" href="{{ route('home') }}">
                                     <i class="bi bi-grid"></i>
                                     <span>لوحة التحكم</span>
                                 </a>
                             </li>
+                            @endif
 
                             <li>
                                 <a class="dropdown-item d-flex align-items-center" href="{{ route('profile') }}">
                                     <i class="bi bi-person"></i>
                                     <span>الملف الشخصي</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route('user.orders') }}">
+                                    <i class="bi bi-cart"></i>
+                                    <span>الطلبات</span>
                                 </a>
                             </li>
                             <li>
@@ -369,6 +380,11 @@
     <script src="{{asset('js/templatemo.js ') }}"></script>
     <script src="{{asset('js/custom.js ') }}"></script>
     <script src="{{asset('js/viewAndList.js ') }}"></script>
+    <!-- Vendor JS Files -->
+    <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
+    <!-- Template Main JS File -->
+    <script src="{{ asset('assets/js/main.js') }}"></script>
     {{-- pusher js --}}
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <script>
