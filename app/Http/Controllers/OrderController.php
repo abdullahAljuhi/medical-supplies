@@ -169,7 +169,7 @@ class OrderController extends Controller
                 'delivery_price' => $request->delivery,
                 'status' => '1',
             ]);
-
+         
             // send notification for user who send order
             event(new Messages($order, $order->user_id));
             return redirect('/pharmacy');

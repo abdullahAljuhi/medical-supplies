@@ -144,6 +144,8 @@ class UserController extends Controller
                 if ($order->status == 0) {
                     return redirect()->back();
                 } else {
+                    $order->is_show=1;
+                    $order->save();
                     return view('order.bill-text', compact('order', 'products'));
                 }
             } else {
