@@ -36,8 +36,8 @@ class PaymentController extends Controller
                     "products" => $products,
                     "currency" => "YER",
                     "total_amount" => $order->total_price,
-                    "success_url" => "http://127.0.0.1:8000/test/response",
-                    "cancel_url" => "http://127.0.0.1:8000/test/cancel",
+                    "success_url" => "http://medical-supplies.herokuapp.com/test/response",
+                    "cancel_url" => "http://medical-supplies.herokuapp.com/test/cancel",
                     "metadata" => [
                         "Customer name" => $order->user->name,
                         "order id" => $order->id

@@ -171,8 +171,8 @@ class AdvertisementController extends Controller
             $advertisement = Advertisement::findOrFail($id);
             if ($advertisement->image !== '') { // check if advertisement has image
                 // remove image
-                $fileName = public_path('assets/images/advs/' . $advertisement->image);
-                unlink(realpath($fileName));
+                // $fileName = public_path('assets/images/advs/' . $advertisement->image);
+                unlink(realpath('assets/images/advs/' . $advertisement->image));
             }
 
             $advertisement->delete();
