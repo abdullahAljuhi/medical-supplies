@@ -177,7 +177,7 @@ class AdvertisementController extends Controller
 
             return redirect()->route('show.adv');
         } catch (\Exception $e) {
-            return $advertisement;
+             $advertisement->delete;
             return redirect()->back()->with(['error' => 'هناك خطا ما يرجي المحاولة فيما بعد']);
         }
     }
