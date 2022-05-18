@@ -168,11 +168,11 @@ class AdvertisementController extends Controller
     public function delete($id)
     {
         try {
-            $advertisement = Advertisement::findOrFail($id);
+            $advertisement = Advertisement::find($id);
             if ($advertisement->image !== '') { // check if advertisement has image
                 // remove image
-                // $fileName = public_path('assets/images/advs/' . $advertisement->image);
-                unlink(realpath('assets/images/advs/' . $advertisement->image));
+                $fileName = public_path('assets/images/advs/' . $advertisement->image);
+                unlink(realpath($fileName));
             }
 
             $advertisement->delete();
