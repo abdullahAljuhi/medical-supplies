@@ -52,7 +52,7 @@ class MedicalController extends Controller
     public function index(Request $request)
     {
         try {
-            $pharmacies = Pharmacy::limit(6)->get();
+            $pharmacies = Pharmacy::where('is_active','1')->limit(6)->get();
             $advertisements = Advertisement::limit(6)->get();
             // $orders = $this->OrderNotification();
             return view('index', ['pharmacies' => $pharmacies, 'advertisements' => $advertisements]);
