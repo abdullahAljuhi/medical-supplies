@@ -98,6 +98,7 @@ Route::group(['middleware' => ['auth', 'verified']], function (){
             Route::post('/update/{id}', [AdvertisementController::class, 'update'])->name('update.adv');
             Route::post('/save', [AdvertisementController::class, 'store'])->name('save.adv');
             Route::get('/add', [AdvertisementController::class, 'create'])->name('add.adv');
+            Route::get('/delete/{id}', [AdvertisementController::class, 'delete'])->name('delete.adv');
             Route::get('/active/{id}', [AdvertisementController::class, 'active'])->name('active.adv');
 
         });
