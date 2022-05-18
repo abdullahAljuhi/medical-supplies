@@ -2,8 +2,7 @@
 @section('title', 'الملف الشخصي')
 @section('content')
 
-@include('alerts.errors')
-@include('alerts.success')
+
 
 <!--Display Error-->
 <!-- @if($errors->any())

@@ -2,8 +2,7 @@
 @section('title', 'المحافظات')
 @section('content')
 
-@include('alerts.errors')
-@include('alerts.success')
+
 <!--Display Error-->
  <!-- @if($errors->any())
     {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
@@ -108,10 +107,18 @@
                             <td>
 
                                     @if( $governorate->is_active)
+<<<<<<< HEAD
                                     <a href="{{ route('active.state', $governorate->id) }}" class="btn btn-outline-danger   w-100 " >                                         إلغاء التفعيل
                                         </a>
                                     @else
                                     <a href="{{ route('active.state', $governorate->id) }}" class="btn btn-outline-primary   w-100 " >                                        
+=======
+                                    <a href="{{ route('active.state', $governorate->id) }}" class="btn btn-outline-primary   w-100 " >                                          
+                                          إلغاء التفعيل  
+                                        </a>
+                                    @else
+                                    <a href="{{ route('active.state', $governorate->id) }}" class="btn btn-outline-danger   w-100 " >                                          
+>>>>>>> 53c8b109b1ec226b962a25483e6d010a18ade966
 
                                            تفعيل
                                         </a>
