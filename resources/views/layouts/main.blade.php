@@ -31,7 +31,7 @@
     <!--  google font  -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
-        rel="stylesheet">
+          rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src='/assets/js/addinput.js'></script>
     <!--
@@ -82,21 +82,18 @@
 
                 @if (Route::has('register'))
                 <li class="nav-item">
-                    <a class="nav-link text-primary mx-2 text-nowrap py-1" href="{{ route('register') }}">{{ __('انشاء
-                        حساب') }}</a>
+                    <a class="nav-link text-primary mx-2 text-nowrap py-1" href="{{ route('register') }}">{{ __('انشاء حساب') }}</a>
                 </li>
                 @endif
 
                 @if (Route::has('login'))
                 <li class="nav-item">
-                    <a class="nav-link btn btn-outline-primary mx-2 text-nowrap py-1" href="{{ route('login') }}">{{
-                        __('تسجيل الدخول') }}</a>
+                    <a class="nav-link btn btn-outline-primary mx-2 text-nowrap py-1" href="{{ route('login') }}">{{ __('تسجيل الدخول') }}</a>
                 </li>
                 @endif
 
                 @else
-                {{--
-                <!-- Notification Nav -->
+                {{-- <!-- Notification Nav -->
                 <li class="nav-item dropdown dropdown-notifications">
 
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
@@ -114,55 +111,56 @@
 
                 </li>
                 <!-- End Notification Nav --> --}}
-                @php
-                $q = App\Models\Order::with(['user'=>function($q){
-                return $q->where('id',Auth::id());
-                }],'pharmacy')->where('status',1);
+                    @php
+                                $q = App\Models\Order::with(['user'=>function($q){
+            return $q->where('id',Auth::id());
+        }],'pharmacy')->where('status',1);
 
-                $orders=$q->limit(6)->get();
+        $orders=$q->limit(6)->get();
 
-                $count=$q->count();
-                @endphp
-                <!-- Notification Nav -->
-                <li class="nav-item dropdown dropdown-notifications">
+        $count=$q->count();
+                    @endphp
+                    <!-- Notification Nav -->
+                    <li class="nav-item dropdown dropdown-notifications">
 
-                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
-                        <i class="bi bi-bell"></i>
-
-                        <span class="badge bg-primary badge-number notify-count" data-count="{{ $count??'0' }}">{{
-                            $count ??'0' }}</span>
-                    </a><!-- End Notification Icon -->
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                        @isset($orders)
-                        @foreach ($orders as $order )
-                        <li class="notification-item scrollable-container">
-                            {{ $order->pharmacy->pharmacy_name}}
-                        </li>
-                        @endforeach
-                        <li>
-
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="{{ route('orders') }}">عرض جميع الطلبات</a>
-                        </li>
-                        @endisset
-                        <li class="notification-item scrollable-container">
-                        </li>
-
-                    </ul><!-- End Notification Dropdown Items -->
-                </li>
+                        <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
+                            <i class="bi bi-bell"></i>
+    
+                            <span class="badge bg-primary badge-number notify-count"
+                                data-count="{{ $count??'0' }}">{{ $count ??'0' }}</span>
+                        </a><!-- End Notification Icon -->
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                            @isset($orders)
+                            @foreach ($orders as $order )
+                            <li class="notification-item scrollable-container">
+                                {{ $order->pharmacy->pharmacy_name}}
+                            </li>
+                            @endforeach
+                            <li>
+    
+                                <hr class="dropdown-divider">
+                            </li>
+    
+                            <li class="dropdown-footer">
+                                <a href="{{ route('orders') }}">عرض جميع الطلبات</a>
+                            </li>
+                            @endisset
+                            <li class="notification-item scrollable-container">
+                            </li>
+    
+                        </ul><!-- End Notification Dropdown Items -->
+                    </li>
 
                 <!-- Profile Nav -->
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         @if(isset(Auth::user()->profile->image))
-                        <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile"
-                            class="rounded-circle border p-1">
+                            <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile"
+                                 class="rounded-circle border p-1">
                         @else
-                        <img src="{{asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
+                            <img src="{{asset('assets/img/user.png') }}" alt="Profile"
+                                 class="rounded-circle border p-1">
                         @endif
                     </a><!-- End Profile Iamge Icon -->
 
@@ -179,29 +177,29 @@
 
                         @if(Auth::user()->profile || Auth::user()->pharmacy)
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{{ route('home') }}">
-                                <i class="bi bi-grid"></i>
-                                <span>لوحة التحكم</span>
-                            </a>
-                        </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route('home') }}">
+                                    <i class="bi bi-grid"></i>
+                                    <span>لوحة التحكم</span>
+                                </a>
+                            </li>
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{{ route('profile') }}">
-                                <i class="bi bi-person"></i>
-                                <span>الملف الشخصي</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route('profile') }}">
+                                    <i class="bi bi-person"></i>
+                                    <span>الملف الشخصي</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{{ route('edit.profile') }}">
-                                <i class="bi bi-gear"></i>
-                                <span>اعدادات الحساب</span>
-                            </a>
-                        </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route('edit.profile') }}">
+                                    <i class="bi bi-gear"></i>
+                                    <span>اعدادات الحساب</span>
+                                </a>
+                            </li>
 
                         @endif
                         <li>
@@ -237,14 +235,11 @@
             </ul>
         </nav>
         <!-- End Icons Navigation -->
-        <button class="d-md-none d-sm-inline-block  navbar-toggler border-0 text-black" type="button"
-            data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent"
-            aria-expanded="true" aria-label="Toggle navigation">
+        <button class="d-md-none d-sm-inline-block  navbar-toggler border-0 text-black" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </button>
 
-        <div class="position-absolute top-100 bg-white w-100 order-lg-1 order-md-2 align-self-center navbar-collapse flex-fill d-lg-none w-100 justify-content-lg-between collapse"
-            id="templatemo_main_nav" style="">
+        <div class="position-absolute top-100 bg-white w-100 order-lg-1 order-md-2 align-self-center navbar-collapse flex-fill d-lg-none w-100 justify-content-lg-between collapse" id="templatemo_main_nav" style="">
             <div class="flex-fill">
                 <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                     <li class="nav-item">
@@ -260,19 +255,17 @@
                         <a class="nav-link text-dark" href="">{{ __('حولنا') }}</a>
                     </li>
                     <li class="nav-item d-flex d-sm-none d-block my-3">
-                        <a class="btn btn-outline-primary text-nowrap p-1" href="{{ route('register') }}">{{ __('انشاء
-                            حساب') }}</a>
+                        <a class="btn btn-outline-primary text-nowrap p-1" href="{{ route('register') }}">{{ __('انشاء حساب') }}</a>
                     </li>
                     <li class="nav-item d-flex d-sm-none d-block my-3">
-                        <a class="btn btn-outline-success text-nowrap py-1" href="{{ route('login') }}">{{ __('تسجيل
-                            الدخول') }}</a>
+                        <a class="btn btn-outline-success text-nowrap py-1" href="{{ route('login') }}">{{ __('تسجيل الدخول') }}</a>
                     </li>
                 </ul>
             </div>
         </div>
-        </div>
-    </header>
-    {{--<div id="spliter" class="py-5"></div>--}}
+    </div>
+</header>
+{{--<div id="spliter" class="py-5"></div>--}}
 
 
 
@@ -302,8 +295,7 @@
                             </li>
                             <li>
                                 <i class="fa fa-envelope fa-fw"></i>
-                                <a class="text-decoration-none"
-                                    href="mailto:imgsalSublies@gmail.com">imgsalSublies@gmail.com</a>
+                                <a class="text-decoration-none" href="mailto:imgsalSublies@gmail.com">imgsalSublies@gmail.com</a>
                             </li>
                         </ul>
                     </div>
@@ -341,28 +333,23 @@
                     <div class="col-auto me-auto">
                         <ul class=" text-center footer-icons d-flex ">
                             <li class="list-inline-item  text-center">
-                                <a class="text-light text-decoration-none" target="_blank"
-                                    href="http://facebook.com/"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                                <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
                             </li>
                             <li class="list-inline-item  text-center">
-                                <a class="text-light text-decoration-none" target="_blank"
-                                    href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
+                                <a class="text-light text-decoration-none" target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
                             </li>
                             <li class="list-inline-item  text-center">
-                                <a class="text-light text-decoration-none" target="_blank"
-                                    href="https://twitter.com/"><i class="fab fa-twitter fa-lg fa-fw"></i></a>
+                                <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i class="fab fa-twitter fa-lg fa-fw"></i></a>
                             </li>
                             <li class="list-inline-item  text-center">
-                                <a class="text-light text-decoration-none" target="_blank"
-                                    href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
+                                <a class="text-light text-decoration-none" target="_blank" href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-auto">
                         <label class="sr-only" for="subscribeEmail">Email address</label>
                         <div class="input-group mb-2">
-                            <input type="text" class="form-control bg-dark border-light text-light" id="subscribeEmail"
-                                placeholder="Email address">
+                            <input type="text" class="form-control bg-dark border-light text-light" id="subscribeEmail" placeholder="Email address">
                             <div class="input-group-text btn-success text-white">Subscribe</div>
                         </div>
                     </div>
@@ -373,8 +360,7 @@
     </footer>
     <!-- End Footer -->
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center active p-2"><i
-            class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center active p-2"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Start Script -->
     <script src="{{asset('js/jquery-1.11.0.min.js ') }}"></script>

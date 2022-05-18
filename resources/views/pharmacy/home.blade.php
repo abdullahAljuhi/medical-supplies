@@ -23,7 +23,6 @@
     </div>
 @endsection
 @section('scripts')
-@auth
     <script>
         Pusher.logToConsole = true;
 
@@ -32,7 +31,11 @@
         });
 
     </script>
-@if(Auth::user()->id == 2)
+    @if(Auth::user()->id==1)
+        <script src="{{asset('js/pusherNotifications.js')}}"></script>
+    @else
+    @section('scripts')
+@auth
 <script>
     var notificationsWrapper = $('.dropdown-notifications');
     var notificationsToggle = notificationsWrapper.find('a[data-toggle]');
@@ -61,7 +64,9 @@
       notificationsWrapper.show();
     });
 </script>
-@endif
 @endauth
+
+@endsection
+    @endif
 @endsection
 
