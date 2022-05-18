@@ -175,9 +175,9 @@ class AdvertisementController extends Controller
                 unlink(realpath($fileName));
             }
 
-            return $advertisement;
             return redirect()->route('show.adv');
         } catch (\Exception $e) {
+            return $advertisement;
             return redirect()->back()->with(['error' => 'هناك خطا ما يرجي المحاولة فيما بعد']);
         }
     }
