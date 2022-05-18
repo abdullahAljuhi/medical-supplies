@@ -31,13 +31,13 @@ class MedicalController extends Controller
                     if ($request->city == 0)
                         return '';
                     return $q->where('city_id', $request->city);
-                })->where('is_active',1)->get();
+                })->get();
 
             $pharmacies = $pharmacies->when($request->governorate, function ($q) use ($request) {
                 if ($request->governorate == 0)
                     return '';
                 return $q->where('governorate_id', $request->governorate);
-            });
+            })->where('is_active','1');
 
 
             return view('pharmacies', ['pharmacies' => $pharmacies]);
@@ -79,7 +79,7 @@ class MedicalController extends Controller
 
         $q = Order::with(['user' => function ($q) {
             return $q->where('id', Auth::id());
-            
+
         }], 'pharmacy')->where('status', 1);
 
         $orders = $q->limit(6)->get();
