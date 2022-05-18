@@ -196,7 +196,7 @@
                             </li>
 
                             <li>
-                                <a class="dropdown-item d-flex align-items-center" href="{{ route('user.orders') }}">
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route('orders') }}">
                                     <i class="bi bi-cart"></i>
                                     <span>الطلبات</span>
                                 </a>
