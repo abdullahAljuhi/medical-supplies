@@ -56,7 +56,7 @@
                 <tbody>
                 @foreach($orders as $order)
                     <tr style='cursor: pointer; cursor: hand;'
-                        onclick="window.location='{{ route($route,$order->id) }}';">
+                        onclick="window.location='{{ {{ route($route,$order->id) }}';">
                         <th scope="row"><a href="#">{{ $order->id }}</a></th>
                         @if(Auth::user()->type != 2)
                         <td>{{ $order->pharmacy['pharmacy_name'] }}</td>
