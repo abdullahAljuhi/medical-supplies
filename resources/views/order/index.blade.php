@@ -64,7 +64,7 @@
                         @if(Auth::user()->type != 0)
                         <td>{{ $order->user['name'] }}</td>
                         @endif
-                        {{-- <td>{{ count(json_decode($order->products,true)) }}</td> --}}
+                        <td>{{ count(json_decode($order->products,true)) }}</td>
                         <td>{{ $order->type?'وصفة طبية':'اسم العلاج' }}</td>
                         <td><a href="#" class="text-dark">{{ $order->address }}</a></td>
                         <td>{{ \Carbon\Carbon::parse($order->created_at)->diffForHumans() }}</td>
