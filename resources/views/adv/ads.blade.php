@@ -55,12 +55,12 @@
                         <div class="col-md-1 col-4 mb-md-0 mb-4 d-flex justify-content-center fw-bold align-self-center fs-">الرقم
                         </div>
                         <div class="col-md-2 col-8  fw-bold ">
-                         الربط
+                         الرابط
                         </div>
                         <div class="col-md-4  mb-2 mb-md-0   d-flex justify-content-strat  align-self-center">
                             <div class="row w-100">
                                 <div class="col-6 fw-bold">
-                                    <span >تاريخ البد</span>
+                                    <span >تاريخ البدء</span>
                                 </div>
                                 <div class="col-6 fw-bold">
                                     <span >تاريخ الانتهاء</span>
