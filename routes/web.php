@@ -44,6 +44,9 @@ Route::group(['middleware' => ['auth', 'verified']], function (){
     // change password
     Route::post('/changePassword', [UserController::class, 'changePassword'])->name('changePassword.user');
 
+    Route::get('orders', [UserController::class, 'orders'])->name('orders');
+
+     // admin
     Route::get('/orders', [UserController::class, 'orders'])->name('user.orders'); // all orders
     Route::get('/order/{id}', [UserController::class, 'order'])->name('user.order'); // show order
     // admin

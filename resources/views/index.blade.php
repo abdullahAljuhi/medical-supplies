@@ -19,8 +19,6 @@
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
                                 <h1 class="h1">علاجي كوم </h1>
-
-
                                 <p>
                                     اطلب الذي تريد من اي مكان وفي اي وقت سوف نوفر عنك الذهاب االى الصيدلية وسوف نوفر لك
                                     العلاج في اسرع وقت وباسهل طريقة
@@ -83,26 +81,22 @@
 <section class="bg-white ads">
     <div class="  p-4">
         <div class="row">
+            @foreach($advertisements as $ads)
+            @if( $ads->is_active)
+            @break($loop->index > 3)
             <div class="col-md-6 col-lg-3 ">
                 <div class="mb-5 ">
-                    <img class="img-fluid" src="{{asset('img/pro1.jpg') }}" alt="">
+                    <img class="img-fluid" src="{{asset('assets/images/advs/'.$ads->image) }}" alt="" style="width: 300px;height:250px">
                 </div>
             </div>
+            @else
             <div class="col-md-6 col-lg-3 ">
-                <div class="mb-5 ">
-                    <img class="img-fluid" src="{{asset('img/pro3.jpg ') }}" alt="">
-                </div>
+                <div class="mb-5 text-center">
+                    لا يوجد اي اعلانات
+                 </div>
             </div>
-            <div class="col-md-6 col-lg-3 ">
-                <div class="mb-5 ">
-                    <img class="img-fluid" src="{{asset('img/pro3.jpg ') }}" alt="">
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 ">
-                <div class="mb-5 ">
-                    <img class="img-fluid" src="{{asset('img/pro3.jpg ') }}" alt="">
-                </div>
-            </div>
+         @endif
+            @endforeach
         </div>
     </div>
 </section>
@@ -115,28 +109,28 @@
                     يمكن الطلب من الصيدلية التي تريد وسوف يتم ايصال الطلب الى باب بيتك
                 </p>
             </div>
-
         </div>
-        <div class="card-group justify-content-center">
-            <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-0 g-sm-5 text-center jobs justify-content-center">
+
+            <div class="row  ">
                 @foreach ($pharmacies as $pharmacy)
-                @break($loop->index > 5)
-                <div class="col">
+                    @break($loop->index > 5)
+                <div class="col-md-4 mb-2  ">
                     <div class="card h-100 p-2">
                         @if($pharmacy->image)
                         <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}" alt="pharmacy"
-                            class="border-bottom p-4">
+                        class="card-img-top py-5 img-card-cus w-100"style="height: 250px;"
+                        alt="..." >
                         @else
-                        <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus" alt="...">
+                            <img src="{{asset('img/phramacy3.png') }}" class="card-img-top py-5 img-card-cus w-100"style="height: 250px;"
+                            alt="..." >
                         @endif
-                        <div class="card-body pb-0">
+                        <div class="card-body pb-0 text-center">
                             <h5 class="card-title fs-4 text-primary "> {{ $pharmacy->pharmacy_name }}</h5>
 
                             <p class="card-text fs-5 text-secondary text-center w-100"><i
                                     class="bi bi-geo-alt  text-primary ms-1"></i>
                                 {{ $pharmacy->address[0]->governorate->name?? '' }} - {{
                                 $pharmacy->address[0]->city->name ??''}} </p>
-
 
                             <ul class="text-center footer-icons d-flex justify-content-center mb-0">
                                 <li class="list-inline-item text-center">
@@ -160,30 +154,25 @@
                             <div class="my-2">
                                 @guest
                                 <a href="{{ route('login') }}" class="btn btn-outline-primary w-100"><span>طلب دواء
-                                    </span>
-                                    <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
+                                </span>
+                                <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
                                 @else
-                                <a href="{{ route('order',$pharmacy->id) }}"
-                                    class="btn btn-outline-primary w-100"><span>طلب دواء
-                                    </span>
-                                    <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
+                                <a href="{{ route('order',$pharmacy->id) }}" class="btn btn-outline-primary w-100"><span>طلب دواء
+                                </span>
+                                <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
                                 @endguest
                             </div>
                         </div>
                     </div>
                 </div>
                 @endforeach
-
-
             </div>
-        </div>
+
         <div class="row d-flex justify-content-center align-items-center mt-5">
-            <a href="{{ route('morePharmacy') }}" class="btn btn-outline-primary py-2 w-25 rounded fs-5">الاطلاع اكثر <i
-                    class="fa fa-arrow-left" aria-hidden="true"></i></a>
+            <a href="{{ route('morePharmacy') }}" class="btn btn-outline-primary py-2 w-auto px-5 rounded fs-5">الاطلاع اكثر <i class="fa fa-arrow-left" aria-hidden="true"></i></a>
         </div>
     </div>
 </section>
-
 <!-- Start Featured Product -->
 <!-- Start Section -->
 
@@ -331,8 +320,9 @@
             <div class="row">
             @foreach($advertisements as $ads)
                 <div class="col-md-6 col-lg-3 ">
+                    @break($loop->index > 3)
                     <div class="mb-5 ">
-                        <img class="img-fluid" src="{{asset('assets/images/advs/'.$ads->image) }}" alt="">
+                        <img class="img-fluid" src="{{asset('assets/images/advs/'.$ads->image) }}" alt="" style="width: 300px;height:250px">
                     </div>
                 </div>
             @endforeach

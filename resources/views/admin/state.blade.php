@@ -62,7 +62,7 @@
                 </div>
             </div>
 
-            
+
                  @include('alerts.success')
                  @include('alerts.errors')
         </div>
@@ -81,8 +81,8 @@
                         <th scope="col">#</th>
                         <th scope="col">المحافظة</th>
                         <th scope="col">تاريخ الاضافة</th>
-                        <th scope="col">تعديل </th>
                         <th scope="col">الحالة </th>
+                        <th scope="col">تعديل </th>
                         <th scope="col">تفعيل </th>
                     </tr>
                     </thead>
@@ -92,34 +92,33 @@
                             <th scope="row"><a href="#">{{ $governorate->id }}</a></th>
                             <td>{{ $governorate->name }}</td>
                             <td>{{ $governorate->created_at }}</td>
-                            <td><a href="{{ route('edit-state', $governorate->id) }}"><button class="btn  px-4">تعديل</button></td>
                             <td>
                                 @if( $governorate->is_active)
                                     <span style="font-size: 14px"class=" badge text-success fs-6" >
-                                        مفعل  
+                                        مفعل
                                     </span>
                                 @else
                                     <span style="font-size: 14px" class="badge text-danger fs-6">
                                         غير مفعل
                                     </span>
                                 @endif
-                               
+
                             </td>
-                            <td><a href="{{ route('active.state', $governorate->id) }}" >
-                                   <button type="button" class="btn ">
-                                        @if( $governorate->is_active)
-                                            <span style="font-size: 14px"class=" badge text-danger fs-6" >
-                                             إلغاء التفعيل 
-                                           </span>
-                                        @else
-                                            <span style="font-size: 14px" class="badge text-success fs-6">
-                                             تفعيل
-                                            </span>
-                                        @endif
-                                    
-                                    </button>
-                               </a>
+                            <td><a href="{{ route('edit-state', $governorate->id) }}"><button class="btn   btn-outline-success px-4">تعديل</button></td>
+                            <td>
+
+                                    @if( $governorate->is_active)
+                                    <a href="{{ route('active.state', $governorate->id) }}" class="btn btn-outline-primary   w-100 " >                                         إلغاء التفعيل
+                                        </a>
+                                    @else
+                                    <a href="{{ route('active.state', $governorate->id) }}" class="btn btn-outline-danger   w-100 " >                                         إلغاء التفعيل
+
+                                           تفعيل
+                                        </a>
+                                    @endif
+                                    </a>
                             </td>
+
                         </tr>
                     @endforeach
 

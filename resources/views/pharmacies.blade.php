@@ -33,26 +33,25 @@
                         </button>
                     </div>
                     <div class="col-md-6 d-flex">
-                        <select name="governorate" id="select1"
-                                class="form-select select1 form-control mx-2"
-                                aria-label=".form-select-lg example">
+                <select name="governorate" id="select1"
+                        class="form-select select1 form-control px-2 mx-1 pe-5"
+                        aria-label=".form-select-lg example">
 
-                            <option value="0" selected>جميع المحافظات</option>
-                            @foreach ($governorates as $governorat)
-                                <option value="{{ $governorat->id }}">
-                                    {{ $governorat->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <select name="city" id="select2"
-                                class="form-select select2 form-control mx-2"
-                                aria-label=".form-select-lg example">
-                            <option value="0" selected>جميع المدن</option>
-                            @foreach ($cities as $city)
-                                <option class="city{{ $city->governorate_id }}"
-                                        value="{{ $city->id }}">{{ $city->name }}</option>
-                            @endforeach
-                        </select>
+                    <option value="0" disabled selected>جميع المحافظات</option>
+                    @foreach ($governorates as $governorat)
+                        <option value="{{ $governorat->id }}">
+                            {{ $governorat->name }}
+                        </option>
+                    @endforeach
+                </select>
+                <select name="city" id="select2"
+                    class="form-select select2 form-control p-2 pe-5 mx-1"
+                    aria-label=".form-select-lg example">
+                    @foreach ($cities as $city)
+                    <option class="city{{ $city->governorate_id }}"
+                    value="{{ $city->id }}">{{ $city->name }}</option>
+                    @endforeach
+                </select>
                     </div>
 
                     </div>
@@ -199,7 +198,6 @@
             var id = $(this).val();
             var options = $(this).data('options').filter('[class=city' + id + ']');
             $('#select2').html(options);
-            $('#select2').prepend('<option value="0" selected>جميع المدن</option>');
         }
     </script>
 @endsection

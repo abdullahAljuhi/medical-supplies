@@ -9,17 +9,19 @@
 @include('alerts.errors')
 @include('alerts.success')
 
-    <div class="container mt-3">
+
+    <div class="container  mt-3">
         <section class="section   profile">
             <div class="row">
 
                 <div class="col-xl-4 ">
                     <div class="col">
-                        <div class="card h-100">
+                        <div class="card h-100 ">
                             @if($pharmacy->image)
                                 <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}" alt="pharmacy"
                                      class="rounded-circle border p-1">
                             @else
+
                                 <img src="{{asset('img/pharmacy.png') }}" class="card-img-top img-card-cus w-100 h-100 px-5"
                                      alt="...">
                             @endif
