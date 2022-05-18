@@ -16,7 +16,7 @@ class MedicalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showPharmacies(PharmacyRequest $request)
+    public function showPharmacies(Request $request)
     {
         try {
             $pharmacies = DB::table('pharmacies')
@@ -69,7 +69,7 @@ class MedicalController extends Controller
             $pharmacies = Pharmacy::all();
 
             return view('pharmacies', ['pharmacies' => $pharmacies]);
-            
+
         } catch (\Exception $e) {
             return $e->getMessage();
         }

@@ -18,7 +18,6 @@ use App\Http\Requests\CityRequest;
 use App\Http\Requests\GovernorateRequest;
 
 use App\Notifications\ActivePharmacy;
-use App\Http\Requests\PharmacyRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Notification;
 

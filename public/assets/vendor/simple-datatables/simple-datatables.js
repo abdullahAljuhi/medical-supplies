@@ -698,7 +698,7 @@
                 labels: {
                     placeholder: "Search...",
                     perPage: "{select}",
-                    noRows: "No entries found",
+                    noRows: "لا يوجد اي بيانات",
                     info: "عرض {start} الى {end} من {rows} صف"
                 },
                 layout: {top: "{select}{search}", bottom: "{info}{pager}"}
@@ -766,7 +766,7 @@
                     }
                     if (this.headings = [], this.hasHeadings = this.head.rows.length > 0, this.hasHeadings && (this.header = this.head.rows[0], this.headings = [].slice.call(this.header.cells)), e.header || this.head && this.table.removeChild(this.table.tHead), e.footer ? this.head && !this.foot && (this.foot = createElement("tfoot", {html: this.head.innerHTML}), this.table.appendChild(this.foot)) : this.foot && this.table.removeChild(this.table.tFoot), this.wrapper = createElement("div", {class: "dataTable-wrapper dataTable-loading"}), s += "<div class='dataTable-top'>", s += e.layout.top, s += "</div>", e.scrollY.length ? s += `<div class='dataTable-container' style='height: ${e.scrollY}; overflow-Y: auto;'></div>` : s += "<div class='dataTable-container'></div>", s += "<div class='dataTable-bottom'>", s += e.layout.bottom, s = (s += "</div>").replace("{info}", e.paging ? "<div class='dataTable-info'></div>" : ""), e.paging && e.perPageSelect) {
                         let t = "<div class='dataTable-dropdown'>";
-                        t += e.labels.perPage, t += "<label>صف لكل صفحة</label></div>";
+                        t += e.labels.perPage, t += "<label class='mx-2'>صف لكل صفحة</label></div>";
                         const a = createElement("select", {class: "dataTable-selector form-select"});
                         e.perPageSelect.forEach(t => {
                             const s = t === e.perPage, i = new Option(t, t, s, s);

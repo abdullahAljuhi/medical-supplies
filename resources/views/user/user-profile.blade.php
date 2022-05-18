@@ -106,7 +106,7 @@
                                                         <i class="bi bi-trash"></i>
                                                     </a>
                                                 </div>
-                                            </div>                                 
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="message-error col-12 text-center">يرجى ادخال ملف من نوع صورة</div>
@@ -124,7 +124,7 @@
                                                     <strong>{{ $message }}</strong>
                                                </span>
                                             @enderror
-                                                   
+
                                         </div>
                                     </div>
 
@@ -152,8 +152,8 @@
                                                    <strong>{{ $message }}</strong>
                                                </span>
                                             @enderror
-                      
-                                    
+
+
                                         </div>
                                     </div>
 
@@ -241,4 +241,5 @@
         document.getElementById("birthday").defaultValue = birth;
         // $('#birthday').value(birth);
     </script>
+    <script src="{{ asset('js/validationIamge.js') }}"></script>
 @endsection
