@@ -97,7 +97,7 @@
                             </div>
                             <div class="col-md-3 mb-2 mb-md-0 d-flex justify-content-strat  align-self-center">
                                 @if( $ads->is_active)
-                                    <span class="badge text-success fs-6">
+                                    <span class="badge text-primary fs-6">
                                     نشط
                                 </span>
                                 @else
@@ -106,23 +106,24 @@
                                 </span>
                                 @endif
                             </div>
-                            <div class="col-md-2 mb-2 mb-md-0  text-center d-flex justify-content-center fw-bold align-self-center">
+                            <div class="col-md-2 mb-2 mb-md-0  text-center ">
                              <!-- <div class=" border">-->
                                <!--<div class="col-10 border">-->
-                               <a href="{{ route('active.adv', $ads->id) }}" class=" ">
-                                   <button type="button" class="btn btn-outline-primary px-3">
+                               
+                                   
                                         @if( $ads->is_active)
-                                            <span style="font-size: 14px" >
+                                        <a href="{{ route('active.adv', $ads->id) }}" class="btn btn-outline-danger   w-100 ">
                                              إلغاء التفعيل
-                                           </span>
+                                            </a>
                                         @else
-                                            <span style="font-size: 14px">
+                                        <a href="{{ route('active.adv', $ads->id) }}" class="btn btn-outline-primary   w-100 ">
+                                           
                                                تفعيل
-                                            </span>
+                                            </a>  
                                         @endif
 
-                                    </button>
-                               </a>
+                                    
+                               
                                <!--</div>
 
                               </div>-->
@@ -136,17 +137,16 @@
 
                 <div class="view_wrap grid-view " style="display: none;">
 
-@foreach($advertisements as $ads)
     <div class="card-group p-lg-5 row  text-center jobs">
-
+        @foreach($advertisements as $ads)
             <div class="col-md-4 col-sm-12">
                 <div class="card w-100 p-2">
                     <img src="{{asset('assets/images/advs/'.$ads->image) }}" class="card-img-top py-5 img-card-cus" alt="...">
                     <div class="card-body pb-0">
-                        <p class="card-text fs-5 text-secondary text-center w-100">
+                        <p class="card-text fs-5 text-secondary text-center w-100 pt-2">
                             <span class="text-primary ps-2"> الحالة</span>
                             @if( $ads->is_active)
-                               <span class="badge bg-success fs-6">
+                               <span class="badge bg-primary fs-6">
                                   نشط
                                </span>
                             @else
@@ -159,23 +159,23 @@
                     </div>
                     <div class="card-footer bg-white border-0" >
                         <div class="my-2">
-                            <a href="{{ route('active.adv', $ads->id) }}" class="btn btn-outline-primary w-100">
-                              @if( $ads->is_active)
-                                 <span >
-                                     إلغاء التفعيل
-                                  </span>
-                                @else
-                                  <span >
-                                    تفعيل
-                                   </span>
-                                @endif
-                            </a>
+                            @if( $ads->is_active)
+                            <a href="{{ route('active.adv', $ads->id) }}" class="btn btn-outline-danger   w-100 ">
+                                 إلغاء التفعيل
+                                </a>
+                            @else
+                            <a href="{{ route('active.adv', $ads->id) }}" class="btn btn-outline-primary   w-100 ">
+                               
+                                   تفعيل
+                                </a>  
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
+        @endforeach
     </div>
-    @endforeach
+   
 </div>
             </div>
         </div>

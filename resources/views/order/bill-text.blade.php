@@ -86,7 +86,7 @@
                                             <tr>
                                                 <td>#</td>
                                                 <td>سعر التوصيل</td>
-                                                <td colspan="2">{{ $order->delivery }} </td>
+                                                <td colspan="2">{{ $order->delivery_price }} </td>
                                             </tr>
                                             </tbody>
                                             <tfoot>
@@ -146,7 +146,6 @@
         // Get the modal
         var modal = $("#myModal");
         var modalImg = modal.find('.modal-content');
-
         // Get the image and insert it inside the modal - use its "alt" text as a caption
         var img = $(".myImg");
         var captionBox = $("#caption");

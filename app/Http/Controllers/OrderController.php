@@ -62,6 +62,7 @@ class OrderController extends Controller
                     $type = 1;
                     // images
                     foreach ($request->file('images') as $i => $image) {
+                        $products[$i]['id'] = $i;
                         // upload images to public/assets/images/orders
                         $products[$i]['product_name'] = $this->uploadImage("orders", $image);
                     }
@@ -69,6 +70,7 @@ class OrderController extends Controller
             } else {
 
                 foreach ($request->product_name as $i => $name) {
+                    $products[$i]['id'] = $i;
                     $products[$i]['product_name'] = $name;
                 };
 
@@ -77,7 +79,7 @@ class OrderController extends Controller
             foreach ($request->quantity as $i => $quantity) {
                 $products[$i]['quantity'] = $quantity;
             };
-            // var_dump($products);
+            // return($products);
             $products = json_encode($products, JSON_UNESCAPED_UNICODE);
 
             // $products=implode(',',$products);
@@ -89,9 +91,10 @@ class OrderController extends Controller
             $order->type = $type;
             $order->pharmacy_id = $request->pharmacy;
             $order->save();
-
+            $user=Pharmacy::find($request->pharmacy)->user_id;
+            // return $user;
             // send notification for pharmacy
-            event(new Messages($order, $request->pharmacy));
+            event(new Messages($order, $user));
 
             return view('order.orderMass');
 
@@ -163,7 +166,7 @@ class OrderController extends Controller
             $order->update([
                 'products' => $products,
                 'total_price' => $total_price,
-                'delivery' => $request->delivery,
+                'delivery_price' => $request->delivery,
                 'status' => '1',
             ]);
 

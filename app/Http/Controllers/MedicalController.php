@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Pharmacy;
 use App\Models\Advertisement;
 use App\Http\Requests\AdvertisementRequest;
 use App\Http\Requests\PharmacyRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class MedicalController extends Controller
@@ -31,14 +33,13 @@ class MedicalController extends Controller
                     if ($request->city == 0)
                         return '';
                     return $q->where('city_id', $request->city);
-
                 })->get();
 
             $pharmacies = $pharmacies->when($request->governorate, function ($q) use ($request) {
                 if ($request->governorate == 0)
                     return '';
                 return $q->where('governorate_id', $request->governorate);
-            });
+            })->where('is_active','1');
 
 
             return view('pharmacies', ['pharmacies' => $pharmacies]);
@@ -51,8 +52,10 @@ class MedicalController extends Controller
     public function index(Request $request)
     {
         try {
-            $pharmacies = Pharmacy::all();
-            $advertisements= Advertisement::all();
+
+            $pharmacies = Pharmacy::where('is_active','1')->limit(6)->get();
+            $advertisements= Advertisement::where('is_active','1')->limit(6)->get();
+
 
             return view('index', ['pharmacies' => $pharmacies,'advertisements'=>$advertisements]);
         } catch (\Exception $e) {
@@ -74,5 +77,21 @@ class MedicalController extends Controller
             return $e->getMessage();
         }
 
+    }
+
+       // show orders that for pharmacy 
+       public function OrderNotification(){
+
+        $q = Order::with(['user' => function ($q) {
+            return $q->where('id', Auth::id());
+
+        }], 'pharmacy')->where('status', 1);
+
+        $orders=$q->limit(6)->get();
+
+        $count=$q->count();
+        // return  $count;
+        return ['orders'=>$orders,'count'=>$count];
+    
     }
 }
