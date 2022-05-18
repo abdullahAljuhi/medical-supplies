@@ -59,8 +59,7 @@ class adminController extends Controller
         }
     }
 
-    // get all orders for user auth
-    
+
     public function order($id)
     {
         try {

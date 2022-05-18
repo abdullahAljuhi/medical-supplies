@@ -10,7 +10,7 @@ var channel = pusher.subscribe('active-pharmacy');
 channel.bind('App\\Events\\notfiy', function (data) {
     let token=$('meta[name="csrf-token"]').attr('content');
     var existingNotifications = notifications.html();
-    var newNotificationHtml = `<a href="${data.pharmacy.id}">
+    var newNotificationHtml = `<a href="dashboard/pharmacy/check/${data.pharmacy.id}">
     <div class="media-body">تسجيل صيدليه <h6 class="media-heading text-right">
     ${data.pharmacy.name}
      </h6><small style="direction: ltr;">

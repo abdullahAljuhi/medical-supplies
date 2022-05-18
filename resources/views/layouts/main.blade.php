@@ -6,25 +6,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="{{ asset('img/apple-icon.png') }} ">
-    <link rel="shortcut icon" type="image/x-icon" href=" {{ asset('img/favicon.ico') }}">
+    <link rel="apple-touch-icon" href='/img/apple-icon.png'>
+    <link rel="shortcut icon" type="image/x-icon" href='/img/favicon.ico'>
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/templatemo.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/viewAndList.css') }}">
+    <link href='/assets/img/favicon.png' rel="icon">
+    <link href='/assets/vendor/bootstrap/css/bootstrap.min.css' rel="stylesheet">
+    <link href='/assets/vendor/bootstrap-icons/bootstrap-icons.css' rel="stylesheet">
+    <link rel="stylesheet" href='/css/bootstrap.min.css'>
+    <link rel="stylesheet" href='/css/templatemo.css'>
+    <link rel="stylesheet" href='/css/custom.css'>
+    <link rel="stylesheet" href='/css/index.css'>
+    <link rel="stylesheet" href='/css/viewAndList.css'>
 
 
 
     <!-- Load fonts style after rendering the layout styles -->
 
-    <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href='/css/fontawesome.min.css'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/ar.css') }}">
+    <link rel="stylesheet" href='/assets/css/style.css'>
+    <link rel="stylesheet" href='/assets/css/ar.css'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!--  google font  -->
@@ -53,7 +54,7 @@
         <!-- Main Logo -->
         <div class="d-flex align-items-center justify-content-between">
             <a href="/" class="logo d-flex align-items-center">
-                <img class="mx-4 h-100" src="{{ asset('assets/img/logo.png') }}" alt="">
+                <img class="mx-4 h-100" src='assets/img/logo.png' alt="">
                 <span class="text-nowrap">علاجي كوم</span>
             </a>
         </div>
@@ -95,7 +96,7 @@
                 @endif
 
                 @else
-                <!-- Notification Nav -->
+                {{-- <!-- Notification Nav -->
                 <li class="nav-item dropdown dropdown-notifications">
 
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
@@ -112,7 +113,46 @@
                     </ul><!-- End Notification Dropdown Items -->
 
                 </li>
-                <!-- End Notification Nav -->
+                <!-- End Notification Nav --> --}}
+                    @php
+                                $q = App\Models\Order::with(['user'=>function($q){
+            return $q->where('id',Auth::id());
+        }],'pharmacy')->where('status',1);
+
+        $orders=$q->limit(6)->get();
+
+        $count=$q->count();
+                    @endphp
+                    <!-- Notification Nav -->
+                    <li class="nav-item dropdown dropdown-notifications">
+
+                        <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
+                            <i class="bi bi-bell"></i>
+    
+                            <span class="badge bg-primary badge-number notify-count"
+                                data-count="{{ $count??'0' }}">{{ $count ??'0' }}</span>
+                        </a><!-- End Notification Icon -->
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                            @isset($orders)
+                            @foreach ($orders as $order )
+                            <li class="notification-item scrollable-container">
+                                {{ $order->pharmacy->pharmacy_name}}
+                            </li>
+                            @endforeach
+                            <li>
+    
+                                <hr class="dropdown-divider">
+                            </li>
+    
+                            <li class="dropdown-footer">
+                                <a href="{{ route('orders') }}">عرض جميع الطلبات</a>
+                            </li>
+                            @endisset
+                            <li class="notification-item scrollable-container">
+                            </li>
+    
+                        </ul><!-- End Notification Dropdown Items -->
+                    </li>
 
                 <!-- Profile Nav -->
                 <li class="nav-item dropdown pe-3">

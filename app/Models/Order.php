@@ -11,7 +11,7 @@ class Order extends Model
 
    protected $fillable = [
        'total_price',
-       'delivery',
+       'delivery_price',
        'user_id',
        'pharmacy_id',
        'address',
@@ -23,11 +23,12 @@ class Order extends Model
 
    public function pharmacy(){
     return $this->belongsTo(Pharmacy::class,'pharmacy_id');
-
    }
    public function user(){
     return $this->belongsTo(User::class,'user_id');
 
    }
+
+
 
 }

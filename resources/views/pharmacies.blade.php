@@ -124,10 +124,10 @@
                                         @if($pharmacy->image)
                                             <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}"
                                                  alt="pharmacy"
-                                                 class="border-bottom p-4">
+                                                 class="border-bottom">
                                         @else
-                                            <img src="{{asset('img/phramacy1.png') }}"
-                                                 class="card-img-top py-5 img-card-cus"
+                                            <img src="{{asset('img/pharmacy.png') }}"
+                                                 class="card-img-top w-100 h-100 img-card-cus"
                                                  alt="...">
                                         @endif
                                         <div class="card-body pb-0">
@@ -186,7 +186,6 @@
 @section('scripts')
     <script>
         $("#select1").change(select);
-
         function select() {
             if ($(this).data('options') === undefined) {
                 /*Taking an array of all options-2 and kind of embedding it on the select1*/

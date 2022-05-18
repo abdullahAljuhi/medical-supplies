@@ -30,6 +30,7 @@ class AdvertisementController extends Controller
 
         } catch (\Throwable $th) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+
         }
     }
 
