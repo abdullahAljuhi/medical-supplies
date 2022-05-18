@@ -2,11 +2,13 @@
 @section('title', 'الملف الشخصي')
 @section('content')
 
+@include('alerts.errors')
+@include('alerts.success')
+
 <!--Display Error-->
 <!-- @if($errors->any())
     {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
 @endif -->
-
 
     <!-- Page Title -->
     <div class="pagetitle">
@@ -20,14 +22,17 @@
     </div>
     <!-- End Page Title -->
 
+    <!--Display Error-->
+@if($errors->any())
+    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
+@endif
+
     <section class="section profile">
         <div class="row">
             <div class="col-xl-12">
 
                 <div class="card">
                     <div class="card-body pt-3">
-                    @include('alerts.success')
-                    @include('alerts.errors')
                         <!-- Bordered Tabs -->
                         <div class="tab-content pt-2">
                             <form method="post" action="{{ route('update-city',$city->id) }}">
@@ -71,3 +76,4 @@
             </div>
         </div>
     </section>
+@endsection
