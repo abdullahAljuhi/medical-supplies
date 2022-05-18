@@ -27,19 +27,21 @@ class MedicalController extends Controller
                 ->join('governorates', 'governorates.id', '=', 'addresses.governorate_id')
                 ->join('cities', 'cities.id', '=', 'addresses.city_id')
                 ->select('pharmacies.*', 'addresses.*', 'cities.name as city_name', 'cities.governorate_id as gId', 'governorates.name as governorate_name')
+                ->get();
+                
+                $pharmacies =  $pharmacies->when($request->governorate, function ($q) use ($request) {
+                    if ($request->governorate == 0)
+                        return '';
+                    return $q->where('governorate_id', $request->governorate);
+                })
                 ->when($request->search, function ($q) use ($request) {
                     return $q->where('pharmacy_name', 'like', '%' . $request->name . '%');
                 })->when($request->city, function ($q) use ($request) {
                     if ($request->city == 0)
-                        return '';
-                    return $q->where('city_id', $request->city);
-                })->get();
-
-            $pharmacies = $pharmacies->when($request->governorate, function ($q) use ($request) {
-                if ($request->governorate == 0)
                     return '';
-                return $q->where('governorate_id', $request->governorate);
-            })->where('is_active','1');
+                    return $q->where('city_id', $request->city);
+                })->where('is_active','1');
+                
 
 
             return view('pharmacies', ['pharmacies' => $pharmacies]);
