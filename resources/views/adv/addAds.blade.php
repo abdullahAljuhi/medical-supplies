@@ -49,11 +49,12 @@
                                         @enderror
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    <label for="strat_date" class="form-label"> تاريخ البداء</label>
+                    <label for="strat_date" class="form-label"> تاريخ البدء</label>
                     <input id="strat_date" type="date"
                                             class="form-control @error('strat_date') is-invalid @enderror" name="start_date"
                                             value="{{ old('strat_date') }}" required autocomplete="strat_date" autofocus>
-                                        @error('start_date')
+                                            <div class="message-error">يرجى إدراج تاريخ    </div>
+                                        @error('strat_date')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -64,6 +65,7 @@
                     <input id="end_date" type="date"
                                             class="form-control @error('end_date') is-invalid @enderror" name="end_date"
                                             value="{{ old('end_date') }}" required autocomplete="end_date" autofocus>
+                                            <div class="message-error">يرجى إدراج تاريخ    </div>
                                         @error('end_date')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
