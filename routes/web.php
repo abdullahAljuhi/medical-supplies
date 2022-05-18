@@ -198,6 +198,7 @@ Route::get('test', [PaymentController::class, 'index'])->name('test');
 
 Route::get('t/{id}', [PaymentController::class, 't']);
 
+Route::get('/o', [PharmacyController::class, 'OrderNotification']);
 
 Route::get('/test/response/{info}', function () {
     $info = Route::current()->parameter('info');

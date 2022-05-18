@@ -153,4 +153,11 @@ class UserController extends Controller
             return $e->getMessage();
         }
     }
+
+    // show user order's
+    public function OrderNotification(){
+        $orders = Order::where('status',0)->where('user_id',Auth::id())->get();
+        return $orders;
+
+    }
 }

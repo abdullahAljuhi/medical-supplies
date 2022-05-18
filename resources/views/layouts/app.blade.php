@@ -13,7 +13,7 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
+    <link href="assets/img/favicon.png" rel="icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -72,7 +72,7 @@
             <span class="d-none d-lg-block">علاجي كوم</span>
         </a>
         @auth
-            <i class="bi bi-list toggle-sidebar-btn"></i>
+        <i class="bi bi-list toggle-sidebar-btn"></i>
         @endauth
     </div>
     <!-- End Logo -->
@@ -119,11 +119,9 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         @if(isset(Auth::user()->profile->image))
-                            <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile"
-                                 class="rounded-circle border p-1">
+                        <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile" class="rounded-circle border p-1">
                         @else
-                            <img src="{{asset('assets/img/user.png') }}" alt="Profile"
-                                 class="rounded-circle border p-1">
+                        <img src="{{asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
                         @endif
                     </a><!-- End Profile Iamge Icon -->
 
@@ -135,13 +133,6 @@
                         </li>
                         <li>
                             <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{{ route('home') }}">
-                                <i class="bi bi-grid"></i>
-                                <span>لوحة التحكم</span>
-                            </a>
                         </li>
 
                         <li>
@@ -188,7 +179,7 @@
                     </ul><!-- End Profile Dropdown Items -->
                 </li>
                 <!-- End Profile Nav -->
-            @endguest
+        @endguest
 
         </ul>
     </nav>
@@ -198,32 +189,61 @@
 <!-- End Header -->
 
 @auth
-    <!-- ======= Sidebar ======= -->
-    <aside id="sidebar" class="sidebar">
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
 
-        <ul class="sidebar-nav" id="sidebar-nav">
+    <ul class="sidebar-nav" id="sidebar-nav">
 
-            <li class="nav-item">
-                <a class="nav-link " href="{{ route('home') }}">
-                    <i class="bi bi-grid"></i>
-                    <span>لوحة التحكم</span>
-                </a>
-            </li><!-- End Dashboard Nav -->
+        <li class="nav-item">
+            <a class="nav-link " href="{{ route('dashboard') }}">
+                <i class="bi bi-grid"></i>
+                <span>لوحة التحكم</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
 
-            @if(Auth::user()->type == 1)
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="{{ route('admin.pharmacies.all') }}">
-                        <i class="bi bi-flower1"></i>
-                        <span>الصيدليات</span>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('admin.pharmacies.all') }}">
+                <i class="bi bi-flower1"></i>
+                <span>الصيدليات</span>
+            </a>
+        </li><!-- End Users Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('admin.users.index') }}">
+                <i class="bi bi-person"></i>
+                <span>المستخدمين</span>
+            </a>
+        </li><!-- End Users Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#">
+                <i class="bi bi-cash"></i><span>الدفع</span>
+            </a>
+        </li><!-- End Charts Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('show.adv') }}">
+                <i class="bi bi-gem"></i><span>اعلانات</span></i>
+            </a>
+        </li><!-- End Icons Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#orders-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-gear"></i><span>اعدادات</span><i class="bi bi-chevron-down me-auto"></i>
+            </a>
+            <ul id="orders-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li class="px-4">
+                    <a href="{{ route('add-state') }}">
+                        <i class="bi bi-circle"></i><span>ادارة المحافظات</span>
                     </a>
-                </li><!-- End Users Nav -->
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="{{ route('admin.users.index') }}">
-                        <i class="bi bi-person"></i>
-                        <span>المستخدمين</span>
+                </li>
+                <li class="px-4">
+                    <a href="{{ route('add-city') }}">
+                        <i class="bi bi-circle"></i><span>ادارة المدن</span>
                     </a>
-                </li><!-- End Users Nav -->
+                </li>
+            </ul>
+        </li><!-- End Charts Nav -->
 
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="{{ route('admin.orders') }}">
@@ -292,10 +312,10 @@
 @endauth
 
 <main id="main" class="main">
-    <div class="alert alert-success" style="display: none" role="alert" id=pharmcy>
+<div class="alert alert-success" style="display: none" role="alert" id=pharmcy>
 
-    </div>
-    @yield('content')
+        </div>
+@yield('content')
 </main>
 
 <!-- ======= Footer ======= -->

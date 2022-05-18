@@ -23,6 +23,11 @@ return new class extends Migration
             $table->integer('delivery_price')->nullable();
             $table->string('address');
             $table->tinyInteger('status')->default(0);
+            // 0 => order send from the user to pharmacy ,1 => pharmacy add price to order,
+            // 2 => order send from the user to payment
+            // 9 => there problem in payment 
+            // 8 => there is pharmacy
+            // 7 => user cancel order
             $table->boolean('is_show')->default(0);
             $table->integer('total_price')->default(0);
             $table->boolean('type')->default(0); // this check if order is order by image

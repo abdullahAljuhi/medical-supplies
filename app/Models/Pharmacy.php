@@ -46,9 +46,9 @@ class Pharmacy extends Model
     public function user(){
         return $this->belongsTo(User::class,'user_id');
     }
-    public function governorate(){
-        return $this -> hasMany('App\Models\Doctor','hospital_id','id');
-    }
+    // public function governorate(){
+    //     return $this -> hasMany('App\Models\Doctor','hospital_id','id');
+    // }
 
     // public function getIsActiveAttribute($value)
     // {
@@ -58,11 +58,15 @@ class Pharmacy extends Model
     //         return 'غير مفعل';
     // }
 
-    public function admin(){
-        if($this->type == 1){
-            return true;
-        }else{
-            return false;
-        }
+    // public function admin(){
+    //     if($this->type == 1){
+    //         return true;
+    //     }else{
+    //         return false;
+    //     }
+    // }
+
+    public function orders(){
+        return $this->hasMany(Order::class,'pharmacy_id');
     }
 }

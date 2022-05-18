@@ -79,7 +79,7 @@ class OrderController extends Controller
             foreach ($request->quantity as $i => $quantity) {
                 $products[$i]['quantity'] = $quantity;
             };
-            // var_dump($products);
+            // return($products);
             $products = json_encode($products, JSON_UNESCAPED_UNICODE);
 
             // $products=implode(',',$products);
