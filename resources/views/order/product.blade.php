@@ -67,6 +67,12 @@
                                                         <input type="text" name="prices[]" class="form-control col-6" id="name" required placeholder="يرجى ادخال سعر هذا المنتج">
                                                     </div>
                                                 </div>
+                                                <div class="row my-2">
+                                                    <div class="col-3">ملاحظة</div>
+                                                    <div class="col-9">
+                                                        <input type="text" name="note[]" class="form-control col-6" id="name" required placeholder="ادخال اي ملاحظات او بدائل">
+                                                    </div>
+                                                </div>
                                             </div>
                                         @else
                                             <div class="row mb-2   fw-bold">
@@ -78,6 +84,9 @@
                                                 </div>
                                                 <div class="col-md-3 col-7 d-sm-hidden text-center">
                                                     <input type="text" name="prices[]" class="form-control col-6" id="name" required placeholder="يرجى ادخال سعر هذا المنتج">
+                                                </div>
+                                                <div class="col-md-4 col-7 d-sm-hidden text-center">
+                                                    <input type="text" name="note[]" class="form-control col-6" id="name" required placeholder="يرجى ادخال اي ملاحظات او اي بدائل">
                                                 </div>
                                             </div>
 

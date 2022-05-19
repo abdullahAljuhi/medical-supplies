@@ -30,35 +30,36 @@
                             </div>
                             <div class="col-md-4 col-sm-12 mb-2">
                                 <p class="fs-5 py-0 my-0  mx-3">  نوع البطاقة  :
-                                    {{ $order->pharmacy->pharmacy_name }}
+                                    {{ $card }}
                                 </p>
                             </div>
                             <div class="col-md-4 col-sm-12 mb-2">
                                 <p class="fs-5 py-0 my-0  mx-3">تاريخ الطلب  :
-                                    {{ $order->pharmacy->pharmacy_name }}
+                                    {{ $order->created_at->diffForHumans() }}
                                 </p>
                             </div>
                             <div class="col-md-4 col-sm-12 mb-2">
                                 <p class="fs-5 py-0 my-0  mx-3">تاريخ الدفع  :
-                                    {{ $order->pharmacy->pharmacy_name }}
+                                    {{ \Carbon\Carbon::parse($date)->diffForHumans() }}
+                                    {{-- {{ $date->toCookieString() }} --}}
                                 </p>
                             </div>
                             
                             <div class="col-md-4 col-sm-12 mb-2">
                                 <p class="fs-5 py-0 my-0  mx-3">  اسم المستخدم :
-                                     مراد العمودي
+                                   {{ $name  }}
                                 </p>
                             </div>
                             <div class="col-md-4 col-sm-12 mb-2">
                                 <p class="fs-5 py-0 my-0  mx-3">  اسم الصيدلية :
-                                    صيدلية العافية
+                                    {{ $order->pharmacy->pharmacy_name }}
                                 </p>
                             </div>
                              
                              
                             <div class="col-md-4 col-sm-12 mb-2">
                                 <p class="fs-5 py-0 my-0  mx-3 fw-blod"> المبلغ:
-                                    25500 
+                                    {{ $paid_amount }}
                                 </p>
                             </div>
                         </div>

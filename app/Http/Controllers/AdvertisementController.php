@@ -121,7 +121,7 @@ class AdvertisementController extends Controller
      * @param  \App\Models\Advertisement  $advertisement
      * @return \Illuminate\Http\Response
      */
-    public function update(AdvertisementRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $advertisements= Advertisement::findOrFail($id);
         try {
@@ -130,10 +130,10 @@ class AdvertisementController extends Controller
 
 
             if ($request->has('image')) {
-                if($fileName != null){
-                    $fileName=public_path('assets/images/advs/'.$fileName);
-                    unlink(realpath($fileName));
-                }
+                // if($fileName != null){
+                //     $fileName=public_path('assets/images/advs/'.$fileName);
+                //     unlink(realpath($fileName));
+                // }
 
                 // save img in public/adv/images
                 $fileName = $this->uploadImage('advs', $request->image);
@@ -168,14 +168,14 @@ class AdvertisementController extends Controller
     public function delete($id)
     {
         try {
-            $advertisement = Advertisement::findOrFail($id);
-            if ($advertisement->image !== '') { // check if advertisement has image
-                // remove image
-                $fileName = public_path('assets/images/advs/' . $advertisement->image);
-                unlink(realpath($fileName));
-            }
+            $advertisement = Advertisement::find($id);
+            // if ($advertisement->image !== '') { // check if advertisement has image
+            //     // remove image
+            //     $fileName = public_path('assets/images/advs/' . $advertisement->image);
+            //     unlink(realpath($fileName));
+            // }
 
-            $advertisement->delete();
+            $advertisement->delete;
             return redirect()->route('show.adv');
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => 'هناك خطا ما يرجي المحاولة فيما بعد']);

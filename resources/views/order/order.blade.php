@@ -97,6 +97,18 @@
                                                 <input type="hidden" id="name" name='pharmacy' value="{{ $pharmacy->id }}">
                                                 <a href="javascript:void(0);" class="add_button col-md-1 col-12 text-center  pe-2" title="Add field"><i class="bi fs-3 bi-plus-circle-fill"></i></a>
                                             </div>
+                                            <div class="col-md-12 col-12 mb-2">
+                                                <label for="reorder" class="form-label fw-bold">حدد اذا كانت تريد تكرار الطلب </label>
+                                                <select name="reorder" id="select3"
+                                                    class="form-select select1 form-control px-2 mx-1 pe-5"
+                                                    aria-label=".form-select-lg example">
+                                                    <option value="one" disabled selected>  طلب لمرة واحدة</option>
+                                                    <option value="every_week">طلب بعد كل اسبوع</option>
+                                                    <option value="every_tow_week">طلب بعد كل اسبوعين</option>
+                                                    <option value="every_three_week">طلب بعد كل 3 اسابيع</option>
+                                                    <option value="every_four_week">طلب بعد كل 4 اسابيع</option>
+                                                 </select>
+                                            </div>
                                         </div>
                                         <div class="row   py-3 px-2 ">
                                             <div class="col-12">
@@ -168,6 +180,18 @@
                                                 <a href="javascript:void(0);" class="add_button_file col-md-1 col-12 text-center  pe-2" title="Add field"><i class="bi fs-3 bi-plus-circle-fill"></i></a>
                                                 <div class="message-error col-12">يرجى ادخال ملف من نوع صورة</div>
                                             </div>
+                                            <div class="col-md-12 col-12 mb-2">
+                                                <label for="reorder" class="form-label fw-bold">حدد اذا كانت تريد تكرار الطلب </label>
+                                                <select name="reorder" id="select3"
+                                                    class="form-select select1 form-control px-2 mx-1 pe-5"
+                                                    aria-label=".form-select-lg example">
+                                                    <option value="one" disabled selected>  طلب لمرة واحدة</option>
+                                                    <option value="every_week">طلب بعد كل اسبوع</option>
+                                                    <option value="every_tow_week">طلب بعد كل اسبوعين</option>
+                                                    <option value="every_three_week">طلب بعد كل 3 اسابيع</option>
+                                                    <option value="every_four_week">طلب بعد كل 4 اسابيع</option>
+                                                 </select>
+                                            </div>
                                             <div class="row   py-3 px-2 ">
                                                 <div class="col-12">
                                                     <div class="row mb-3   ">
@@ -221,7 +245,6 @@
 
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>

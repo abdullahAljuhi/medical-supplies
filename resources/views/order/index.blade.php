@@ -48,6 +48,7 @@
                     @endif
                     <th scope="col">عدد المنتجات</th>
                     <th scope="col">نوع الطلب</th>
+                    <th scope="col">تكرار الطلب</th>
                     <th scope="col">العنوان</th>
                     <th scope="col">تاريخ الطلب</th>
                     <th scope="col">الحالة</th>
@@ -64,8 +65,9 @@
                         @if(Auth::user()->type != 0)
                         <td>{{ $order->user['name'] }}</td>
                         @endif
-                        {{-- <td>{{ count(json_decode($order->products,true)) }}</td> --}}
+                        <td>{{ count(json_decode($order->products,true)) }}</td>
                         <td>{{ $order->type?'وصفة طبية':'اسم العلاج' }}</td>
+                        <th>كل اسبوع</th>
                         <td><a href="#" class="text-dark">{{ $order->address }}</a></td>
                         <td>{{ \Carbon\Carbon::parse($order->created_at)->diffForHumans() }}</td>
                         <td><span class="badge bg-{{ $type[1][(int)$order->status] }} fs-6">{{ $type[0][(int)$order->status] }}</span></td>

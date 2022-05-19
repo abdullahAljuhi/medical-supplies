@@ -56,7 +56,7 @@
                                                 <th class="border-0">اسم المنتج</th>
                                                 <th class="border-0">سعر المنتج</th>
                                                 <th class="border-0">كمية المنتج</th>
-
+                                                <th class="border-0">الملاحظات</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -77,6 +77,7 @@
                                                         <td>{{ $product['product_name'] }}</td>
                                                         <td>{{ $product['unit_amount'] }} </td>
                                                         <td>{{ $product['quantity'] }} </td>
+                                                        <th >يوجد بديل</th>
                                                     </tr>
                                                 @endif
                                             @endforeach
@@ -89,7 +90,7 @@
                                             <tfoot>
                                             <tr>
                                                 <td  colspan="2">الاجمالي</td>
-                                                <td>{{ $order->total_price }}</td>
+                                                <td class="fw-bold">{{ $order->total_price }}</td>
                                             </tr>
                                             </tfoot>
                                         </table>
