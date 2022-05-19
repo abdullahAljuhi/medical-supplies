@@ -103,10 +103,9 @@
                                                     class="form-select select1 form-control px-2 mx-1 pe-5"
                                                     aria-label=".form-select-lg example">
                                                     <option value="one" disabled selected>  طلب لمرة واحدة</option>
-                                                    <option value="every_week">طلب بعد كل اسبوع</option>
-                                                    <option value="every_tow_week">طلب بعد كل اسبوعين</option>
-                                                    <option value="every_three_week">طلب بعد كل 3 اسابيع</option>
-                                                    <option value="every_four_week">طلب بعد كل 4 اسابيع</option>
+                                                    <option value="every_week">طلب  كل اسبوع</option>
+                                                    <option value="every_tow_week">طلب  كل اسبوعين</option>
+                                                    <option value="every_three_week">طلب  كل شهر </option>
                                                  </select>
                                             </div>
                                         </div>
