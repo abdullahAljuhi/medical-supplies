@@ -215,7 +215,7 @@
                                 <span>اعدادات الحساب</span>
                             </a>
                         </li>
-
+                       
                         @endif
                         <li>
                             <hr class="dropdown-divider">
