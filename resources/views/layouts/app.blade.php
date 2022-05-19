@@ -254,7 +254,11 @@
                         <i class="bi bi-gem"></i><span>اعلانات</span></i>
                     </a>
                 </li><!-- End Icons Nav -->
-
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="{{ route('show.adv') }}">
+                        <i class="bi bi-gem"></i><span>المحفظة</span></i>
+                    </a>
+                </li><!-- End Icons Nav -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" data-bs-target="#orders-nav" data-bs-toggle="collapse" href="#">
                         <i class="bi bi-gear"></i><span>اعدادات</span><i class="bi bi-chevron-down me-auto"></i>
@@ -286,6 +290,12 @@
                     <a class="nav-link collapsed" href="#">
                         <i class="bi bi-flower1"></i>
                         <span>الطلبات الجديدة</span>
+                    </a>
+                </li><!-- End Users Nav -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#">
+                        <i class="bi bi-flower1"></i>
+                        <span>المحفظة</span>
                     </a>
                 </li><!-- End Users Nav -->
 
