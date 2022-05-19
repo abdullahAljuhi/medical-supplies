@@ -94,23 +94,53 @@
                 </li>
                 @endif
                 @else
+
+                @if (Auth::user()->type==2)
+                @php
+                $q = App\Models\Order::with(['pharmacy'=>function($q){
+                return $q->where('user_id',Auth::id());
+                }],'user')->where('status',0)->where('is_show','0');
+
+                $orders=$q->limit(6)->get();
+
+                $count=$q->count();
+                @endphp
+                @endif
                 <!-- Notification Nav -->
-                <li class="nav-item dropdown dropdown-notifications">
+                    <!-- Notification Nav -->
+                    <li class="nav-item dropdown dropdown-notifications">
 
-                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
-                        <i class="bi bi-bell"></i>
-                        <span class="badge bg-primary badge-number notify-count" data-count="0">0</span>
-                    </a><!-- End Notification Icon -->
-
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-
-                        <li class="notification-item scrollable-container">
-                        </li>
-
-
-                    </ul><!-- End Notification Dropdown Items -->
-
-                </li>
+                        <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
+                            <i class="bi bi-bell"></i>
+    
+                            <span class="badge bg-primary badge-number notify-count" data-count="{{ $count??'0' }}">{{
+                                $count ??'0' }}</span>
+                        </a><!-- End Notification Icon -->
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                            <li class="notification-item scrollable-container notify">
+                            </li>
+                            @isset($orders)
+                            @foreach ($orders as $order )
+                            <li class="notification-item scrollable-container">
+                                <a href="pharmacy/order/{{ $order->id }}">
+                                    {{ $order->user->name}}
+                                </a>
+                            </li>
+                            @endforeach
+                            <li>
+    
+                                <hr class="dropdown-divider">
+                            </li>
+    
+                            <li class="dropdown-footer">
+                                <a href="{{ route('pharmacy.orders') }}">عرض جميع الطلبات</a>
+                            </li>
+                            @endisset
+                            <li class="notification-item scrollable-container">
+                            </li>
+    
+                        </ul><!-- End Notification Dropdown Items -->
+                    </li>
                 <!-- End Notification Nav -->
 
 
@@ -346,7 +376,41 @@
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
 
-
+    @auth
+    @if (Auth::user()->type==2)        
+    <script>
+        var notificationsWrapper = $('.dropdown-notifications');
+        var notificationsToggle = notificationsWrapper.find('a[data-toggle]');
+        var notificationsCountElem = notificationsToggle.find('span[data-count]');
+        var notificationsCount = parseInt(notificationsCountElem.data('count'));
+        var notifications = notificationsWrapper.find('li.scrollable-container.notify');
+    
+    
+        // Subscribe to the channel we specified in our Laravel Event
+        var channel = pusher.subscribe("order{{  Auth::user()-> id }}");
+        // Bind a function to a Event (the full Laravel class)
+     
+        channel.bind('App\\Events\\Messages', function(data) {
+        //   console.log(data.order.pharmacy_id);
+          var existingNotifications = notifications.html();
+          var newNotificationHtml = `
+            <form action="/pharmacy/order/${data.order.id}" method="get">
+            <button type="submit"> هناك طلب</button>
+            </form>`
+            ;
+          notifications.html(newNotificationHtml + existingNotifications);
+          notificationsCount += 1;
+          notificationsCountElem.attr('data-count', notificationsCount);
+          notificationsWrapper.find('.notify-count').text(notificationsCount);
+          notificationsWrapper.show();
+        });
+    </script>
+    @endif
+    @if (Auth::user()->type==1)
+    <script src="{{('/js/pusherNotifications.js')}}">
+    </script>
+    @endif
+    @endauth
     @yield('scripts')
 </body>
 

@@ -283,6 +283,8 @@ class PharmacyController extends Controller
             if ($order) {
                 $products = json_decode($order->products, JSON_UNESCAPED_UNICODE);
                 if ($order->status == 0) {
+                    $order->is_show=1;
+                    $order->save();
                     return view('order.product', compact('order', 'products'));
                 } else {
                     return view('order.bill-text', compact('order', 'products'));

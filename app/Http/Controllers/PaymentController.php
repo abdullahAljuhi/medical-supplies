@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -106,7 +107,8 @@ class PaymentController extends Controller
     public function showTest()
     {
         try {
-            //code...
+            
+            
             $info = Route::current()->parameter('info');
 
             $info = base64_decode($info);
@@ -114,7 +116,7 @@ class PaymentController extends Controller
 
 
             if ($data['status'] == 'success') {
-                // return $data;
+             
                 $status = $data['status'];
                 $order_reference = $data['order_reference'];
                 $products = json_decode($data['products'], true);
@@ -125,13 +127,31 @@ class PaymentController extends Controller
                 $id = $meta_data['order id'];
 
                 $paid_amount = $data['customer_account_info']['paid_amount'];
-
+               
                 $order = Order::with('pharmacy')->find($id);
+                $pharmacy = $order->pharmacy->user_id;
+                $this->wallet($paid_amount,$pharmacy);
             } else {
             }
 
             return view('order.finalBill', compact('order', 'status', 'products', 'card', 'date', 'name', 'paid_amount'));
         } catch (\Throwable $th) {
         }
+    }
+
+    // store in wallet
+    public function wallet($paid_amount,$pharmacy){
+
+        $admin  = User::where('type','1')->get();
+
+        $user   = User::find($pharmacy);
+
+        $amount = $paid_amount *(5/100);
+
+        $reminder  = $paid_amount - $amount;
+
+        $admin->deposit($amount); 
+
+        $user->deposit($reminder); 
     }
 }

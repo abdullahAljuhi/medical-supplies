@@ -130,10 +130,10 @@ class AdvertisementController extends Controller
 
 
             if ($request->has('image')) {
-                // if($fileName != null){
-                //     $fileName=public_path('assets/images/advs/'.$fileName);
-                //     unlink(realpath($fileName));
-                // }
+                if($fileName != null){
+                    $fileName=public_path('assets/images/advs/'.$fileName);
+                    unlink(realpath($fileName));
+                }
 
                 // save img in public/adv/images
                 $fileName = $this->uploadImage('advs', $request->image);
