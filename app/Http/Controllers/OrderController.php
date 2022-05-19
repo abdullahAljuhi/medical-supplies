@@ -91,7 +91,7 @@ class OrderController extends Controller
             $order->type = $type;
             $order->pharmacy_id = $request->pharmacy;
             $order->save();
-            $user=Pharmacy::find($request->pharmacy)->user_id;
+            $user = Pharmacy::find($request->pharmacy)->user_id;
             // return $user;
             // send notification for pharmacy
             event(new Messages($order, $user));

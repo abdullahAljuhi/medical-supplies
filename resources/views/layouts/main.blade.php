@@ -136,6 +136,8 @@
                             $count ??'0' }}</span>
                     </a><!-- End Notification Icon -->
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                        <li class="notification-item scrollable-container notify">
+                        </li>
                         @isset($orders)
                         @foreach ($orders as $order )
                         <li class="notification-item scrollable-container">
@@ -411,7 +413,35 @@
         });
     </script>
     <!-- End Script -->
-
+    @auth
+    <script>
+        var notificationsWrapper = $('.dropdown-notifications');
+        var notificationsToggle = notificationsWrapper.find('a[data-toggle]');
+        var notificationsCountElem = notificationsToggle.find('span[data-count]');
+        var notificationsCount = parseInt(notificationsCountElem.data('count'));
+        var notifications = notificationsWrapper.find('li.scrollable-container.notify');
+    
+    
+        // Subscribe to the channel we specified in our Laravel Event
+        var channel = pusher.subscribe("order{{  Auth::user()-> id }}");
+        // Bind a function to a Event (the full Laravel class)
+    
+        channel.bind('App\\Events\\Messages', function(data) {
+        //   console.log(data.order.pharmacy_id);
+          var existingNotifications = notifications.html();
+          var newNotificationHtml = `
+            <form action="/order/${data.order.id}" method="get">
+            <button type="submit"> هناك طلب</button>
+            </form>`
+            ;
+          notifications.html(newNotificationHtml + existingNotifications);
+          notificationsCount += 1;
+          notificationsCountElem.attr('data-count', notificationsCount);
+          notificationsWrapper.find('.notify-count').text(notificationsCount);
+          notificationsWrapper.show();
+        });
+    </script>
+    @endauth
     @yield('scripts')
 </body>
 
