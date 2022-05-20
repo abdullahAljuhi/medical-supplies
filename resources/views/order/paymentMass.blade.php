@@ -8,17 +8,6 @@
 
 
     <div class="container  my-5  pt-5">
-         <!-- Main Logo -->
-    <div class="d-flex align-items-center justify-content-between">
-        <a href="/dashboard" class="logo d-flex align-items-center">
-            <img class="m-4" src="{{ asset('assets/img/logo.png') }}" alt="">
-            <span class="d-none d-lg-block">علاجي كوم</span>
-        </a>
-        @auth
-            <i class="bi bi-list toggle-sidebar-btn"></i>
-        @endauth
-    </div>
-    <!-- End Logo -->
         <section class="section   profile">
             <div class="d-flex justify-content-center">
                 <div class="w-75  ">

@@ -107,11 +107,10 @@
                             <td>
 
                                     @if( $governorate->is_active)
-                                    <a href="{{ route('active.state', $governorate->id) }}" class="btn btn-outline-primary   w-100 " >                                          
-                                          إلغاء التفعيل  
+                                    <a href="{{ route('active.state', $governorate->id) }}" class="btn btn-outline-danger   w-100 " >                                         إلغاء التفعيل
                                         </a>
                                     @else
-                                    <a href="{{ route('active.state', $governorate->id) }}" class="btn btn-outline-danger   w-100 " >                                          
+                                    <a href="{{ route('active.state', $governorate->id) }}" class="btn btn-outline-primary   w-100 " >                                        
 
                                            تفعيل
                                         </a>

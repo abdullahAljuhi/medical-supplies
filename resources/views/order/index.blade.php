@@ -48,6 +48,7 @@
                     @endif
                     <th scope="col">عدد المنتجات</th>
                     <th scope="col">نوع الطلب</th>
+                    <th scope="col">تكرار الطلب</th>
                     <th scope="col">العنوان</th>
                     <th scope="col">تاريخ الطلب</th>
                     <th scope="col">الحالة</th>
@@ -56,7 +57,7 @@
                 <tbody>
                 @foreach($orders as $order)
                     <tr style='cursor: pointer; cursor: hand;'
-                        onclick="window.location='{{ route($route,$order->id) }}';">
+                        onclick="window.location='{{route($route,$order->id) }}';">
                         <th scope="row"><a href="#">{{ $order->id }}</a></th>
                         @if(Auth::user()->type != 2)
                         <td>{{ $order->pharmacy['pharmacy_name'] }}</td>
@@ -66,6 +67,7 @@
                         @endif
                         <td>{{ count(json_decode($order->products,true)) }}</td>
                         <td>{{ $order->type?'وصفة طبية':'اسم العلاج' }}</td>
+                        <th>كل اسبوع</th>
                         <td><a href="#" class="text-dark">{{ $order->address }}</a></td>
                         <td>{{ \Carbon\Carbon::parse($order->created_at)->diffForHumans() }}</td>
                         <td><span class="badge bg-{{ $type[1][(int)$order->status] }} fs-6">{{ $type[0][(int)$order->status] }}</span></td>
