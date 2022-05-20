@@ -214,12 +214,6 @@
                           ' {{ $user=App\Models\User::find(Auth::id())->wallet->balance; }} '<span>    ريال في محفضتك  </span>
                         </a>
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <i class="bi bi-cart"></i>
-                                <span>المحفظة</span>
-                            </a>
-                        </li>
-                        <li>
                             <hr class="dropdown-divider">
                         </li>
 
