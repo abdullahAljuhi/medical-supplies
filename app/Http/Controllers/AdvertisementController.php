@@ -5,10 +5,11 @@ use App\Models\Advertisement;
 use App\Helpers\Helper;
 use App\Http\Requests\AdvertisementRequest;
 use Illuminate\Http\Request;
+use Throwable;
 
 class AdvertisementController extends Controller
 {
-
+    // this trait to use uploadImage function
     use Helper;
 
     /**
@@ -76,10 +77,9 @@ class AdvertisementController extends Controller
             'link' => $request['link'],
         ]);
             $advertisements->save();
-            return redirect()->route('show.adv');
+            return redirect()->route('show.adv')->with(['success' => 'تم الاضافه  بنجاح']);
 
-        } catch (\Exception $ex) {
-            return $ex->getMessage();
+        } catch (Throwable $ex) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
 
@@ -123,8 +123,8 @@ class AdvertisementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $advertisements= Advertisement::findOrFail($id);
         try {
+            $advertisements= Advertisement::findOrFail($id);
 
             $fileName = $advertisements->image;
 
@@ -169,15 +169,16 @@ class AdvertisementController extends Controller
     {
         try {
             $advertisement = Advertisement::find($id);
-            // if ($advertisement->image !== '') { // check if advertisement has image
-            //     // remove image
-            //     $fileName = public_path('assets/images/advs/' . $advertisement->image);
-            //     unlink(realpath($fileName));
-            // }
+            if ($advertisement->image !== '') { // check if advertisement has image
+                // remove image
+                $fileName = public_path('assets/images/advs/' . $advertisement->image);
+                unlink(realpath($fileName));
+            }
 
-            $advertisement->delete;
-            return redirect()->route('show.adv');
-        } catch (\Exception $e) {
+            $advertisement->delete();
+            return redirect()->route('show.adv')->with(['success' => 'تم  الحذف بنجاح']);
+        } catch (Throwable $e) {
+
             return redirect()->back()->with(['error' => 'هناك خطا ما يرجي المحاولة فيما بعد']);
         }
     }
@@ -186,21 +187,28 @@ class AdvertisementController extends Controller
     public function active($id )
      {
 
-        $advertisements= Advertisement::findOrFail($id);
-        $ac=$advertisements->is_active ;
+        try {
 
-         if($ac == 0)
-         {
-             $ac=1;
+            $advertisements= Advertisement::findOrFail($id);
 
-         }else{
-             $ac=0;
-         }
-
-            $advertisements->is_active=$ac;
-
-
-         $advertisements->save();
-         return redirect()->back();
+            // 
+            $ac=$advertisements->is_active ;
+    
+             if($ac == 0)
+             {
+                 $ac=1;
+    
+             }else{
+                 $ac=0;
+             }
+    
+                $advertisements->is_active=$ac;
+    
+    
+             $advertisements->save();
+            return redirect()->back()->with(['success' => 'تمت العمليه  بنجاح']);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
      }
 }

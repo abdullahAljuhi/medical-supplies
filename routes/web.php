@@ -46,12 +46,18 @@ Route::group(['middleware' => ['auth', 'verified']], function (){
 
     Route::get('orders', [UserController::class, 'orders'])->name('orders');
 
-     // admin
+
+    // user wallet
+    Route::get('/wallet', [UserController::class, 'getWallet'])->name('user.wallet');
+    
+
     // Route::get('/orders', [UserController::class, 'orders'])->name('user.orders'); // all orders
     Route::get('/order/{id}', [UserController::class, 'order'])->name('user.order'); // show order
     // admin
     Route::group(['prefix' => 'dashboard', 'middleware' => 'checkType:admin'], function () {
 
+        Route::get('/wallet', [UserController::class, 'getWallet'])->name('admin.wallet');
+        
         Route::get('/', [adminController::class, 'index'])->name('dashboard'); // dashboard
         Route::get('/orders', [adminController::class, 'orders'])->name('admin.orders'); // all orders
         Route::get('/order/{id}', [adminController::class, 'order'])->name('admin.order'); // show order
@@ -129,6 +135,8 @@ Route::group(['middleware' => ['auth', 'verified']], function (){
     // pharmacy crud start
     Route::group(['prefix' => 'pharmacy', 'middleware' => ['checkType:pharmacy']], function () {
         Route::get('/', [PharmacyController::class, 'index'])->name('pharmacy.home');
+
+        Route::get('/wallet', [UserController::class, 'getWallet'])->name('pharmacy.wallet');
 
         Route::get('/create', [PharmacyController::class, 'create'])->name('pharmacy.create');
 
