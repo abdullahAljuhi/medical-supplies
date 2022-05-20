@@ -41,6 +41,15 @@
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     {{-- validation image  --}}
     <script src="{{asset('js/validationIamge.js') }}"></script>
+        {{-- pusher js --}}
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script>
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('e4b4e21e1f468b8bddf2', {
+            cluster: 'mt1'
+        });
+    </script>
 
     @yield('extra-style')
 
@@ -54,7 +63,7 @@
 
     <!-- Main Logo -->
     <div class="d-flex align-items-center justify-content-between">
-        <a href="/dashboard" class="logo d-flex align-items-center">
+        <a href="{{ Auth::user()->type==1?'/dashboard':'/pharmacy' }}" class="logo d-flex align-items-center">
             <img class="m-4" src="{{ asset('assets/img/logo.png') }}" alt="">
             <span class="d-none d-lg-block">علاجي كوم</span>
         </a>
@@ -80,11 +89,6 @@
                         <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
                 @endif
-<<<<<<< HEAD
-            @else
-            <!-- Notification Nav -->
-                <li class="nav-item dropdown dropdown-notifications">
-=======
                 @else
 
                 @if (Auth::user()->type==2)
@@ -101,7 +105,6 @@
                 <!-- Notification Nav -->
                     <!-- Notification Nav -->
                     <li class="nav-item dropdown dropdown-notifications">
->>>>>>> d4f6f5634eb19eaa2b854d36e3a4102cf8812915
 
                         <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
                             <i class="bi bi-bell"></i>
@@ -403,9 +406,6 @@
 <script src="{{ asset('assets/js/main.js') }}"></script>
 
 
-<<<<<<< HEAD
-@yield('scripts')
-=======
     @auth
     @if (Auth::user()->type==2)        
     <script>
@@ -442,7 +442,6 @@
     @endif
     @endauth
     @yield('scripts')
->>>>>>> d4f6f5634eb19eaa2b854d36e3a4102cf8812915
 </body>
 
 </html>

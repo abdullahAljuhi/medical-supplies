@@ -1,4 +1,9 @@
-@extends('layouts.main')
+@if(Auth::user()->type != 0)
+{{ $app='layouts.app' }}
+@else
+{{ $app='layouts.main' }}
+@endif
+@extends($app)
 @section('title', 'طلب جديد')
 @section('content')
     <!-- Page Title -->
@@ -56,10 +61,11 @@
                                                 <th class="border-0">اسم المنتج</th>
                                                 <th class="border-0">سعر المنتج</th>
                                                 <th class="border-0">كمية المنتج</th>
-                                                <th class="border-0">الملاحظات</th>
+                                                <th class="border-0">تواجد العلاج</th>
                                             </tr>
                                             </thead>
                                             <tbody>
+                                            @isset($products)
                                             @foreach ($products as $product )
                                                 {{-- {{$product  }} --}}
                                                 @if($order->type == 1)
@@ -68,16 +74,23 @@
                                                         <td>
                                                             <img src="{{asset('assets/images/orders/'.$product['product_name'])}}" alt="" class=" border" srcset="" style=";height:50px;width:50px">
                                                         </td>
-                                                        <td>{{ $product['unit_amount'] }} </td>
+                                                        <td>{{ $product['unit_amount']??'' }} </td>
                                                         <td>{{ $product['quantity'] }} </td>
                                                     </tr>
                                                 @else
                                                     <tr>
                                                         <td>{{ $loop->index }}</td>
                                                         <td>{{ $product['product_name'] }}</td>
-                                                        <td>{{ $product['unit_amount'] }} </td>
+                                                        <td>{{ $product['unit_amount']??'' }} </td>
                                                         <td>{{ $product['quantity'] }} </td>
-                                                        <th >يوجد بديل</th>
+                                                        <th >
+                                                            @if (isset($product['found']))
+                                                            {{ $product['found']==1?'موجود':'غير موجود' }} 
+                                                            @else
+                                                                
+                                                            غير موجود
+                                                            @endif
+                                                        </th>
                                                     </tr>
                                                 @endif
                                             @endforeach
@@ -93,14 +106,22 @@
                                                 <td class="fw-bold">{{ $order->total_price }}</td>
                                             </tr>
                                             </tfoot>
+                                            @endisset
                                         </table>
                                         @if(Auth::user()->type == 0)
+                                        @if($order->status !=3)
+                                            
                                         <form action="{{ route('test') }}" method="get" class="overflow-hidden mx-3">
                                             <div class="tab-pane fade show active mt-3 row" id="profile-overview">
                                                 <button type="submit" name="id" value="{{ $order->id }}" class="btn btn-primary px-3 col-md-2 col-sm-12 mb-2">دفع</button>
                                                 <a type="submit" class="btn btn-danger px-3 col-md-2 col-sm-12   mx-sm-2 mb-2"> رفض</a>
                                             </div>
                                         </form>
+                                        @else
+                                        <div class="tab-pane fade show active mt-3 row" id="profile-overview">
+                                            هذا الطلب غير موجود
+                                        </div>
+                                        @endif
                                         @endif
                                     </div>
                                 </div>

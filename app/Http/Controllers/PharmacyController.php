@@ -70,7 +70,7 @@ class PharmacyController extends Controller
         if (empty($pharmacy)) {
             return view('registerAsPhar');
         } else {
-            return redirect()->route('pharmacy.index');
+            return redirect()->route('pharmacy.home');
         }
     }
 

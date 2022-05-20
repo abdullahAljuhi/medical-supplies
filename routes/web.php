@@ -18,6 +18,7 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\dashboard\adminController;
 use App\Http\Controllers\dashboard\PharmacyController as MangePharmacy;
 use App\Http\Controllers\PaymentController;
+use App\Models\Order;
 
 /*
 |--------------------------------------------------------------------------
@@ -149,6 +150,9 @@ Route::group(['middleware' => ['auth', 'verified']], function (){
         Route::get('/orders', [PharmacyController::class, 'orders'])->name('pharmacy.orders'); // all orders
 
         Route::get('/order/{id}', [PharmacyController::class, 'order'])->name('pharmacy.order'); // show order
+
+        Route::get('/order/{id}/notFound', [OrderController::class, 'notFond'])->name('pharmacy.order.notFond'); // show order
+
     }); // pharmacy crud end
 
 

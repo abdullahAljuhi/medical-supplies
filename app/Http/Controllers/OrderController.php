@@ -83,14 +83,25 @@ class OrderController extends Controller
             $products = json_encode($products, JSON_UNESCAPED_UNICODE);
 
             // $products=implode(',',$products);
-
+            
+            
             $order = new Order();
             $order->products = $products;
             $order->user_id = Auth::user()->id;
             $order->address = $address;
             $order->type = $type;
             $order->pharmacy_id = $request->pharmacy;
+            //check period
+            if(!$request->period){
+                $order->is_periodic=0;
+                $order->period='';
+            }else{
+                $order->is_periodic=1;
+                $order->period=$request->period;
+            }
+
             $order->save();
+
             $user = Pharmacy::find($request->pharmacy)->user_id;
             // return $user;
             // send notification for pharmacy
@@ -99,6 +110,7 @@ class OrderController extends Controller
             return view('order.orderMass')->with(['success' => 'تم ارسال الطلب  بنجاح']);
 
         } catch (\Throwable $th) {
+            return $th->getMessage();
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
             // throw $th;
         }
@@ -141,7 +153,7 @@ class OrderController extends Controller
     {
         try {
 
-
+            // return $request;
             $order = Order::find($id);
 
             // convert json to array
@@ -151,25 +163,35 @@ class OrderController extends Controller
 
             // initial total price
             $total_price = 0;
-
+            
             // store prices products array
             foreach ($prices as $i => $price) {
 
                 $products[$i]['unit_amount'] = $price;
-
+                 
+                if($request->found[$i]==1){
+                    $products[$i]['found'] = 1;
+                }else{
+                    $products[$i]['quantity']=0;
+                    $products[$i]['found'] = 0;
+                }
                 $total_price += $price * $products[$i]['quantity'];
             }
             $total_price += $request->delivery;
-
+            $status=1;
+            if( $total_price==$request->delivery){
+                $status=3;
+            }
+            // return $products;
             // convert array to json
             $products = json_encode($products, JSON_UNESCAPED_UNICODE);
-
+            
             $order->update([
                 'products' => $products,
                 'total_price' => $total_price,
                 'delivery_price' => $request->delivery,
-                'status' => '1',
-            ]);
+                'status' => $status,
+                ]);
          
             // send notification for user who send order
             event(new Messages($order, $order->user_id));
@@ -211,9 +233,11 @@ class OrderController extends Controller
             $order=Order::findOrFail($id);
             $order->status=3;
             $order->save();
-        return redirect('/pharmacy')->with(['success' => 'تمت العمليه بنجاح  ']);
+            return redirect('/pharmacy');
+        // send notification for user who send order
+        event(new Messages($order, $order->user_id));
         } catch (\Throwable $th) {
-            
+            // return
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
      
     }

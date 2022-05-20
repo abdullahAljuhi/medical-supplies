@@ -99,13 +99,13 @@
                                             </div>
                                             <div class="col-md-12 col-12 mb-2">
                                                 <label for="reorder" class="form-label fw-bold">حدد اذا كانت تريد تكرار الطلب </label>
-                                                <select name="reorder" id="select3"
+                                                <select name="period" id="select3"
                                                     class="form-select select1 form-control px-2 mx-1 pe-5"
                                                     aria-label=".form-select-lg example">
-                                                    <option value="one" disabled selected>  طلب لمرة واحدة</option>
-                                                    <option value="every_week">طلب  كل اسبوع</option>
-                                                    <option value="every_tow_week">طلب  كل اسبوعين</option>
-                                                    <option value="every_three_week">طلب  كل شهر </option>
+                                                    <option value="1" disabled selected>  طلب لمرة واحدة</option>
+                                                    <option value="7">طلب  كل اسبوع</option>
+                                                    <option value="14">طلب  كل اسبوعين</option>
+                                                    <option value="30">طلب  كل شهر </option>
                                                  </select>
                                             </div>
                                         </div>
@@ -121,7 +121,7 @@
 
                                                     <option value="0" disabled selected>جميع المحافظات</option>
                                                     @foreach ($governorates as $governorat)
-                                                        <option value="{{ $governorat->id }}">
+                                                        <option value="{{ $governorat->name }}">
                                                             {{ $governorat->name }}
                                                         </option>
                                                     @endforeach
@@ -134,7 +134,7 @@
                     aria-label=".form-select-lg example">
                     @foreach ($cities as $city)
                     <option class="city{{ $city->governorate_id }}"
-                    value="{{ $city->id }}">{{ $city->name }}</option>
+                    value="{{ $city->name }}">{{ $city->name }}</option>
                     @endforeach
                 </select>
                                                     </div>
