@@ -320,7 +320,7 @@
             <div class="row">
             @foreach($advertisements as $ads)
                 <div class="col-md-6 col-lg-3 ">
-                    @break($loop->index > 3)
+                    @break($loop->index <= 3)
                     <div class="mb-5 ">
                         <img class="img-fluid" src="/assets/images/advs/'.{{ $ads->image }}" alt="" style="width: 300px;height:250px">
                     </div>
