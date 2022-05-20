@@ -20,6 +20,7 @@ use App\Http\Requests\GovernorateRequest;
 use App\Notifications\ActivePharmacy;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Notification;
+use Throwable;
 
 class PharmacyController extends Controller
 {
@@ -40,19 +41,19 @@ class PharmacyController extends Controller
             } else {
                 if ($pharmacy->is_active == '1') {
 
-                    $orders = $this->OrderNotification();
 
-                    return view('pharmacy.home',compact('orders') );
+                    return view('pharmacy.home');
 
                 } else {
-                    event(new notfiy($pharmacy));
+                    // event(new notfiy($pharmacy));
                     return view('auth.verifyPharmacy');
                 }
             }
             // $user->pharmacy['license'];
 
         } catch (\Exception $e) {
-            return $e->getMessage();
+            // return $e->getMessage();
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
 
         }
     }
@@ -134,7 +135,7 @@ class PharmacyController extends Controller
 
             //
             DB::rollback();
-            return $ex->getMessage();
+            // return $ex->getMessage();
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
@@ -157,7 +158,7 @@ class PharmacyController extends Controller
             }
             return view('pharmacy-profile')->withPharmacy($pharmacy);
 
-        } catch (\Exception $e) {
+        } catch (Throwable $e) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
@@ -231,7 +232,7 @@ class PharmacyController extends Controller
             // return  insert date
 
             DB::rollback();
-            return $ex->getMessage();
+            // return $ex->getMessage();
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
@@ -254,23 +255,28 @@ class PharmacyController extends Controller
 
             $pharmacy->delete();
             return redirect()->route('pharmacy.home');
-        } catch (\Exception $e) {
-            //throw $th;
+        } catch (Throwable $e) {
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
 
     // get all orders for user auth
     public function orders()
     {
-        $type = [['جديد','قيد الانتظار','مكتمل','غير متوفر','مرفوض','مسترجع'],['primary','warning','success','secondary','danger','orange']];
+        $type = [['جديد',' في انتظار الدفع','مكتمل','غير متوفر','مرفوض','مسترجع'],['primary','warning','success','secondary','danger','orange']];
         $route = 'pharmacy.order';
         try {
             $user = User::with('pharmacy')->find(Auth::id());
-            $orders = Order::where('pharmacy_id', $user->pharmacy->id)->get();
-            return view('order.index', compact('orders','route','type'));
-        } catch (\Exception $e) {
 
-            return $e->getMessage();
+            $orders = Order::where('pharmacy_id', $user->pharmacy->id)->get();
+
+            return view('order.index', compact('orders','route','type'));
+
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+
+            // return $e->getMessage();
+            
         }
     }
 
@@ -283,6 +289,8 @@ class PharmacyController extends Controller
             if ($order) {
                 $products = json_decode($order->products, JSON_UNESCAPED_UNICODE);
                 if ($order->status == 0) {
+                    $order->is_show=1;
+                    $order->save();
                     return view('order.product', compact('order', 'products'));
                 } else {
                     return view('order.bill-text', compact('order', 'products'));
@@ -291,7 +299,8 @@ class PharmacyController extends Controller
                 return redirect()->back();
             }
         } catch (\Exception $e) {
-            return $e->getMessage();
+            // return $e->getMessage();
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
 

@@ -34,9 +34,10 @@ class MedicalController extends Controller
                         return '';
                     return $q->where('governorate_id', $request->governorate);
                 })
-                ->when($request->search, function ($q) use ($request) {
+                ->when($request->name, function ($q) use ($request) {
                     return $q->where('pharmacy_name', 'like', '%' . $request->name . '%');
-                })->when($request->city, function ($q) use ($request) {
+                })
+                ->when($request->city, function ($q) use ($request) {
                     if ($request->city == 0)
                     return '';
                     return $q->where('city_id', $request->city);
@@ -46,7 +47,8 @@ class MedicalController extends Controller
 
             return view('pharmacies', ['pharmacies' => $pharmacies]);
         } catch (\Exception $e) {
-            return $e->getMessage();
+            // return $e->getMessage();
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
 
     }
@@ -60,8 +62,11 @@ class MedicalController extends Controller
 
 
             return view('index', ['pharmacies' => $pharmacies,'advertisements'=>$advertisements]);
+
         } catch (\Exception $e) {
-            return $e->getMessage();
+            // return $e->getMessage();
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+
         }
 
     }
