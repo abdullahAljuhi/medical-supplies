@@ -207,6 +207,12 @@
                                 <span>الطلبات</span>
                             </a>
                         </li>
+                        <a class="dropdown-item d-flex align-items-center" href="
+                        {{-- {{ route('user.wallet') }} --}}
+                        ">
+                            <i class="bi bi-person"></i>
+                          ' {{ $user=App\Models\User::find(Auth::id())->wallet->balance; }} '<span>    ريال في محفضتك  </span>
+                        </a>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -430,8 +436,8 @@
         //   console.log(data.order.pharmacy_id);
           var existingNotifications = notifications.html();
           var newNotificationHtml = `
-            <form action="/order/${data.order.id}" method="get">
-            <button type="submit"> هناك طلب</button>
+            <form action="/order/${data.order.id}" class='n-form' method="get">
+            <button type="submit" class='n-form-btn'>  هناك طلب جديد</button>
             </form>`
             ;
           notifications.html(newNotificationHtml + existingNotifications);

@@ -92,8 +92,7 @@ class GovernorateController extends Controller
 
             $governorate->name = $request->name;
             $governorate->save();
-            $governorates = Governorate::all();
-        return view('admin.state',compact('governorates'))->with(['success' => 'تم  الاضافه بنجاح']);
+        return view('admin.state')->with(['success' => 'تم  الاضافه بنجاح']);
         } catch (\Exception $ex) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
@@ -103,8 +102,8 @@ class GovernorateController extends Controller
     public function active($id){
         try {
             $governorate = Governorate::with("cities")->find($id);
+
             $active=$governorate->is_active ;
-            // $accity=$cities->is_active;
           
             if($active == 0)
             {
@@ -124,7 +123,9 @@ class GovernorateController extends Controller
  
          
             $governorate->save();
-            return redirect()->back();
+
+            return redirect()->back()->with(['success' => 'تمت العمليه  بنجاح']);
+    
         } catch (\Exception $ex) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }

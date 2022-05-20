@@ -32,7 +32,7 @@ class UserController extends Controller
 
     }
 
-    public function changePassword(UserRequest $request) {
+    public function changePassword(Request $request) {
         if (!(Hash::check($request->current_password, Auth::user()->password))) {
 
             // The passwords matches
@@ -125,41 +125,63 @@ class UserController extends Controller
     // get all orders for user auth
     public function orders()
     {
-        $type = [['جديد','قيد الانتظار','مكتمل','غير متوفر','مرفوض','مسترجع'],['primary','warning','success','secondary','danger','orange']];
+
+        //this show order status to the user
+        $type = [['قيد الانتظار','في انتظار الدفع','مكتمل','غير متوفر','مرفوض','مسترجع'],['primary','warning','success','secondary','danger','orange']];
         $route = 'user.order';
         try {
+
              // if user is normal user
                 $orders = Order::where('user_id',Auth::id())->get();
+
                 return view('order.index', compact('orders','route','type'));
+
         } catch (\Exception $e) {
             return $e->getMessage();
         }
     }
+    
     public function order($id)
     {
         try {
             $order = Order::find($id);
-            if ($order) {
-                $products = json_decode($order->products, JSON_UNESCAPED_UNICODE);
-                if ($order->status == 0) {
-                    return redirect()->back();
+
+            if ($order) { //
+            // check is if auth user can see this order
+
+            if($order->user_id==Auth::id()){
+                    $products = json_decode($order->products, JSON_UNESCAPED_UNICODE);
+                    if ($order->status == 0) {
+                        return redirect()->back();
+                    } else {
+                        $order->is_show=1;
+                        $order->save();
+                        return view('order.bill-text', compact('order', 'products'));
+                    }
                 } else {
-                    $order->is_show=1;
-                    $order->save();
-                    return view('order.bill-text', compact('order', 'products'));
+                    return redirect()->back();
                 }
-            } else {
-                return redirect()->back();
             }
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return $e->getMessage();
         }
+        
     }
 
     // show user order's
     public function OrderNotification(){
+
         $orders = Order::where('status',0)->where('user_id',Auth::id())->get();
+
         return $orders;
+
+    }
+
+    public function getWallet(){
+
+        $user=User::find(Auth::id())->wallet;
+
+        return $user->wallet;
 
     }
 }

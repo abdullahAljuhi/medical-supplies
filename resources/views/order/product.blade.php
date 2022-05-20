@@ -11,7 +11,8 @@
         </nav>
     </div>
     <!-- End Page Title -->
-
+    @include('alerts.errors')
+    @include('alerts.success')
     <section class="section profile">
         <div class="row">
             <div class="col-xl-12">

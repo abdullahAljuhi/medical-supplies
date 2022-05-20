@@ -48,7 +48,7 @@ class OrderController extends Controller
     }
 
 
-    // this function use for send request (order)
+    // this function use for send request (order) to pharmacy
     public function send(Request $request)
     {
         try {
@@ -95,11 +95,12 @@ class OrderController extends Controller
             // return $user;
             // send notification for pharmacy
             event(new Messages($order, $user));
-
-            return view('order.orderMass');
+            
+            return view('order.orderMass')->with(['success' => 'تم ارسال الطلب  بنجاح']);
 
         } catch (\Throwable $th) {
-            throw $th;
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+            // throw $th;
         }
     }
 
@@ -124,7 +125,7 @@ class OrderController extends Controller
             return redirect()->back();
 
         } catch (\Throwable $th) {
-            throw $th;
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
 
@@ -172,10 +173,11 @@ class OrderController extends Controller
          
             // send notification for user who send order
             event(new Messages($order, $order->user_id));
-            return redirect('/pharmacy');
-
+            return redirect('/pharmacy')->with(['success' => 'تم ارسال الاسعار بنجاح  بنجاح']);
+            
         } catch (\Throwable $th) {
-            throw $th;
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+            // throw $th;
         }
     }
 
@@ -199,6 +201,21 @@ class OrderController extends Controller
             redirect()->back();
         } catch (\Throwable $th) {
             //throw $th;
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
+
+    // change order status to not found
+    public function notFond($id){
+        try {
+            $order=Order::findOrFail($id);
+            $order->status=3;
+            $order->save();
+        return redirect('/pharmacy')->with(['success' => 'تمت العمليه بنجاح  ']);
+        } catch (\Throwable $th) {
+            
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+     
+    }
+}
 }

@@ -122,8 +122,8 @@
                             @isset($orders)
                             @foreach ($orders as $order )
                             <li class="notification-item scrollable-container">
-                                <a href="pharmacy/order/{{ $order->id }}">
-                                    {{ $order->user->name}}
+                                <a href="/pharmacy/order/{{ $order->id }}">
+                                     هناك طلب من {{ $order->user->name}}
                                 </a>
                             </li>
                             @endforeach
@@ -181,6 +181,26 @@
                                 <i class="bi bi-gear"></i>
                                 <span>اعدادات الحساب</span>
                             </a>
+                        </li>
+                        <li>
+                            {{-- if(Auth::user) --}}
+                            @if(Auth::user()->type==1)
+                                
+                            <a class="dropdown-item d-flex align-items-center" href="
+                            {{-- {{ route('admin.wallet') }} --}}
+                            ">
+                                <i class="bi bi-person"></i>
+                                ' {{ $admin  = App\Models\User::where('type','1')->first()->wallet->balance; }} '<span>    ريال في محفضتك  </span>
+                            </a>
+                            @else
+                            <a class="dropdown-item d-flex align-items-center" href="
+                            {{-- {{ route('pharmacy.wallet') }} --}}
+                            ">
+                                <i class="bi bi-person"></i>
+                                ' {{ $user=App\Models\User::find(Auth::id())->wallet->balance; }} '<span>    ريال في محفضتك  </span>
+                            </a>
+                            {{-- user.wallet --}}
+                            @endif
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -394,8 +414,8 @@
         //   console.log(data.order.pharmacy_id);
           var existingNotifications = notifications.html();
           var newNotificationHtml = `
-            <form action="/pharmacy/order/${data.order.id}" method="get">
-            <button type="submit"> هناك طلب</button>
+            <form action="/pharmacy/order/${data.order.id}" class='n-form' method="get">
+            <button type="submit" class='n-form-btn'>  هناك طلب جديد</button>
             </form>`
             ;
           notifications.html(newNotificationHtml + existingNotifications);

@@ -129,8 +129,8 @@ class CityController extends Controller
          
             $city->save();
             
-            $governorates = Governorate::all();
-            $cities = City::with('governorate')->get();
+            // $governorates = Governorate::all();
+            // $cities = City::with('governorate')->get();
             return redirect()->back();
         } catch (\Exception $ex) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
