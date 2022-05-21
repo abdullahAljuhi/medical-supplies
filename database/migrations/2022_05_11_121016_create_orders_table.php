@@ -32,7 +32,7 @@ return new class extends Migration
             $table->integer('total_price')->default(0);
             $table->boolean('type')->default(0); // this check if order is order by image
             $table->boolean('is_periodic')->default(0);
-            $table->integer('period')->nullable();
+            $table->integer('period')->nullable(0);
             $table->timestamps();
         });
     }

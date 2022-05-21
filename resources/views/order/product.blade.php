@@ -112,8 +112,8 @@
                                     <div class="col-md-2 col-12 mb-2 border-1 fw-bold">
                                         <label for="name" >سعر التوصيل</label>
                                     </div>
-                                    <div class="col-md-6 col-12">
-                                        <input type="text" name="delivery" class="form-control w-100" id="name" required placeholder="يرجى ادخال سعر التوصيل ">
+                                    <div class="col-md-2 col-12">
+                                        <input type="text" name="delivery" class="form-control w-100" id="name" required placeholder=" ادخال سعر التوصيل ">
                                     </div>
                                 </div>
                                 <hr>
