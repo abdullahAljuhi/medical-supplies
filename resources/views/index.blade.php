@@ -14,7 +14,7 @@
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid top-slider" src="{{asset('img/md/prescription.png') }}" alt="">
+                            <img class="img-fluid top-slider w-100 h-auto" src="{{asset('img/md/prescription.png') }}" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
@@ -32,7 +32,7 @@
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid top-slider" src="{{asset('img/33.png ') }}" alt="">
+                            <img class="img-fluid top-slider w-100 h-auto" src="{{asset('img/33.png ') }}" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
@@ -52,7 +52,7 @@
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid top-slider" src="{{asset('img/22.png') }}" alt="">
+                            <img class="img-fluid top-slider w-100 h-auto" src="{{asset('img/22.png') }}" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
@@ -80,13 +80,13 @@
 <!-- End Banner Hero -->
 <section class="bg-white ads">
     <div class="  p-4">
-        <div class="row">
+        <div class="row justify-content-around">
             @foreach($advertisements as $ads)
             @if( $ads->is_active)
             @break($loop->index > 3)
             <div class="col-md-6 col-lg-3 ">
                 <div class="mb-5 ">
-                    <img class="img-fluid" src="{{asset('assets/images/advs/'.$ads->image) }}" alt="" style="width: 300px;height:250px">
+                    <img class="img-fluid" src="{{asset('assets/images/advs/'.$ads->image) }}" alt="" style="width: 300px;height:300px">
                 </div>
             </div>
             @else

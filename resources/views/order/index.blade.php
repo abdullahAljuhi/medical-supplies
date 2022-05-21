@@ -5,7 +5,7 @@
     <div class="pagetitle mx-5 mt-3">
         <h1>جميع الطلبات</h1>
         <nav>
-            <ol class="breadcrumb">
+            <ol class="breadcrumb my-3">
                 <li class="breadcrumb-item"><a href="../index.blade.php">الطلبات</a></li>
                 <li class="breadcrumb-item active">لوحة التحكم</li>
             </ol>

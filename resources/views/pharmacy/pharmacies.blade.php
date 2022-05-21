@@ -10,7 +10,7 @@
         <h1>الصيدليات</h1>
         <nav>
             <ol class="breadcrumb my-3">
-                <li class="breadcrumb-item"><a href="/home">لوحة التحكم</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">لوحة التحكم</a></li>
                 <li class="breadcrumb-item active">الصيدليات</li>
             </ol>
         </nav>
@@ -36,12 +36,8 @@
                         <h6>فلترة الطلبات</h6>
                     </li>
                     <li><a class="dropdown-item" href="#">جميع الصيدليات</a></li>
-                    <li><a class="dropdown-item" href="#">جديد</a></li>
-                    <li><a class="dropdown-item" href="#">قيد الانتظار</a></li>
-                    <li><a class="dropdown-item" href="#">مكتمل</a></li>
-                    <li><a class="dropdown-item" href="#">غير متوفر</a></li>
-                    <li><a class="dropdown-item" href="#">مرفوض</a></li>
-                    <li><a class="dropdown-item" href="#">مسترجع</a></li>
+                    <li><a class="dropdown-item" href="#">نشظ</a></li>
+                    <li><a class="dropdown-item" href="#">غير مفعل</a></li>
                 </ul>
             </div>
 

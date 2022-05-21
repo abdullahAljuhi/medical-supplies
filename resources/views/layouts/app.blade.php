@@ -291,7 +291,7 @@
                 </li><!-- End Icons Nav -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="{{ route('show.adv') }}">
-                        <i class="bi bi-gem"></i><span>المحفظة</span></i>
+                        <i class="bi bi-cash-coin"></i><span>المحفظة</span></i>
                     </a>
                 </li><!-- End Icons Nav -->
                 <li class="nav-item">

@@ -26,7 +26,7 @@
                     <div id="real">
                     </div>
                     @foreach ($pharmacies as $pharmacy)
-                        <div class="alert alert-primary px-0" role="alert">
+                        <div class="alert alert-warning px-0" role="alert">
                             <form action="{{ route('admin.check.pharmacy',$pharmacy->id) }}" method="get"
                                   id="my_form">
                                 @csrf

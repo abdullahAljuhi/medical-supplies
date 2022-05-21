@@ -6,11 +6,11 @@
     @include('alerts.success')
     <!-- Page Title -->
     <div class="pagetitle">
-        <h1>Dashboard</h1>
+        <h1>المستخدمين</h1>
         <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../index.blade.php">Home</a></li>
-                <li class="breadcrumb-item active">Dashboard</li>
+            <ol class="breadcrumb my-3">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">لوحة التحكم</a></li>
+                <li class="breadcrumb-item active">المستخدمين</li>
             </ol>
         </nav>
     </div>
@@ -34,13 +34,12 @@
                     <li class="dropdown-header text-end">
                         <h6>فلترة الطلبات</h6>
                     </li>
-                    <li><a class="dropdown-item" href="#">جميع الصيدليات</a></li>
-                    <li><a class="dropdown-item" href="#">جديد</a></li>
-                    <li><a class="dropdown-item" href="#">قيد الانتظار</a></li>
-                    <li><a class="dropdown-item" href="#">مكتمل</a></li>
-                    <li><a class="dropdown-item" href="#">غير متوفر</a></li>
-                    <li><a class="dropdown-item" href="#">مرفوض</a></li>
-                    <li><a class="dropdown-item" href="#">مسترجع</a></li>
+                    <li><a class="dropdown-item" href="#">جميع المستخدمين</a></li>
+                    <li><a class="dropdown-item" href="#">مدير</a></li>
+                    <li><a class="dropdown-item" href="#">صيدلية</a></li>
+                    <li><a class="dropdown-item" href="#">مستخدم</a></li>
+                    <li><a class="dropdown-item" href="#">نشط</a></li>
+                    <li><a class="dropdown-item" href="#">غير مفعل</a></li>
                 </ul>
             </div>
 

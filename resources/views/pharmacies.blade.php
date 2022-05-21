@@ -200,7 +200,7 @@
             var id = $(this).val();
             var options = $(this).data('options').filter('[class=city' + id + ']');
             $('#select2').html(options);
-            $('#select2').prepend('<option selected>جميع المدن</option>');
+            $('#select2').prepend('<option selected value="0">جميع المدن</option>');
         }
     </script>
 @endsection
