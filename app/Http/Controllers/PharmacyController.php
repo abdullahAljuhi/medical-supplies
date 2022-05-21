@@ -81,7 +81,7 @@ class PharmacyController extends Controller
      * @return \Illuminate\Http\Response
      */
     // PharmacyRequest
-    public function store(Request $request)
+    public function store(PharmacyRequest $request)
     {
         // PharmacyRequest request with validation
 
@@ -170,7 +170,7 @@ class PharmacyController extends Controller
      * @param \App\Models\Pharmacy $pharmacy
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(PharmacyRequest $request)
     {
 
         // PharmacyRequest request with validation
