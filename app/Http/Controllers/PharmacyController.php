@@ -89,24 +89,19 @@ class PharmacyController extends Controller
 
             Validator::validate($request->all(),[
 
-                'name' => ['required'],
-            'mobile' => ['numeric|max:11'],
-            'phone' => ['required|numeric|max:11'],
-            'fax' => ['numeric|max:11'],
+             'name' => ['required'],
+            'mobile' => ['numeric|max:15|min:6'],
+            'phone' => ['required|numeric|max:15|min:6'],
             'license'=>['required'],
-            'image'=>['image'],
             'accept'=>['required']
             ],[
 
-                'name.required' => 'يجب إدخال اسم الصيدلية',
+             'name.required' => 'يجب إدخال اسم الصيدلية',
             'mobile.numeric'=>'يجب كتابة أرقام فقط',
-            'mobile.max'=>'تأكد من كتابة الرقم بشكل صحيح',
+            'mobile.max'=>'هذا الرقم طويل جدا ',
             'phone.required'=>'يجب ملئ هذا الحقل برقم التلفون',
-            'phone.max'=>'تأكد من كتابة الرقم بشكل صحيح',
+            'phone.max'=>'هذا الرقم طويل جدا',
             'phone.numeric'=>'يجب كتابة أرقام فقط',
-            'fax.numeric'=>'يجب كتابة أرقام فقط',
-            'fax.max'=>'تأكد من كتابة الرقم بشكل صحيح',
-            'image.image'=>'الصيغة غير مدعومة تأكد من صيغة الملف',
             'license.required'=>'عليك إدخال الترخيص',
             'accept.required' => 'يجب ان توافق على الشروط '
             ]);
@@ -194,7 +189,7 @@ class PharmacyController extends Controller
      * @param \App\Models\Pharmacy $pharmacy
      * @return \Illuminate\Http\Response
      */
-    public function update(PharmacyRequest $request)
+    public function update(Request $request)
     {
 
         // PharmacyRequest request with validation
@@ -203,26 +198,20 @@ class PharmacyController extends Controller
 
             Validator::validate($request->all(),[
 
-                'name' => ['required'],
+            'name' => ['required'],
             'mobile' => ['numeric|max:11'],
             'phone' => ['required|numeric|max:11'],
-            'fax' => ['numeric|max:11'],
             'license'=>['required'],
             'image'=>['image'],
-            'accept'=>['required']
             ],[
 
-                'name.required' => 'يجب إدخال اسم الصيدلية',
+            'name.required' => 'يجب إدخال اسم الصيدلية',
             'mobile.numeric'=>'يجب كتابة أرقام فقط',
-            'mobile.max'=>'تأكد من كتابة الرقم بشكل صحيح',
+            'mobile.max'=>'هذا الرقم طويل جدا',
             'phone.required'=>'يجب ملئ هذا الحقل برقم التلفون',
-            'phone.max'=>'تأكد من كتابة الرقم بشكل صحيح',
+            'phone.max'=>'هذا الرقم طويل جدا',
             'phone.numeric'=>'يجب كتابة أرقام فقط',
-            'fax.numeric'=>'يجب كتابة أرقام فقط',
-            'fax.max'=>'تأكد من كتابة الرقم بشكل صحيح',
             'image.image'=>'الصيغة غير مدعومة تأكد من صيغة الملف',
-            'license.required'=>'عليك إدخال الترخيص',
-            'accept.required' => 'يجب ان توافق على الشروط '
             ]);
             $pharmacy = Pharmacy::where('user_id', Auth::user()->id)->first();
 
