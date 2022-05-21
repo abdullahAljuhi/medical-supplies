@@ -128,7 +128,7 @@ Route::group(['middleware' => ['auth', 'verified']], function (){
 
             Route::get('/disActive/{pharmacy}', [MangePharmacy::class, 'disActive'])->name('admin.pharmacy.disActive');
 
-            Route::post('/check/{id?}', [MangePharmacy::class, 'checkPharmacy'])->name('admin.check.pharmacy');
+            Route::get('/check/{id?}', [MangePharmacy::class, 'checkPharmacy'])->name('admin.check.pharmacy');
         });
 
         /////////////////////////////////////// end pharmacy
