@@ -1,9 +1,11 @@
-@if(Auth::user()->type != 0)
+{{-- @if(Auth::user()->type != 0)
 {{ $app='layouts.app' }}
 @else
 {{ $app='layouts.main' }}
-@endif
-@extends($app)
+@endif --}}
+@extends(Auth::user()->type == 0 ? 'layouts.main' : 'layouts.app')
+
+{{-- @extends($app) --}}
 @section('title', 'طلب جديد')
 @section('content')
     <!-- Page Title -->

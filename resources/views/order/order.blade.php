@@ -181,14 +181,13 @@
                                             </div>
                                             <div class="col-md-12 col-12 mb-2">
                                                 <label for="reorder" class="form-label fw-bold">حدد اذا كانت تريد تكرار الطلب </label>
-                                                <select name="reorder" id="select3"
+                                                <select name="period" id="select3"
                                                     class="form-select select1 form-control px-2 mx-1 pe-5"
                                                     aria-label=".form-select-lg example">
-                                                    <option value="one" disabled selected>  طلب لمرة واحدة</option>
-                                                    <option value="every_week">طلب بعد كل اسبوع</option>
-                                                    <option value="every_tow_week">طلب بعد كل اسبوعين</option>
-                                                    <option value="every_three_week">طلب بعد كل 3 اسابيع</option>
-                                                    <option value="every_four_week">طلب بعد كل 4 اسابيع</option>
+                                                    <option value="0" disabled selected>  طلب لمرة واحدة</option>
+                                                    <option value="7">طلب  كل اسبوع</option>
+                                                    <option value="14">طلب  كل اسبوعين</option>
+                                                    <option value="30">طلب  كل شهر </option>
                                                  </select>
                                             </div>
                                             <div class="row   py-3 px-2 ">
