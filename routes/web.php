@@ -33,7 +33,7 @@ use App\Http\Controllers\PaymentController;
 
 Auth::routes(['verify' => true]);
 
-define('PAGINATION', 10);
+//define('PAGINATION', 10);
 
 
 Route::group(['middleware' => ['auth', 'verified']], function (){
