@@ -102,7 +102,7 @@
                                                 <select name="period" id="select3"
                                                     class="form-select select1 form-control px-2 mx-1 pe-5"
                                                     aria-label=".form-select-lg example">
-                                                    <option value="1" disabled selected>  طلب لمرة واحدة</option>
+                                                    <option value="0" disabled selected>  طلب لمرة واحدة</option>
                                                     <option value="7">طلب  كل اسبوع</option>
                                                     <option value="14">طلب  كل اسبوعين</option>
                                                     <option value="30">طلب  كل شهر </option>

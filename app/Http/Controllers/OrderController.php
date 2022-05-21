@@ -91,6 +91,7 @@ class OrderController extends Controller
             $order->address = $address;
             $order->type = $type;
             $order->pharmacy_id = $request->pharmacy;
+            
             //check period
             if(!$request->period){
                 $order->is_periodic=0;
@@ -110,7 +111,7 @@ class OrderController extends Controller
             return view('order.orderMass')->with(['success' => 'تم ارسال الطلب  بنجاح']);
 
         } catch (\Throwable $th) {
-            return $th->getMessage();
+            // return $th->getMessage();
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
             // throw $th;
         }
@@ -236,6 +237,20 @@ class OrderController extends Controller
             return redirect('/pharmacy');
         // send notification for user who send order
         event(new Messages($order, $order->user_id));
+        } catch (\Throwable $th) {
+            // return
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+     
+    }
+}
+       // change order status to not found
+       public function cancel($id){
+        try {
+            $order=Order::findOrFail($id);
+            $order->status=4;
+            $order->save();
+            return redirect('/');
+
         } catch (\Throwable $th) {
             // return
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);

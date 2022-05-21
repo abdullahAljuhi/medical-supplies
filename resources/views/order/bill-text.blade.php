@@ -109,17 +109,21 @@
                                             @endisset
                                         </table>
                                         @if(Auth::user()->type == 0)
-                                        @if($order->status !=3)
+                                        @if($order->status < 3)
                                             
                                         <form action="{{ route('test') }}" method="get" class="overflow-hidden mx-3">
                                             <div class="tab-pane fade show active mt-3 row" id="profile-overview">
                                                 <button type="submit" name="id" value="{{ $order->id }}" class="btn btn-primary px-3 col-md-2 col-sm-12 mb-2">دفع</button>
-                                                <a type="submit" class="btn btn-danger px-3 col-md-2 col-sm-12   mx-sm-2 mb-2"> رفض</a>
+                                                <a href="{{ route('user.order.cancel',$order->id) }}" class="btn btn-danger px-3 col-md-2 col-sm-12   mx-sm-2 mb-2"> رفض</a>
                                             </div>
                                         </form>
-                                        @else
+                                        @elseif($order->status == 3)
                                         <div class="tab-pane fade show active mt-3 row" id="profile-overview">
                                             هذا الطلب غير موجود
+                                        </div>
+                                        @else
+                                        <div class="tab-pane fade show active mt-3 row" id="profile-overview">
+                                            هذا الطلب تم الغاءه
                                         </div>
                                         @endif
                                         @endif

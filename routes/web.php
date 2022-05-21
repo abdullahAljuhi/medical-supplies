@@ -51,6 +51,8 @@ Route::group(['middleware' => ['auth', 'verified']], function (){
     // user wallet
     Route::get('/wallet', [UserController::class, 'getWallet'])->name('user.wallet');
     
+    Route::get('/order/{id}/cancel', [OrderController::class, 'cancel'])->name('user.order.cancel'); // show order
+
 
     // Route::get('/orders', [UserController::class, 'orders'])->name('user.orders'); // all orders
     Route::get('/order/{id}', [UserController::class, 'order'])->name('user.order'); // show order
