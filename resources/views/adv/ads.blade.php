@@ -107,7 +107,8 @@
                                 @endif
                             </div>
                             <div class="col-md-2 mb-2 mb-md-0  text-center row">
-                              <div class=" col-9 text-center">
+                              <div class=" col-6 text-center">
+
                                <!--<div class="col-10 border">-->
                                
                                    
@@ -126,7 +127,8 @@
                                
                                </div>
 
-                               <div class=" col-3 text-center">
+                               <div class=" col-6 text-center">
+
                                <a href="{{ route('delete.adv', $ads->id) }}" class="btn btn-outline-danger  ">
                                              حذف 
                                             </a>
