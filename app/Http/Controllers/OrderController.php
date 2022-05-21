@@ -52,6 +52,7 @@ class OrderController extends Controller
     public function send(Request $request)
     {
         try {
+            // return $request;
             $address = $request['governorate'] . ' - ' . $request['city'] . ' - ' . $request['details'];
             $type = 0;
             $products = [];
@@ -95,7 +96,7 @@ class OrderController extends Controller
             //check period
             if(!$request->period){
                 $order->is_periodic=0;
-                $order->period='';
+                $order->period=0;
             }else{
                 $order->is_periodic=1;
                 $order->period=$request->period;
