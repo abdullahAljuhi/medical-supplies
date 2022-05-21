@@ -37,7 +37,7 @@
                                 class="form-select select1 form-control mx-2"
                                 aria-label=".form-select-lg example">
 
-                            <option selected>جميع المحافظات</option>
+                            <option value="0" selected>جميع المحافظات</option>
                             @foreach ($governorates as $governorat)
                                 <option value="{{ $governorat->id }}">
                                     {{ $governorat->name }}
@@ -47,7 +47,7 @@
                         <select name="city" id="select2"
                                 class="form-select select2 form-control mx-2"
                                 aria-label=".form-select-lg example">
-                            <option selected>جميع المدن</option>
+                            <option value="0" selected>جميع المدن</option>
                             @foreach ($cities as $city)
                                 <option class="city{{ $city->governorate_id }}"
                                         value="{{ $city->id }}">{{ $city->name }}</option>
