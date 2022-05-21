@@ -34,7 +34,7 @@ use App\Models\Order;
 
 Auth::routes(['verify' => true]);
 
-// define('PAGINATION', 10);
+
 
 
 Route::group(['middleware' => ['auth', 'verified']], function (){
