@@ -168,7 +168,8 @@ class AdvertisementController extends Controller
     public function delete($id)
     {
         try {
-            $advertisement = Advertisement::find($id);
+            $advertisement = Advertisement::findOrFail($id);
+
             if ($advertisement->image !== '') { // check if advertisement has image
                 // remove image
                 $fileName = public_path('assets/images/advs/' . $advertisement->image);
@@ -176,6 +177,7 @@ class AdvertisementController extends Controller
             }
 
             $advertisement->delete();
+
             return redirect()->route('show.adv')->with(['success' => 'تم  الحذف بنجاح']);
         } catch (Throwable $e) {
 
@@ -191,21 +193,11 @@ class AdvertisementController extends Controller
 
             $advertisements= Advertisement::findOrFail($id);
 
-            // 
-            $ac=$advertisements->is_active ;
-    
-             if($ac == 0)
-             {
-                 $ac=1;
-    
-             }else{
-                 $ac=0;
-             }
-    
-                $advertisements->is_active=$ac;
-    
-    
+         
+            $advertisements->is_active? 0 : 1 ;
+   
              $advertisements->save();
+          
             return redirect()->back()->with(['success' => 'تمت العمليه  بنجاح']);
         } catch (\Throwable $th) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);

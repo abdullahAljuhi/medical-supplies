@@ -34,10 +34,12 @@ use App\Models\Order;
 
 Auth::routes(['verify' => true]);
 
-define('PAGINATION', 10);
+
 
 
 Route::group(['middleware' => ['auth', 'verified']], function (){
+    Route::get('/testwallet', [PaymentController::class, 'test_wallet']);
+
 
     // main page after login
     Route::get('/home', [HomeController::class, 'index'])->name('home');

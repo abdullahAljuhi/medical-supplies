@@ -52,6 +52,21 @@ class OrderController extends Controller
     public function send(Request $request)
     {
         try {
+            $request->validate([
+            'products'=>'required',
+            'governorate'=>'required',
+            'city'=>'required',
+            'details'=>'required',
+            'pharmacy'=>'required|exists:app\Models\Pharmacy,id'
+            ], [
+                'products.required' => 'يجب إدخال اسم المنتج',
+                'pharmacy.required'=>'يجب تحديد الصيدلية',
+                'governorate.exists'=>'المحافضه غير موجودة',
+                'products.required' => 'يجب إدخال اسم المنتج',
+                'city.exists'=>'المحافضه غير موجودة',
+                'details.exists'=>'التفاصيل غير موجودة',
+            ]
+        );
             // return $request;
             $address = $request['governorate'] . ' - ' . $request['city'] . ' - ' . $request['details'];
             $type = 0;
@@ -154,6 +169,14 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
         try {
+            $request->validate([
+                'price'=>'required',
+                'delivery'=>'required|numeric',
+                ], [
+                    'price.required'=>'يجب إخال سعر المنتج',
+                    'delivery.required'=>'يجب إخال سعر المنتج',
+                ]
+            );
 
             // return $request;
             $order = Order::find($id);

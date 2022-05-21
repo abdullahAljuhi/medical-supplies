@@ -86,6 +86,26 @@ class PharmacyController extends Controller
         // PharmacyRequest request with validation
 
         try {
+            // return $request;
+
+            Validator::validate($request->all(),[
+
+             'name' => ['required'],
+            'mobile' => ['numeric|max:15|min:6'],
+            'phone' => ['required|numeric|max:15|min:6'],
+            'license'=>['required'],
+            'accept'=>['required']
+            ],[
+
+             'name.required' => 'يجب إدخال اسم الصيدلية',
+            'mobile.numeric'=>'يجب كتابة أرقام فقط',
+            'mobile.max'=>'هذا الرقم طويل جدا ',
+            'phone.required'=>'يجب ملئ هذا الحقل برقم التلفون',
+            'phone.max'=>'هذا الرقم طويل جدا',
+            'phone.numeric'=>'يجب كتابة أرقام فقط',
+            'license.required'=>'عليك إدخال الترخيص',
+            'accept.required' => 'يجب ان توافق على الشروط '
+            ]);
 
             // start transaction
             DB::beginTransaction();
@@ -132,10 +152,10 @@ class PharmacyController extends Controller
             return redirect()->route('pharmacy.home');
         } catch (\Exception $ex) {
 
-
             //
             DB::rollback();
-            // return $ex->getMessage();
+            return $ex->getMessage();
+            return $ex->getMessage();
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
@@ -177,6 +197,23 @@ class PharmacyController extends Controller
 
         try {
 
+            Validator::validate($request->all(),[
+
+            'name' => ['required'],
+            'mobile' => ['numeric|max:11'],
+            'phone' => ['required|numeric|max:11'],
+            'license'=>['required'],
+            'image'=>['image'],
+            ],[
+
+            'name.required' => 'يجب إدخال اسم الصيدلية',
+            'mobile.numeric'=>'يجب كتابة أرقام فقط',
+            'mobile.max'=>'هذا الرقم طويل جدا',
+            'phone.required'=>'يجب ملئ هذا الحقل برقم التلفون',
+            'phone.max'=>'هذا الرقم طويل جدا',
+            'phone.numeric'=>'يجب كتابة أرقام فقط',
+            'image.image'=>'الصيغة غير مدعومة تأكد من صيغة الملف',
+            ]);
             $pharmacy = Pharmacy::where('user_id', Auth::user()->id)->first();
 
             // start transaction
@@ -304,18 +341,5 @@ class PharmacyController extends Controller
         }
     }
 
-        // show orders that for pharmacy
-        public function OrderNotification(){
 
-            $q = Order::with(['pharmacy'=>function($q){
-                return $q->where('user_id',Auth::id());
-            }],'user')->where('status',1);
-
-            $orders=$q->limit(6)->get();
-
-            $count=$q->count();
-
-            return ['orders'=>$orders,'count'=>$count];
-
-        }
 }
