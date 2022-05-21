@@ -114,7 +114,7 @@ class PharmacyController extends Controller
             $address = $pharmacy->address()->create([
                 'city_id' => $request['city'],
                 'governorate_id' => $request['governorate'],
-                'street' => $request['description'],
+                'street' => $request['street'],
                 'details' => $request['details'],
             ]);
 
@@ -276,7 +276,7 @@ class PharmacyController extends Controller
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
 
             // return $e->getMessage();
-            
+
         }
     }
 
@@ -304,18 +304,18 @@ class PharmacyController extends Controller
         }
     }
 
-        // show orders that for pharmacy 
+        // show orders that for pharmacy
         public function OrderNotification(){
 
             $q = Order::with(['pharmacy'=>function($q){
                 return $q->where('user_id',Auth::id());
             }],'user')->where('status',1);
-    
+
             $orders=$q->limit(6)->get();
-    
+
             $count=$q->count();
-        
+
             return ['orders'=>$orders,'count'=>$count];
-        
+
         }
 }
