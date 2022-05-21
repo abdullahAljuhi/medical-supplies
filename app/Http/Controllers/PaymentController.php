@@ -156,4 +156,17 @@ class PaymentController extends Controller
         
 
     }
+        // store in wallet
+        public function test_wallet(){
+
+            $admin  = User::where('type','1')->first();
+    
+            $user   = User::find(Auth::id());
+    
+            $user->deposit(100); 
+    
+            $admin->deposit(100); 
+            
+            return $wallet=$user->wallet->transactions;
+        }
 }

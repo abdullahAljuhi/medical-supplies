@@ -25,11 +25,11 @@ class PharmacyRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'mobile' => 'numeric|max:11',
-            'phone' => 'required|numeric|max:11',
-            'fax' => 'numeric|max:11',
+            // 'mobile' => 'digits_between:6,11',
+            // 'phone' => 'required|digits_between:6,11',
+            // 'fax' => 'numeric|max:11',
             'license'=>'required',
-            'image'=>'image',
+            // 'image'=>'image',
             'accept'=>'required'
         ];
     }
@@ -38,14 +38,14 @@ class PharmacyRequest extends FormRequest
     {
         return [
             'name.required' => 'يجب إدخال اسم الصيدلية',
-            'mobile.numeric'=>'يجب كتابة أرقام فقط',
-            'mobile.max'=>'تأكد من كتابة الرقم بشكل صحيح',
-            'phone.required'=>'يجب ملئ هذا الحقل برقم التلفون',
-            'phone.max'=>'تأكد من كتابة الرقم بشكل صحيح',
-            'phone.numeric'=>'يجب كتابة أرقام فقط',
-            'fax.numeric'=>'يجب كتابة أرقام فقط',
-            'fax.max'=>'تأكد من كتابة الرقم بشكل صحيح',
-            'image.image'=>'الصيغة غير مدعومة تأكد من صيغة الملف',
+            // 'mobile.numeric'=>'يجب كتابة أرقام فقط',
+            // 'mobile.max'=>'تأكد من كتابة الرقم بشكل صحيح',
+            // 'phone.required'=>'يجب ملئ هذا الحقل برقم التلفون',
+            // 'phone.max'=>'تأكد من كتابة الرقم بشكل صحيح',
+            // 'phone.numeric'=>'يجب كتابة أرقام فقط',
+            // 'fax.numeric'=>'يجب كتابة أرقام فقط',
+            // 'fax.max'=>'تأكد من كتابة الرقم بشكل صحيح',
+            // 'image.image'=>'الصيغة غير مدعومة تأكد من صيغة الملف',
             'license.required'=>'عليك إدخال الترخيص',
             'accept.required' => 'يجب ان توافق على الشروط '
             ];

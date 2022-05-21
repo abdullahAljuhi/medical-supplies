@@ -81,11 +81,12 @@ class PharmacyController extends Controller
      * @return \Illuminate\Http\Response
      */
     // PharmacyRequest
-    public function store(PharmacyRequest $request)
+    public function store(Request $request)
     {
         // PharmacyRequest request with validation
 
         try {
+            // return $request;
 
             // start transaction
             DB::beginTransaction();
@@ -132,10 +133,10 @@ class PharmacyController extends Controller
             return redirect()->route('pharmacy.home');
         } catch (\Exception $ex) {
 
-
             //
             DB::rollback();
-            // return $ex->getMessage();
+            return $ex->getMessage();
+            return $ex->getMessage();
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
@@ -170,7 +171,7 @@ class PharmacyController extends Controller
      * @param \App\Models\Pharmacy $pharmacy
      * @return \Illuminate\Http\Response
      */
-    public function update(PharmacyRequest $request)
+    public function update(Request $request)
     {
 
         // PharmacyRequest request with validation
@@ -304,18 +305,5 @@ class PharmacyController extends Controller
         }
     }
 
-        // show orders that for pharmacy
-        public function OrderNotification(){
 
-            $q = Order::with(['pharmacy'=>function($q){
-                return $q->where('user_id',Auth::id());
-            }],'user')->where('status',1);
-
-            $orders=$q->limit(6)->get();
-
-            $count=$q->count();
-
-            return ['orders'=>$orders,'count'=>$count];
-
-        }
 }
