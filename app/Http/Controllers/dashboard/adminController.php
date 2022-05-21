@@ -16,6 +16,7 @@ class adminController extends Controller
     public function index()
     {
         try {
+
             $pharmacies = Pharmacy::where('check', 0)->get();
 
             return view('home')->withPharmacies($pharmacies);
@@ -37,10 +38,13 @@ class adminController extends Controller
         }
     }
 
+    // show all users
     public function users()
     {
+        // all users 
         $users = User::latest()->where('id', '<>', auth()->id())->get();
 
+        // users type
         $types = ['مستخدم', 'مدير', 'صيدلية'];
 
         return view('user.users', compact('users', 'types'));
@@ -49,17 +53,22 @@ class adminController extends Controller
     // get all orders for user auth
     public function orders()
     {
+        // order status
         $type = [['جديد','قيد الانتظار','مكتمل','غير متوفر','مرفوض','مسترجع'],['primary','warning','success','secondary','danger','orange']];
+        
         $route = 'admin.order';
+        
         try {
             $orders = Order::with('user', 'pharmacy')->get();
+
             return view('order.index', compact('orders','type','route'));
+
         } catch (\Exception $e) {
             return $e->getMessage();
         }
     }
 
-
+    // show oder
     public function order($id)
     {
         try {
@@ -67,9 +76,14 @@ class adminController extends Controller
             $order = Order::with('pharmacy', 'user')->find($id);
 
             if ($order) {
+
+                // convert json to array
                 $products = json_decode($order->products, JSON_UNESCAPED_UNICODE);
+
                 if ($order->status == 0) {
+
                     return redirect()->back();
+                    
                 } else {
                     return view('order.bill-text', compact('order', 'products'));
                 }

@@ -18,10 +18,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         $users = [
-            [ 'name' => 'عبدالله الجوهي', 'email' => 'a139@gmil.com', 'email_verified_at'=>'2022-05-14 19:25:19', 'password' => bcrypt('12345678'),'type'=>'1'],
-            [ 'name' => 'عبدالله باعبود',  'email' => 'Baaboud@gmail.com', 'email_verified_at'=>'2022-05-14 19:25:19','password' => bcrypt('asdfasdf'),'type'=>'1'],
-            [ 'name' => ' مراد العمودي', 'email' => 'Mm@gmil.com', 'email_verified_at'=>'2022-05-14 19:25:19','password' => bcrypt('12345678'),'type'=>'1'],
-            [ 'name' => ' احلام مقرم',  'email' => 'Ah@gmail.com','email_verified_at'=>'2022-05-14 19:25:19', 'password' => bcrypt('12345678'),'type'=>'1'],
+            [ 'name' => ' المدير', 'email' => 'Eilaji_kum@gmail.com', 'email_verified_at'=>'2022-05-14 19:25:19', 'password' => bcrypt('12345678'),'type'=>'1'],
         ];
         User::insert($users);
     }

@@ -48,10 +48,26 @@ class OrderController extends Controller
     }
 
 
-    // this function use for send request (order)
+    // this function use for send request (order) to pharmacy
     public function send(Request $request)
     {
         try {
+            $request->validate([
+            'products'=>'required',
+            'governorate'=>'required',
+            'city'=>'required',
+            'details'=>'required',
+            'pharmacy'=>'required|exists:app\Models\Pharmacy,id'
+            ], [
+                'products.required' => 'يجب إدخال اسم المنتج',
+                'pharmacy.required'=>'يجب تحديد الصيدلية',
+                'governorate.exists'=>'المحافضه غير موجودة',
+                'products.required' => 'يجب إدخال اسم المنتج',
+                'city.exists'=>'المحافضه غير موجودة',
+                'details.exists'=>'التفاصيل غير موجودة',
+            ]
+        );
+            // return $request;
             $address = $request['governorate'] . ' - ' . $request['city'] . ' - ' . $request['details'];
             $type = 0;
             $products = [];
@@ -83,23 +99,37 @@ class OrderController extends Controller
             $products = json_encode($products, JSON_UNESCAPED_UNICODE);
 
             // $products=implode(',',$products);
-
+            
+            
             $order = new Order();
             $order->products = $products;
             $order->user_id = Auth::user()->id;
             $order->address = $address;
             $order->type = $type;
             $order->pharmacy_id = $request->pharmacy;
+            
+            //check period
+            if(!$request->period){
+                $order->is_periodic=0;
+                $order->period=0;
+            }else{
+                $order->is_periodic=1;
+                $order->period=$request->period;
+            }
+
             $order->save();
-            $user=Pharmacy::find($request->pharmacy)->user_id;
+
+            $user = Pharmacy::find($request->pharmacy)->user_id;
             // return $user;
             // send notification for pharmacy
             event(new Messages($order, $user));
-
-            return view('order.orderMass');
+            
+            return view('order.orderMass')->with(['success' => 'تم ارسال الطلب  بنجاح']);
 
         } catch (\Throwable $th) {
-            throw $th;
+            return $th->getMessage();
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+            // throw $th;
         }
     }
 
@@ -124,7 +154,7 @@ class OrderController extends Controller
             return redirect()->back();
 
         } catch (\Throwable $th) {
-            throw $th;
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
 
@@ -139,8 +169,16 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
         try {
+            $request->validate([
+                'price'=>'required',
+                'delivery'=>'required|numeric',
+                ], [
+                    'price.required'=>'يجب إخال سعر المنتج',
+                    'delivery.required'=>'يجب إخال سعر المنتج',
+                ]
+            );
 
-
+            // return $request;
             $order = Order::find($id);
 
             // convert json to array
@@ -150,32 +188,43 @@ class OrderController extends Controller
 
             // initial total price
             $total_price = 0;
-
+            
             // store prices products array
             foreach ($prices as $i => $price) {
 
                 $products[$i]['unit_amount'] = $price;
-
+                 
+                if($request->found[$i]==1){
+                    $products[$i]['found'] = 1;
+                }else{
+                    $products[$i]['quantity']=0;
+                    $products[$i]['found'] = 0;
+                }
                 $total_price += $price * $products[$i]['quantity'];
             }
             $total_price += $request->delivery;
-
+            $status=1;
+            if( $total_price==$request->delivery){
+                $status=3;
+            }
+            // return $products;
             // convert array to json
             $products = json_encode($products, JSON_UNESCAPED_UNICODE);
-
+            
             $order->update([
                 'products' => $products,
                 'total_price' => $total_price,
                 'delivery_price' => $request->delivery,
-                'status' => '1',
-            ]);
-
+                'status' => $status,
+                ]);
+         
             // send notification for user who send order
             event(new Messages($order, $order->user_id));
-            return redirect('/pharmacy');
-
+            return redirect('/pharmacy')->with(['success' => 'تم ارسال الاسعار بنجاح  بنجاح']);
+            
         } catch (\Throwable $th) {
-            throw $th;
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+            // throw $th;
         }
     }
 
@@ -199,6 +248,37 @@ class OrderController extends Controller
             redirect()->back();
         } catch (\Throwable $th) {
             //throw $th;
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
+
+    // change order status to not found
+    public function notFond($id){
+        try {
+            $order=Order::findOrFail($id);
+            $order->status=3;
+            $order->save();
+            return redirect('/pharmacy');
+        // send notification for user who send order
+        event(new Messages($order, $order->user_id));
+        } catch (\Throwable $th) {
+            // return
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+     
+    }
+}
+       // change order status to not found
+       public function cancel($id){
+        try {
+            $order=Order::findOrFail($id);
+            $order->status=4;
+            $order->save();
+            return redirect('/');
+
+        } catch (\Throwable $th) {
+            // return
+            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+     
+    }
+}
 }

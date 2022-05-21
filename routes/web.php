@@ -18,6 +18,7 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\dashboard\adminController;
 use App\Http\Controllers\dashboard\PharmacyController as MangePharmacy;
 use App\Http\Controllers\PaymentController;
+use App\Models\Order;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,7 @@ use App\Http\Controllers\PaymentController;
 
 Auth::routes(['verify' => true]);
 
-//define('PAGINATION', 10);
+
 
 
 Route::group(['middleware' => ['auth', 'verified']], function (){
@@ -46,12 +47,20 @@ Route::group(['middleware' => ['auth', 'verified']], function (){
 
     Route::get('orders', [UserController::class, 'orders'])->name('orders');
 
-     // admin
+
+    // user wallet
+    Route::get('/wallet', [UserController::class, 'getWallet'])->name('user.wallet');
+    
+    Route::get('/order/{id}/cancel', [OrderController::class, 'cancel'])->name('user.order.cancel'); // show order
+
+
     // Route::get('/orders', [UserController::class, 'orders'])->name('user.orders'); // all orders
     Route::get('/order/{id}', [UserController::class, 'order'])->name('user.order'); // show order
     // admin
     Route::group(['prefix' => 'dashboard', 'middleware' => 'checkType:admin'], function () {
 
+        Route::get('/wallet', [UserController::class, 'getWallet'])->name('admin.wallet');
+        
         Route::get('/', [adminController::class, 'index'])->name('dashboard'); // dashboard
         Route::get('/orders', [adminController::class, 'orders'])->name('admin.orders'); // all orders
         Route::get('/order/{id}', [adminController::class, 'order'])->name('admin.order'); // show order
@@ -119,7 +128,7 @@ Route::group(['middleware' => ['auth', 'verified']], function (){
 
             Route::get('/disActive/{pharmacy}', [MangePharmacy::class, 'disActive'])->name('admin.pharmacy.disActive');
 
-            Route::post('/check/{id?}', [MangePharmacy::class, 'checkPharmacy'])->name('admin.check.pharmacy');
+            Route::get('/check/{id?}', [MangePharmacy::class, 'checkPharmacy'])->name('admin.check.pharmacy');
         });
 
         /////////////////////////////////////// end pharmacy
@@ -129,6 +138,8 @@ Route::group(['middleware' => ['auth', 'verified']], function (){
     // pharmacy crud start
     Route::group(['prefix' => 'pharmacy', 'middleware' => ['checkType:pharmacy']], function () {
         Route::get('/', [PharmacyController::class, 'index'])->name('pharmacy.home');
+
+        Route::get('/wallet', [UserController::class, 'getWallet'])->name('pharmacy.wallet');
 
         Route::get('/create', [PharmacyController::class, 'create'])->name('pharmacy.create');
 
@@ -141,6 +152,9 @@ Route::group(['middleware' => ['auth', 'verified']], function (){
         Route::get('/orders', [PharmacyController::class, 'orders'])->name('pharmacy.orders'); // all orders
 
         Route::get('/order/{id}', [PharmacyController::class, 'order'])->name('pharmacy.order'); // show order
+
+        Route::get('/order/{id}/notFound', [OrderController::class, 'notFond'])->name('pharmacy.order.notFond'); // show order
+
     }); // pharmacy crud end
 
 
@@ -201,11 +215,5 @@ Route::get('t/{id}', [PaymentController::class, 't']);
 
 Route::get('/o', [PharmacyController::class, 'OrderNotification']);
 
-Route::get('/test/response/{info}', function () {
-    $info = Route::current()->parameter('info');
-
-    $info = base64_decode($info);
-    $data = $arrayFormat = json_decode($info, true);
-    return $data;
-});
+  Route::get('/test/response/{info}',[PaymentController::class,'showTest']);
 // http://127.0.0.1:8000/test/responsetest

@@ -30,6 +30,7 @@ class LoginTest extends TestCase
             '_token' => csrf_token()
         ]);
         $this->assertEquals(200, $response->getStatusCode());
+
         $this->assertEquals('auth.login', $response->original->name());
     }
 }

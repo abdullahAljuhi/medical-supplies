@@ -11,7 +11,8 @@
         </nav>
     </div>
     <!-- End Page Title -->
-
+    @include('alerts.errors')
+    @include('alerts.success')
     <section class="section profile">
         <div class="row">
             <div class="col-xl-12">
@@ -67,6 +68,17 @@
                                                         <input type="text" name="prices[]" class="form-control col-6" id="name" required placeholder="يرجى ادخال سعر هذا المنتج">
                                                     </div>
                                                 </div>
+                                                <div class="row my-2">
+                                                    <div class="col-3">موجود</div>
+                                                    <div class="col-9">
+                                                        <select name="found[]" id="select3"
+                                                        class="form-select select1 form-control px-2 mx-1 pe-5"
+                                                        aria-label=".form-select-lg example">
+                                                        <option value="1"  selected>   موجود </option>
+                                                        <option value="0">   غير موجود</option>
+                                                     </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                         @else
                                             <div class="row mb-2   fw-bold">
@@ -79,6 +91,16 @@
                                                 <div class="col-md-3 col-7 d-sm-hidden text-center">
                                                     <input type="text" name="prices[]" class="form-control col-6" id="name" required placeholder="يرجى ادخال سعر هذا المنتج">
                                                 </div>
+                                                <div class="col-md-4 col-7 d-sm-hidden text-center">
+                                                        <div class="col-9">
+                                                            <select name="found[]" id="select3"
+                                                            class="form-select select1 form-control px-2 mx-1 pe-5"
+                                                            aria-label=".form-select-lg example">
+                                                            <option value="1"  selected>   موجود </option>
+                                                            <option value="0">   غير موجود</option>
+                                                         </select>
+                                                    </div>                                                
+                                                </div>
                                             </div>
 
                                         @endif
@@ -90,14 +112,14 @@
                                     <div class="col-md-2 col-12 mb-2 border-1 fw-bold">
                                         <label for="name" >سعر التوصيل</label>
                                     </div>
-                                    <div class="col-md-6 col-12">
-                                        <input type="text" name="delivery" class="form-control w-100" id="name" required placeholder="يرجى ادخال سعر التوصيل ">
+                                    <div class="col-md-2 col-12">
+                                        <input type="text" name="delivery" class="form-control w-100" id="name" required placeholder=" ادخال سعر التوصيل ">
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="tab-pane fade show active profile-overview mt-3 row" id="profile-overview">
                                     <button type="submit" class="btn btn-primary px-3 col-md-2 col-sm-12 mb-2">ارسال</button>
-                                    <a href="" class="btn btn-danger px-3 col-md-2 col-sm-12   mx-sm-2 mb-2">رفض الطلب</a>
+                                    <a href="{{ route('pharmacy.order.notFond',$order->id) }}" class="btn btn-danger px-3 col-md-2 col-sm-12   mx-sm-2 mb-2">رفض الطلب</a>
                                 </div>
                             </form>
                         </div>
