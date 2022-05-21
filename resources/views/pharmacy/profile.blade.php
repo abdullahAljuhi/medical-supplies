@@ -129,7 +129,7 @@
                                                 <div class="accordion-body text-center">
                                                     @if($pharmacy->license)
                                                     <img src="{{asset('assets/images/pharmacies/licenses/'.$pharmacy->license)}}" alt="pharmacy"
-                                                        class="border p-1">
+                                                        class="border p-1 w-100">
                                                     @else
                                                     <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus"
                                                         alt="...">

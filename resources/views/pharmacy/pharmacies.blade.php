@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'الصيدليات')
 @section('content')
- 
+
 
 @include('alerts.errors')
 @include('alerts.success')
@@ -9,7 +9,7 @@
     <div class="pagetitle">
         <h1>الصيدليات</h1>
         <nav>
-            <ol class="breadcrumb">
+            <ol class="breadcrumb my-3">
                 <li class="breadcrumb-item"><a href="/home">لوحة التحكم</a></li>
                 <li class="breadcrumb-item active">الصيدليات</li>
             </ol>
@@ -27,24 +27,25 @@
     <section class="section">
 
         <!-- Recent Sales -->
-        <div class="card  recent-sales overflow-auto">
+        <div class="card  recent-sales overflow-auto py-4">
 
             <div class="filter">
-                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                        <h6>Filter</h6>
+                <a class="icon p-3" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end text-end">
+                    <li class="dropdown-header text-end">
+                        <h6>فلترة الطلبات</h6>
                     </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                    <li><a class="dropdown-item" href="#">جميع الصيدليات</a></li>
+                    <li><a class="dropdown-item" href="#">جديد</a></li>
+                    <li><a class="dropdown-item" href="#">قيد الانتظار</a></li>
+                    <li><a class="dropdown-item" href="#">مكتمل</a></li>
+                    <li><a class="dropdown-item" href="#">غير متوفر</a></li>
+                    <li><a class="dropdown-item" href="#">مرفوض</a></li>
+                    <li><a class="dropdown-item" href="#">مسترجع</a></li>
                 </ul>
             </div>
 
-            <div class="card-body">
-                <h5 class="card-title">Recent Sales <span>| Today</span></h5>
-
+            <div class="card-body my-3">
                 <table class="table table-hover datatable">
                     <thead>
                     <tr>
