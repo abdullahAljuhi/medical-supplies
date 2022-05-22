@@ -84,10 +84,6 @@ class PaymentController extends Controller
 
                 $next_url = $result['invoice']['next_url'];
 
-                //change order status
-                $order->status = 2;
-                $order->save();
-
                 return redirect($next_url);
           
             }
@@ -109,28 +105,33 @@ class PaymentController extends Controller
             $info = base64_decode($info);
             $data = json_decode($info, true);
 
-
+            
+            $meta_data = json_decode($data['meta_data'], true);
+            $id = $meta_data['order id'];
+            $order = Order::with('pharmacy')->find($id);
+            
             if ($data['status'] == 'success') {
-             
+                
                 $status = $data['status'];
                 $order_reference = $data['order_reference'];
                 $products = json_decode($data['products'], true);
                 $card = $data['customer_account_info']['card_type'];
                 $date = $data['customer_account_info']['created_at'];
-                $meta_data = json_decode($data['meta_data'], true);
                 $name = $meta_data['Customer name'];
-                $id = $meta_data['order id'];
 
                 $paid_amount = $data['customer_account_info']['paid_amount'];
-                $order = Order::with('pharmacy')->find($id);
                 $pharmacy = $order->pharmacy->user_id;
-
+                     //change order status
+                     $order->status = 2;
+                     $order->save();
                 $this->wallet($paid_amount,$pharmacy);
 
             } else {
+                $order->status = 6;
+                $order->save();
             }
 
-            return view('order.finalBill', compact('order', 'status', 'products', 'card', 'date', 'name', 'paid_amount'));
+            return view('order.finalBill', compact('order', 'status', 'products', 'card', 'date', 'name', 'paid_amount'))->with(['success' => ' تم الدفع بنجاح']);
         } catch (\Throwable $th) {
             return redirect('/')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
 

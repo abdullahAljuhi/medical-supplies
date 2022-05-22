@@ -284,7 +284,8 @@ class PharmacyController extends Controller
     // get all orders for user auth
     public function orders()
     {
-        $type = [['جديد',' في انتظار الدفع','مكتمل','غير متوفر','مرفوض','مسترجع'],['primary','warning','success','secondary','danger','orange']];
+        $type = [['جديد',' في انتظار الدفع','مكتمل','غير متوفر','مرفوض','مشكله في الدفع' , 'مسترجع'],['primary','warning','success','secondary','danger','orange','orange']];
+        
         $route = 'pharmacy.order';
         try {
             $user = User::with('pharmacy')->find(Auth::id());
