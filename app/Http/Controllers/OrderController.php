@@ -173,16 +173,17 @@ class OrderController extends Controller
     {
         try {
             $request->validate([
-                'price'=>'required|array',
-                'price.*' => 'integer',
+                'prices'=>'required|array',
+//                'prices' => 'integer|array',
                 'delivery_price'=>'required|numeric',
                 'delivery_price'=>'required|array',
-                'delivery_price.*' => 'integer',
+                'delivery_price' => 'integer',
                 ], [
-                    'delivery_price.*.integer'=>'يجب ان يكون رقم ',
-                    'price.required'=>'يجب إخال سعر المنتج',
+                    'delivery_prices.integer'=>'يجب ان يكون رقم ',
+                    'prices.required'=>'يجب إخال سعر المنتج',
+                    'prices.integer'=>'يجب ان يكون رقم ',
+                    'delivery_price.integer'=>'يجب ان يكون رقم',
                     'delivery_price.required'=>'يجب إخال سعر المنتج',
-                    'delivery_price.integer'=>' يجب إخال سعر المنتج',
                 ]
             );
 
@@ -231,6 +232,7 @@ class OrderController extends Controller
             return redirect('/pharmacy')->with(['success' => 'تم ارسال الاسعار بنجاح  بنجاح']);
 
         } catch (\Throwable $th) {
+            return $th->getMessage();
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
             // throw $th;
         }
