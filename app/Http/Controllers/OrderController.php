@@ -173,8 +173,8 @@ class OrderController extends Controller
     {
         try {
             $request->validate([
-                'price'=>'required|array',
-                'price.*' => 'integer',
+                'price[]'=>'required|array',
+                'price[]' => 'integer|array',
                 'delivery_price'=>'required|numeric',
                 'delivery_price'=>'required|array',
                 'delivery_price.*' => 'integer',
