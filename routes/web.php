@@ -211,7 +211,7 @@ Route::get('/', [MedicalController::class, 'index'])->name('index');
 
 Route::get('/pharmacies', [MedicalController::class, 'showPharmacies'])->name('morePharmacy'); // show all pharmacies
 
-Route::get('test', [PaymentController::class, 'index'])->name('test');
+Route::get('/test', [PaymentController::class, 'index'])->name('test');
 
 Route::get('t/{id}', [PaymentController::class, 't']);
 

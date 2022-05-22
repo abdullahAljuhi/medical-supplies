@@ -24,6 +24,7 @@ class PaymentController extends Controller
 
         try {
 
+            // return $request;
             $id = $request->id;
 
             $order = Order::with('pharmacy', 'user')->find($id);
@@ -51,7 +52,7 @@ class PaymentController extends Controller
                 $curl = curl_init();
 
                 curl_setopt_array($curl, array(
-                    CURLOPT_URL => "https://waslpayment.com/api/test/merchant/payment_order",
+                    CURLOPT_URL => "https://waslpayment.com/api/v1/merchant/payment_order",
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_ENCODING => "",
                     CURLOPT_MAXREDIRS => 10,
@@ -62,8 +63,8 @@ class PaymentController extends Controller
 
                     CURLOPT_HTTPHEADER => array(
 
-                        "private-key: rRQ26GcsZzoEhbrP2HZvLYDbn9C9et",
-                        "public-key: HGvTMLDssJghr9tlN9gr4DVYt0qyBy",
+                        "private-key: 856301060110657998333612",
+                        "public-key: 996735847989035",
                         "Content-Type:  application/x-www-form-urlencoded"
 
 
