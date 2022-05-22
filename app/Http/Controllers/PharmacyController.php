@@ -87,7 +87,7 @@ class PharmacyController extends Controller
         // PharmacyRequest request with validation
 
         try {
-            $request->validate([]);
+
             $request->validate([
                 'license' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
               ],
@@ -144,8 +144,8 @@ class PharmacyController extends Controller
 
             //
             DB::rollback();
-            return $ex->getMessage();
-            return $ex->getMessage();
+            // return $ex->getMessage();
+            // return $ex->getMessage();
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }

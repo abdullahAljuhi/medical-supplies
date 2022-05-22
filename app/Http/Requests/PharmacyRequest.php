@@ -25,9 +25,8 @@ class PharmacyRequest extends FormRequest
     {
         return [
             'pharmacy_name' => 'required|string',
-            'mobile' => 'required|min:0|max:15',
-            'phone' => 'required||min:0|max:15',
-            
+            'mobile' => 'required|min:0|max:15|digital',
+            'phone' => 'required||min:0|max:15|digital',            
             'image'=>'image',
             'accept'=>'required',
             'city'=>'required',
@@ -49,7 +48,8 @@ class PharmacyRequest extends FormRequest
             'details.string'=>'يجب ان يكون نص',
             'details.required'=>'هذا الحقل مطلوب',
             'governorate.required' => 'يجب إدخال اسم المحافظة',
-            'mobile.integer'=>'يجب كتابة أرقام فقط',
+            'mobile.digital'=>'يجب كتابة أرقام فقط',
+            'phone.digital'=>'يجب كتابة أرقام فقط',
             'mobile.max'=>'هذا الرقم طويل جدا ',
             'phone.required'=>'يجب ملئ هذا الحقل برقم التلفون',
             'phone.max'=>'تأكد من كتابة الرقم بشكل صحيح',
