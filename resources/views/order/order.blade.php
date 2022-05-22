@@ -93,7 +93,7 @@
                                             <label for="name" class="col-md-12 col-form-label fw-bold">
                                                 اسم العلاج
                                                 <span class="  me-1  fw-bold" style="font-size: 15px"> (اضغط على + من اجل اضافة المزيد)</span></label>
-                                            <div class=" mb-3  field_wrapper">
+                                            <div class=" mb-3  field_wrapper ">
                                                 <input type="text" id="name"
                                                        placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-12 col-md-8 mb-2 form-control-custome
                                     " name='product_name[]' autofocus>

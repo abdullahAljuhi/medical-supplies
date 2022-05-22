@@ -3,10 +3,12 @@
 @section('content')
     <!-- Page Title -->
     <div class="pagetitle">
-        <h1>كشف عرض الاسعار</h1>
+        <h1>فاتورة</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/home">لوحة التحكم</a></li>
+                <li class="breadcrumb-item active"><a href="/home">لوحة التحكم</a></li>
+                <li class="breadcrumb-item"><a href="">الطلبات</a></li>
+                <li class="breadcrumb-item"><a href="">الفاتورة</a></li>
             </ol>
         </nav>
     </div>
@@ -82,24 +84,23 @@
                                             </div>
                                         @else
                                             <div class="row mb-2   fw-bold">
-                                                <div class="col-md-3 col-3 mb-2 ">
+                                                <div class="col-md-3 col-6 mb-2 ">
                                                     <label for="name" ><label for="name" >{{ $product['product_name'] }} </label> </label>
                                                 </div>
-                                                <div class="col-md-2 col-2 mb-2 border-1">
+                                                <div class="col-md-2 col-6 mb-2 border-1">
                                                     <label for="name" >{{ $product['quantity'] }}</label>
                                                 </div>
-                                                <div class="col-md-3 col-7 d-sm-hidden text-center">
-                                                    <input type="text" name="prices[]" class="form-control col-6" id="name" required placeholder="يرجى ادخال سعر هذا المنتج">
+                                                <div class="col-md-3 col-6 d-sm-hidden text-center">
+                                                    <input type="text" name="prices[]" class="form-control col-6" id="name" required placeholder="يرجى ادخال السعر  ">
                                                 </div>
-                                                <div class="col-md-4 col-7 d-sm-hidden text-center">
-                                                        <div class="col-9">
+                                                <div class="col-md-4 col-6   d-sm-hidden text-center">
+
                                                             <select name="found[]" id="select3"
                                                             class="form-select select1 form-control px-2 mx-1 pe-5"
                                                             aria-label=".form-select-lg example">
                                                             <option value="1"  selected>   موجود </option>
                                                             <option value="0">   غير موجود</option>
                                                          </select>
-                                                    </div>                                                
                                                 </div>
                                             </div>
 

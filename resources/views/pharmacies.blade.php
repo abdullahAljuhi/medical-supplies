@@ -72,12 +72,9 @@
                     <div class="mt-0 text-center">
                         @foreach ($pharmacies as $pharmacy)
                             <div class="row  py-2 border-bottom text-content text-black ">
+
                                 <div
-                                    class="col-md-1 col-4 mb-md-0 mb-4 d-flex justify-content-center fw-bold align-self-center fs-5">
-                                    {{ $loop->index }}
-                                </div>
-                                <div
-                                    class="col-md-2 col-8  d-flex justify-content-strat fw-bold align-self-center fs-5">
+                                    class="col-md-2 col-8  d-flex justify-content-strat mx-5 fw-bold align-self-center fs-5">
                                     {{ $pharmacy->pharmacy_name??'' }}
                                 </div>
                                 <div
