@@ -128,13 +128,13 @@
                                                  aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                                 <div class="accordion-body text-center">
                                                     @if($pharmacy->license)
-                                                    <img src="{{asset('assets/images/pharmacies/licenses/'.$pharmacy->license)}}" alt="pharmacy"
+                                                    <img src="/assets/images/pharmacies/licenses/{{$pharmacy->license}}" alt="pharmacy"
                                                         class="border p-1 w-100">
                                                     @else
-                                                    <img src="{{asset('img/phramacy1.png') }}" class="card-img-top py-5 img-card-cus"
+                                                    <img src="{{'/img/phramacy1.png' }}" class="card-img-top py-5 img-card-cus"
                                                         alt="...">
                                                     @endif
-                                                    <button onclick="window.open('{{asset('assets/img/user.png') }}');"
+                                                    <button onclick="window.open('/assets/images/pharmacies/licenses/{{$pharmacy->license}}');"
                                                             class="btn btn-primary mt-3">تنزيل الترخيص
                                                     </button>
                                                 </div>

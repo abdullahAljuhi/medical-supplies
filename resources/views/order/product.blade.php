@@ -113,7 +113,7 @@
                                         <label for="name" >سعر التوصيل</label>
                                     </div>
                                     <div class="col-md-2 col-12">
-                                        <input type="text" name="delivery" class="form-control w-100" id="name" required placeholder=" ادخال سعر التوصيل ">
+                                        <input type="text" name="delivery_price" class="form-control w-100" id="name" required placeholder=" ادخال سعر التوصيل ">
                                     </div>
                                 </div>
                                 <hr>

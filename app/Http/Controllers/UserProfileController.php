@@ -123,7 +123,7 @@ class UserProfileController extends Controller
             return redirect()->back()->with(['success' => 'تم التحديث بنجاح']);
 
         } catch (\Exception $e) {
-            return $e->getMessage();
+            // return $e->getMessage();
             return redirect()->back()->with(['error' => 'هناك خطا ما يرجي المحاولة فيما بعد']);
 
         }
