@@ -55,13 +55,13 @@ class OrderController extends Controller
 
             // validation
             $request->validate([
-            'product_nam'=>'required',
+            'product_name'=>'required',
             'governorate'=>'required',
             'city'=>'required',
             'details'=>'required',
             'pharmacy'=>'required|exists:pharmacies,id'
             ], [
-                'product_nam.required' => 'يجب إدخال اسم المنتج',
+                'product_name.required' => 'يجب إدخال اسم المنتج',
                 'pharmacy.required'=>'يجب تحديد الصيدلية',
                 'governorate.required'=>'المحافضه  مطلوبه',
                 'products.required' => 'يجب إدخال اسم المنتج',
