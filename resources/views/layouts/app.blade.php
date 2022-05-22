@@ -113,7 +113,7 @@
                     </a><!-- End Notification Icon -->
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                         @isset($pharmacyOrders)
-                            @foreach ($orders as $order )
+                            @foreach ($pharmacyOrders as $order )
                                 <li class="notification-item scrollable-container">
                                     <a href="/pharmacy/order/{{ $order->id }}">
                                         هناك طلب من {{ $order->user->name}}
