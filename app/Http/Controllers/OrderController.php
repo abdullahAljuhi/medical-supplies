@@ -116,8 +116,8 @@ class OrderController extends Controller
                 $order->is_periodic=0;
                 $order->period=0;
             }else{
-                $order->is_periodic=1;
-                $order->period=$request->period;
+                $order->is_periodic = 1;
+                $order->period = $request->period;
             }
 
             $order->save();
@@ -172,15 +172,14 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
         try {
+            // return $request;
             $request->validate([
-                'price[]'=>'required|array',
-                'price[]' => 'integer|array',
-                'delivery_price'=>'required|numeric',
-                'delivery_price'=>'required|array',
-                'delivery_price.*' => 'integer',
+                'prices'=>'required',
+                'prices[]'=>'array|integer',
+                'delivery_price'=>'required|integer',
                 ], [
-                    'delivery_price.*.integer'=>'يجب ان يكون رقم ',
-                    'price.required'=>'يجب إخال سعر المنتج',
+                    'prices[].integer'=>'يجب ان يكون رقم ',
+                    'prices[].required'=>'يجب إخال سعر المنتج',
                     'delivery_price.required'=>'يجب إخال سعر المنتج',
                     'delivery_price.integer'=>' يجب إخال سعر المنتج',
                 ]
@@ -210,9 +209,9 @@ class OrderController extends Controller
                 }
                 $total_price += $price * $products[$i]['quantity'];
             }
-            $total_price += $request->delivery;
+            $total_price += $request->delivery_price;
             $status=1;
-            if( $total_price==$request->delivery){
+            if( $total_price==$request->delivery_price){
                 $status=3;
             }
             // return $products;
@@ -222,7 +221,7 @@ class OrderController extends Controller
             $order->update([
                 'products' => $products,
                 'total_price' => $total_price,
-                'delivery_price' => $request->delivery,
+                'delivery_price' => $request->delivery_price,
                 'status' => $status,
                 ]);
          
@@ -231,8 +230,8 @@ class OrderController extends Controller
             return redirect('/pharmacy')->with(['success' => 'تم ارسال الاسعار بنجاح  بنجاح']);
             
         } catch (\Throwable $th) {
+            return $th->getMessage();
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
-            // throw $th;
         }
     }
 
