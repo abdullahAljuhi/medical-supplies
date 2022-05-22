@@ -2,10 +2,6 @@
 @section('title', 'المحافظات')
 @section('content')
 
-
-@include('alerts.errors')
-@include('alerts.success')
-
 <!-- Page Title -->
 <div class="pagetitle">
     <h1>المحافظات</h1>

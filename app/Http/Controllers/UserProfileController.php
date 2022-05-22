@@ -6,10 +6,11 @@ use App\Models\User;
 use App\Helpers\Helper;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserProfileRequest;
-use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Storage;
 
 class UserProfileController extends Controller
 {
@@ -101,8 +102,7 @@ class UserProfileController extends Controller
 
             if ($request->has('image')) {
                 if($fileName != null){
-                    $fileName=public_path('assets/images/users/'.$photo);
-                    unlink(realpath($fileName));
+                    Storage::disk('users')->delete($fileName);
                 }
 
                 // save img in public/pharmacy/images
@@ -123,7 +123,7 @@ class UserProfileController extends Controller
             return redirect()->back()->with(['success' => 'تم التحديث بنجاح']);
 
         } catch (\Exception $e) {
-            // return $e->getMessage();
+            return $e->getMessage();
             return redirect()->back()->with(['error' => 'هناك خطا ما يرجي المحاولة فيما بعد']);
 
         }

@@ -16,7 +16,9 @@ class GovernorateController extends Controller
      */
     public function index()
     {
-        return view('pharmacy.governorate.index');
+        $governorates = Governorate::all();
+
+        return view('admin.state',compact('governorates'));
     }
 
     /**
@@ -92,7 +94,8 @@ class GovernorateController extends Controller
 
             $governorate->name = $request->name;
             $governorate->save();
-        return view('admin.state')->with(['success' => 'تم  الاضافه بنجاح']);
+            $governorates = Governorate::all();
+        return view('admin.state',compact('governorates'))->with(['success' => 'تم  الاضافه بنجاح']);
         } catch (\Exception $ex) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
@@ -144,7 +147,7 @@ class GovernorateController extends Controller
 
             $governorate->delete();
 
-            return redirect()->route('governorate.all')->with(['success' => 'تم  الحذف بنجاح']);
+            return redirect()->back()->with(['success' => 'تم  الحذف بنجاح']);
         } catch (\Exception $ex) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }

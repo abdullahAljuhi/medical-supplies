@@ -269,8 +269,9 @@ class PharmacyController extends Controller
             $pharmacy = Pharmacy::findOrFail($id);
             if ($pharmacy->image !== '') { // check if pharmacy has image
                 // remove image
-                $fileName = public_path('assets/images/pharmacies/' . $pharmacy->image);
-                unlink(realpath($fileName));
+                Storage::disk('users')->delete($pharmacy->image);
+                // $fileName = public_pth('assets/images/pharmacies/' . $pharmacy->image);
+                // unlink(realpath($fileName));
             }
 
             $pharmacy->delete();
