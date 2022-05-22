@@ -25,7 +25,7 @@ class UserProfileRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'phone'=>'required|numeric',
+            'phone' => 'required|digits_between:6,15',            
             'birthday'=>'required|date',
             'image'=>'image',
             'address'=>'string',
@@ -35,7 +35,7 @@ class UserProfileRequest extends FormRequest
     {
         return [
             'phone.required'=>'اكتب رقم هاتفك',
-            'phone.numeric'=>'يجب كتابة أرقام فقط',
+            'phone.digits_between'=>' يجب ان يكون رقم بين 6  الى  15  ',
             'birthday.required'=>'يجب إخال سنة الميلاد',
             'birthday.after'=>'تاريخ الميلاد غير صالح',
             'birthday.before'=>'تاريخ الميلاد غير صالح',

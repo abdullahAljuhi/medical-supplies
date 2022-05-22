@@ -173,13 +173,16 @@ class OrderController extends Controller
     {
         try {
             $request->validate([
-                'price'=>'required|numeric',
+                'price'=>'required|array',
+                'price.*' => 'integer',
                 'delivery_price'=>'required|numeric',
+                'delivery_price'=>'required|array',
+                'delivery_price.*' => 'integer',
                 ], [
-                    'price.numeric'=>'يجب ان يكون رقم ',
+                    'delivery_price.*.integer'=>'يجب ان يكون رقم ',
                     'price.required'=>'يجب إخال سعر المنتج',
                     'delivery_price.required'=>'يجب إخال سعر المنتج',
-                    'delivery.numeric'=>' يجب إخال سعر المنتج',
+                    'delivery_price.integer'=>' يجب إخال سعر المنتج',
                 ]
             );
 
