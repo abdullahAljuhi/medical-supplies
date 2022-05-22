@@ -189,6 +189,17 @@ class PharmacyController extends Controller
 
             $pharmacy = Pharmacy::where('user_id', Auth::user()->id)->first();
 
+            $request->validate([
+                'twitter' => 'string',
+                'facebook' => 'string',
+                'instagram' => 'string',
+              ],
+              [
+                'instagram.string'=>' يجب ان يكون نص ',
+                'facebook.string'=>' يجب ان يكون نص ',
+                'twitter.string'=>' يجب ان يكون نص ',
+              ]);
+
             // start transaction
             DB::beginTransaction();
 
@@ -209,7 +220,6 @@ class PharmacyController extends Controller
                 'mobile' => $request['mobile'],
                 'phone' => $request['phone'],
                 'image' => $fileName,
-                'fax' => $request['fax'],
                 'description' => $request['description'],
             ]);
 
