@@ -293,10 +293,9 @@ class PharmacyController extends Controller
             return view('order.index', compact('orders','route','type'));
 
         } catch (\Exception $e) {
+
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
-
-            // return $e->getMessage();
-
+            
         }
     }
 
