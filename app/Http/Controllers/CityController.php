@@ -104,27 +104,25 @@ class CityController extends Controller
     public function active($id){
         try {
 
-            $city = City::with("Governorate")->find($id);
-            $active=$city->is_active ;
+            $city = City::with("governorate")->find($id);
+            // $active=$city->is_active ;
           
-             $governorate = Governorate::find($id);
-             $activegov=$governorate->is_active ;
+            $governorate=$city->Governorate;
 
             //$city->Governorate =  $city
-            if($activegov==0)
+            if($city->Governorate->is_active==0)
             {
                 return redirect()->back()->with(['error' => 'يرجى تفعيل المحافظة أولاً']);
 
             }else{
-            if($active == 0)
+            if($city->is_active == 0)
             {
-               $active=1;
+                $city->is_active=1;
  
             }else{
-             $active=0;
+                $city->is_active=0;
             }
         }
-            $city->is_active=$active;
  
          
             $city->save();

@@ -52,19 +52,21 @@ class OrderController extends Controller
     public function send(Request $request)
     {
         try {
+
+            // validation
             $request->validate([
-            'products'=>'required',
+            'products_nam'=>'required',
             'governorate'=>'required',
             'city'=>'required',
             'details'=>'required',
-            'pharmacy'=>'required|exists:app\Models\Pharmacy,id'
+            'pharmacy'=>'required|exists:pharmacies,id'
             ], [
-                'products.required' => 'يجب إدخال اسم المنتج',
+                'products_nam.required' => 'يجب إدخال اسم المنتج',
                 'pharmacy.required'=>'يجب تحديد الصيدلية',
-                'governorate.exists'=>'المحافضه غير موجودة',
+                'governorate.exists'=>'المحافضه  مطلوبه',
                 'products.required' => 'يجب إدخال اسم المنتج',
-                'city.exists'=>'المحافضه غير موجودة',
-                'details.exists'=>'التفاصيل غير موجودة',
+                'city.exists'=>'المحافضه  مطلوبه',
+                'pharmacy.exists'=>'الصيدلية غير موجوده',
             ]
         );
             // return $request;
@@ -79,6 +81,7 @@ class OrderController extends Controller
                     // images
                     foreach ($request->file('images') as $i => $image) {
                         $products[$i]['id'] = $i;
+
                         // upload images to public/assets/images/orders
                         $products[$i]['product_name'] = $this->uploadImage("orders", $image);
                     }
@@ -119,7 +122,7 @@ class OrderController extends Controller
 
             $order->save();
 
-            $user = Pharmacy::find($request->pharmacy)->user_id;
+            $user = Pharmacy::findOrFail($request->pharmacy)->user_id;
             // return $user;
             // send notification for pharmacy
             event(new Messages($order, $user));
@@ -141,7 +144,7 @@ class OrderController extends Controller
 
         try {
             //code...
-            $order = Order::with('pharmacy', 'user')->find($request->id);
+            $order = Order::with('pharmacy', 'user')->findOrFail($request->id);
 
             // check if the pharmacy auth is has the order
             if ($order->pharmacy->user_id == Auth::id()) {
@@ -170,11 +173,13 @@ class OrderController extends Controller
     {
         try {
             $request->validate([
-                'price'=>'required',
+                'price'=>'required|numeric',
                 'delivery'=>'required|numeric',
                 ], [
+                    'price.numeric'=>'يجب ان يكون رقم ',
                     'price.required'=>'يجب إخال سعر المنتج',
                     'delivery.required'=>'يجب إخال سعر المنتج',
+                    'delivery.numeric'=>' يجب إخال سعر المنتج',
                 ]
             );
 

@@ -24,7 +24,7 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'prodect'=>'required',
+            'products_name'=>'required',
             'price'=>'required',
             'delivery'=>'required|numeric',
             'address'=>'required',
@@ -35,7 +35,7 @@ class OrderRequest extends FormRequest
     public function messages()
     {
         return [
-            'prodect.required' => 'يجب إدخال اسم المنتج',
+            'products_nam.required' => 'يجب إدخال اسم المنتج',
             'price.required'=>'يجب إخال سعر المنتج',
             'delivery.required'=>'يجب إخال سعر المنتج',
             'delivery.numeric'=>'يجب ملئ الحقل بأرقام فقط',

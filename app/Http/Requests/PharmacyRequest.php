@@ -48,11 +48,11 @@ class PharmacyRequest extends FormRequest
             'details.string'=>'يجب ان يكون نص',
             'details.required'=>'هذا الحقل مطلوب',
             'governorate.required' => 'يجب إدخال اسم المحافظة',
-            'mobile.digital'=>'يجب كتابة أرقام فقط',
-            'phone.digital'=>'يجب كتابة أرقام فقط',
-            'mobile.max'=>'هذا الرقم طويل جدا ',
+            'mobile.digits_between'=>' يجب ان يكون رقم بين 6  الى  15  ',
+            'phone.digits_between'=>' يجب ان يكون رقم بين 6  الى  15  ',
+            'mobile.digits_between'=>' يجب ان يكون رقم بين 6  الى  15  ',
             'phone.required'=>'يجب ملئ هذا الحقل برقم التلفون',
-            'phone.max'=>'تأكد من كتابة الرقم بشكل صحيح',
+            'phone.digits_between'=>'    يجب ان يكون رقم بين 6  الى  15 ',
             'image.image'=>'الصيغة غير مدعومة تأكد من صيغة الملف',
             'accept.required' => 'يجب ان توافق على الشروط '
             ];

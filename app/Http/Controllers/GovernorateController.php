@@ -102,15 +102,14 @@ class GovernorateController extends Controller
     public function active($id){
         try {
             $governorate = Governorate::with("cities")->find($id);
-
-            $active=$governorate->is_active ;
+            // $active=$governorate->is_active ;
           
-            if($active == 0)
+            if( $governorate->is_active == 0)
             {
-               $active=1;
+               $governorate->is_active=1;
  
             }else{
-             $active=0;
+                $governorate->is_active=0;
              foreach ($governorate->cities as  $city) {
                  $city->is_active =0;
                  $city->save();
@@ -118,9 +117,7 @@ class GovernorateController extends Controller
              
 
             }
-         
-            $governorate->is_active=$active;
- 
+          
          
             $governorate->save();
 
