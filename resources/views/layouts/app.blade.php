@@ -93,13 +93,13 @@
 
                 @if (Auth::user()->type==2)
                     @php
-                        $q = App\Models\Order::with(['pharmacy'=>function($q){
+                        $q = App\Models\Order::with(['pharmacy' => function($q){
                         return $q->where('user_id',Auth::id());
                         }],'user')->where('status',0)->where('is_show','0');
 
-                        $orders=$q->limit(6)->get();
+                        $pharmacyOrders=$q->limit(6)->get();
 
-                        $count=$q->count();
+                        $count = $q->count();
                     @endphp
                 @endif
                 <!-- Notification Nav -->
@@ -112,7 +112,7 @@
                                 $count ??'0' }}</span>
                     </a><!-- End Notification Icon -->
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                        @isset($orders)
+                        @isset($pharmacyOrders)
                             @foreach ($orders as $order )
                                 <li class="notification-item scrollable-container">
                                     <a href="/pharmacy/order/{{ $order->id }}">
