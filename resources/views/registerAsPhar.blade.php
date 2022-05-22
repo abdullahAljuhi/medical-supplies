@@ -9,7 +9,7 @@
 <!--Display Error-->
 @if($errors->any())
         {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
-    @endif 
+    @endif
 
 
 
@@ -152,7 +152,7 @@
                                     <div class="form-floating">
                                         <textarea class="form-control text-right" name="description"
                                             placeholder="Leave a comment here" id="floatingTextarea2"
-                                            style="height: 100px"></textarea>
+                                            style="height: 100px" required></textarea>
                                     </div>
                                 </div>
 

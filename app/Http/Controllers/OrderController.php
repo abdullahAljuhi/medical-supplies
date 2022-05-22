@@ -55,13 +55,13 @@ class OrderController extends Controller
 
             // validation
             $request->validate([
-            'product_nam'=>'required',
+            'product_name'=>'required',
             'governorate'=>'required',
             'city'=>'required',
             'details'=>'required',
             'pharmacy'=>'required|exists:pharmacies,id'
             ], [
-                'product_nam.required' => 'يجب إدخال اسم المنتج',
+                'product_name.required' => 'يجب إدخال اسم المنتج',
                 'pharmacy.required'=>'يجب تحديد الصيدلية',
                 'governorate.required'=>'المحافضه  مطلوبه',
                 'products.required' => 'يجب إدخال اسم المنتج',
@@ -102,15 +102,15 @@ class OrderController extends Controller
             $products = json_encode($products, JSON_UNESCAPED_UNICODE);
 
             // $products=implode(',',$products);
-            
-            
+
+
             $order = new Order();
             $order->products = $products;
             $order->user_id = Auth::user()->id;
             $order->address = $address;
             $order->type = $type;
             $order->pharmacy_id = $request->pharmacy;
-            
+
             //check period
             if(!$request->period){
                 $order->is_periodic=0;
@@ -126,7 +126,7 @@ class OrderController extends Controller
             // return $user;
             // send notification for pharmacy
             event(new Messages($order, $user));
-            
+
             return view('order.orderMass')->with(['success' => 'تم ارسال الطلب  بنجاح']);
 
         } catch (\Throwable $th) {
@@ -193,12 +193,12 @@ class OrderController extends Controller
 
             // initial total price
             $total_price = 0;
-            
+
             // store prices products array
             foreach ($prices as $i => $price) {
 
                 $products[$i]['unit_amount'] = $price;
-                 
+
                 if($request->found[$i]==1){
                     $products[$i]['found'] = 1;
                 }else{
@@ -215,18 +215,18 @@ class OrderController extends Controller
             // return $products;
             // convert array to json
             $products = json_encode($products, JSON_UNESCAPED_UNICODE);
-            
+
             $order->update([
                 'products' => $products,
                 'total_price' => $total_price,
                 'delivery_price' => $request->delivery,
                 'status' => $status,
                 ]);
-         
+
             // send notification for user who send order
             event(new Messages($order, $order->user_id));
             return redirect('/pharmacy')->with(['success' => 'تم ارسال الاسعار بنجاح  بنجاح']);
-            
+
         } catch (\Throwable $th) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
             // throw $th;
@@ -269,7 +269,7 @@ class OrderController extends Controller
         } catch (\Throwable $th) {
             // return
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
-     
+
     }
 }
        // change order status to not found
@@ -283,7 +283,7 @@ class OrderController extends Controller
         } catch (\Throwable $th) {
             // return
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
-     
+
     }
 }
 }
