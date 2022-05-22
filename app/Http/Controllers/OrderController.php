@@ -120,8 +120,8 @@ class OrderController extends Controller
                 $order->is_periodic=0;
                 $order->period=0;
             }else{
-                $order->is_periodic = 1;
-                $order->period = $request->period;
+                $order->is_periodic=1;
+                $order->period=$request->period;
             }
 
             $order->save();
@@ -176,14 +176,14 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            // return $request;
             $request->validate([
-                'prices'=>'required',
-                'prices[]'=>'array|integer',
-                'delivery_price'=>'required|integer',
+                'prices.*' => 'required|integer',
+                'delivery_price' => 'required|integer|numeric',
                 ], [
-                    'prices[].integer'=>'يجب ان يكون رقم ',
-                    'prices[].required'=>'يجب إخال سعر المنتج',
+                    'delivery_prices.integer'=>'يجب ان يكون رقم ',
+                    'prices.*.required'=>'يجب إخال سعر المنتج',
+                    'prices.*.integer'=>'يجب ان يكون رقم ',
+                    'delivery_price.integer'=>'يجب ان يكون رقم',
                     'delivery_price.required'=>'يجب إخال سعر المنتج',
                 ]
             );
@@ -214,7 +214,7 @@ class OrderController extends Controller
             }
             $total_price += $request->delivery_price;
             $status=1;
-            if( $total_price==$request->delivery_price){
+            if( $total_price==$request->delivery){
                 $status=3;
             }
             // return $products;
@@ -235,6 +235,7 @@ class OrderController extends Controller
         } catch (\Throwable $th) {
             return $th->getMessage();
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+            // throw $th;
         }
     }
 
