@@ -63,10 +63,10 @@ class OrderController extends Controller
             ], [
                 'product_name.required' => 'يجب إدخال اسم المنتج',
                 'pharmacy.required'=>'يجب تحديد الصيدلية',
-                'governorate.required'=>'المحافضه  مطلوبه',
+                'governorate.required'=>'المحافظة  مطلوبة',
                 'products.required' => 'يجب إدخال اسم المنتج',
-                'city.required'=>'المحافضه  مطلوبه',
-                'pharmacy.exists'=>'الصيدلية غير موجوده',
+                'city.required'=>'المحافظة  مطلوبة',
+                'pharmacy.exists'=>'الصيدلية غير موجودة',
             ]
         );
             // return $request;
@@ -173,15 +173,12 @@ class OrderController extends Controller
     {
         try {
             $request->validate([
-                'prices'=>'required|array',
-//                'prices' => 'integer|array',
-                'delivery_price'=>'required|numeric',
-                'delivery_price'=>'required|array',
-                'delivery_price' => 'integer',
+                'prices[]' => 'required|integer|array',
+                'delivery_price' => 'required|integer|numeric',
                 ], [
                     'delivery_prices.integer'=>'يجب ان يكون رقم ',
-                    'prices.required'=>'يجب إخال سعر المنتج',
-                    'prices.integer'=>'يجب ان يكون رقم ',
+                    'prices[].required'=>'يجب إخال سعر المنتج',
+                    'prices[].integer'=>'يجب ان يكون رقم ',
                     'delivery_price.integer'=>'يجب ان يكون رقم',
                     'delivery_price.required'=>'يجب إخال سعر المنتج',
                 ]
@@ -211,7 +208,7 @@ class OrderController extends Controller
                 }
                 $total_price += $price * $products[$i]['quantity'];
             }
-            $total_price += $request->delivery;
+            $total_price += $request->delivery_price;
             $status=1;
             if( $total_price==$request->delivery){
                 $status=3;
@@ -223,7 +220,7 @@ class OrderController extends Controller
             $order->update([
                 'products' => $products,
                 'total_price' => $total_price,
-                'delivery_price' => $request->delivery,
+                'delivery_price' => $request->delivery_price,
                 'status' => $status,
                 ]);
 

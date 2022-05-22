@@ -127,7 +127,7 @@
                                                     <label for="inputState" class="form-label  fw-bold"> عنوان
                                                         التوصيل</label>
                                                     <div class="col-6">
-                                                        <select name="governorate" id="select1"
+                                                        <select name="governorate" id="selectText"
                                                                 class="form-select select1 form-control p-2 pe-5"
                                                                 aria-label=".form-select-lg example" required>
 
@@ -141,7 +141,7 @@
                                                         <div class="invalid-feedback">يرجى اختيار محافظة</div>
                                                     </div>
                                                     <div class="col-6 second">
-                                                        <select name="city" id="select2"
+                                                        <select name="city" id="select2Text"
                                                                 class="form-select select2 form-control p-2 pe-5"
                                                                 aria-label=".form-select-lg example" required>
                                                             <option selected disabled value="" class="mx-5">أختر مدينة</option>
@@ -221,7 +221,7 @@
                                                         <label for="inputState" class="form-label  fw-bold"> عنوان
                                                             التوصيل</label>
                                                         <div class="col-6">
-                                                            <select name="governorate" id="select1"
+                                                            <select name="governorate" id="selectImg"
                                                                     class="form-select select1 form-control p-2 pe-5"
                                                                     aria-label=".form-select-lg example" required>
 
@@ -281,9 +281,24 @@
 @endsection
 @section('scripts')
     <script>
-        $("#select1").change(select);
+        $("#selectText").change(selectText);
+        $("#selectImg").change(selectImg);
 
-        function select() {
+        function selectText() {
+            if ($(this).data('options') === undefined) {
+                /*Taking an array of all options-2 and kind of embedding it on the select1*/
+                $(this).data('options', $('#select2Text option').clone());
+            }
+            if ($(this).val() == 0) {
+                $('#select2Text').html($(this).data('options'));
+                return;
+            }
+            var id = $(this).val();
+            var options = $(this).data('options').filter('[class=city' + id + ']');
+            $('#select2Text').html(options);
+        }
+
+        function selectImg() {
             if ($(this).data('options') === undefined) {
                 /*Taking an array of all options-2 and kind of embedding it on the select1*/
                 $(this).data('options', $('#select2 option').clone());
