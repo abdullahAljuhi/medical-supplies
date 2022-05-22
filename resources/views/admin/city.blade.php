@@ -2,11 +2,6 @@
 @section('title', 'الملف الشخصي')
 @section('content')
 
-
-
-@include('alerts.errors')
-@include('alerts.success')
-
     <!-- Page Title -->
     <div class="pagetitle">
         <h1>المدن</h1>
@@ -19,10 +14,6 @@
     </div>
     <!-- End Page Title -->
 
-    <!--Display Error-->
-@if($errors->any())
-    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
-@endif
 
     <section class="section profile">
         <div class="row">
