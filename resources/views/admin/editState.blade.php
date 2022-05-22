@@ -59,9 +59,6 @@
                 </div>
             </div>
 
-
-                 @include('alerts.success')
-                 @include('alerts.errors')
         </div>
         </div>
     </section>

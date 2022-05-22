@@ -18,11 +18,6 @@
     </div>
     <!-- End Page Title -->
 
-    <!--Display Error-->
-@if($errors->any())
-    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
-@endif
-
     <section class="section profile">
         <div class="row">
             <div class="col-xl-12">
