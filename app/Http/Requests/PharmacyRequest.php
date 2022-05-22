@@ -28,7 +28,6 @@ class PharmacyRequest extends FormRequest
             'mobile' => 'digits_between:6,15',
             'phone' => 'required|digits_between:6,15',            
             'image'=>'image',
-            'accept'=>'required',
             'city'=>'required',
             'governorate'=>'required',
             'street'=>'string|required',
@@ -54,7 +53,6 @@ class PharmacyRequest extends FormRequest
             'phone.required'=>'يجب ملئ هذا الحقل برقم التلفون',
             'phone.digits_between'=>'    يجب ان يكون رقم بين 6  الى  15 ',
             'image.image'=>'الصيغة غير مدعومة تأكد من صيغة الملف',
-            'accept.required' => 'يجب ان توافق على الشروط '
             ];
     }
 }

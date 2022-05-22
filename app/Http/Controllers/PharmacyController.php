@@ -46,7 +46,7 @@ class PharmacyController extends Controller
                     return view('pharmacy.home');
 
                 } else {
-                    // event(new notfiy($pharmacy));
+                    event(new notfiy($pharmacy));
                     return view('auth.verifyPharmacy');
                 }
             }
@@ -90,10 +90,12 @@ class PharmacyController extends Controller
 
             $request->validate([
                 'license' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+                'accept'=>'required',
               ],
               [
                 'license.required'=>'هذا الحقل مطلوب',
                 'license.image'=>' يجب ان يكون صوره',
+                'accept.required' => 'يجب ان توافق على الشروط '
               ]);
     
 
@@ -190,14 +192,14 @@ class PharmacyController extends Controller
             $pharmacy = Pharmacy::where('user_id', Auth::user()->id)->first();
 
             $request->validate([
-                'twitter' => 'string',
-                'facebook' => 'string',
-                'instagram' => 'string',
+                'twitter' => 'url|nullable',
+                'facebook' => 'url|nullable',
+                'instagram' => 'url|nullable',
               ],
               [
-                'instagram.string'=>' يجب ان يكون نص ',
-                'facebook.string'=>' يجب ان يكون نص ',
-                'twitter.string'=>' يجب ان يكون نص ',
+                'instagram.url'=>' يجب ان يكون url ',
+                'facebook.url'=>' يجب ان يكون url ',
+                'twitter.url'=>' يجب ان يكون url ',
               ]);
 
             // start transaction

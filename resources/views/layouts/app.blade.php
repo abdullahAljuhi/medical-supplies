@@ -97,14 +97,18 @@
                         return $q->where('user_id', Auth::id() );
                         }],'user')->where('status',0)->where('is_show','0');
 
-                        $pharmacyOrders = $q->limit(6)->get();
-
+                        $orders = $q->limit(6)->get() ??'';
+                        
+                        // echo $order;
                         $count = $q->count();
                     @endphp
                 @endif
                 <!-- Notification Nav -->
-                <li class="nav-item dropdown dropdown-notifications">
-
+                <li class="nav-item dropdown dropdown-notifications{{ Auth::user()->id }}">
+                    @if (Auth::user()->type==1)
+                        
+                    <li class="nav-item dropdown dropdown-notifications">
+                    @endif
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
                         <i class="bi bi-bell"></i>
 
@@ -112,24 +116,29 @@
                                 $count ??'0' }}</span>
                     </a><!-- End Notification Icon -->
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                        @isset($pharmacyOrders)
-                            @foreach ($pharmacyOrders as $order )
+                        <li class="notification-item scrollable-container notify">
+                         
+                        </li>
+                        <li>
+                            
+                            <hr class="dropdown-divider">
+                        </li>
+                        @if (Auth::user()->type == 2)
+                        @isset($orders)
+                            @foreach ($orders as $order )
                                 <li class="notification-item scrollable-container">
                                     <a href="/pharmacy/order/{{ $order->id }}">
                                         هناك طلب من {{ $order->user->name}}
                                     </a>
                                 </li>
                             @endforeach
-                            <li>
-
-                                <hr class="dropdown-divider">
-                            </li>
+                            @endisset
+                            @endif
 
                             <li class="dropdown-footer">
                                 <a href="{{ route('pharmacy.orders') }}">عرض جميع الطلبات</a>
                             </li>
-                        @endisset
-                        @if($count??'1')
+                        @if(! isset($count))
                             <li class="dropdown-header">
                                 ليس لديك اي رسائل جديدة
                                 {{--                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">عرض الجميع</span></a>--}}
@@ -137,6 +146,7 @@
                         @endif
 
                     </ul><!-- End Notification Dropdown Items -->
+                </li>
                 </li>
                 <!-- End Notification Nav -->
 
@@ -379,7 +389,7 @@
 @auth
     @if (Auth::user()->type==2)
         <script>
-            var notificationsWrapper = $('.dropdown-notifications');
+            var notificationsWrapper = $('.dropdown-notifications{{ Auth::user()->id }}');
             var notificationsToggle = notificationsWrapper.find('a[data-toggle]');
             var notificationsCountElem = notificationsToggle.find('span[data-count]');
             var notificationsCount = parseInt(notificationsCountElem.data('count'));

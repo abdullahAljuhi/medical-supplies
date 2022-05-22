@@ -10,7 +10,7 @@ var channel = pusher.subscribe('active-pharmacy');
 channel.bind('App\\Events\\notfiy', function (data) {
     let token=$('meta[name="csrf-token"]').attr('content');
     var existingNotifications = notifications.html();
-    var newNotificationHtml = `<a href="dashboard/pharmacy/check/${data.pharmacy.id}">
+    var newNotificationHtml = `<a href="/dashboard/pharmacy/check/${data.pharmacy.id}">
     <div class="media-body">تسجيل صيدليه <h6 class="media-heading text-right">
     ${data.pharmacy.name}
      </h6><small style="direction: ltr;">
@@ -22,15 +22,15 @@ channel.bind('App\\Events\\notfiy', function (data) {
     notificationsCountElem.attr('data-count', notificationsCount);
     notificationsWrapper.find('.notify-count').text(notificationsCount);
     notificationsWrapper.show();
-    let real = document.querySelector('#real');
-    real.innerHTML += `
-    <form action="/dashboard/pharmacy/check" method="POST" id="real_form">
-    <input type="hidden" name="_token" value="${token}" />
-                        <input type="hidden" value="${data.pharmacy.id}" name='pharmacy'/>
-                        <a href="javascript:{}" class="float-right mark-as-read" onclick="document.getElementById('real_form').submit();">
-                            [${data.pharmacy.created_at} pharmacy  ${data.pharmacy.pharmacy_name} 
-                        </a>
-    </form>
-    `;
-    real.classList.add("alert", "alert-success")
+    // let real = document.querySelector('#real');
+    // real.innerHTML += `
+    // <form action="/dashboard/pharmacy/check" method="POST" id="real_form">
+    // <input type="hidden" name="_token" value="${token}" />
+    //                     <input type="hidden" value="${data.pharmacy.id}" name='pharmacy'/>
+    //                     <a href="javascript:{}" class="float-right mark-as-read" onclick="document.getElementById('real_form').submit();">
+    //                         [${data.pharmacy.created_at} pharmacy  ${data.pharmacy.pharmacy_name} 
+    //                     </a>
+    // </form>
+    // `;
+    // real.classList.add("alert", "alert-success")
 });
