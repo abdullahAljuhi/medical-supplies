@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Events\Messages;
 use App\Helpers\Helper;
+use App\Models\City;
+use App\Models\Governorate;
 use App\Models\Order;
 use App\Models\Pharmacy;
 use App\Http\Requests\PharmacyRequest;
@@ -63,14 +65,16 @@ class OrderController extends Controller
             ], [
                 'product_name.required' => 'يجب إدخال اسم المنتج',
                 'pharmacy.required'=>'يجب تحديد الصيدلية',
-                'governorate.required'=>'المحافضه  مطلوبه',
+                'governorate.required'=>'المحافظة  مطلوبة',
                 'products.required' => 'يجب إدخال اسم المنتج',
-                'city.required'=>'المحافضه  مطلوبه',
-                'pharmacy.exists'=>'الصيدلية غير موجوده',
+                'city.required'=>'المحافظة  مطلوبة',
+                'pharmacy.exists'=>'الصيدلية غير موجودة',
             ]
         );
+            $governorate = Governorate::find($request['governorate']);
+            $city = City::find($request['city']);
             // return $request;
-            $address = $request['governorate'] . ' - ' . $request['city'] . ' - ' . $request['details'];
+            $address = $governorate->name  . ' - ' . $city->name . ' - ' . $request['details'];
             $type = 0;
             $products = [];
             if ($request->type == 1) {
@@ -102,15 +106,15 @@ class OrderController extends Controller
             $products = json_encode($products, JSON_UNESCAPED_UNICODE);
 
             // $products=implode(',',$products);
-            
-            
+
+
             $order = new Order();
             $order->products = $products;
             $order->user_id = Auth::user()->id;
             $order->address = $address;
             $order->type = $type;
             $order->pharmacy_id = $request->pharmacy;
-            
+
             //check period
             if(!$request->period){
                 $order->is_periodic=0;
@@ -126,7 +130,7 @@ class OrderController extends Controller
             // return $user;
             // send notification for pharmacy
             event(new Messages($order, $user));
-            
+
             return view('order.orderMass')->with(['success' => 'تم ارسال الطلب  بنجاح']);
 
         } catch (\Throwable $th) {
@@ -181,7 +185,6 @@ class OrderController extends Controller
                     'prices[].integer'=>'يجب ان يكون رقم ',
                     'prices[].required'=>'يجب إخال سعر المنتج',
                     'delivery_price.required'=>'يجب إخال سعر المنتج',
-                    'delivery_price.integer'=>' يجب إخال سعر المنتج',
                 ]
             );
 
@@ -195,12 +198,12 @@ class OrderController extends Controller
 
             // initial total price
             $total_price = 0;
-            
+
             // store prices products array
             foreach ($prices as $i => $price) {
 
                 $products[$i]['unit_amount'] = $price;
-                 
+
                 if($request->found[$i]==1){
                     $products[$i]['found'] = 1;
                 }else{
@@ -217,18 +220,18 @@ class OrderController extends Controller
             // return $products;
             // convert array to json
             $products = json_encode($products, JSON_UNESCAPED_UNICODE);
-            
+
             $order->update([
                 'products' => $products,
                 'total_price' => $total_price,
                 'delivery_price' => $request->delivery_price,
                 'status' => $status,
                 ]);
-         
+
             // send notification for user who send order
             event(new Messages($order, $order->user_id));
             return redirect('/pharmacy')->with(['success' => 'تم ارسال الاسعار بنجاح  بنجاح']);
-            
+
         } catch (\Throwable $th) {
             return $th->getMessage();
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
@@ -271,7 +274,7 @@ class OrderController extends Controller
         } catch (\Throwable $th) {
             // return
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
-     
+
     }
 }
        // change order status to not found
@@ -285,7 +288,7 @@ class OrderController extends Controller
         } catch (\Throwable $th) {
             // return
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
-     
+
     }
 }
 }
