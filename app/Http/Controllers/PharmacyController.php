@@ -95,10 +95,7 @@ class PharmacyController extends Controller
                 'license.required'=>'هذا الحقل مطلوب',
                 'license.image'=>' يجب ان يكون صوره',
               ]);
-            // return $request;
-            // Validator:
-            // 'license'=>'required',
-            // 'license.required'=>'عليك إدخال الترخيص',
+    
 
             // start transaction
             DB::beginTransaction();
