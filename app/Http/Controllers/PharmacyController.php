@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Throwable;
 use App\Models\City;
 use App\Models\User;
 use App\Models\Order;
@@ -10,17 +11,17 @@ use App\Helpers\Helper;
 use App\Models\Pharmacy;
 use App\Models\Governorate;
 use Illuminate\Http\Request;
+use App\Http\Requests\CityRequest;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\PharmacyRequest;
-use App\Http\Requests\UserRequest;
-use App\Http\Requests\CityRequest;
-use App\Http\Requests\GovernorateRequest;
-
 use App\Notifications\ActivePharmacy;
+
+use App\Http\Requests\PharmacyRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\GovernorateRequest;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Notification;
-use Throwable;
 
 class PharmacyController extends Controller
 {
@@ -81,31 +82,23 @@ class PharmacyController extends Controller
      * @return \Illuminate\Http\Response
      */
     // PharmacyRequest
-    public function store(Request $request)
+    public function store(PharmacyRequest $request)
     {
         // PharmacyRequest request with validation
 
         try {
+            $request->validate([]);
+            $request->validate([
+                'license' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+              ],
+              [
+                'license.required'=>'هذا الحقل مطلوب',
+                'license.image'=>' يجب ان يكون صوره',
+              ]);
             // return $request;
-
-            Validator::validate($request->all(),[
-
-             'name' => ['required'],
-            'mobile' => ['numeric|max:15|min:6'],
-            'phone' => ['required|numeric|max:15|min:6'],
-            'license'=>['required'],
-            'accept'=>['required']
-            ],[
-
-             'name.required' => 'يجب إدخال اسم الصيدلية',
-            'mobile.numeric'=>'يجب كتابة أرقام فقط',
-            'mobile.max'=>'هذا الرقم طويل جدا ',
-            'phone.required'=>'يجب ملئ هذا الحقل برقم التلفون',
-            'phone.max'=>'هذا الرقم طويل جدا',
-            'phone.numeric'=>'يجب كتابة أرقام فقط',
-            'license.required'=>'عليك إدخال الترخيص',
-            'accept.required' => 'يجب ان توافق على الشروط '
-            ]);
+            // Validator:
+            // 'license'=>'required',
+            // 'license.required'=>'عليك إدخال الترخيص',
 
             // start transaction
             DB::beginTransaction();
@@ -190,30 +183,13 @@ class PharmacyController extends Controller
      * @param \App\Models\Pharmacy $pharmacy
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(PharmacyRequest $request)
     {
 
         // PharmacyRequest request with validation
 
         try {
 
-            Validator::validate($request->all(),[
-
-            'name' => ['required'],
-            'mobile' => ['numeric|max:11'],
-            'phone' => ['required|numeric|max:11'],
-            'license'=>['required'],
-            'image'=>['image'],
-            ],[
-
-            'name.required' => 'يجب إدخال اسم الصيدلية',
-            'mobile.numeric'=>'يجب كتابة أرقام فقط',
-            'mobile.max'=>'هذا الرقم طويل جدا',
-            'phone.required'=>'يجب ملئ هذا الحقل برقم التلفون',
-            'phone.max'=>'هذا الرقم طويل جدا',
-            'phone.numeric'=>'يجب كتابة أرقام فقط',
-            'image.image'=>'الصيغة غير مدعومة تأكد من صيغة الملف',
-            ]);
             $pharmacy = Pharmacy::where('user_id', Auth::user()->id)->first();
 
             // start transaction

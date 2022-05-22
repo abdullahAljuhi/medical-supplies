@@ -16,9 +16,9 @@ class GovernorateSeeder extends Seeder
     public function run()
     {
         $governorates = [
-            ['name' => ' حضرموت'],
-            ['name' => ' المهره'],
-            ['name' => ' عدن'], 
+            ['name' => ' حضرموت','is_active'=>1],
+            ['name' => ' المهره','is_active'=>1],
+            ['name' => ' عدن','is_active'=>1], 
        ];
        Governorate::insert($governorates);
     }

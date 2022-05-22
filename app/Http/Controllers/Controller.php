@@ -16,8 +16,8 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function __construct()
     {
-        $governorates = Governorate::all()?? '';
-        $cities = City::all()??'';
+        $governorates = Governorate::where('is_active',1)->get()?? '';
+        $cities = City::where('is_active',1)->get()??'';
         View::share(['governorates'=> $governorates,'cities'=>$cities]);
     }
 }

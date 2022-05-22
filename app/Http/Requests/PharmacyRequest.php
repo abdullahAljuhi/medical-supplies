@@ -24,29 +24,36 @@ class PharmacyRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            // 'mobile' => 'digits_between:6,11',
-            // 'phone' => 'required|digits_between:6,11',
-            // 'fax' => 'numeric|max:11',
-            'license'=>'required',
-            // 'image'=>'image',
-            'accept'=>'required'
+            'pharmacy_name' => 'required|string',
+            'mobile' => 'required|min:0|max:15',
+            'phone' => 'required||min:0|max:15',
+            
+            'image'=>'image',
+            'accept'=>'required',
+            'city'=>'required',
+            'governorate'=>'required',
+            'street'=>'string|required',
+            'details'=>'string|required',
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'يجب إدخال اسم الصيدلية',
-            // 'mobile.numeric'=>'يجب كتابة أرقام فقط',
-            // 'mobile.max'=>'تأكد من كتابة الرقم بشكل صحيح',
-            // 'phone.required'=>'يجب ملئ هذا الحقل برقم التلفون',
-            // 'phone.max'=>'تأكد من كتابة الرقم بشكل صحيح',
-            // 'phone.numeric'=>'يجب كتابة أرقام فقط',
-            // 'fax.numeric'=>'يجب كتابة أرقام فقط',
-            // 'fax.max'=>'تأكد من كتابة الرقم بشكل صحيح',
-            // 'image.image'=>'الصيغة غير مدعومة تأكد من صيغة الملف',
-            'license.required'=>'عليك إدخال الترخيص',
+            'pharmacy_name.required' => 'يجب إدخال اسم الصيدلية',
+            'city.required' => 'يجب إدخال اسم المحافظة',
+            'street.string'=>'يجب ان يكون نص',
+            'description.string'=>'يجب ان يكون نص',
+            'street.required'=>'هذا الحقل مطلوب',
+            'city.required' => 'يجب إدخال اسم المحافظة',
+            'details.string'=>'يجب ان يكون نص',
+            'details.required'=>'هذا الحقل مطلوب',
+            'governorate.required' => 'يجب إدخال اسم المحافظة',
+            'mobile.integer'=>'يجب كتابة أرقام فقط',
+            'mobile.max'=>'هذا الرقم طويل جدا ',
+            'phone.required'=>'يجب ملئ هذا الحقل برقم التلفون',
+            'phone.max'=>'تأكد من كتابة الرقم بشكل صحيح',
+            'image.image'=>'الصيغة غير مدعومة تأكد من صيغة الملف',
             'accept.required' => 'يجب ان توافق على الشروط '
             ];
     }
