@@ -25,8 +25,8 @@ class PharmacyRequest extends FormRequest
     {
         return [
             'pharmacy_name' => 'required|string',
-            'mobile' => 'required|min:0|max:15|digital',
-            'phone' => 'required||min:0|max:15|digital',            
+            'mobile' => 'digits_between:6,15',
+            'phone' => 'required|digits_between:6,15',            
             'image'=>'image',
             'accept'=>'required',
             'city'=>'required',
