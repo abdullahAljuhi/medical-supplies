@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Events\Messages;
 use App\Helpers\Helper;
+use App\Models\City;
+use App\Models\Governorate;
 use App\Models\Order;
 use App\Models\Pharmacy;
 use App\Http\Requests\PharmacyRequest;
@@ -69,8 +71,10 @@ class OrderController extends Controller
                 'pharmacy.exists'=>'الصيدلية غير موجودة',
             ]
         );
+            $governorate = Governorate::find($request['governorate']);
+            $city = City::find($request['city']);
             // return $request;
-            $address = $request['governorate'] . ' - ' . $request['city'] . ' - ' . $request['details'];
+            $address = $governorate->name  . ' - ' . $city->name . ' - ' . $request['details'];
             $type = 0;
             $products = [];
             if ($request->type == 1) {
