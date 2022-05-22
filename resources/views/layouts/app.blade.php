@@ -91,13 +91,13 @@
                 @endif
             @else
 
-                @if (Auth::user()->type==2)
+                @if (Auth::user()->type == 2)
                     @php
                         $q = App\Models\Order::with(['pharmacy' => function($q){
-                        return $q->where('user_id',Auth::id());
+                        return $q->where('user_id', Auth::id() );
                         }],'user')->where('status',0)->where('is_show','0');
 
-                        $pharmacyOrders=$q->limit(6)->get();
+                        $pharmacyOrders = $q->limit(6)->get();
 
                         $count = $q->count();
                     @endphp
