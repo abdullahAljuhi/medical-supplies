@@ -105,7 +105,7 @@
 
                 @endphp
                 @endif
-                <!-- Notification Nav -->
+            <!-- Notification Nav -->
                 <li class="nav-item dropdown dropdown-notifications{{ Auth::user()->id }}">
                     @if (Auth::user()->type==1)
 
@@ -114,137 +114,151 @@
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
                         <i class="bi bi-bell"></i>
 
-                        <span class="badge bg-primary badge-number notify-count" data-count="{{ $count??'0' }}">{{
+                            <span class="badge bg-primary badge-number notify-count" data-count="{{ $count??'0' }}">{{
                                 $count ??'0' }}</span>
-                    </a><!-- End Notification Icon -->
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                        <li class="notification-item scrollable-container notify">
-
-                        </li>
-                        <li>
-
-                            <hr class="dropdown-divider">
-                        </li>
-                        @if (Auth::user()->type == 2)
-                        @isset($orders)
-                        @foreach ($orders as $order )
-                        <li class="notification-item scrollable-container">
-                            <a href="/pharmacy/order/{{ $order->id }}">
-                                طلب علاج من {{ $order->user->name}}
-                            </a>
-                        </li>
-                        @endforeach
-                        @endisset
-                        @endif
-
-                        <li class="dropdown-footer">
-                            <a href="{{ route('pharmacy.orders') }}">عرض جميع الطلبات</a>
-                        </li>
-                        @if(! isset($count))
-                        <li class="dropdown-header">
-                            ليس لديك اي رسائل جديدة
-                            {{-- <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">عرض الجميع</span></a>--}}
-                        </li>
-                        @endif
-
-                    </ul><!-- End Notification Dropdown Items -->
-                </li>
-                </li>
-                <!-- End Notification Nav -->
-
-                <!-- Profile Nav -->
-                <li class="nav-item dropdown pe-3">
-
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        @if(isset(Auth::user()->profile->image))
-                        <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile" class="rounded-circle border p-1">
-                        @else
-                        <img src="{{asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
-                        @endif
-                    </a><!-- End Profile Iamge Icon -->
-
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-
-                        <li class="dropdown-header">
-                            <h6>{{ Auth::user()->name }}</h6>
-                            <span>{{ Auth::user()->email }}</span>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{{ route('home') }}">
-                                <i class="bi bi-grid"></i>
-                                <span>لوحة التحكم</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{{ route('profile') }}">
-                                <i class="bi bi-person"></i>
-                                <span>الملف الشخصي</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{{ route('edit.profile') }}">
-                                <i class="bi bi-gear"></i>
-                                <span>اعدادات الحساب</span>
-                            </a>
-                        </li>
-                        <li>
-                            {{-- if(Auth::user) --}}
-                            @if(Auth::user()->type==1)
-
-                            <a class="dropdown-item d-flex align-items-center" href="
-                            {{-- {{ route('admin.wallet') }} --}}
-                                    ">
-                                <i class="bi bi-person"></i>
-                                ' {{ $admin  = App\Models\User::where('type','1')->first()->wallet->balance }}
-                                '<span> ريال في محفضتك </span>
-                            </a>
-                            @else
-                            <a class="dropdown-item d-flex align-items-center" href="
-                            {{-- {{ route('pharmacy.wallet') }} --}}
-                                    ">
-                                <i class="bi bi-person"></i>
-                                ' {{ $user=App\Models\User::find(Auth::id())->wallet->balance }} '<span> ريال في محفضتك </span>
-                            </a>
-                            {{-- user.wallet --}}
+                        </a><!-- End Notification Icon -->
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications py-2">
+                            @if (Auth::user()->type == 2)
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                @isset($orders)
+                                    @foreach ($orders as $order )
+                                        <li class="notification-item scrollable-container text-center text-nowrap  bg-info-light py-2">
+                                            <a href="/pharmacy/order/{{ $order->id }}"
+                                               class="d-flex align-items-center text-dark">
+                                                <div class="mx-2">
+                                                    <p class="fs-6 text-dark">هناك طلب من {{ $order->user->name}}</p>
+                                                    <p class="d-block">{{\Carbon\Carbon::parse($order->created_at)->diffForHumans()}}</p>
+                                                </div>
+                                                @if(isset($order->user->profile->image))
+                                                    <img
+                                                        src="{{asset('assets/images/users/'.$order->user->profile->image)}}"
+                                                        alt="Profile"
+                                                        class="rounded-circle border p-1" style="width: 35px;
+                                                height: 35px;">
+                                                @else
+                                                    <img src="{{asset('assets/img/user.png') }}" alt="Profile"
+                                                         class="rounded-circle border p-1" style="width: 35px;
+                                                height: 35px;">
+                                                @endif
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                @endisset
+                                <li class="dropdown-footer">
+                                    <a class="text-primary" href="{{ route('pharmacy.orders') }}">عرض جميع الطلبات</a>
+                                </li>
                             @endif
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                            @if(! isset($count))
+                                <li class="dropdown-header">
+                                    ليس لديك اي رسائل جديدة
+                                    {{--                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">عرض الجميع</span></a>--}}
+                                </li>
+                            @endif
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                                <i class="bi bi-question-circle"></i>
-                                <span>هل تحتاج المساعدة ؟</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                        </ul><!-- End Notification Dropdown Items -->
+                    </li>
+                    </li>
+                    <!-- End Notification Nav -->
 
-                        <li>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                            <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    <!-- Profile Nav -->
+                    <li class="nav-item dropdown pe-3">
+
+                        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
+                           data-bs-toggle="dropdown">
+                            @if(isset(Auth::user()->profile->image))
+                                <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile"
+                                     class="rounded-circle border"
+                                     style="object-fit: cover; width: 35px;height: 35px; padding: 1px">
+                            @elseif(isset(Auth::user()->pharmacy->image))
+                                <img src="{{asset('assets/images/pharmacies/'.Auth::user()->pharmacy->image)}}"
+                                     alt="Profile"
+                                     class="rounded-circle border"
+                                     style="object-fit: cover; width: 35px;height: 35px; padding: 1px">
+                            @else
+                                <img src="{{asset('assets/img/user.png') }}" alt="Profile"
+                                     class="rounded-circle border p-1">
+                            @endif
+                        </a><!-- End Profile Iamge Icon -->
+
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+
+                            <li class="dropdown-header">
+                                <h6>{{ Auth::user()->name }}</h6>
+                                <span>{{ Auth::user()->email }}</span>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route('home') }}">
+                                    <i class="bi bi-grid"></i>
+                                    <span>لوحة التحكم</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route('profile') }}">
+                                    <i class="bi bi-person"></i>
+                                    <span>الملف الشخصي</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route('edit.profile') }}">
+                                    <i class="bi bi-gear"></i>
+                                    <span>اعدادات الحساب</span>
+                                </a>
+                            </li>
+                            <li>
+                                {{-- if(Auth::user) --}}
+                                @if(Auth::user()->type==1)
+
+                                    <a class="dropdown-item d-flex align-items-center"
+                                       href="{{ route('admin.wallet') }}">
+                                        <i class="bi bi-cash-coin"></i><span>المحفظة</span>
+                                    </a>
+                                @else
+                                    <a class="dropdown-item d-flex align-items-center"
+                                       href="{{ route('admin.wallet') }}">
+                                        <i class="bi bi-cash-coin"></i><span>المحفظة</span>
+                                    </a>
+                                @endif
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>هل تحتاج المساعدة ؟</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                <i class="bi bi-box-arrow-right"></i>
-                                <span>تسجيل الخروج</span>
-                            </a>
-                        </li>
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <span>تسجيل الخروج</span>
+                                </a>
+                            </li>
 
-                    </ul><!-- End Profile Dropdown Items -->
-                </li>
-                <!-- End Profile Nav -->
+                        </ul><!-- End Profile Dropdown Items -->
+                    </li>
+                    <!-- End Profile Nav -->
                 @endguest
 
             </ul>

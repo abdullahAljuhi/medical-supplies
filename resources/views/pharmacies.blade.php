@@ -25,13 +25,6 @@
             </div>
             <form action="{{ route('morePharmacy') }}" method="get" class="col-md-11 col-sm-12">
                 <div class="row">
-                    <div class="col-md-6 d-flex border ps-0 mb-3 mb-md-0 ">
-                        <input type="text" class=" border-0 py-1" style="width: 90%;outline:0ch" placeholder="البحث "
-                            aria-label="Example text with button addon" aria-describedby="button-addon1" name="name">
-                        <button type="submit" name="search" id="" style="width: 10%;border:0;background: transparent;outline:0ch" class="bg-primary text-white" >
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </div>
                     <div class="col-md-6 d-flex">
                         <select name="governorate" id="select1"
                                 class="form-select select1 form-control mx-2"
@@ -54,6 +47,13 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="col-md-6 d-flex border ps-0 mb-3 mb-md-0 ">
+                        <input type="text" class=" border-0 py-1" style="width: 90%;outline:0ch" placeholder="البحث "
+                            aria-label="Example text with button addon" aria-describedby="button-addon1" name="name">
+                        <button type="submit" name="search" id="" style="width: 10%;border:0;background: transparent;outline:0ch" class="bg-primary text-white" >
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
 
                     </div>
 
@@ -71,13 +71,8 @@
                 <div class="view_wrap list-view">
                     <div class="mt-0 text-center">
                         @foreach ($pharmacies as $pharmacy)
-                            <div class="row  py-2 border-bottom text-content text-black ">
-                                <div
-                                    class="col-md-1 col-4 mb-md-0 mb-4 d-flex justify-content-center fw-bold align-self-center fs-5">
-                                    {{ $loop->index }}
-                                </div>
-                                <div
-                                    class="col-md-2 col-8  d-flex justify-content-strat fw-bold align-self-center fs-5">
+                            <div class="row  py-2 border-bottom text-content text-black justify-content-center">
+                                <div class="col-md-2 col-8  d-flex justify-content-strat fw-bold align-self-center fs-5">
                                     {{ $pharmacy->pharmacy_name??'' }}
                                 </div>
                                 <div
@@ -118,18 +113,18 @@
                 <div class="view_wrap grid-view " style="display: none;">
                     <div class="card-group justify-content-center">
                         <div
-                            class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-0 g-sm-5 text-center jobs justify-content-center w-100">
+                            class="row row-cols-1 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 g-0 g-sm-5 text-center jobs justify-content-center w-100">
                             @foreach ($pharmacies as $pharmacy)
                                 <div class="col">
                                     <div class="card h-100 px-2">
                                         @if($pharmacy->image)
                                             <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}"
-                                                 alt="pharmacy"
-                                                 class="border-bottom">
+                                                 class="rounded border-bottom"style="height: 250px; object-fit: contain"
+                                                 alt="..." >
                                         @else
                                             <img src="{{asset('img/pharmacy.png') }}"
-                                                 class="card-img-top w-100 h-100 img-card-cus"
-                                                 alt="...">
+                                                 class="rounded border-bottom"style="height: 250px; object-fit: contain"
+                                                 alt="..." >
                                         @endif
                                         <div class="card-body pb-0">
                                             <h5 class="card-title fs-4 text-primary "> {{ $pharmacy->pharmacy_name }}</h5>

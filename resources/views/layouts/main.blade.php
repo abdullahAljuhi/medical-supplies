@@ -49,7 +49,7 @@
 <body style="overflow-x: hidden">
 
     <!-- ======= Header ======= -->
-    <header id="header" class="header d-flex align-items-center">
+    <header id="header" class="header d-flex align-items-center position-relative">
 
         <!-- Main Logo -->
         <div class="d-flex align-items-center justify-content-between">
@@ -166,15 +166,21 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         @if(isset(Auth::user()->profile->image))
-                        <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile"
-                            class="rounded-circle border p-1">
+                            <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile"
+                                 class="rounded-circle border"
+                                 style="object-fit: cover; width: 35px;height: 35px; padding: 1px">
+                        @elseif(isset(Auth::user()->pharmacy->image))
+                            <img src="{{asset('assets/images/pharmacies/'.Auth::user()->pharmacy->image)}}"
+                                 alt="Profile"
+                                 class="rounded-circle border"
+                                 style="object-fit: cover; width: 35px;height: 35px; padding: 1px">
                         @else
-                        <img src="{{asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
+                            <img src="{{asset('assets/img/user.png') }}" alt="Profile"
+                                 class="rounded-circle border p-1">
                         @endif
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-
                         <li class="dropdown-header">
                             <h6>{{ Auth::user()->name }}</h6>
                             <span>{{ Auth::user()->email }}</span>
@@ -207,7 +213,7 @@
                                 <span>الطلبات</span>
                             </a>
                         </li>
-                        
+
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="{{ route('user.wallet') }}">
                                 <i class="bi bi-cash-coin"></i>
@@ -224,7 +230,7 @@
                                 <span>اعدادات الحساب</span>
                             </a>
                         </li>
-                       
+
                         @endif
                         <li>
                             <hr class="dropdown-divider">
@@ -265,21 +271,21 @@
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </button>
 
-        <div class="position-absolute top-100 bg-white w-100 order-lg-1 order-md-2 align-self-center navbar-collapse flex-fill d-lg-none w-100 justify-content-lg-between collapse"
-            id="templatemo_main_nav" style="">
+        <div class="position-absolute top-100 bg-white w-100 order-lg-1 order-md-2 align-self-center navbar-collapse flex-fill d-lg-none w-100 justify-content-lg-between collapse p-3"
+            id="templatemo_main_nav" style="z-index: 100;">
             <div class="flex-fill">
                 <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="">{{ __('الصيدليات') }}</a>
+                        <a class="nav-link text-dark" href="{{ route("morePharmacy") }}">{{ __('الصيدليات') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="">{{ __('الشركاء') }}</a>
+                        <a class="nav-link text-dark" href="{{ route("partners") }}">{{ __('الشركاء') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="">{{ __('التواصل') }}</a>
+                        <a class="nav-link text-dark" href="{{ route("contact") }}">{{ __('التواصل') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="">{{ __('حولنا') }}</a>
+                        <a class="nav-link text-dark" href="{{ route("about") }}">{{ __('حولنا') }}</a>
                     </li>
                     <li class="nav-item d-flex d-sm-none d-block my-3">
                         <a class="btn btn-outline-primary text-nowrap p-1" href="{{ route('register') }}">{{ __('انشاء
@@ -427,12 +433,12 @@
         var notificationsCountElem = notificationsToggle.find('span[data-count]');
         var notificationsCount = parseInt(notificationsCountElem.data('count'));
         var notifications = notificationsWrapper.find('li.scrollable-container.notify');
-    
-    
+
+
         // Subscribe to the channel we specified in our Laravel Event
         var channel = pusher.subscribe("order{{  Auth::user()-> id }}");
         // Bind a function to a Event (the full Laravel class)
-    
+
         channel.bind('App\\Events\\Messages', function(data) {
         //   console.log(data.order.pharmacy_id);
           var existingNotifications = notifications.html();

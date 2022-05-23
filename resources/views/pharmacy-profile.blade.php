@@ -5,18 +5,12 @@
 @include('alerts.errors')
 @include('alerts.success')
 <!--Display Error-->
-<!-- @if($errors->any())
-    {!! implode('', $errors->all('<div class="text-center"><mark class=" text-danger h4">:message !!</mark></div>')) !!}
-@endif -->
+
 
 <!-- Page Title -->
 <div class="pagetitle">
     <h1>ملف الصيدلية</h1>
     <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="../index.blade.php">الرائيسية</a></li>
-            <li class="breadcrumb-item active">ملف الصيدلية</li>
-        </ol>
     </nav>
 </div>
 <!-- End Page Title -->
@@ -28,7 +22,8 @@
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                     @if($pharmacy->image)
                     <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}" alt="Profile"
-                        class="rounded-circle border p-1">
+                        class="rounded-circle border p-1" style="width: 130px;
+                                                height: 130px; object-fit: contain">
                     @else
                     <img src="{{asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
                     @endif
@@ -39,17 +34,17 @@
                     <ul class="text-center footer-icons d-flex justify-content-center mb-0">
                         <li class="list-inline-item text-center">
                             <a class="  text-decoration-none" target="_blank"
-                                href="{{ $pharmacy->contact[0]->facebook ?? ''}}"><i
+                                href="{{ $pharmacy->contact->facebook ?? ''}}"><i
                                     class="fab fa-facebook-f fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item  text-center">
                             <a class=" text-decoration-none" target="_blank"
-                                href="{{ $pharmacy->contact[0]->instagram ?? 'https://www.instagram.com'}}><i class="
+                                href="{{ $pharmacy->contact->instagram ?? 'https://www.instagram.com'}}><i class="
                                 fab fa-instagram fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item  text-center">
                             <a class=" text-decoration-none" target="_blank"
-                                href="{{ $pharmacy->contact[0]->twitter ?? 'https://twitter.com/'}}"><i
+                                href="{{ $pharmacy->contact->twitter ?? 'https://twitter.com/'}}"><i
                                     class="fab fa-twitter fa-lg fa-fw"></i></a>
                         </li>
                     </ul>
@@ -94,12 +89,12 @@
                                         <div class="row">
                                             @if($pharmacy->image)
                                             <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}"
-                                                alt="Profile" class="mx-auto rounded-circle border p-1" id="blah" style="width: 120px;
+                                                alt="Profile" class="mx-auto rounded-circle border p-1" id="blah" style="width: 120px ;
                                                 height: 120px;">
                                             @else
                                             <img src="{{asset('assets/img/user.png') }}" alt="Profile"
-                                                class="mx-auto rounded-circle border p-1" id="blah" style="max-width: 120px;
-                                                max-height: 120px;">
+                                                class="mx-auto rounded-circle border p-1" id="blah" style="width: 120px;
+                                                height: 120px;">
                                             @endif
                                             <div style="transform: translate(-25px,-35px);">
                                                 <label class="btn bg-white border rounded-circle ">
@@ -251,7 +246,7 @@
                                     <label for="company" class="col-md-4 col-lg-3 col-form-label">رابط
                                         الانستقرام</label>
                                     <div class="col-md-8 col-lg-9">
-                                        <input name="instagram" type="url"
+                                        <input name="instgram" type="url"
                                             class="form-control @error('instagram') is-invalid @enderror" id="company"
                                             value="{{ $pharmacy->contact->instagram?? ''}}">
                                         @error('instgram')
@@ -274,7 +269,19 @@
                                         @enderror
                                     </div>
                                 </div>
-
+                                <div class="row mb-3">
+                                    <label for="company" class="col-md-4 col-lg-3 col-form-label">رابط لاينكدن</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="linkdin" type="url"
+                                            class="form-control @error('linkdin') is-invalid @enderror" id="company"
+                                            value="{{ $pharmacy->contact->linkdin?? ''}}">
+                                        @error('linkdin')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <div class="row mb-3">
                                     <label for="fullName" class="col-md-4 col-lg-3 col-form-label">وصف عن
                                         الصيدلية</label>
@@ -296,7 +303,7 @@
                             <!-- Change Password Form -->
                             <form method="POST" action="{{ route('user.changePassword') }}">
                                 @csrf
-
+                    
                                 <div class="row mb-3">
                                     <label for="current_password" class="col-md-4 col-lg-3 col-form-label">كلمة
                                         المرور الحالية</label>
@@ -311,7 +318,7 @@
                                         @enderror
                                     </div>
                                 </div>
-
+                    
                                 <div class="row mb-3">
                                     <label for="new_password" class="col-md-4 col-lg-3 col-form-label">كلمة المرور
                                         الجديدة</label>
@@ -326,7 +333,7 @@
                                         @enderror
                                     </div>
                                 </div>
-
+                    
                                 <div class="row mb-3">
                                     <label for="renew_password" class="col-md-4 col-lg-3 col-form-label">تأكيد كلمة
                                         المرور
@@ -342,12 +349,12 @@
                                         @enderror
                                     </div>
                                 </div>
-
+                    
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
                                 </div>
                             </form><!-- End Change Password Form -->
-
+                    
                         </div>
 
                     </div><!-- End Bordered Tabs -->

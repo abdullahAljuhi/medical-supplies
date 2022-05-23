@@ -15,7 +15,7 @@ body {
       right: -300px;
     }
   }
-  
+
   @media (min-width: 1200px) {
     #main, #footer {
       margin-right: 300px;

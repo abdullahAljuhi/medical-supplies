@@ -99,6 +99,9 @@
                     </form>
                 </div>
             </div>
+            <div class="col-md-6 text-center order-first order-md-last">
+                <img src="{{ asset('img/favicon.png') }}" class="w-50">
+            </div>
 
         </div>
 
