@@ -442,11 +442,15 @@
         channel.bind('App\\Events\\Messages', function(data) {
         //   console.log(data.order.pharmacy_id);
           var existingNotifications = notifications.html();
-          var newNotificationHtml = `
-            <form action="/order/${data.order.id}" class='n-form' method="get">
-            <button type="submit" class='n-form-btn'>${data.message}</button>
-            </form>`
-            ;
+          var newNotificationHtml = 
+          `<a href="/pharmacy/order/${data.order.id}" class="d-flex align-items-center text-dark">
+                                    <div class="mx-2">
+                                        <p class="fs-6 text-dark text-nowrap"> ${ data.message } </p>
+                                        <small class="d-block text-center" style='font-size: 12px'>${new Date(data.order.created_at).toLocaleDateString()}</small>
+                                    </div>
+                                    <img src="{{asset('assets/img/user.png') }}" alt="Profile"class="rounded-circle border p-1" 
+                                    style="width: 35px;height: 35px;">
+            </a>`
           notifications.html(newNotificationHtml + existingNotifications);
           notificationsCount += 1;
           notificationsCountElem.attr('data-count', notificationsCount);

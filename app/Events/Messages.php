@@ -20,6 +20,8 @@ class Messages implements ShouldBroadcast
     public $date;
     public $time;
     public $message;
+    public $user ;
+    public $pharmacy ;
     /**
      * Create a new event instance.
      *
@@ -30,6 +32,9 @@ class Messages implements ShouldBroadcast
         $this->order = $order;
         $this->id=$id;
         $this->message=$message;
+        $this->user =  $order->user;
+        $this->pharmacy =  $order->pharmacy;
+
         $this->date = date("Y-m-d", strtotime(Carbon::now()));
         $this->time = date("h:i A", strtotime(Carbon::now()));
     }

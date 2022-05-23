@@ -403,26 +403,16 @@
 
         channel.bind('App\\Events\\Messages', function(data) {
 
-            //   console.log(data.order.pharmacy_id);
             var existingNotifications = notifications.html();
-            var newNotificationHtml = `
-
-
-            <a href="/pharmacy/order/${data.order.id}"
-                                   class="d-flex align-items-center text-dark">
+            var newNotificationHtml = 
+                            `<a href="/pharmacy/order/${data.order.id}" class="d-flex align-items-center text-dark">
                                     <div class="mx-2">
-                                        <p class="fs-6 text-dark">  {{ $order->user->name}}</p>
-                                        <p class="d-block">${$data.created_at.toLocaleDateString()}</p>
+                                        <p class="fs-6 text-dark"> ${ data.message} {{ $order->user->name}}</p>
+                                        <p class="d-block">${new Date(data.order.created_at).toLocaleDateString()}</p>
                                     </div>;
-                                        <img src="{{asset('assets/img/user.png') }}" alt="Profile"
-                                             class="rounded-circle border p-1" style="width: 35px;
-                                    height: 35px;">;
-                              </a>
-
-            <form action="/pharmacy/order/${data.order.id}" class='n-form' method="get">
-            <button type="submit" class='n-form-btn'> ${ data.message}</button>
-   
-            </form>`;
+                                    <img src="{{asset('assets/img/user.png') }}" alt="Profile"class="rounded-circle border p-1" 
+                                    style="width: 35px;height: 35px;">;
+                            </a>`
             notifications.html(newNotificationHtml + existingNotifications);
             notificationsCount += 1;
             notificationsCountElem.attr('data-count', notificationsCount);
