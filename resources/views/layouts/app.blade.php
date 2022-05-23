@@ -98,7 +98,7 @@
                         }],'user')->where('status',0)->where('is_show','0');
 
                         $orders = $q->limit(6)->get() ??'';
-                        
+
                         // echo $order;
                         $count = $q->count();
                     @endphp
@@ -106,7 +106,7 @@
                 <!-- Notification Nav -->
                 <li class="nav-item dropdown dropdown-notifications{{ Auth::user()->id }}">
                     @if (Auth::user()->type==1)
-                        
+
                     <li class="nav-item dropdown dropdown-notifications">
                     @endif
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
@@ -117,18 +117,25 @@
                     </a><!-- End Notification Icon -->
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                         <li class="notification-item scrollable-container notify">
-                         
+
                         </li>
                         <li>
-                            
+
                             <hr class="dropdown-divider">
                         </li>
                         @if (Auth::user()->type == 2)
                         @isset($orders)
                             @foreach ($orders as $order )
-                                <li class="notification-item scrollable-container">
-                                    <a href="/pharmacy/order/{{ $order->id }}">
+                                <li class="notification-item scrollable-container text-center text-nowrap">
+                                    <a href="/pharmacy/order/{{ $order->id }}" class="text-secondary">
                                         هناك طلب من {{ $order->user->name}}
+                                        @if(isset(Auth::user()->profile->image))
+                                            <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile"
+                                                 class="rounded-circle border p-1">
+                                        @else
+                                            <img src="{{asset('assets/img/user.png') }}" alt="Profile"
+                                                 class="rounded-circle border p-1" style="height: 35px;">
+                                        @endif
                                     </a>
                                 </li>
                             @endforeach
@@ -156,7 +163,10 @@
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         @if(isset(Auth::user()->profile->image))
                             <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile"
-                                 class="rounded-circle border p-1">
+                                 class="rounded-circle border" style="object-fit: cover; width: 35px;height: 35px; padding: 1px">
+                        @elseif(Auth::user()->pharmacy->image)
+                            <img src="{{asset('assets/images/pharmacies/'.Auth::user()->pharmacy->image)}}" alt="Profile"
+                                 class="rounded-circle border" style="object-fit: cover; width: 35px;height: 35px; padding: 1px">
                         @else
                             <img src="{{asset('assets/img/user.png') }}" alt="Profile"
                                  class="rounded-circle border p-1">
