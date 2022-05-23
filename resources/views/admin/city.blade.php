@@ -7,8 +7,8 @@
         <h1>المدن</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/home">لوحة التحكم</a></li>
-                <li class="breadcrumb-item active">المدن</li>
+{{--                <li class="breadcrumb-item"><a href="/home">لوحة التحكم</a></li>--}}
+{{--                <li class="breadcrumb-item active">المدن</li>--}}
             </ol>
         </nav>
     </div>
@@ -116,7 +116,7 @@
                                     @endif
                                     </a>
                             </td>
-                                
+
 
                         </tr>
                     @endforeach

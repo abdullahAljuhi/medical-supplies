@@ -9,9 +9,9 @@
         <h1>الملف الشخصي للصيدلية</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active">لوحة التحكم</li>
-                <li class="breadcrumb-item">الصيدليات</li>
-                <li class="breadcrumb-item">الملف الشخصي</li>
+{{--                <li class="breadcrumb-item active">لوحة التحكم</li>--}}
+{{--                <li class="breadcrumb-item">الصيدليات</li>--}}
+{{--                <li class="breadcrumb-item">الملف الشخصي</li>--}}
             </ol>
         </nav>
     </div>

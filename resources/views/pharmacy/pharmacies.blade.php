@@ -10,8 +10,8 @@
         <h1>الصيدليات</h1>
         <nav>
             <ol class="breadcrumb my-3">
-                <li class="breadcrumb-item"><a href="{{ route('home') }}">لوحة التحكم</a></li>
-                <li class="breadcrumb-item active">الصيدليات</li>
+{{--                <li class="breadcrumb-item"><a href="{{ route('home') }}">لوحة التحكم</a></li>--}}
+{{--                <li class="breadcrumb-item active">الصيدليات</li>--}}
             </ol>
         </nav>
     </div>

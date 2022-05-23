@@ -273,7 +273,7 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link " href="{{ route('home') }}">
+                <a class="nav-link collapsed" href="{{ route('home') }}">
                     <i class="bi bi-grid"></i>
                     <span>لوحة التحكم</span>
                 </a>
@@ -338,21 +338,8 @@
                 </li><!-- End Users Nav -->
 
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#">
-                        <i class="bi bi-flower1"></i>
-                        <span>الطلبات الجديدة</span>
-                    </a>
-                </li><!-- End Users Nav -->
-                <li class="nav-item">
                     <a class="nav-link collapsed" href="{{ route('pharmacy.wallet') }}">
                         <i class="bi bi-cash-coin"></i><span>المحفظة</span>
-                    </a>
-                </li><!-- End Users Nav -->
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#">
-                        <i class="bi bi-bell"></i>
-                        <span>الاشعارات</span>
                     </a>
                 </li><!-- End Users Nav -->
             @endif

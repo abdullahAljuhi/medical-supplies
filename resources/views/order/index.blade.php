@@ -6,8 +6,8 @@
         <h1>جميع الطلبات</h1>
         <nav>
             <ol class="breadcrumb my-3">
-                <li class="breadcrumb-item"><a href="../index.blade.php">الطلبات</a></li>
-                <li class="breadcrumb-item active">لوحة التحكم</li>
+{{--                <li class="breadcrumb-item"><a href="../index.blade.php">الطلبات</a></li>--}}
+{{--                <li class="breadcrumb-item active">لوحة التحكم</li>--}}
             </ol>
         </nav>
     </div>

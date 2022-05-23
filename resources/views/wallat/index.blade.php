@@ -15,16 +15,10 @@
     <!-- Page Title -->
     <div class="pagetitle">
         <h1>ادارة المحفظة</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../index.blade.php">الرئيسية</a></li>
-                <li class="breadcrumb-item active">المحفظة</li>
-            </ol>
-        </nav>
     </div>
     <!-- End Page Title -->
 
-    <div class="row mb-5 ">
+    <div class="row mb-5 mt-4">
         <div class="col-4 ">
             <div class="row shadow  p-3 mx-2 fs-4 rounded align-items-center">
                 <div class="col-10">
@@ -37,30 +31,30 @@
                 </div>
             </div>
         </div>
-        <div class="col-4 ">
-            <div class="row shadow  p-3 mx-2 fs-4 rounded align-items-center">
-                <div class="col-10">
-                    <p class="fs-5 text-secondary my-0">اجمالي العمليات:
-                        <span class="mx-3 fs-3 text-black">{{  $wallet->balance }}</span>
-                    </p>
-                </div>
-                <div class="col-2">
-                    <i class="bi bi-credit-card-2-back-fill text-primary"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-4 ">
-            <div class="row shadow  p-3 mx-2 fs-4 rounded align-items-center">
-                <div class="col-10">
-                    <p class="fs-5 text-secondary my-0">اجمالي المنتجات المباعة:
-                        <span class="mx-3 fs-3 text-black">{{  $wallet->balance }}</span>
-                    </p>
-                </div>
-                <div class="col-2">
-                    <i class="bi bi-credit-card-2-back-fill"></i>
-                </div>
-            </div>
-        </div>
+{{--        <div class="col-4 ">--}}
+{{--            <div class="row shadow  p-3 mx-2 fs-4 rounded align-items-center">--}}
+{{--                <div class="col-10">--}}
+{{--                    <p class="fs-5 text-secondary my-0">اجمالي العمليات:--}}
+{{--                        <span class="mx-3 fs-3 text-black">{{  $wallet->balance }}</span>--}}
+{{--                    </p>--}}
+{{--                </div>--}}
+{{--                <div class="col-2">--}}
+{{--                    <i class="bi bi-credit-card-2-back-fill text-primary"></i>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="col-4 ">--}}
+{{--            <div class="row shadow  p-3 mx-2 fs-4 rounded align-items-center">--}}
+{{--                <div class="col-10">--}}
+{{--                    <p class="fs-5 text-secondary my-0">اجمالي المنتجات المباعة:--}}
+{{--                        <span class="mx-3 fs-3 text-black">{{  $wallet->balance }}</span>--}}
+{{--                    </p>--}}
+{{--                </div>--}}
+{{--                <div class="col-2">--}}
+{{--                    <i class="bi bi-credit-card-2-back-fill"></i>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
     </div>
 
     <section class="section profile min-vh-100 overflow-hidden ">
