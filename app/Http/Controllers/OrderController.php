@@ -129,7 +129,7 @@ class OrderController extends Controller
             $user = Pharmacy::findOrFail($request->pharmacy)->user_id;
             // return $user;
             // send notification for pharmacy
-            event(new Messages($order, $user,'طلب جديد'));
+            event(new Messages($order, $user,'  طلب جديد من'));
 
             return view('order.orderMass')->with(['success' => 'تم ارسال الطلب  بنجاح']);
 
@@ -229,7 +229,7 @@ class OrderController extends Controller
                 ]);
 
             // send notification for user who send order
-            event(new Messages($order, $order->user_id,'عرض اسعار العلاج'));
+            event(new Messages($order, $order->user_id,'تم ارسال الفاتوره'));
             return redirect('/pharmacy')->with(['success' => 'تم ارسال الاسعار بنجاح  بنجاح']);
 
         } catch (\Throwable $th) {
