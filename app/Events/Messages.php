@@ -2,14 +2,15 @@
 
 namespace App\Events;
 
-use Illuminate\Broadcasting\Channel;
-use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Illuminate\Foundation\Events\Dispatchable;
-use Illuminate\Queue\SerializesModels;
 use Carbon\Carbon;
+use App\Models\User;
+use Illuminate\Broadcasting\Channel;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Broadcasting\PresenceChannel;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class Messages implements ShouldBroadcast
 {
@@ -20,7 +21,6 @@ class Messages implements ShouldBroadcast
     public $date;
     public $time;
     public $message;
-    public $user;
     /**
      * Create a new event instance.
      *
@@ -30,12 +30,9 @@ class Messages implements ShouldBroadcast
     {
         $this->order = $order;
         $this->id=$id;
-        $this->user=$order->user;
-        $this->user=$order->pharmacy;
         $this->message=$message;
-
+        $this->receiver=User::find($id);
         $this->date = date("Y-m-d", strtotime(Carbon::now()));
-
         $this->time = date("h:i A", strtotime(Carbon::now()));
     }
 

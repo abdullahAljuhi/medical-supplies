@@ -119,12 +119,16 @@
                         </a><!-- End Notification Icon -->
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications py-2">
                             @if (Auth::user()->type == 2)
-                                <li>
+                            <li class="notification-item scrollable-container notify text-center text-nowrap  py-2">
+                           
+                            </li>
+                            
+                            <li>
                                     <hr class="dropdown-divider">
                                 </li>
                                 @isset($orders)
                                     @foreach ($orders as $order )
-                                        <li class="notification-item scrollable-container text-center text-nowrap  bg-info-light py-2">
+                                        <li class="notification-item scrollable-container text-center text-nowrap  py-2">
                                             <a href="/pharmacy/order/{{ $order->id }}"
                                                class="d-flex align-items-center text-dark">
                                                 <div class="mx-2">
@@ -417,15 +421,9 @@
             //   console.log(data.order.pharmacy_id);
             var existingNotifications = notifications.html();
             var newNotificationHtml = `
-            <form action="/pharmacy/order/${data.order.id}" class='n-form' method="get">
-            <button type="submit" class='n-form-btn'> ${ data.message}</button>
-   
-            </form>`;
-            notifications.html(newNotificationHtml + existingNotifications);
-            notificationsCount += 1;
-            notificationsCountElem.attr('data-count', notificationsCount);
-            notificationsWrapper.find('.notify-count').text(notificationsCount);
-            notificationsWrapper.show();
+
+
+         `
         });
 
     </script>
