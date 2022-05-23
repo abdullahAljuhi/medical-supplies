@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Advertisement;
-use App\Helpers\Helper;
-use App\Http\Requests\AdvertisementRequest;
-use Illuminate\Http\Request;
 use Throwable;
+use App\Helpers\Helper;
+use Illuminate\Http\Request;
+use App\Models\Advertisement;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\AdvertisementRequest;
 
 class AdvertisementController extends Controller
 {
@@ -106,7 +107,7 @@ class AdvertisementController extends Controller
     public function edit($id)
     {
         try {
-            $advertisements =Advertisement::find($id);
+            $advertisements =Advertisement::findOrFail($id);
             return view('adv.editAds', compact('advertisements'));
 
         } catch (\Exception $ex) {
@@ -121,18 +122,17 @@ class AdvertisementController extends Controller
      * @param  \App\Models\Advertisement  $advertisement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdvertisementRequest $request, $id)
     {
         try {
-            $advertisements= Advertisement::findOrFail($id);
+            $advertisement= Advertisement::findOrFail($id);
 
-            $fileName = $advertisements->image;
+            $fileName = $advertisement->image;
 
 
             if ($request->has('image')) {
                 if($fileName != null){
-                    $fileName=public_path('assets/images/advs/'.$fileName);
-                    unlink(realpath($fileName));
+                    Storage::disk('advs')->delete($advertisement->image);
                 }
 
                 // save img in public/adv/images
@@ -142,14 +142,14 @@ class AdvertisementController extends Controller
             // $input = $request->all();
             // $advertisement->fill($input)->save();
 
-            $advertisements->update([
+            $advertisement->update([
                 'start_date' => $request['start_date'],
                 'end_date' => $request['end_date'],
                 'image' => $fileName,
                 'link' => $request['link'],
             ]);
 
-            return redirect()->route('show.adv');
+            // return redirect()->route('show.adv');
             return redirect()->back()->with(['success' => 'تم التحديث بنجاح']);
 
         } catch (\Exception $e) {
@@ -172,8 +172,8 @@ class AdvertisementController extends Controller
 
             if ($advertisement->image !== '') { // check if advertisement has image
                 // remove image
-                $fileName = public_path('assets/images/advs/' . $advertisement->image);
-                unlink(realpath($fileName));
+                Storage::disk('advs')->delete($advertisement->image);
+
             }
 
             $advertisement->delete();
@@ -191,10 +191,10 @@ class AdvertisementController extends Controller
 
         try {
 
-            $advertisements= Advertisement::findOrFail($id);
+            $advertisements = Advertisement::findOrFail($id);
 
          
-            $advertisements->is_active? 0 : 1 ;
+            $advertisements->is_active ? $advertisements->is_active = 0 :$advertisements->is_active=1 ;
    
              $advertisements->save();
           

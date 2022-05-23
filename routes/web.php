@@ -45,7 +45,7 @@ Route::group(['middleware' => ['auth', 'verified']], function (){
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     // change password
-    Route::post('/changePassword', [UserController::class, 'changePassword'])->name('changePassword.user');
+    Route::post('/changePassword', [UserController::class, 'changePassword'])->name('user.changePassword');
 
     Route::get('orders', [UserController::class, 'orders'])->name('orders');
 

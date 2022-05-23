@@ -129,7 +129,7 @@ class OrderController extends Controller
             $user = Pharmacy::findOrFail($request->pharmacy)->user_id;
             // return $user;
             // send notification for pharmacy
-            event(new Messages($order, $user));
+            event(new Messages($order, $user,'طلب جديد'));
 
             return view('order.orderMass')->with(['success' => 'تم ارسال الطلب  بنجاح']);
 
@@ -229,7 +229,7 @@ class OrderController extends Controller
                 ]);
 
             // send notification for user who send order
-            event(new Messages($order, $order->user_id));
+            event(new Messages($order, $order->user_id,'عرض اسعار العلاج'));
             return redirect('/pharmacy')->with(['success' => 'تم ارسال الاسعار بنجاح  بنجاح']);
 
         } catch (\Throwable $th) {
@@ -270,20 +270,27 @@ class OrderController extends Controller
             $order->status=3;
             $order->save();
             return redirect('/pharmacy');
+
         // send notification for user who send order
-        event(new Messages($order, $order->user_id));
+        event(new Messages($order, $order->user_id,'هذا العلاج غير موجود'));
+
         } catch (\Throwable $th) {
             // return
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
 
     }
 }
-       // change order status to not found
+       // change order status to cancel
        public function cancel($id){
         try {
             $order=Order::findOrFail($id);
             $order->status=4;
             $order->save();
+
+            $user = Pharmacy::findOrFail($order->pharmacy_id)->user_id;
+            // return $user;
+            // send notification for pharmacy
+            event(new Messages($order, $user,' تم الغاء هذا الطلب '));
             return redirect('/');
 
         } catch (\Throwable $th) {

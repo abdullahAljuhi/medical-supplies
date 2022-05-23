@@ -39,9 +39,9 @@ class UserController extends Controller
             return redirect()->back()->with(["error"=>" كلمة المرور لا تتطابق مع كلمة المروو الخاصه بك"]);
         }
 
+        // Current password and new password same
         if(strcmp($request->current_password , $request->new_password) == 0){
 
-            // Current password and new password same
             return redirect()->back()->with(["error"=>" كلمة المرور الجديده لا يمكن تساوي   كلمة الحاليه"]);
         }
 
@@ -50,7 +50,7 @@ class UserController extends Controller
         $user->password = bcrypt($request->new_password);
         $user->save();
 
-        return redirect()->back()->with(["error"=>" تم تغيير كلمة السر بنجاح"]);
+        return redirect()->back()->with(["sucess"=>" تم تغيير كلمة السر بنجاح"]);
     }
 
     /**

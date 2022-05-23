@@ -41,7 +41,7 @@ class Pharmacy extends Model
     }
 
     public function contact(){
-        return $this->hasMany(Contact::class,'pharmacy_id');
+        return $this->hasOne(Contact::class,'pharmacy_id');
     }
     public function user(){
         return $this->belongsTo(User::class,'user_id');

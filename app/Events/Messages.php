@@ -19,16 +19,23 @@ class Messages implements ShouldBroadcast
     public $id;
     public $date;
     public $time;
+    public $message;
+    public $user;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($order,$id)
+    public function __construct($order,$id,$message)
     {
         $this->order = $order;
         $this->id=$id;
+        $this->user=$order->user;
+        $this->user=$order->pharmacy;
+        $this->message=$message;
+
         $this->date = date("Y-m-d", strtotime(Carbon::now()));
+
         $this->time = date("h:i A", strtotime(Carbon::now()));
     }
 

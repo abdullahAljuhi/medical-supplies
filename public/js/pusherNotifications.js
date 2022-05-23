@@ -15,7 +15,7 @@ channel.bind('App\\Events\\notfiy', function (data) {
     ${data.pharmacy.name}
      </h6><small style="direction: ltr;">
      <p class="media-meta text-muted text-right" style="direction: ltr;">
-     ${data.pharmacy.created_at}
+     ${data.pharmacy.create_at}
       </p> </small></div></div></a>`;
     notifications.html(newNotificationHtml + existingNotifications);
     notificationsCount += 1;

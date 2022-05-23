@@ -23,6 +23,12 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">
+                    @if($order->status==4)
+                                                    
+                        <div class="tab-pane fade show active mt-3 row" id="profile-overview">
+                            هذا الطلب تم الغاءه
+                        </div>
+                    @endif
                     <div class="card-title pb-0 mb-0">
                         <div class="row mb-2">
                             <div class="col-md-4 col-sm-12 mb-2">
@@ -72,7 +78,7 @@
                                                 {{-- {{$product  }} --}}
                                                 @if($order->type == 1)
                                                     <tr>
-                                                        <td>{{ $loop->index }}</td>
+                                                        <td>{{ $loop->index +1 }}</td>
                                                         <td>
                                                             <img src="{{asset('assets/images/orders/'.$product['product_name'])}}" alt="" class=" border" srcset="" style=";height:50px;width:50px">
                                                         </td>
@@ -89,7 +95,6 @@
                                                             @if (isset($product['found']))
                                                             {{ $product['found']==1?'موجود':'غير موجود' }} 
                                                             @else
-                                                                
                                                             غير موجود
                                                             @endif
                                                         </th>
@@ -107,6 +112,7 @@
                                                 <td  colspan="2">الاجمالي</td>
                                                 <td class="fw-bold">{{ $order->total_price }}</td>
                                             </tr>
+                                      
                                             </tfoot>
                                             @endisset
                                         </table>
@@ -116,7 +122,8 @@
                                         <form action="{{ route('test') }}" method="get" class="overflow-hidden mx-3">
                                             <div class="tab-pane fade show active mt-3 row" id="profile-overview">
                                                 <button type="submit" name="id" value="{{ $order->id }}" class="btn btn-primary px-3 col-md-2 col-sm-12 mb-2">دفع</button>
-                                                <a href="{{ route('user.order.cancel',$order->id) }}" class="btn btn-danger px-3 col-md-2 col-sm-12   mx-sm-2 mb-2"> رفض</a>
+                                                <a href="{{ route('user.order.cancel',$order->id) }}" class="btn btn-danger px-3 col-md-2 col-sm-12   mx-sm-2 mb-2"> رفض
+                                                </a>
                                             </div>
                                         </form>
                                         @elseif($order->status == 3)
