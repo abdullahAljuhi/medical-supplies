@@ -222,7 +222,7 @@ class PharmacyController extends Controller
                 'mobile' => $request['mobile'],
                 'phone' => $request['phone'],
                 'image' => $fileName,
-                'description' => $request['description'],
+                'description' => trim($request['description']),
             ]);
 
             // add address to pharmacy
@@ -234,9 +234,9 @@ class PharmacyController extends Controller
             ]);
 
             $address = $pharmacy->contact()->updateOrCreate([
-                'twitter' => $request['twitter'],
-                'facebook' => $request['facebook'],
-                'instagram' => $request['instagram'],
+                'twitter' => trim($request['twitter']),
+                'facebook' => trim($request['facebook']),
+                'instagram' => trim($request['instagram']),
             ]);
 
             if ($request->has('lat')) {
@@ -254,6 +254,7 @@ class PharmacyController extends Controller
             // return  insert date
 
             DB::rollback();
+
             // return $ex->getMessage();
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
@@ -296,8 +297,8 @@ class PharmacyController extends Controller
 
             return view('order.index', compact('orders','route','type'));
 
-        } catch (\Exception $e) {
-
+        } catch (\Throwable $e) {
+            return  $e->getMessage();
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
             
         }

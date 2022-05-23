@@ -233,7 +233,7 @@
                                     <div class="row mb-3">
                                         <label for="company" class="col-md-4 col-lg-3 col-form-label">رابط الانستقرام</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="instgram" type="url" class="form-control @error('instgram') is-invalid @enderror" id="company"
+                                            <input name="instgram" type="url" class="form-control @error('instagram') is-invalid @enderror" id="company"
                                             value="{{ $pharmacy->contact[0]->instagram?? ''}}">
                                             @error('instgram')
                         <span class="invalid-feedback" role="alert">

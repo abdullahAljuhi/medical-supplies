@@ -38,7 +38,7 @@ Auth::routes(['verify' => true]);
 
 
 Route::group(['middleware' => ['auth', 'verified']], function (){
-    Route::get('/testwallet', [PaymentController::class, 'test_wallet']);
+    Route::get('/wallet', [PaymentController::class, 'test_wallet'])->name('user.wallet');
 
 
     // main page after login
@@ -51,7 +51,7 @@ Route::group(['middleware' => ['auth', 'verified']], function (){
 
 
     // user wallet
-    Route::get('/wallet', [UserController::class, 'getWallet'])->name('user.wallet');
+    // Route::get('/wallet', [UserController::class, 'getWallet'])->name('user.wallet');
     
     Route::get('/order/{id}/cancel', [OrderController::class, 'cancel'])->name('user.order.cancel'); // show order
 
@@ -61,7 +61,10 @@ Route::group(['middleware' => ['auth', 'verified']], function (){
     // admin
     Route::group(['prefix' => 'dashboard', 'middleware' => 'checkType:admin'], function () {
 
-        Route::get('/wallet', [UserController::class, 'getWallet'])->name('admin.wallet');
+        // admin wallet url= dashboard/wallet
+        Route::get('/wallet', [PaymentController::class, 'test_wallet'])->name('admin.wallet');
+
+        // Route::get('/wallet', [UserController::class, 'getWallet'])->name('admin.wallet');
         
         Route::get('/', [adminController::class, 'index'])->name('dashboard'); // dashboard
         Route::get('/orders', [adminController::class, 'orders'])->name('admin.orders'); // all orders
@@ -156,7 +159,10 @@ Route::group(['middleware' => ['auth', 'verified']], function (){
         Route::get('/order/{id}', [PharmacyController::class, 'order'])->name('pharmacy.order'); // show order
 
         Route::get('/order/{id}/notFound', [OrderController::class, 'notFond'])->name('pharmacy.order.notFond'); // show order
-
+        
+        
+        // pharmacy wallet url= pharmacy/wallet
+        Route::get('/wallet', [PaymentController::class, 'test_wallet'])->name('pharmacy.wallet');
     }); // pharmacy crud end
 
 
@@ -215,7 +221,7 @@ Route::get('/test', [PaymentController::class, 'index'])->name('test');
 
 Route::get('t/{id}', [PaymentController::class, 't']);
 
-Route::get('/o', [PharmacyController::class, 'OrderNotification']);
+// Route::get('/o', [PharmacyController::class, 'OrderNotification']);
 
   Route::get('/test/response/{info}',[PaymentController::class,'showTest']);
 // http://127.0.0.1:8000/test/responsetest

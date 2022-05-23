@@ -151,6 +151,7 @@ class PaymentController extends Controller
         $amount = $paid_amount *(5/100);
 
         $reminder  = $paid_amount - $amount;
+
         $user->deposit($reminder); 
 
         $admin->deposit($amount); 
@@ -164,11 +165,19 @@ class PaymentController extends Controller
             $admin  = User::where('type','1')->first();
     
             $user   = User::find(Auth::id());
-    
-            $user->deposit(100); 
-    
-            $admin->deposit(100); 
+ 
+            $wallet=$user->wallet;
+            $transactions=$wallet->transactions;
+            $recipient=0;
+            $sender=0;
+            foreach ($transactions as $transaction ) {
+                if($transaction->type=='deposit')
+                $recipient+=$transaction->amount ;
+                else
+                $sender+= $transaction->amount ;
+            }
+      
             
-            return $wallet=$user->wallet->transactions;
+            return view('wallat.index',compact('wallet','recipient','sender','transactions'));
         }
 }

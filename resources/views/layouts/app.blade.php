@@ -294,8 +294,8 @@
                     </a>
                 </li><!-- End Icons Nav -->
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="{{ route('show.adv') }}">
-                        <i class="bi bi-cash-coin"></i><span>المحفظة</span></i>
+                    <a class="nav-link collapsed" href="{{ route('admin.wallet') }}">
+                        <i class="bi bi-cash-coin"></i><span>المحفظة</span>
                     </a>
                 </li><!-- End Icons Nav -->
                 <li class="nav-item">
@@ -332,9 +332,8 @@
                     </a>
                 </li><!-- End Users Nav -->
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#">
-                        <i class="bi bi-flower1"></i>
-                        <span>المحفظة</span>
+                    <a class="nav-link collapsed" href="{{ route('pharmacy.wallet') }}">
+                        <i class="bi bi-cash-coin"></i><span>المحفظة</span>
                     </a>
                 </li><!-- End Users Nav -->
 

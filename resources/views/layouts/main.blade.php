@@ -207,12 +207,13 @@
                                 <span>الطلبات</span>
                             </a>
                         </li>
-                        <a class="dropdown-item d-flex align-items-center" href="
-                        {{-- {{ route('user.wallet') }} --}}
-                        ">
-                            <i class="bi bi-person"></i>
-                          ' {{ $user=App\Models\User::find(Auth::id())->wallet->balance; }} '<span>    ريال في محفضتك  </span>
-                        </a>
+                        
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('user.wallet') }}">
+                                <i class="bi bi-cash-coin"></i>
+                                <span> المحفظة</span>
+                            </a>
+                        </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>

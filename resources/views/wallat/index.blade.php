@@ -1,3 +1,6 @@
+@extends(Auth::user()->type == 0 ? 'layouts.main' : 'layouts.app')
+@section('title', ' المحفضه')
+@section('content')
 <section class="bg-white p-5 shadow">
     <div class="pagetitle">
         <h1>المحفظة</h1>
@@ -12,86 +15,82 @@
         <div class="col-4 ">
             <div class="row shadow  p-3 mx-2 fs-4 rounded">
                 <div class="col-10 ">
-                    <p class="">رصيدي 
+                    <p class="">رصيدي
+                        <span>{{  $wallet->balance }}</span>
                     </p>
                 </div>
                 <div class="col-2">
                     <i class="bi bi-cash-stack"></i>
-                 </div>
-            </div>                
+                </div>
+            </div>
         </div>
         <div class="col-4 ">
             <div class="row shadow  p-3 mx-2 fs-4 rounded">
                 <div class="col-10 ">
-                    <p class="">                        الاموال المحولة
+                    <p class=""> الاموال المحولة
+                        {{ $recipient  }}
                     </p>
                 </div>
                 <div class="col-2">
                     <i class="bi bi-credit-card-2-back-fill"></i>
-                 </div>
-            </div>                
+                </div>
+            </div>
         </div>
         <div class="col-4 ">
             <div class="row shadow  p-3 mx-2 fs-4 rounded">
                 <div class="col-10 ">
-                    <p class="">                    الاموال المستلمة
+                    <p class=""> الاموال المستلمة
+                    {{ $sender }}
                     </p>
                 </div>
                 <div class="col-2">
                     <i class="bi bi-currency-bitcoin"></i>
-                 </div>
-            </div>                
+                </div>
+            </div>
         </div>
     </div>
-    
+
     <div class="row shadow-sm   rounded py-2 px-4 my-2 fs-4 mb-3 bg-light">
         حركة الاموال
     </div>
     <div class="row my-2 py-3 shadow-sm rounded bg-light">
         <div class="col-md-2 col-12 text-center">
-            رقم الطلب
+            رقم العمليه
         </div>
         <div class="col-md-2 col-12">
-         نوع العملية
+            نوع العملية
         </div>
         <div class="col-md-2 col-12 text-center">
-             المبلغ
+            المبلغ
         </div>
         <div class="col-md-2 col-12 text-center">
-           تاريخ العملية
+            تاريخ العملية
         </div>
         <div class="col-md-2 col-12 text-center">
-        وصف
-         </div>
+            وصف
+        </div>
     </div>
+    @foreach ( $transactions as $transaction)      
     <div class="row my-2 py-3 shadow-sm rounded">
         <div class="col-md-2 col-12 text-center">
-1
+            {{ $transaction->id }}
         </div>
         <div class="col-md-2 col-12">
-        ايداع
+            {{ ($transaction->type=='deposit')?'ايداع':'سحب' }}
         </div>
         <div class="col-md-2 col-12 text-center">
-500            </div>
+            {{ $transaction->amount }}
+            
+        </div>
         <div class="col-md-2 col-12 text-center">
-2020/20/1            </div>
+        
+            {{ $transaction->created_at->diffForHumans() }}
+
+        </div>
         <div class="col-md-4 col-12 text-center">
-            تم اضافة الى المحفظة
-         </div>
-    </div>
-    <div class="row my-2 py-3 shadow-sm rounded">
-        <div class="col-md-2 col-12 text-center">
-2
+            {{ $transaction->type=='deposit'?'تم اضافة الى المحفظة':'تم سحب من المحفظة' }}
         </div>
-        <div class="col-md-2 col-12">
-        سحب
-        </div>
-        <div class="col-md-2 col-12 text-center">
-500            </div>
-        <div class="col-md-2 col-12 text-center">
-2020/20/1            </div>
-        <div class="col-md-4 col-12 text-center">
-            تم اضافة الى المحفظة
-         </div>
     </div>
+    @endforeach
 </section>
+@endsection
