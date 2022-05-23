@@ -124,7 +124,7 @@
                                      class="rounded border-bottom" style="height: 250px; object-fit: contain"
                                      alt="...">
                             @else
-                                <img src="{{asset('img/phramacy3.png') }}" class="rounded border-bottom"
+                                <img src="{{asset('img/pharmacy.png') }}" class="rounded border-bottom"
                                      style="height: 250px; object-fit: contain"
                                      alt="...">
                             @endif
