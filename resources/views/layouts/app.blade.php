@@ -117,11 +117,8 @@
                         </a><!-- End Notification Icon -->
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications py-2">
                             @if (Auth::user()->type == 2)
-                                <li class="notification-item scrollable-container notify text-center text-nowrap  py-2">
+                                <li class="scrollable-container notify">
 
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider">
                                 </li>
                                 @isset($orders)
                                     @foreach ($orders as $order )
@@ -147,11 +144,15 @@
                                         </li>
                                     @endforeach
                                 @endisset
+                            @endif
+                            @if($count)
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
                                 <li class="dropdown-footer">
                                     <a class="text-primary" href="{{ route('pharmacy.orders') }}">عرض جميع الطلبات</a>
                                 </li>
-                            @endif
-                            @if(! isset($count))
+                            @else
                                 <li class="dropdown-header">
                                     ليس لديك اي رسائل جديدة
                                     {{--                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">عرض الجميع</span></a>--}}
