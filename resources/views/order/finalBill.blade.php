@@ -6,7 +6,7 @@
         <h1>كشف عرض الاسعار</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/home">لوحة التحكم</a></li>
+{{--                <li class="breadcrumb-item"><a href="/home">لوحة التحكم</a></li>--}}
             </ol>
         </nav>
     </div>
@@ -44,7 +44,7 @@
                                     {{-- {{ $date->toCookieString() }} --}}
                                 </p>
                             </div>
-                            
+
                             <div class="col-md-4 col-sm-12 mb-2">
                                 <p class="fs-5 py-0 my-0  mx-3">  اسم المستخدم :
                                    {{ $name  }}
@@ -55,8 +55,8 @@
                                     {{ $order->pharmacy->pharmacy_name }}
                                 </p>
                             </div>
-                             
-                             
+
+
                             <div class="col-md-4 col-sm-12 mb-2">
                                 <p class="fs-5 py-0 my-0  mx-3 fw-blod"> المبلغ:
                                     {{ $paid_amount }}
@@ -64,7 +64,7 @@
                             </div>
                         </div>
                         <div class="row mb-4">
-                            
+
                         </div>
 
                     </div>
@@ -121,7 +121,7 @@
                                             </tr>
                                             </tfoot>
                                         </table>
-                                       
+
                                     </div>
                                 </div>
                             </div>

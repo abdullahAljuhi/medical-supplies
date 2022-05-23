@@ -303,7 +303,7 @@
                             <!-- Change Password Form -->
                             <form method="POST" action="{{ route('user.changePassword') }}">
                                 @csrf
-                    
+
                                 <div class="row mb-3">
                                     <label for="current_password" class="col-md-4 col-lg-3 col-form-label">كلمة
                                         المرور الحالية</label>
@@ -318,7 +318,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                    
+
                                 <div class="row mb-3">
                                     <label for="new_password" class="col-md-4 col-lg-3 col-form-label">كلمة المرور
                                         الجديدة</label>
@@ -333,7 +333,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                    
+
                                 <div class="row mb-3">
                                     <label for="renew_password" class="col-md-4 col-lg-3 col-form-label">تأكيد كلمة
                                         المرور
@@ -349,12 +349,12 @@
                                         @enderror
                                     </div>
                                 </div>
-                    
+
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
                                 </div>
                             </form><!-- End Change Password Form -->
-                    
+
                         </div>
 
                     </div><!-- End Bordered Tabs -->

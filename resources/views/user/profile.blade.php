@@ -5,7 +5,7 @@
 @include('alerts.errors')
 @include('alerts.success')
     <!-- Page Title -->
-    <div class="pagetitle">
+    <div class="pagetitle px-5 pt-5 pb-3">
         <h1>الملف الشخصي</h1>
         <nav>
             <ol class="breadcrumb">
@@ -24,7 +24,7 @@
 
 
 
-    <section class="section profile min-vh-100 mt-5 overflow-hidden">
+    <section class="section profile min-vh-100 overflow-hidden px-5">
         <div class="row">
             <div class="col-xl-4">
 

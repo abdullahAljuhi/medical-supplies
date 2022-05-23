@@ -19,7 +19,7 @@
                         <div class="card h-100 ">
                             @if($pharmacy->image)
                                 <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}" alt="pharmacy"
-                                     class="rounded-circle border p-1">
+                                     class="rounded border m-3">
                             @else
 
                                 <img src="{{asset('img/pharmacy.png') }}"

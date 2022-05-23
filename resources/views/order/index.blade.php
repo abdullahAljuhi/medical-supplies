@@ -6,8 +6,8 @@
         <h1>جميع الطلبات</h1>
         <nav>
             <ol class="breadcrumb my-3">
-                <li class="breadcrumb-item"><a href="../index.blade.php">الطلبات</a></li>
-                <li class="breadcrumb-item active">لوحة التحكم</li>
+{{--                <li class="breadcrumb-item"><a href="../index.blade.php">الطلبات</a></li>--}}
+{{--                <li class="breadcrumb-item active">لوحة التحكم</li>--}}
             </ol>
         </nav>
     </div>
@@ -67,7 +67,11 @@
                         @endif
                         <td>{{ count(json_decode($order->products,true)) }}</td>
                         <td>{{ $order->type?'وصفة طبية':'اسم العلاج' }}</td>
-                        <th>كل اسبوع</th>
+                        @if($order->is_periodic)
+                            <th>كل {{$order->period}} ايام</th>
+                        @else
+                            <th>غير متكرر</th>
+                        @endif
                         <td><a href="#" class="text-dark">{{ $order->address }}</a></td>
                         <td>{{ \Carbon\Carbon::parse($order->created_at)->diffForHumans() }}</td>
                         <td><span class="badge bg-{{ $type[1][(int)$order->status] }} fs-6">{{ $type[0][(int)$order->status] }}</span></td>

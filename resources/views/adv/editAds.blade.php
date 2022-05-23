@@ -15,8 +15,8 @@
         <h1>ادارة الاعلانات</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../index.blade.php">الرائيسية</a></li>
-                <li class="breadcrumb-item active">الاعلانات</li>
+{{--                <li class="breadcrumb-item"><a href="../index.blade.php">الرائيسية</a></li>--}}
+{{--                <li class="breadcrumb-item active">الاعلانات</li>--}}
             </ol>
         </nav>
     </div>

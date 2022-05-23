@@ -13,7 +13,6 @@
         <h1>كشف عرض الاسعار</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/home">لوحة التحكم</a></li>
             </ol>
         </nav>
     </div>
@@ -24,7 +23,7 @@
             <div class="col-xl-12">
                 <div class="card">
                     @if($order->status==4)
-                                                    
+
                         <div class="tab-pane fade show active mt-3 row" id="profile-overview">
                             هذا الطلب تم الغاءه
                         </div>
@@ -93,7 +92,7 @@
                                                         <td>{{ $product['quantity'] }} </td>
                                                         <th >
                                                             @if (isset($product['found']))
-                                                            {{ $product['found']==1?'موجود':'غير موجود' }} 
+                                                            {{ $product['found']==1?'موجود':'غير موجود' }}
                                                             @else
                                                             غير موجود
                                                             @endif
@@ -112,13 +111,13 @@
                                                 <td  colspan="2">الاجمالي</td>
                                                 <td class="fw-bold">{{ $order->total_price }}</td>
                                             </tr>
-                                      
+
                                             </tfoot>
                                             @endisset
                                         </table>
                                         @if(Auth::user()->type == 0)
                                         @if($order->status < 3)
-                                            
+
                                         <form action="{{ route('test') }}" method="get" class="overflow-hidden mx-3">
                                             <div class="tab-pane fade show active mt-3 row" id="profile-overview">
                                                 <button type="submit" name="id" value="{{ $order->id }}" class="btn btn-primary px-3 col-md-2 col-sm-12 mb-2">دفع</button>

@@ -7,8 +7,8 @@
     <h1>المحافظات</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/home">لوحة التحكم</a></li>
-            <li class="breadcrumb-item active">المحافظات</li>
+{{--            <li class="breadcrumb-item"><a href="/home">لوحة التحكم</a></li>--}}
+{{--            <li class="breadcrumb-item active">المحافظات</li>--}}
         </ol>
     </nav>
 </div>
