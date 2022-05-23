@@ -203,9 +203,6 @@
                                     <span>الملف الشخصي</span>
                                 </a>
                             </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
 
                             <li>
                                 <a class="dropdown-item d-flex align-items-center" href="{{ route('edit.profile') }}">
@@ -223,17 +220,14 @@
                                     </a>
                                 @else
                                     <a class="dropdown-item d-flex align-items-center"
-                                       href="{{ route('admin.wallet') }}">
+                                       href="{{ route('pharmacy.wallet') }}">
                                         <i class="bi bi-cash-coin"></i><span>المحفظة</span>
                                     </a>
                                 @endif
                             </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
 
                             <li>
-                                <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route("contact") }}">
                                     <i class="bi bi-question-circle"></i>
                                     <span>هل تحتاج المساعدة ؟</span>
                                 </a>

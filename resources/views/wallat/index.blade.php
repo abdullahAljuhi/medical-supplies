@@ -13,21 +13,21 @@
 
 
     <!-- Page Title -->
-    <div class="pagetitle">
+    <div class="pagetitle px-5 pt-5">
         <h1>ادارة المحفظة</h1>
     </div>
     <!-- End Page Title -->
 
-    <div class="row mb-5 mt-4">
+    <div class="row px-5 pt-3">
         <div class="col-4 ">
-            <div class="row shadow  p-3 mx-2 fs-4 rounded align-items-center">
+            <div class="row shadow  p-3 mx-2 fs-4 rounded align-items-center bg-white">
                 <div class="col-10">
                     <p class="fs-5 text-secondary my-0">الرصيد الحالي:
                         <span class="mx-3 fs-3 text-success">{{  $wallet->balance }}$</span>
                     </p>
                 </div>
                 <div class="col-2">
-                    <i class="bi bi-cash-stack text-warning"></i>
+                    <i class="bi bi-cash-stack text-success"></i>
                 </div>
             </div>
         </div>
@@ -57,8 +57,8 @@
 {{--        </div>--}}
     </div>
 
-    <section class="section profile min-vh-100 overflow-hidden ">
-        <div class="bg-white my-3 py-3 px-5 shadow rounded">
+    <section class="section profile min-vh-100 overflow-hidden p-5">
+        <div class="bg-white py-3 px-5 shadow rounded">
 
             <div class="mt-3">
                 <div class="row fs-5 fw-bold p-2 rounded border-bottom mb-2">
@@ -127,6 +127,9 @@
                         </div>
                     </div>
                 @endforeach
+                @if(count($transactions) == 0)
+                    <p class="text-center fs-4 mt-5">لا يوجد اي عمليات</p>
+                @endif
             </div>
 
     </section>

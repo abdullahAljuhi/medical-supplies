@@ -2,52 +2,29 @@
 @section('title', 'Home')
 @section('content')
     <div class="container">
+        <div class="pagetitle">
+            <h1>لوحة التحكم</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    {{--                <li class="breadcrumb-item"><a href="../index.blade.php">الرائيسية</a></li>--}}
+                    {{--                <li class="breadcrumb-item active">ملف الصيدلية</li>--}}
+                </ol>
+            </nav>
+        </div>
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('لوحة التحكم') }}</div>
+                    @php
+                        $pharmacy = App\Models\Pharmacy::where('user_id', Auth::id())->first();
+                        $q = App\Models\Order::with('user','pharmacy')->where('pharmacy_id', $pharmacy->id)->where('status',0)->where('is_show','0');
 
-                    @if (Auth::user()->type == 2)
-                        @php
-                            $q = App\Models\Order::with(['pharmacy' => function($q){
-                            return $q->where('user_id', Auth::id() );
-                            }],'user')->where('status',0)->where('is_show','0');
+                        $orders = $q->limit(6)->get() ??'';
 
-                            $orders = $q->limit(6)->get() ??'';
+                        // echo $order;
+                        $count = $q->count();
+                    @endphp
 
-                            // echo $order;
-                            $count = $q->count();
-                        @endphp
-                    @endif
-
-                    <ul>
-                        @isset($orders)
-                            @foreach ($orders as $order )
-                                <li class="notification-item scrollable-container text-center text-nowrap  bg-info-light py-2">
-                                    <a href="/pharmacy/order/{{ $order->id }}"
-                                       class="d-flex align-items-center text-dark">
-                                        <div class="mx-2">
-                                            <p class="fs-6 text-dark">هناك طلب من {{ $order->user->name}}</p>
-                                            <p class="d-block">{{\Carbon\Carbon::parse($order->created_at)->diffForHumans()}}</p>
-                                        </div>
-                                        @if(isset($order->user->profile->image))
-                                            <img
-                                                src="{{asset('assets/images/users/'.$order->user->profile->image)}}"
-                                                alt="Profile"
-                                                class="rounded-circle border p-1" style="width: 35px;
-                                                height: 35px;">
-                                        @else
-                                            <img src="{{asset('assets/img/user.png') }}" alt="Profile"
-                                                 class="rounded-circle border p-1" style="width: 35px;
-                                                height: 35px;">
-                                        @endif
-                                    </a>
-                                </li>
-                            @endforeach
-                        @endisset
-                    </ul>
-
-                    <div class="card">
+                    <div class="card mb-0">
                         <div class="card-header">{{ __('اخر الاشعارات') }}</div>
 
                         <div class="card-body">
@@ -58,9 +35,9 @@
                             @endif
                             <div id="real">
                             </div>
-                            @foreach ($pharmacies as $pharmacy)
+                            @foreach ($orders as $order)
                                 <div class="alert alert-warning px-0" role="alert">
-                                    <form action="{{ route('admin.check.pharmacy',$pharmacy->id) }}" method="get"
+                                    <form action="/pharmacy/order/{{ $order->id }}" method="get"
                                           id="my_form">
                                         @csrf
                                         <a href="javascript:{}"
@@ -71,20 +48,20 @@
                                             </div>
                                             <div class="text-center">
                                                 <span
-                                                    class="ms-2">اسم الصيدلية:</span><b>{{ $pharmacy->pharmacy_name}}</b>
+                                                    class="ms-2">اسم الصيدلية:</span><b>{{ $order->pharmacy['pharmacy_name']}}</b>
                                             </div>
                                             <div class="text-center">
-                                                <span class="ms-2">اسم المالك:</span><b>{{ $pharmacy->user->name}}</b>
+                                                <span class="ms-2">اسم المالك:</span><b>{{ $order->user['name']}}</b>
                                             </div>
                                             <div class="text-center">
                                                             <span
-                                                                class="ms-2">وقت التسجيل:</span><b>{{ \Carbon\Carbon::parse($pharmacy->created_at)->diffForHumans()}}</b>
+                                                                class="ms-2">وقت التسجيل:</span><b>{{ \Carbon\Carbon::parse($order->created_at)->diffForHumans()}}</b>
                                             </div>
                                         </a>
                                     </form>
                                 </div>
                             @endforeach
-                            @if(count($pharmacies)==0)
+                            @if(count($orders)==0)
                                 <div class="text-center my-3">
                                     <span class="fs-5">{{ __('لا يوجد اي اشعارات جديدة') }}</span>
                                 </div>
