@@ -336,7 +336,7 @@
                 @foreach($advertisements as $ads)
                     <div class="col-md-6 col-lg-3 ">
                         @break($loop->index <= 3)
-                        <div class="mb-5 ">
+                        <div class="mb-5 adv ">
                             <img class="img-fluid" src="/assets/images/advs/'.{{ $ads->image }}" alt=""
                                  style="width: 300px;height:250px">
                         </div>
@@ -349,4 +349,19 @@
     </section>
 
 @endsection
+@section('scripts')
+{{-- <script>
 
+    const pic = document.querySelectorAll('adv');
+    pic.forEach(element => {
+          
+      });
+    function showImage() {
+        var a = Math.floor(Math.random() * pics.length);
+        var img = pics[a];
+        pic.style.backgroundImage = img;
+    }
+    
+    setInterval(showImage, 1000);
+</script> --}}
+@endsection
