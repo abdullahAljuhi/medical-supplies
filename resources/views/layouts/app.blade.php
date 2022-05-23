@@ -413,11 +413,11 @@
                 var newNotificationHtml =
                     `<a href="/pharmacy/order/${data.order.id}" class="d-flex align-items-center text-dark">
                                     <div class="mx-2">
-                                        <p class="fs-6 text-dark"> ${data.message} {{ $order->user->name}}</p>
-                                        <p class="d-block">${new Date(data.order.created_at).toLocaleDateString()}</p>
-                                    </div>;
+                                        <p class="fs-6 text-dark"> ${data.message} ${data.user.name}</p>
+                                        <p class="d-block " style=font-size: 12px;text-align: center;> ${new Date(data.order.created_at).toLocaleDateString()}</p>
+                                    </div>
                                     <img src="{{asset('assets/img/user.png') }}" alt="Profile"class="rounded-circle border p-1"
-                                    style="width: 35px;height: 35px;">;
+                                    style="width: 35px;height: 35px;">
                             </a>`
                 notifications.html(newNotificationHtml + existingNotifications);
                 notificationsCount += 1;
