@@ -454,7 +454,7 @@
             var existingNotifications = notifications.html();
             var newNotificationHtml = `
             <form action="/order/${data.order.id}" class='n-form' method="get">
-            <button type="submit" class='n-form-btn'>  هناك طلب جديد</button>
+            <button type="submit" class='n-form-btn'>${data.message}</button>
             </form>`
             ;
             notifications.html(newNotificationHtml + existingNotifications);

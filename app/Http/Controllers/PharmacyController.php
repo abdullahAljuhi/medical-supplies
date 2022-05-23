@@ -233,7 +233,7 @@ class PharmacyController extends Controller
                 'details' => $request['details'],
             ]);
 
-            $address = $pharmacy->contact()->updateOrCreate([
+            $pharmacy->contact()->updateOrCreate([
                 'twitter' => trim($request['twitter']),
                 'facebook' => trim($request['facebook']),
                 'instagram' => trim($request['instagram']),
@@ -243,8 +243,8 @@ class PharmacyController extends Controller
 
                 $address->lat = $request['lat'];
                 $address->lang = $request['lang'];
+                $address->save();
             }
-            $address->save();
 
 
             DB::commit();
@@ -298,7 +298,7 @@ class PharmacyController extends Controller
             return view('order.index', compact('orders','route','type'));
 
         } catch (\Throwable $e) {
-            return  $e->getMessage();
+            // return  $e->getMessage();
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
             
         }

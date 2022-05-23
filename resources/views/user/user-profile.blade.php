@@ -19,16 +19,6 @@
     @include('alerts.success')
     @include('alerts.errors')
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
     <section class="section profile min-vh-100 overflow-hidden py-2 px-5">
         <div class="row">
             <div class="col-xl-4">
@@ -166,51 +156,55 @@
 
                             <div class="tab-pane fade pt-3" id="profile-change-password">
                                 <!-- Change Password Form -->
-                                <form>
-
+                                <form method="POST" action="{{ route('user.changePassword') }}">
+                                    @csrf
+    
                                     <div class="row mb-3">
-                                        <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">كلمة
+                                        <label for="current_password" class="col-md-4 col-lg-3 col-form-label">كلمة
                                             المرور الحالية</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="password" type="password" class="form-control @error('password') is-invalid @enderror"
-                                                   id="currentPassword">
-                                            @error('password')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                               </span>
-                                           @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">كلمة المرور
-                                            الجديدة</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="newpassword" type="password" class="form-control @error('newPassword') is-invalid @enderror"
-                                                   id="newPassword">
-                                            @error('newPassword')
-                                               <span class="invalid-feedback" role="alert">
-                                                      <strong>{{ $message }}</strong>
-                                               </span>
+                                            <input name="current_password" type="password"
+                                                class="form-control @error('current_password') is-invalid @enderror"
+                                                id="current_password">
+                                            @error('current_password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                             @enderror
                                         </div>
                                     </div>
-
+    
                                     <div class="row mb-3">
-                                        <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">تأكيد كلمة
+                                        <label for="new_password" class="col-md-4 col-lg-3 col-form-label">كلمة المرور
+                                            الجديدة</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="new_password" type="password"
+                                                class="form-control @error('new_password') is-invalid @enderror"
+                                                id="new_password">
+                                            @error('new_password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+    
+                                    <div class="row mb-3">
+                                        <label for="renew_password" class="col-md-4 col-lg-3 col-form-label">تأكيد كلمة
                                             المرور
                                             الجديدة</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="renewpassword" type="password" class="form-control @error('renewPassword') is-invalid @enderror"
-                                                   id="renewPassword">
-                                            @error('renewPassword')
-                                               <span class="invalid-feedback" role="alert">
-                                                   <strong>{{ $message }}</strong>
-                                               </span>
-                                           @enderror
+                                            <input name="renew_password" type="password"
+                                                class="form-control @error('renew_password') is-invalid @enderror"
+                                                id="renew_password">
+                                            @error('renew_password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
                                     </div>
-
+    
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
                                     </div>
