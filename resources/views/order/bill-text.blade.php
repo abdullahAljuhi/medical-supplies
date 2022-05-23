@@ -13,7 +13,6 @@
         <h1>كشف عرض الاسعار</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/home">لوحة التحكم</a></li>
             </ol>
         </nav>
     </div>
