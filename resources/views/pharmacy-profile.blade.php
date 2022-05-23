@@ -27,7 +27,8 @@
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                         @if($pharmacy->image)
-                        <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}" alt="Profile" class="rounded-circle border p-1">
+                        <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}" alt="Profile" class="rounded-circle border p-1"style="width: 130px;
+                                                height: 130px; object-fit: contain">
                         @else
                         <img src="{{asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
                         @endif
@@ -106,7 +107,7 @@
                                                         <i class="bi bi-trash"></i>
                                                     </a>
                                                 </div>
-                                            </div>                                 
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="message-error col-12 text-center">يرجى ادخال ملف من نوع صورة</div>
