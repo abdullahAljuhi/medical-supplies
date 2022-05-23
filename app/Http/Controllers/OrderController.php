@@ -214,7 +214,7 @@ class OrderController extends Controller
             }
             $total_price += $request->delivery_price;
             $status=1;
-            if( $total_price==$request->delivery){
+            if( $total_price == $request->delivery_price){
                 $status=3;
             }
             // return $products;
