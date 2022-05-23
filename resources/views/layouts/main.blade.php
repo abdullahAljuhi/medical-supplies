@@ -271,21 +271,21 @@
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </button>
 
-        <div class="position-absolute top-100 bg-white w-100 order-lg-1 order-md-2 align-self-center navbar-collapse flex-fill d-lg-none w-100 justify-content-lg-between collapse"
+        <div class="position-absolute top-100 bg-white w-100 order-lg-1 order-md-2 align-self-center navbar-collapse flex-fill d-lg-none w-100 justify-content-lg-between collapse p-3"
             id="templatemo_main_nav" style="z-index: 100;">
             <div class="flex-fill">
                 <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="">{{ __('الصيدليات') }}</a>
+                        <a class="nav-link text-dark" href="{{ route("morePharmacy") }}">{{ __('الصيدليات') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="">{{ __('الشركاء') }}</a>
+                        <a class="nav-link text-dark" href="{{ route("partners") }}">{{ __('الشركاء') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="">{{ __('التواصل') }}</a>
+                        <a class="nav-link text-dark" href="{{ route("contact") }}">{{ __('التواصل') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="">{{ __('حولنا') }}</a>
+                        <a class="nav-link text-dark" href="{{ route("about") }}">{{ __('حولنا') }}</a>
                     </li>
                     <li class="nav-item d-flex d-sm-none d-block my-3">
                         <a class="btn btn-outline-primary text-nowrap p-1" href="{{ route('register') }}">{{ __('انشاء
