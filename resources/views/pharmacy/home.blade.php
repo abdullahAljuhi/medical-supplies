@@ -26,11 +26,9 @@
                             @endif
                             <div id="real">
                             </div>
-                            @if(count($orders)==0)
                                 <div class="text-center my-3">
                                     <span class="fs-5">{{ __('لا يوجد اي اشعارات جديدة') }}</span>
                                 </div>
-                            @endif
                         </div>
                     </div>
                 </div>
