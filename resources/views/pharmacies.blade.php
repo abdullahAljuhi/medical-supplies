@@ -13,7 +13,7 @@
 <section class="mt-5 py-3">
     <div class="container  my-3 bg-white shadow">
         <div class="row py-3  px-1">
-            <div class="col-md-1 col-sm-2 links  ">
+            <div class="col-lg-1 col-sm-2 links  ">
                 <ul class="w-100 h-100">
                     <li data-view="list-view" class="li-list active">
                         <i class="fas fa-th-list"></i>
@@ -25,29 +25,33 @@
             </div>
             <form action="{{ route('morePharmacy') }}" method="get" class="col-md-11 col-sm-12">
                 <div class="row">
-                    <div class="col-md-6 d-flex">
-                        <select name="governorate" id="select1"
-                                class="form-select select1 form-control mx-2"
-                                aria-label=".form-select-lg example">
+                    <div class="col-lg-6 row align-items-center justify-content-center">
+                        <div class="col-sm-6 col-12 my-2">
+                            <select name="governorate" id="select1"
+                                    class="form-select select1 form-control mx-2"
+                                    aria-label=".form-select-lg example">
 
-                            <option value="0" selected>جميع المحافظات</option>
-                            @foreach ($governorates as $governorat)
-                                <option value="{{ $governorat->id }}">
-                                    {{ $governorat->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <select name="city" id="select2"
-                                class="form-select select2 form-control mx-2"
-                                aria-label=".form-select-lg example">
-                            <option value="0" selected>جميع المدن</option>
-                            @foreach ($cities as $city)
-                                <option class="city{{ $city->governorate_id }}"
-                                        value="{{ $city->id }}">{{ $city->name }}</option>
-                            @endforeach
-                        </select>
+                                <option value="0" selected>جميع المحافظات</option>
+                                @foreach ($governorates as $governorat)
+                                    <option value="{{ $governorat->id }}">
+                                        {{ $governorat->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-sm-6 col-12 my-2">
+                            <select name="city" id="select2"
+                                    class="form-select select2 form-control mx-2"
+                                    aria-label=".form-select-lg example">
+                                <option value="0" selected>جميع المدن</option>
+                                @foreach ($cities as $city)
+                                    <option class="city{{ $city->governorate_id }}"
+                                            value="{{ $city->id }}">{{ $city->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
-                    <div class="col-md-6 d-flex border ps-0 mb-3 mb-md-0 ">
+                    <div class="col-lg-6 d-flex border ps-0 mb-3 my-2">
                         <input type="text" class=" border-0 py-1" style="width: 90%;outline:0ch" placeholder="البحث "
                             aria-label="Example text with button addon" aria-describedby="button-addon1" name="name">
                         <button type="submit" name="search" id="" style="width: 10%;border:0;background: transparent;outline:0ch" class="bg-primary text-white" >
@@ -72,35 +76,29 @@
                     <div class="mt-0 text-center">
                         @foreach ($pharmacies as $pharmacy)
                             <div class="row  py-2 border-bottom text-content text-black justify-content-center">
-                                <div class="col-md-2 col-8  d-flex justify-content-strat fw-bold align-self-center fs-5">
+                                <div class="col-md-2 col-12  d-flex justify-content-center fw-bold align-self-center fs-5 my-3">
                                     {{ $pharmacy->pharmacy_name??'' }}
                                 </div>
-                                <div
-                                    class="col-md-3  mb-2 mb-md-0   d-flex justify-content-strat fw-bold align-self-center">
-                                    <div class="row w-100">
-                                        <div class="col-6">
-                                            <i class="bi bi-geo-alt  text-primary ms-3"></i>
-                                            <span>{{$pharmacy->governorate_name ??''}}</span>
-                                        </div>
-                                        <div class="col-6">
-                                            <i class="bi bi-hospital   text-primary ms-3"></i>
-                                            <span>{{$pharmacy->city_name ??''}}</span>
-                                        </div>
-
-                                    </div>
+                                <div class="col-md-2 col-sm-4 col-3 mb-2 mb-md-0 d-flex justify-content-center  align-self-center">
+                                    <i class="bi bi-geo-alt  text-primary ms-3 d-sm-inline-block d-none"></i>
+                                    <span>{{$pharmacy->governorate_name ??''}}</span>
                                 </div>
-                                <div class="col-md-4 mb-2 mb-md-0 d-flex justify-content-strat  align-self-center">
-                                    <i class="bi bi-map   text-primary ms-3"></i>
+                                <div class="col-md-2 col-sm-4 col-3 mb-2 mb-md-0 d-flex justify-content-center  align-self-center">
+                                    <i class="bi bi-hospital   text-primary ms-3 d-sm-inline-block d-none"></i>
+                                    <span>{{$pharmacy->city_name ??''}}</span>
+                                </div>
+                                <div class="col-md-3 col-sm-4 col-6 mb-2 mb-md-0 d-flex justify-content-center  align-self-center">
+                                    <i class="bi bi-map   text-primary ms-3 d-sm-inline-block d-none"></i>
                                     <span> {{ $pharmacy->street?? '' }}</span>
                                 </div>
                                 <div class="col-md-2 mb-2 mb-md-0 text-center d-flex justify-content-center fw-bold align-self-center">
                                     @guest
                                         <a href="{{ route('login') }}"
-                                           class="btn btn-outline-primary"><span>طلب دواء</span>
+                                           class="btn btn-outline-primary text-nowrap"><span>طلب دواء</span>
                                             <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
                                     @else
                                         <a href="{{ route('order',$pharmacy->id) }}"
-                                           class="btn btn-outline-primary"><span>طلب دواء</span>
+                                           class="btn btn-outline-primary text-nowrap"><span>طلب دواء</span>
                                             <i class="fa fa-fw fa-cart-arrow-down mr-1 px-3"></i></a>
                                     @endguest
                                 </div>

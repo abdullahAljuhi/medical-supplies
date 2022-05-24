@@ -10,22 +10,23 @@
     @include('alerts.success')
 
 
-    <div class="container  my-3">
+    <div class="container-lg  my-3">
         <section class="section   profile">
             <div class="row">
 
-                <div class="col-xl-4 ">
+                <div class="col-lg-4">
                     <div class="col">
-                        <div class="card h-100 ">
-                            @if($pharmacy->image)
-                                <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}" alt="pharmacy"
-                                     class="rounded border m-3">
-                            @else
+                        <div class="card h-100">
+                            <div class="col-lg-12 col-sm-6 col-10 mx-auto m-3">
+                                @if($pharmacy->image)
+                                    <img src="{{asset('assets/images/pharmacies/'.$pharmacy->image)}}" alt="pharmacy">
+                                @else
 
-                                <img src="{{asset('img/pharmacy.png') }}"
-                                     class="card-img-top img-card-cus w-100 h-100 px-5"
-                                     alt="...">
-                            @endif
+                                    <img src="{{asset('img/pharmacy.png') }}"
+                                         class="card-img-top img-card-cus w-100 h-100 px-5"
+                                         alt="...">
+                                @endif
+                            </div>
                             <div class="card-body pb-5">
                                 <h5 class="card-title fs-4 text-primary text-center"> {{ $pharmacy->pharmacy_name }}</h5>
                                 <p class="card-text fs-5 text-secondary text-center w-100"><i
@@ -59,24 +60,24 @@
                     </div>
                 </div>
 
-                <div class="col-xl-8  ">
+                <div class="col-lg-8  ">
 
-                    <div class=" p-5  shadow  cust-card"
+                    <div class=" p-lg-5 p-1  shadow  cust-card"
                          style="margin-bottom: 0px; overflow: hidden;border-radius: 1rem;">
                         <div class="card-body p-0">
                             <div class="row m-2 fw-bold">
                                 اطلب عن طريق :
                             </div>
                             <!-- Bordered Tabs -->
-                            <ul class="nav nav-tabs w-100 p-0 nav-order rounded overflow p-2 border">
+                            <ul class="nav nav-tabs w-100 p-0 nav-order rounded overflow p-2 pb-0">
                                 <li class="nav-item  w-50   d-flex justify-content-center align-items-center ">
-                                    <button class="nav-link active btn-outline-primary w-100  rounded-left"
+                                    <button class="text-secondary nav-link active w-100"
                                             data-bs-toggle="tab" data-bs-target="#profile-settings"> اسم العلاج
                                     </button>
                                 </li>
 
-                                <li class="nav-item  w-50   d-flex justify-content-center align-items-center">
-                                    <button class="nav-link w-100   " data-bs-toggle="tab"
+                                <li class="nav-item  w-50 d-flex justify-content-center align-items-center">
+                                    <button class="text-secondary nav-link w-100   " data-bs-toggle="tab"
                                             data-bs-target="#profile-change-password"> الوصفة الطبية
                                     </button>
                                 </li>
@@ -144,9 +145,11 @@
                                                         <select name="city" id="select2Text"
                                                                 class="form-select select2 form-control p-2 pe-5"
                                                                 aria-label=".form-select-lg example" required>
-                                                            <option selected disabled value="" class="mx-5">أختر مدينة</option>
+                                                            <option selected disabled value="" class="mx-5">أختر مدينة
+                                                            </option>
                                                             @foreach ($cities as $city)
-                                                                <option class="city{{ $city->governorate_id }}" value="{{ $city->id }}">
+                                                                <option class="city{{ $city->governorate_id }}"
+                                                                        value="{{ $city->id }}">
                                                                     {{ $city->name }}</option>
                                                             @endforeach
                                                         </select>
@@ -238,9 +241,12 @@
                                                             <select name="city" id="select2"
                                                                     class="form-select select2 form-control p-2 pe-5"
                                                                     aria-label=".form-select-lg example" required>
-                                                                <option selected disabled value="" class="mx-5">أختر مدينة</option>
+                                                                <option selected disabled value="" class="mx-5">أختر
+                                                                    مدينة
+                                                                </option>
                                                                 @foreach ($cities as $city)
-                                                                    <option class="city{{ $city->governorate_id }}" value="{{ $city->id }}">
+                                                                    <option class="city{{ $city->governorate_id }}"
+                                                                            value="{{ $city->id }}">
                                                                         {{ $city->name }}</option>
                                                                 @endforeach
                                                             </select>
