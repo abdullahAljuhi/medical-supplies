@@ -107,64 +107,77 @@
 
                     @endphp
                 @endif
-            <!-- Notification Nav -->
-                <li class="nav-item dropdown dropdown-notifications{{ Auth::user()->id }}">
                 @if (Auth::user()->type==1)
 
-                    <li class="nav-item dropdown dropdown-notifications">
-                        @endif
-                        <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
-                            <i class="bi bi-bell"></i>
+                <!-- Notification Nav -->
+                <li class="nav-item dropdown dropdown-notifications">
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
+                        <i class="bi bi-bell"></i>
 
-                            <span class="badge bg-primary badge-number notify-count" data-count="{{ $count??'0' }}">{{
-                                $count ??'0' }}</span>
-                        </a><!-- End Notification Icon -->
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications py-2">
-                            @if (Auth::user()->type == 2)
-                                <li class="scrollable-container notify">
+                        <span class="badge bg-primary badge-number notify-count" data-count="{{ $count??'0' }}">{{
+                            $count ??'0' }}</span>
+                    </a><!-- End Notification Icon -->
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications py-2">
+                            <li class="scrollable-container notify">
 
-                                </li>
-                                @isset($orders)
-                                    @foreach ($orders as $order )
-                                        <li class="notification-item scrollable-container text-center text-nowrap  py-2">
-                                            <a href="/pharmacy/order/{{ $order->id }}"
-                                               class="d-flex align-items-center text-dark">
-                                                <div class="mx-2">
-                                                    <p class="fs-6 text-dark">هناك طلب من {{ $order->user->name}}</p>
-                                                    <p class="d-block">{{\Carbon\Carbon::parse($order->created_at)->diffForHumans()}}</p>
-                                                </div>
-                                                @if(isset($order->user->profile->image))
-                                                    <img
-                                                        src="{{asset('assets/images/users/'.$order->user->profile->image)}}"
-                                                        alt="Profile" class="rounded-circle border p-1" style="width: 35px;
-                                                height: 35px;">
-                                                @else
-                                                    <img src="{{asset('assets/img/user.png') }}" alt="Profile"
-                                                         class="rounded-circle border p-1" style="width: 35px;
-                                                height: 35px;">
-                                                @endif
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                @endisset
-                            @endif
-                            @if(isset($count))
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li class="dropdown-footer">
-                                    <a class="text-primary" href="{{ route('pharmacy.orders') }}">عرض جميع الطلبات</a>
-                                </li>
-                            @else
-                                <li class="dropdown-header fs-6">
-                                    ليس لديك اي اشعارات جديدة
-                                </li>
-                            @endif
-
-                        </ul><!-- End Notification Dropdown Items -->
-                    </li>
-                    </li>
+                            </li>
+                    </ul><!-- End Notification Dropdown Items -->
+                </li>
                     <!-- End Notification Nav -->
+                @else
+                <li class="nav-item dropdown dropdown-notifications{{ Auth::user()->id }}">        
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
+                        <i class="bi bi-bell"></i>
+
+                        <span class="badge bg-primary badge-number notify-count" data-count="{{ $count??'0' }}">{{
+                            $count ??'0' }}</span>
+                    </a><!-- End Notification Icon -->
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications py-2">
+                        @if (Auth::user()->type == 2)
+                            <li class="scrollable-container notify">
+
+                            </li>
+                            @isset($orders)
+                                @foreach ($orders as $order )
+                                    <li class="notification-item scrollable-container text-center text-nowrap  py-2">
+                                        <a href="/pharmacy/order/{{ $order->id }}"
+                                           class="d-flex align-items-center text-dark">
+                                            <div class="mx-2">
+                                                <p class="fs-6 text-dark">هناك طلب من {{ $order->user->name}}</p>
+                                                <p class="d-block">{{\Carbon\Carbon::parse($order->created_at)->diffForHumans()}}</p>
+                                            </div>
+                                            @if(isset($order->user->profile->image))
+                                                <img
+                                                    src="{{asset('assets/images/users/'.$order->user->profile->image)}}"
+                                                    alt="Profile" class="rounded-circle border p-1" style="width: 35px;
+                                            height: 35px;">
+                                            @else
+                                                <img src="{{asset('assets/img/user.png') }}" alt="Profile"
+                                                     class="rounded-circle border p-1" style="width: 35px;
+                                            height: 35px;">
+                                            @endif
+                                        </a>
+                                    </li>
+                                @endforeach
+                            @endisset
+                        @endif
+                        @if(isset($count))
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li class="dropdown-footer">
+                                <a class="text-primary" href="{{ route('pharmacy.orders') }}">عرض جميع الطلبات</a>
+                            </li>
+                        @else
+                            <li class="dropdown-header fs-6">
+                                ليس لديك اي اشعارات جديدة
+                            </li>
+                        @endif
+
+                    </ul><!-- End Notification Dropdown Items -->
+                </li>
+                @endif
+
 
                     <!-- Profile Nav -->
                     <li class="nav-item dropdown pe-3">

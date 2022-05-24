@@ -99,13 +99,18 @@
                                             <div style="transform: translate(-25px,-35px);">
                                                 <label class="btn bg-white border rounded-circle ">
                                                     <i class="bi bi-camera-fill fs-5"></i>
-                                                    <input type="file" id="imgInp" name="image" hidden
+                                                    <input type="file" id="imgInp" name="image" hidden 
                                                         class="custom-file-input">
                                                 </label>
                                                 <a href="#" class="btn btn-danger btn-sm d-none"
                                                     title="Remove my profile image">
                                                     <i class="bi bi-trash"></i>
                                                 </a>
+                                                @error('image')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -167,7 +172,7 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="company" class="col-md-4 col-lg-3 col-form-label">رثم الموبايل</label>
+                                    <label for="company" class="col-md-4 col-lg-3 col-form-label">رقم الموبايل</label>
                                     <div class="col-md-8 col-lg-9">
                                         <input name="mobile" type="text"
                                             class="form-control @error('mobile') is-invalid @enderror" id="company"
