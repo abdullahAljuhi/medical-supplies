@@ -110,6 +110,7 @@ class UserProfileController extends Controller
             }
 
             $input = $request->all();
+            
             $user->fill($input)->save();
 
             $user->profile()->update([
