@@ -61,14 +61,14 @@
 
                 <div class="col-xl-8  ">
 
-                    <div class=" p-5  shadow  cust-card"
+                    <div class=" p-md-5 px-0  shadow  cust-card py-3"
                          style="margin-bottom: 0px; overflow: hidden;border-radius: 1rem;">
-                        <div class="card-body p-0">
+                        <div class="card-body p-0 ">
                             <div class="row m-2 fw-bold">
                                 اطلب عن طريق :
                             </div>
                             <!-- Bordered Tabs -->
-                            <ul class="nav nav-tabs w-100 p-0 nav-order rounded overflow p-2 border">
+                            <ul class="nav nav-tabs w-auto  p-md-0 mx-3 mx-md-0 nav-order rounded overflow pt-2 border">
                                 <li class="nav-item  w-50   d-flex justify-content-center align-items-center ">
                                     <button class="nav-link active btn-outline-primary w-100  rounded-left"
                                             data-bs-toggle="tab" data-bs-target="#profile-settings"> اسم العلاج
@@ -82,24 +82,24 @@
                                 </li>
 
                             </ul>
-                            <div class="tab-content p-4 py-1">
+                            <div class="tab-content p-md-4 px-0 py-1">
 
                                 <div class="tab-pane fade  show active" id="profile-settings">
                                     <form class=" needs-validation" novalidate method="POST"
                                           action="{{ route ('send')}}" enctype="multipart/form-data">
                                         @csrf
 
-                                        <div class="row m-2">
+                                        <div class="row m-2 ">
                                             <label for="name" class="col-md-12 col-form-label fw-bold">
                                                 اسم العلاج
                                                 <span class="  me-1  fw-bold" style="font-size: 15px"> (اضغط على + من اجل اضافة المزيد)</span></label>
                                             <div class=" mb-3  field_wrapper">
                                                 <input type="text" id="name"
                                                        placeholder="قم بكتابة اسم العلاج مثل بندول او فوار..." class=" col-12 col-md-8 mb-2 form-control-custome
-                                    " name='product_name[]' autofocus>
+                                                " name='product_name[]' autofocus>
 
-                                                <input type="text" id="name" placeholder="حدد الكمية" class=" col-md-3 col-12 form-control-custome mb-2
-                                    " name='quantity[]' autofocus>
+                                                            <input type="text" id="name" placeholder="حدد الكمية" class=" col-md-3 col-12 form-control-custome mb-2
+                                                " name='quantity[]' autofocus>
                                                 <input type="hidden" id="name" name='user'
                                                        value="{{ Auth::user()->id }}">
                                                 <input type="hidden" id="name" name='pharmacy'
@@ -121,12 +121,12 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="row   py-3 px-2 ">
+                                        <div class="row   py-3 px-3 ">
                                             <div class="col-12">
                                                 <div class="row">
                                                     <label for="inputState" class="form-label  fw-bold"> عنوان
                                                         التوصيل</label>
-                                                    <div class="col-6">
+                                                    <div class="col-md-6 col-12 mb-2">
                                                         <select name="governorate" id="selectText"
                                                                 class="form-select select1 form-control p-2 pe-5"
                                                                 aria-label=".form-select-lg example" required>
@@ -140,7 +140,7 @@
                                                         </select>
                                                         <div class="invalid-feedback">يرجى اختيار محافظة</div>
                                                     </div>
-                                                    <div class="col-6 second">
+                                                    <div class="col-md-6 col-12 mb-2 second">
                                                         <select name="city" id="select2Text"
                                                                 class="form-select select2 form-control p-2 pe-5"
                                                                 aria-label=".form-select-lg example" required>
@@ -156,9 +156,9 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-12 mx-2">
+                                            <div class="col-12 ">
                                                 <label for="fullName" class="form-label">
-                                                    تفاصيل اخرى عن العنوان
+                                                          العنوان
                                                 </label>
                                                 <input type="text" name="details"
                                                        class="form-control @error('details') is-invalid @enderror"
@@ -170,9 +170,7 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="text-center mt-3">
-                                            <button type="submit" class="btn btn-primary">ارسال الطلب</button>
-                                        </div>
+                                       
                                     </form>
 
 
@@ -182,7 +180,7 @@
                                     <form class=" needs-validation" novalidate method="POST"
                                           enctype="multipart/form-data" action="{{ route ('send')}}">
                                         @csrf
-                                        <div class="row mb-3">
+                                        <div class="row m-2">
                                             <label for="phote" class="col-md-12  col-form-label fw-bold"> صورة الوصفة او
                                                 العلاج
                                                 <span class="  me-1  fw-bold" style="font-size: 15px"> (يمكنك تحديد اكثر من صورة)</span>
@@ -215,12 +213,13 @@
                                                     <option value="30">طلب كل شهر</option>
                                                 </select>
                                             </div>
-                                            <div class="row   py-3 px-2 ">
+                                        </div>
+                                            <div class="row   py-3 px-3 ">
                                                 <div class="col-12">
                                                     <div class="row">
                                                         <label for="inputState" class="form-label  fw-bold"> عنوان
                                                             التوصيل</label>
-                                                        <div class="col-6">
+                                                        <div class="col-md-6 col-12 mb-2">
                                                             <select name="governorate" id="selectImg"
                                                                     class="form-select select1 form-control p-2 pe-5"
                                                                     aria-label=".form-select-lg example" required>
@@ -234,7 +233,7 @@
                                                             </select>
                                                             <div class="invalid-feedback">يرجى اختيار محافظة</div>
                                                         </div>
-                                                        <div class="col-6 second">
+                                                        <div class="col-md-6 col-12 mb-2 second">
                                                             <select name="city" id="select2"
                                                                     class="form-select select2 form-control p-2 pe-5"
                                                                     aria-label=".form-select-lg example" required>
@@ -250,9 +249,9 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-12 mx-2">
+                                                <div class="col-12">
                                                     <label for="fullName" class="form-label">
-                                                        تفاصيل اخرى عن العنوان
+                                                        العنوان
                                                     </label>
                                                     <input type="text" name="details" class="form-control"
                                                            id="yourPassword" required>

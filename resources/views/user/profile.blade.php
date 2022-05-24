@@ -58,7 +58,7 @@
                                 <h5 class="card-title">بيانات عامة</h5>
 
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label ">اسم الكامل</div>
+                                    <div class="col-lg-3 col-md-4 label "><i class="bi bi-person-fill fs-4 ms-2"></i>اسم الكامل</div>
                                     <div class="col-lg-9 col-md-8">{{ $user->name }}</div>
                                 </div>
 
@@ -83,7 +83,7 @@
                                 @endisset
 
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">هاتف</div>
+                                    <div class="col-lg-3 col-md-4 label"><i class="bi bi-telephone-fill fs-4 ms-2"></i>هاتف</div>
                                     <div class="col-lg-9 col-md-8">
                                         @isset($user->profile['phone'])
                                             {{$user->profile['phone']}}
@@ -91,7 +91,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">البريد الالكتروني</div>
+                                    <div class="col-lg-3 col-md-4 label"><i class="bi bi-envelope-fill fs-4 ms-2"></i>البريد الالكتروني</div>
                                     <div class="col-lg-9 col-md-8">{{ $user->email }}</div>
                                 </div>
 
