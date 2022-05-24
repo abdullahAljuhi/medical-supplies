@@ -18,22 +18,6 @@
         <!-- Recent Sales -->
         <div class="card  recent-sales overflow-auto p-3">
 
-            <div class="filter">
-                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow text-end">
-                    <li class="dropdown-header text-end">
-                        <h6>فلترة</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">جميع الطلبات</a></li>
-                    <li><a class="dropdown-item" href="#">الجديدة</a></li>
-                    <li><a class="dropdown-item" href="#">قيد الانتظار</a></li>
-                    <li><a class="dropdown-item" href="#">مقبول</a></li>
-                    <li><a class="dropdown-item" href="#">مرفوض</a></li>
-                    <li><a class="dropdown-item" href="#">مكتمل</a></li>
-                </ul>
-            </div>
-
             <h5 class="card-title fs-5">جميع الطلبات</h5>
 
             <table class="table table-hover datatable">
@@ -58,7 +42,7 @@
                 @foreach($orders as $order)
                     <tr style='cursor: pointer; cursor: hand;'
                         onclick="window.location='{{route($route,$order->id) }}';">
-                        <th scope="row"><a href="#">{{ $order->id }}</a></th>
+                        <th scope="row"><a href="#">{{ $loop->index + 1 }}</a></th>
                         @if(Auth::user()->type != 2)
                         <td>{{ $order->pharmacy['pharmacy_name'] }}</td>
                         @endif
@@ -68,9 +52,9 @@
                         <td>{{ count(json_decode($order->products,true)) }}</td>
                         <td>{{ $order->type?'وصفة طبية':'اسم العلاج' }}</td>
                         @if($order->is_periodic)
-                            <th>كل {{$order->period}} ايام</th>
+                            <td>كل {{$order->period}} ايام</td>
                         @else
-                            <th>غير متكرر</th>
+                            <td>غير متكرر</td>
                         @endif
                         <td><a href="#" class="text-dark">{{ $order->address }}</a></td>
                         <td>{{ \Carbon\Carbon::parse($order->created_at)->diffForHumans() }}</td>
