@@ -145,7 +145,7 @@
                                     </a>
                                 </li>
                             @endforeach
-                            @if($count)
+                            @if(isset($count))
                                 <li>
 
                                     <hr class="dropdown-divider">
@@ -438,10 +438,10 @@
         //   console.log(data.order.pharmacy_id);
           var existingNotifications = notifications.html();
           var newNotificationHtml = 
-          `<a href="/order/${data.order.id}" class="d-flex align-items-center text-dark">
+          `<a href="/order/${data.order.id}" class="d-flex align-items-center text-dark text-center" style="justify-content: space-around;align-items: center;">
                                     <div class="mx-2">
-                                        <p class="fs-6 text-dark text-nowrap"> ${data.message} </p>
-                                        <small class="d-block text-center" style='font-size: 12px'>${new Date(data.order.created_at).toLocaleDateString()}</small>
+                                        <p class="fs-6 text-dark text-nowrap my-0" style="text-align: center;"> ${data.message} </p>
+                                        <small class="text-center" style='font-size: 12px'> الان  </small>
                                     </div>
                                     <img src="{{asset('assets/img/user.png') }}" alt="Profile"class="rounded-circle border p-1"
                                     style="width: 35px;height: 35px;">
@@ -454,6 +454,7 @@
         });
     </script>
 @endauth
+{{-- ${new Date(data.order.created_at).toLocaleDateString()} --}}
 @yield('scripts')
 </body>
 

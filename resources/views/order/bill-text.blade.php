@@ -24,9 +24,10 @@
                 <div class="card">
                     @if($order->status==4)
 
-                        <div class="tab-pane fade show active mt-3 row" id="profile-overview">
-                            هذا الطلب تم الغاءه
-                        </div>
+                      
+                    <div class="alert alert-warning text-center" id="profile-overview">
+                        هذا الطلب تم الغاءه
+                    </div>
                     @endif
                     <div class="card-title pb-0 mb-0">
                         <div class="row mb-2">
@@ -126,12 +127,8 @@
                                             </div>
                                         </form>
                                         @elseif($order->status == 3)
-                                        <div class="tab-pane fade show active mt-3 row" id="profile-overview">
+                                        <div class="alert alert-danger" id="profile-overview">
                                             هذا الطلب غير موجود
-                                        </div>
-                                        @else
-                                        <div class="tab-pane fade show active mt-3 row" id="profile-overview">
-                                            هذا الطلب تم الغاءه
                                         </div>
                                         @endif
                                         @endif

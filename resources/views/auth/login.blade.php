@@ -41,10 +41,9 @@
                                     name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                     @error('email')
                                     <p class="text-danger mt-2">
-                                        <strong>{{ $message }}</strong>
+                                        {{ $message }}
                                     </p>
                                     @enderror
-                                    <div class="invalid-feedback">يرجى ادخال بريد الكتروني صالح !</div>
                                 </div>
 
                                 <div class="col-12">
@@ -55,7 +54,6 @@
                                         <strong>{{ $message }}</strong>
                                     </p>
                                     @enderror
-                                    <div class="invalid-feedback">يرجى ادخال كلمة المرور</div>
                                 </div>
 
                                 <div class="col-12">

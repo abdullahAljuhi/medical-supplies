@@ -148,7 +148,7 @@
                                     @endforeach
                                 @endisset
                             @endif
-                            @if($count)
+                            @if(isset($count))
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -413,8 +413,8 @@
                 var newNotificationHtml =
                     `<a href="/pharmacy/order/${data.order.id}" class="d-flex align-items-center text-dark">
                                     <div class="mx-2">
-                                        <p class="fs-6 text-dark"> ${data.message} ${data.user.name}</p>
-                                        <p class="d-block " style=font-size: 12px;text-align: center;> ${new Date(data.order.created_at).toLocaleDateString()}</p>
+                                        <p class="fs-6 text-dark my-1"> ${data.message} ${data.user.name}</p>
+                                        <p class="d-block text-center" style="font-size:12px ; text-align:center";> الان </p>
                                     </div>
                                     <img src="{{asset('assets/img/user.png') }}" alt="Profile"class="rounded-circle border p-1"
                                     style="width: 35px;height: 35px;">

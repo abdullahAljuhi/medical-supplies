@@ -54,10 +54,14 @@ class OrderController extends Controller
     public function send(Request $request)
     {
         try {
-
+            if($request->type == 1){
+                $name='images';
+            }else{
+                $name='product_name';
+            }
             // validation
             $request->validate([
-            'product_name'=>'required',
+            $name=>'required',
             'governorate'=>'required',
             'city'=>'required',
             'details'=>'required',
@@ -134,7 +138,7 @@ class OrderController extends Controller
             return view('order.orderMass')->with(['success' => 'تم ارسال الطلب  بنجاح']);
 
         } catch (\Throwable $th) {
-            return $th->getMessage();
+            // return $th->getMessage();
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
             // throw $th;
         }
