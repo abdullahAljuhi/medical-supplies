@@ -114,7 +114,7 @@ class PaymentController extends Controller
                 
                 $status = $data['status'];
                 $order_reference = $data['order_reference'];
-                $products = json_decode($data['products'], true);
+                $products = json_decode($order->products, true);
                 $card = $data['customer_account_info']['card_type'];
                 $date = $data['customer_account_info']['created_at'];
                 $name = $meta_data['Customer name'];
