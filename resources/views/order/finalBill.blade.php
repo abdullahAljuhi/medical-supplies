@@ -24,8 +24,8 @@
                                 </p>
                             </div>
                             <div class="col-md-4 col-sm-12 mb-2">
-                                <p class="fs-5 py-0 my-0  mx-3">رقم المرجع :
-                                    {{ $order->id }}
+                                <p class="fs-5 py-0 my-0  mx-3">رقم تأكيد الاسنلام :
+                                    {{ $code }}
                                 </p>
                             </div>
                             <div class="col-md-4 col-sm-12 mb-2">

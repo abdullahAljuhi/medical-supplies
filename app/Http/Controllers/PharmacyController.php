@@ -151,6 +151,11 @@ class PharmacyController extends Controller
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
+    // Route::get('test.jpg',function(){
+    //     $images=['test1.jpg','test2.jpg','test3.jpg'];
+    //     $randimage=shuffle($images);
+    //    return '<image src="images/'.$images[0].'">';
+    //   });
 
 
 
@@ -287,10 +292,13 @@ class PharmacyController extends Controller
     // get all orders for user auth
     public function orders()
     {
-        $type = [['جديد',' في انتظار الدفع','مكتمل','غير متوفر','مرفوض','مشكله في الدفع' , 'مسترجع'],['primary','warning','success','secondary','danger','orange','orange']];
+        $type = [['جديد',' في انتظار الدفع','في انتظار التسليم','مكتمل','غير متوفر','مرفوض','مشكله في الدفع' , 'مسترجع'],
+                 ['primary', 'warning' , 'success' , 'secondary' , 'danger' , 'orange' , 'orange' , 'secondary']];
         
         $route = 'pharmacy.order';
+
         try {
+            
             $user = User::with('pharmacy')->find(Auth::id());
 
             $orders = Order::where('pharmacy_id', $user->pharmacy->id)->get();

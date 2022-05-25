@@ -40,6 +40,8 @@ Auth::routes(['verify' => true]);
 Route::group(['middleware' => ['auth', 'verified']], function (){
     Route::get('/wallet', [PaymentController::class, 'test_wallet'])->name('user.wallet');
 
+    Route::get('/retrieval/{orderId}/{productId?}', [PaymentController::class, 'retrievalOrder'])->name('retrieval.order');
+    // retrievalOrder
 
     // main page after login
     Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -160,7 +162,8 @@ Route::group(['middleware' => ['auth', 'verified']], function (){
 
         Route::get('/order/{id}/notFound', [OrderController::class, 'notFond'])->name('pharmacy.order.notFond'); // show order
         
-        
+        Route::get('/receiveOrder/{id}', [PaymentController::class, 'receiveOrder'])->name('receive.order');
+
         // pharmacy wallet url= pharmacy/wallet
         Route::get('/wallet', [PaymentController::class, 'test_wallet'])->name('pharmacy.wallet');
     }); // pharmacy crud end

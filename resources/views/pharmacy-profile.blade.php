@@ -298,6 +298,19 @@
                                             </textarea>
                                     </div>
                                 </div>
+                                <div class="d-flex mb-3">
+                                    <label for="curren_location">  الضغط على هذا الزر لتحديد الموقع الحالي</label>
+                                    <input id="curren_location" style="width: 30px; height:25px; background-color: blue;" readonly required class="btn determinLocation">
+                                    <input hidden name="lat" id="lat" >  
+                                    <input hidden name="long" id="long" >
+                                    @error('lat')
+                                    <span class="text-danger">{{$message}}</span>
+                                    @enderror 
+                                </div>
+                                <div class="row mb-3">
+                                    <div id="map"></div>
+                                </div>
+
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
                                 </div>
@@ -371,7 +384,11 @@
     </div>
 </section>
 
-<script>
+@endsection
+@section('scripts')
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    
+ <script>
     imgInp = document.getElementById('imgInp');
         blah = document.getElementById('blah');
 
@@ -382,4 +399,57 @@
             }
         }
 </script>
+<script>
+    // Map initialization 
+    var map = L.map('map').setView([14.0860746, 100.608406], 6);
+
+    //osm layer
+    var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+    osm.addTo(map);
+        
+        $('#curren_location').click(function(){
+            navigator.geolocation.getCurrentPosition(getPosition);
+        });
+        var marker, circle;
+
+ function onMapClick(e) {
+    alert("You clicked the map at " + e.latlng);
+ }
+
+ map.on('click', onMapClick);
+
+   function getPosition(position) {
+    // console.log(position)
+    var lat = position.coords.latitude;
+    var long = position.coords.longitude;
+    var accuracy = position.coords.accuracy;
+
+    $('#lat').val(position.coords.latitude);
+   $('#long').val(position.coords.longitude);
+   console.log(
+
+    //    $('#long').val()
+   );
+    if (marker) {
+      map.removeLayer(marker);
+    }
+
+    if (circle) {
+      map.removeLayer(circle);
+    }
+
+    marker = L.marker([lat, long]);
+    circle = L.circle([lat, long], {
+      radius: accuracy,});
+
+    var featureGroup = L.featureGroup([marker, circle]).addTo(map);
+
+    map.fitBounds(featureGroup.getBounds());
+
+    console.log("Your coordinate is: Lat: " +lat +" Long: " +long +" Accuracy: " + accuracy);
+ 
+ }
+ </script>
 @endsection

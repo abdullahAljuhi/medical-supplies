@@ -14,11 +14,12 @@
     <!-- Favicons -->
     <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
 
+        <!-- leaflet css  -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -30,6 +31,15 @@
     <link href="{{ asset('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <link rel="stylesheet" href="{{ asset('css/viewAndList.css') }}">
+
+
+    <style>
+                #map {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+
     {{-- fotn awesom --}}
 
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
@@ -51,6 +61,7 @@
         });
 
     </script>
+
 
     @yield('extra-style')
 
@@ -107,6 +118,7 @@
 
                 @endphp
                 @endif
+
                 @if (Auth::user()->type==1)
 
                 <!-- Notification Nav -->
@@ -121,15 +133,22 @@
                         <li class="scrollable-container notify">
 
                         </li>
-                        @if(!isset($count))
+                        @if(!isset($count) || $count == 0 )
                         <li class="dropdown-header fs-6">
                             ليس لديك اي اشعارات جديدة
+                        </li>
+                        @else
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="dropdown-footer">
+                            <a class="text-primary" href="{{ route('admin.orders') }}">عرض جميع الطلبات</a>
                         </li>
                         @endif
                     </ul><!-- End Notification Dropdown Items -->
                 </li>
                 <!-- End Notification Nav -->
-                @else
+                @elseif(Auth::user()->type==2)
                 <li class="nav-item dropdown dropdown-notifications{{ Auth::user()->id }}">
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown" data-toggle="dropdown">
                         <i class="bi bi-bell"></i>
@@ -138,7 +157,7 @@
                             $count ??'0' }}</span>
                     </a><!-- End Notification Icon -->
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications py-2">
-                        @if (Auth::user()->type == 2)
+
                         <li class="scrollable-container notify">
 
                         </li>
@@ -152,26 +171,31 @@
                                     </p>
                                 </div>
                                 @if(isset($order->user->profile->image))
-                                <img src="{{asset('assets/images/users/'.$order->user->profile->image)}}" alt="Profile"
-                                    class="rounded-circle border p-1" style="width: 35px;
+                                <img src="{{asset('assets/images/users/'.$order->user->profile->image)}}" alt="Profile" class="rounded-circle border p-1" style="width: 35px;
                                             height: 35px;">
                                 @else
-                                <img src="{{asset('assets/img/user.png') }}" alt="Profile"
-                                    class="rounded-circle border p-1" style="width: 35px;
+                                <img src="{{asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1" style="width: 35px;
                                             height: 35px;">
                                 @endif
                             </a>
                         </li>
                         @endforeach
                         @endisset
-                        @endif
                         @if(isset($count))
+                        @if($count!=0)
+                            
                         <li>
                             <hr class="dropdown-divider">
                         </li>
                         <li class="dropdown-footer">
                             <a class="text-primary" href="{{ route('pharmacy.orders') }}">عرض جميع الطلبات</a>
                         </li>
+                        @else
+                        <li class="dropdown-header fs-6">
+                            ليس لديك اي اشعارات جديدة
+                        </li>
+                        @endif
+                        
                         @else
                         <li class="dropdown-header fs-6">
                             ليس لديك اي اشعارات جديدة
@@ -188,13 +212,9 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         @if(isset(Auth::user()->profile->image))
-                        <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile"
-                            class="rounded-circle border"
-                            style="object-fit: cover; width: 35px;height: 35px; padding: 1px">
+                        <img src="{{asset('assets/images/users/'.Auth::user()->profile->image)}}" alt="Profile" class="rounded-circle border" style="object-fit: cover; width: 35px;height: 35px; padding: 1px">
                         @elseif(isset(Auth::user()->pharmacy->image))
-                        <img src="{{asset('assets/images/pharmacies/'.Auth::user()->pharmacy->image)}}" alt="Profile"
-                            class="rounded-circle border"
-                            style="object-fit: cover; width: 35px;height: 35px; padding: 1px">
+                        <img src="{{asset('assets/images/pharmacies/'.Auth::user()->pharmacy->image)}}" alt="Profile" class="rounded-circle border" style="object-fit: cover; width: 35px;height: 35px; padding: 1px">
                         @else
                         <img src="{{asset('assets/img/user.png') }}" alt="Profile" class="rounded-circle border p-1">
                         @endif
@@ -386,8 +406,7 @@
     </footer>
     <!-- End Footer -->
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
     <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
@@ -409,21 +428,21 @@
     @if (Auth::user()->type==2)
     <script>
         var notificationsWrapper = $('.dropdown-notifications{{ Auth::user()->id }}');
-            var notificationsToggle = notificationsWrapper.find('a[data-toggle]');
-            var notificationsCountElem = notificationsToggle.find('span[data-count]');
-            var notificationsCount = parseInt(notificationsCountElem.data('count'));
-            var notifications = notificationsWrapper.find('li.scrollable-container.notify');
+        var notificationsToggle = notificationsWrapper.find('a[data-toggle]');
+        var notificationsCountElem = notificationsToggle.find('span[data-count]');
+        var notificationsCount = parseInt(notificationsCountElem.data('count'));
+        var notifications = notificationsWrapper.find('li.scrollable-container.notify');
 
 
-            // Subscribe to the channel we specified in our Laravel Event
-            var channel = pusher.subscribe("order{{  Auth::user()-> id }}");
-            // Bind a function to a Event (the full Laravel class)
+        // Subscribe to the channel we specified in our Laravel Event
+        var channel = pusher.subscribe("order{{  Auth::user()-> id }}");
+        // Bind a function to a Event (the full Laravel class)
 
-            channel.bind('App\\Events\\Messages', function (data) {
+        channel.bind('App\\Events\\Messages', function(data) {
 
-                var existingNotifications = notifications.html();
-                var newNotificationHtml =
-                    `<a href="/pharmacy/order/${data.order.id}" class="d-flex align-items-center text-dark">
+            var existingNotifications = notifications.html();
+            var newNotificationHtml =
+                `<a href="/pharmacy/order/${data.order.id}" class="d-flex align-items-center text-dark">
                                     <div class="mx-2">
                                         <p class="fs-6 text-dark my-1"> ${data.message} ${data.user.name}</p>
                                         <p class="d-block text-center" style="font-size:12px ; text-align:center";> الان </p>
@@ -431,12 +450,12 @@
                                     <img src="{{asset('assets/img/user.png') }}" alt="Profile"class="rounded-circle border p-1"
                                     style="width: 35px;height: 35px;">
                             </a>`
-                notifications.html(newNotificationHtml + existingNotifications);
-                notificationsCount += 1;
-                notificationsCountElem.attr('data-count', notificationsCount);
-                notificationsWrapper.find('.notify-count').text(notificationsCount);
-                notificationsWrapper.show();
-            });
+            notifications.html(newNotificationHtml + existingNotifications);
+            notificationsCount += 1;
+            notificationsCountElem.attr('data-count', notificationsCount);
+            notificationsWrapper.find('.notify-count').text(notificationsCount);
+            notificationsWrapper.show();
+        });
 
     </script>
     @endif

@@ -207,6 +207,7 @@ class OrderController extends Controller
             foreach ($prices as $i => $price) {
 
                 $products[$i]['unit_amount'] = $price;
+                $products[$i]['done'] = 0;
 
                 if($request->found[$i]==1){
                     $products[$i]['found'] = 1;
