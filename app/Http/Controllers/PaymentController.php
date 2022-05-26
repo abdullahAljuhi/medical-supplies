@@ -189,6 +189,7 @@ class PaymentController extends Controller
             $user   = User::find(Auth::id());
  
             $wallet=$user->wallet;
+
             $transactions=$wallet->transactions;
 
             $recipient=0;

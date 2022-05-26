@@ -1,141 +1,292 @@
-@extends('layouts.main')
+{{-- @if(Auth::user()->type != 0)
+{{ $app='layouts.app' }}
+@else
+{{ $app='layouts.main' }}
+@endif --}}
+@extends(Auth::user()->type == 0 ? 'layouts.main' : 'layouts.app')
+
+{{-- @extends($app) --}}
 @section('title', 'طلب جديد')
 @section('content')
     <!-- Page Title -->
     <div class="pagetitle mt-5 container">
-        <h1>كشف عرض الاسعار</h1>
+        <h1>فاتورة</h1>
         <nav>
             <ol class="breadcrumb">
-{{--                <li class="breadcrumb-item"><a href="/home">لوحة التحكم</a></li>--}}
             </ol>
         </nav>
     </div>
     <!-- End Page Title -->
 
-    <section class="section profile container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="card">
-                    <div class="card-title pb-0 mb-0">
-                        <div class="row mb-2">
-                            <div class="col-md-4 col-sm-12 mb-2">
-                                <p class="fs-5 py-0 my-0  mx-3">رقم الطلب :
-                                    {{ $order->id }}
-                                </p>
-                            </div>
-                            <div class="col-md-4 col-sm-12 mb-2">
-                                <p class="fs-5 py-0 my-0  mx-3">رقم تأكيد الاسنلام :
-                                    {{ $code }}
-                                </p>
-                            </div>
-                            <div class="col-md-4 col-sm-12 mb-2">
-                                <p class="fs-5 py-0 my-0  mx-3">  نوع البطاقة  :
-                                    {{ $card }}
-                                </p>
-                            </div>
-                            <div class="col-md-4 col-sm-12 mb-2">
-                                <p class="fs-5 py-0 my-0  mx-3">تاريخ الطلب  :
-                                    {{ $order->created_at->diffForHumans() }}
-                                </p>
-                            </div>
-                            <div class="col-md-4 col-sm-12 mb-2">
-                                <p class="fs-5 py-0 my-0  mx-3">تاريخ الدفع  :
-                                    {{ \Carbon\Carbon::parse($date)->diffForHumans() }}
-                                    {{-- {{ $date->toCookieString() }} --}}
-                                </p>
-                            </div>
+    <section class="container" >
+        <div class="col-xl-12 col-md-12 col-12 mb-md-0 mb-4">
+            <div class="card invoice-preview-card">
+              <div class="card-body pb-0">
+                <div class="d-flex justify-content-between flex-xl-row flex-md-column flex-sm-row flex-column p-sm-3 p-0">
+                  <div class="py-md-0 py-2">
+                    <div>
+                        <h4>فاتورة مشتريات # {{ $order->id }}</h4>
+                        <div class="">
+                            <span class="me-1">تاريخ الطلب:</span>
+                            <span class="fw-semibold"> {{ $order->created_at->diffForHumans() }}</span>
+                          </div>
+                          <div class="">
+                            <span class="me-1"> رمز تأكيد الطلب:</span>
+                            <span class="fw-semibold">  {{ $code }}</span>
+                          </div>
+                          <div class="">
+                            <span class="me-1"> نوع بطاقة الدفع  :</span>
+                            <span class="fw-semibold">  {{ $card  }}</span>
+                          </div>
+                          @if($order->status == 3)
+                          <div class="">
+                            <span class="me-1"> ملاحظة:</span>
+                            <span class="fw-semibold text-danger fw-bold">                       
+                              هذا الطلب غير موجود
+                            </span>
+                          </div>
+                          @elseif($order->status == 4)
+                          <div class="">
+                            <span class="me-1"> ملاحظة:</span>
+                            <span class="fw-semibold text-danger fw-bold">                       هذا الطلب تم الغاءه
+                            </span>
+                          </div>
+                          
+                          @elseif($order->status == 7)
+                          <div class="">
+                            <span class="me-1"> ملاحظة:</span>
+                            <span class="fw-semibold text-danger fw-bold">                       
+                              هذا الطلب تم استرجاعه
+                            </span>
+                          </div>
+                          @endif
+                       
 
-                            <div class="col-md-4 col-sm-12 mb-2">
-                                <p class="fs-5 py-0 my-0  mx-3">  اسم المستخدم :
-                                   {{ $name  }}
-                                </p>
-                            </div>
-                            <div class="col-md-4 col-sm-12 mb-2">
-                                <p class="fs-5 py-0 my-0  mx-3">  اسم الصيدلية :
-                                    {{ $order->pharmacy->pharmacy_name }}
-                                </p>
-                            </div>
-
-
-                            <div class="col-md-4 col-sm-12 mb-2">
-                                <p class="fs-5 py-0 my-0  mx-3 fw-blod"> المبلغ:
-                                    {{ $paid_amount }}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-
-                        </div>
 
                     </div>
+                  </div>
 
-                    <div class="card-body p-0">
-                        <div class="tab-content">
-                            <div>
-                                <div class="card-body p-0">
-                                    <div class="table-responsive  pb-3 px-3">
-                                        <table class="table border ">
-                                            <thead class="bg-light">
-                                            <tr class="border-0">
-                                                <th class="border-0">رقم</th>
-                                                <th class="border-0">اسم المنتج</th>
-                                                <th class="border-0">سعر المنتج</th>
-                                                <th class="border-0">كمية المنتج</th>
-
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            @foreach ($products as $product )
-                                                {{-- {{$product  }} --}}
-                                                @if($order->type == 1)
-                                                    <tr>
-                                                        <td>{{ $loop->index }}</td>
-                                                        <td>
-                                                            <img
-                                                                src="{{asset('assets/images/orders/'.$product['product_name'])}}"
-                                                                alt="" class=" border myImg" srcset=""
-                                                                style=";height:50px;width:50px">
-                                                        </td>
-                                                        <td>{{ $product['unit_amount'] }} </td>
-                                                        <td>{{ $product['quantity'] }} </td>
-                                                    </tr>
-                                                @else
-                                                    <tr>
-                                                        <td>{{ $loop->index }}</td>
-                                                        <td>{{ $product['product_name'] }}</td>
-                                                        <td>{{ $product['unit_amount'] }} </td>
-                                                        <td>{{ $product['quantity'] }} </td>
-                                                    </tr>
-                                                @endif
-                                            @endforeach
-                                            <tr>
-                                                <td>#</td>
-                                                <td>سعر التوصيل</td>
-                                                <td colspan="2">{{ $order->delivery_price }} </td>
-                                            </tr>
-                                            </tbody>
-                                            <tfoot>
-                                            <tr>
-                                                <td colspan="2">الاجمالي</td>
-                                                <td>{{ $order->total_price }}</td>
-                                            </tr>
-                                            </tfoot>
-                                        </table>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-
-                            </div>
-                        </div>
-                    </div><!-- End Bordered Tabs -->
+                  <div class="tab-pane fade show active mt-3 row fs-1" id="profile-overview">
+                  </div>
 
                 </div>
-            </div>
+              </div>
+              <hr class="my-0">
+              <div class="card-body">
+                <div class="row p-sm-3  p-2">
+                  <div class="col-xl-6 col-md-12 col-sm-5 col-12 mb-xl-0 mb-md-4 mb-sm-0 mb-4">
+                    <h6 class="pb-2"> بيانات الصيدلية:</h6>
+                    <div class="mb-2">
+                        <span class="me-1"> اسم الصيدلية:</span>
+                        <span class="fw-semibold"> {{ $order->pharmacy->pharmacy_name }}</span>
+                      </div>
+                      <div class="mb-2">
+                        <span class="me-1">  العنوان:</span>
+                        <span class="fw-semibold"> {{ $order->pharmacy->address[0]->governorate->name }} - {{ $order->pharmacy->address[0]->city->name ??''}} - {{ $order->pharmacy->address[0]->street ??''}}</span>
+                      </div>
+                      <div class="mb-2">
+                        <span class="me-1"> الهاتف :</span>
+                        <span class="fw-semibold"> {{ $order->pharmacy->phone }}</span>
+                      </div>
+                      <div class="mb-2">
+                        <span class="me-1"> الموبايل :</span>
+                        <span class="fw-semibold"> {{ $order->pharmacy->mobile }}</span>
+                      </div>
+                      <div class="mb-2">
+                        <span class="me-1"> الايميل :</span>
+                        <span class="fw-semibold"> {{ $order->pharmacy->user->email }}</span>
+                      </div>
+                  </div>
+                  <div class="col-xl-6 col-md-12 col-sm-7 col-12">
+                    <h6 class="pb-2"> بيانات المستخدم:</h6>
+                    <div class="mb-2">
+                        <span class="me-1"> اسم المتسخدم:</span>
+                        <span class="fw-semibold"> {{ $order->user->name }}</span>
+                      </div>
+                      <div class="mb-2">
+                        <span class="me-1">  عنوان التوصيل:</span>
+                        <span class="fw-semibold"> {{ $order->address }} </span>
+                      </div>
 
-        </div>
-        </div>
+                      <div class="mb-2">
+                        <span class="me-1"> الايميل :</span>
+                        <span class="fw-semibold"> {{ $order->user->email }}</span>
+                      </div>
+
+                  </div>
+                  </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table border-top m-0">
+                      <thead>
+                        <tr>
+                          <th>رقم</th>
+                          <th>المنتج</th>
+                          <th>التكلفة</th>
+                          <th>الكمية</th>
+                          <th>الاجمالي</th>
+                          <th>ملاحظات / تواجد المنتج</th>
+                          <th> العمليات</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @isset($products)
+                                                @foreach ($products as $product )
+                                                    {{-- {{$product  }} --}}
+                                                    @if($order->type == 1)
+                                                        <tr>
+                                                            <td>{{ $loop->index +1 }} </td>
+                                                            <td>
+                                                                <img src="{{asset('assets/images/orders/'.$product['product_name'])}}" alt="" class=" border" srcset="" style=";height:50px;width:50px">
+                                                            </td>
+                                                            <td>{{ $product['unit_amount']??'' }} </td>
+                                                            <td>{{ $product['quantity'] }} </td>
+                                                            <td class="fw-bold">{{ $product['quantity'] *$product['unit_amount'] }} </td>
+
+                                                            <td >
+                                                                @if (isset($product['found']))
+                                                                {{ $product['found']==1?'موجود':'غير موجود' }}
+                                                                @else
+                                                                غير موجود
+                                                                @endif
+                                                            </td>
+                                                            <td>
+                                                              {{-- evt.target --}}
+                                                              @if ( Auth::user()->type == 0 && $order->status== 2 )
+                                                              <a href="{{ route('retrieval.order',[ 'orderId' => $order->id , 'productId' => $product['id']] )}}" class=" btn btn-outline-primary" >
+                                                                  استرجاع
+                                                              </a>
+                                                              @endif
+                                                          </td>
+                                                        </tr>
+                                                    @else
+                                                        <tr>
+                                                            <td>{{ $loop->index +1  }}</td>
+                                                            <td class="text-nowrap">{{ $product['product_name'] }}</td>
+                                                            <td>{{ $product['unit_amount']??'' }} </td>
+                                                            <td>{{ $product['quantity'] }} </td>
+                                                            <td class="fw-bold">{{ $product['quantity'] *$product['unit_amount'] }} </td>
+
+                                                            <td >
+                                                                @if (isset($product['found']))
+                                                                {{ $product['found']==1?'موجود':'غير موجود' }}
+                                                                @else
+                                                                غير موجود
+                                                                @endif
+                                                            </td>
+                                                            <td>
+                                                              {{-- evt.target --}}
+                                                              @if ( Auth::user()->type == 0 && $order->status== 2 )
+                                                              <a href="{{ route('retrieval.order',[ 'orderId' => $order->id , 'productId' => $product['id']] )}}" class=" btn btn-outline-primary" >
+                                                                  استرجاع
+                                                              </a>
+                                                              @endif
+                                                          </td>
+                                                        </tr>
+                                                    @endif
+                                                @endforeach
+
+
+                                                @endisset
+                        <tr>
+                            <td class="text-end px-4 " >
+                              <p class="mb-0">سعر التوصيل:</p>
+                            </td>
+                            <td class="px-4 " colspan="6">
+                               <p class="fw-semibold mb-0 fw-bold">{{ $order->delivery_price }}ريال   </p>
+                            </td>
+                          </tr>
+                        <tr>
+                            <td class="text-end px-4 " >
+                              <p class="mb-0">الاجمالي:</p>
+                            </td>
+                            <td class="px-4 " colspan="6">
+                               <p class="fw-semibold mb-0 fw-bold"> {{ $order->total_price }}ريال</p>
+                            </td>
+
+                            <td>
+
+                              @if(Auth::user()->type==2 && $product['done']!=1)
+                              <a data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                  class="btn btn-outline-primary">تأكيد التسليم</a>
+                              <!-- Modal -->
+                              <div class="modal fade" id="exampleModal" tabindex="-1"
+                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog d-flex align-items-center">
+                                      <div class="modal-content">
+                                          <form action="{{ route('receive.order',$order->id) }}"
+                                              method="get">
+
+                                              <div class="modal-header text-center">
+                                                  <h5 class="modal-title text-center"
+                                                      id="exampleModalLabel">
+                                                      يرجى ادخال كود المستم من الزبون
+                                                  </h5>
+                                                  <button type="button" class="btn-close"
+                                                      data-bs-dismiss="modal"
+                                                      aria-label="Close"></button>
+                                              </div>
+                                              <div class="modal-body text-center">
+                                                  <input name="code">
+                                              </div>
+                                              <div
+                                                  class="modal-footer d-flex justify-content-center">
+                                                  <button type="button" class="btn btn-secondary"
+                                                      data-bs-dismiss="modal"> اغلاق </button>
+                                                  <button type="submit" class="btn btn-primary">
+
+                                                      ارسال
+                                                  </button>
+                                              </div>
+                                          </form>
+                                      </div>
+                                  </div>
+                              </div>
+                              @endif
+                          </td>
+                          </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="card-body">
+                    <div class="row py-3">
+                      <div class="col-12">
+                        <span class="fw-bold">ملاحظة:</span>
+                        <span>لا يوجد اي ملاحظات</span>
+                      </div>
+                      <div class="col-12">
+                          <div class="tab-pane fade show active mt-3 row" id="profile-overview">
+                            @if(Auth::user()->type == 0)
+                            @if($order->status < 2)
+                            <form action="{{ route('test') }}" method="get" class="overflow-hidden mx-3">
+                                <button type="submit" name="id" value="{{ $order->id }}" class="btn btn-primary px-3 col-md-2 col-sm-12 mb-2">دفع</button>
+                                <a href="{{ route('user.order.cancel',$order->id) }}" class="btn btn-danger px-3 col-md-2 col-sm-12   mx-sm-2 mb-2"> رفض
+                                </a>
+                            </form>
+                            @endif
+                            @endif
+                            @if($order->status == 2 )
+                            <a href="{{ route('retrieval.order',[ 'orderId' => $order->id] )}}"
+                                class="px-3 col-md-2 col-sm-12   mx-sm-2 mb-2 btn btn-outline-primary">
+                                استرجاع
+                            </a>
+                            @endif
+                        </div>
+                    </div>
+                    </div>
+
+                  </div>
+                  <div class="card-bod">
+                      <div class="row p-3">
+
+                      </div>
+                  </div>
+              </div>
+
+            </div>
+          </div>
     </section>
     <div id="myModal" class="modal">
         <div class="modal-dialog modal-dialog-scrollable modal-xl">
@@ -162,16 +313,13 @@
         // Get the image and insert it inside the modal - use its "alt" text as a caption
         var img = $(".myImg");
         var captionBox = $("#caption");
-
         img.click(function () {
             modalImg.attr('src', $(this).attr('src'));
             captionBox.text($(this).attr('alt'));
             modal.show();
         });
-
         // Get the elements that closes the modal
         var modalCloser = $(".close");
-
         // When the user clicks on the close element, close the modal
         modalCloser.click(function () {
             modal.hide();

@@ -13,7 +13,7 @@ channel.bind('App\\Events\\notfiy', function (data) {
     var newNotificationHtml =
     `<a href="/dashboard/pharmacy/check/${data.pharmacy.id}" class="d-flex align-items-center text-dark text-center" style="justify-content: space-around;align-items: center;">
     <div class="mx-2">
-        <p class="fs-6 text-dark text-nowrap my-0" style="text-align: center;"> ${data.pharmacy.name} تسجيل صيدليه </p>
+        <p class="fs-6 text-dark text-nowrap my-0" style="text-align: center;"> ${data.pharmacy.pharmacy_name} تسجيل صيدليه </p>
         <small class="text-center" style='font-size: 12px'> الان  </small>
     </div>
     <img src="{{asset('assets/img/user.png') }}" alt="Profile"class="rounded-circle border p-1"

@@ -67,7 +67,7 @@
                                 الوصف
                             </div>
                             <div class="col-3">
-                                الفاتورة
+                                العملية
                             </div>
                         </div>
                     </div>
@@ -85,24 +85,24 @@
                 @foreach ( $transactions as $transaction)
                     <div class="row fs-5 shadow-sm p-2 rounded text-primary mb-2">
                         <div class="col-1">
-                            {{ $transaction->id }}
+                            {{ $loop->index +1 }}
                         </div>
                         <div class="col-7 ">
                             <div class="row">
                                 @if($transaction->type=='deposit')
 
                                     <div class="col-9">
-                                        تم ايداع مبلغ في حسابك بفاتورة رقم
+                                        تم ايداع مبلغ في حسابك برقم
                                     </div>
                                     <div class="col-3">
-                                        {{ $loop->index + 125 }}
+                                        {{ $transaction->id  }}
                                     </div>
                                 @else
                                     <div class="col-9">
-                                        تم سحب مبلغ من حسابك بفاتورة رقم
+                                        تم سحب مبلغ من حسابك  برقم
                                     </div>
                                     <div class="col-3">
-                                        125
+                                        {{ $transaction->id  }}
                                     </div>
                                 @endif
 

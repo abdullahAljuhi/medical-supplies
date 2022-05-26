@@ -130,10 +130,10 @@ class OrderController extends Controller
 
             $order->save();
 
-            // $user = Pharmacy::findOrFail($request->pharmacy)->user_id;
+            $user = Pharmacy::findOrFail($request->pharmacy)->user_id;
             // return $user;
             // send notification for pharmacy
-            // event(new Messages($order, $user,'  طلب جديد من'));
+            event(new Messages($order, $user,'  طلب جديد من'));
 
             return view('order.orderMass')->with(['success' => 'تم ارسال الطلب  بنجاح']);
 

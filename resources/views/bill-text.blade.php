@@ -30,13 +30,30 @@
                             <span class="me-1">تاريخ الطلب:</span>
                             <span class="fw-semibold"> {{ $order->created_at->diffForHumans() }}</span>
                           </div>
-                          @if($order->status==4)
+                          @if($order->status == 3)
+                          <div class="">
+                            <span class="me-1"> ملاحظة:</span>
+                            <span class="fw-semibold text-danger fw-bold">                       
+                              هذا الطلب غير موجود
+                            </span>
+                          </div>
+                          @elseif($order->status == 4)
                           <div class="">
                             <span class="me-1"> ملاحظة:</span>
                             <span class="fw-semibold text-danger fw-bold">                       هذا الطلب تم الغاءه
                             </span>
                           </div>
+                          
+                          @elseif($order->status == 7)
+                          <div class="">
+                            <span class="me-1"> ملاحظة:</span>
+                            <span class="fw-semibold text-danger fw-bold">                       
+                              هذا الطلب تم استرجاعه
+                            </span>
+                          </div>
                           @endif
+                       
+
 
                     </div>
                   </div>
@@ -101,6 +118,8 @@
                           <th>الكمية</th>
                           <th>الاجمالي</th>
                           <th>ملاحظات / تواجد المنتج</th>
+                          <th> العمليات</th>
+
                         </tr>
                       </thead>
                       <tbody>
@@ -124,6 +143,14 @@
                                                                 غير موجود
                                                                 @endif
                                                             </td>
+                                                            <td>
+                                                              {{-- evt.target --}}
+                                                              @if ( Auth::user()->type == 0 && $order->status== 2 )
+                                                              <a href="{{ route('retrieval.order',[ 'orderId' => $order->id , 'productId' => $product['id']] )}}" class=" btn btn-outline-primary" >
+                                                                  استرجاع
+                                                              </a>
+                                                              @endif
+                                                          </td>
                                                         </tr>
                                                     @else
                                                         <tr>
@@ -140,6 +167,14 @@
                                                                 غير موجود
                                                                 @endif
                                                             </td>
+                                                            <td>
+                                                              {{-- evt.target --}}
+                                                              @if ( Auth::user()->type == 0 && $order->status== 2 )
+                                                              <a href="{{ route('retrieval.order',[ 'orderId' => $order->id , 'productId' => $product['id']] )}}" class=" btn btn-outline-primary" >
+                                                                  استرجاع
+                                                              </a>
+                                                              @endif
+                                                          </td>
                                                         </tr>
                                                     @endif
                                                 @endforeach
@@ -161,6 +196,47 @@
                             <td class="px-4 " colspan="6">
                                <p class="fw-semibold mb-0 fw-bold"> {{ $order->total_price }}ريال</p>
                             </td>
+
+                            <td>
+
+                              @if(Auth::user()->type==2 && $product['done']!=1)
+                              <a data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                  class="btn btn-outline-primary">تأكيد التسليم</a>
+                              <!-- Modal -->
+                              <div class="modal fade" id="exampleModal" tabindex="-1"
+                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog d-flex align-items-center">
+                                      <div class="modal-content">
+                                          <form action="{{ route('receive.order',$order->id) }}"
+                                              method="get">
+
+                                              <div class="modal-header text-center">
+                                                  <h5 class="modal-title text-center"
+                                                      id="exampleModalLabel">
+                                                      يرجى ادخال كود المستم من الزبون
+                                                  </h5>
+                                                  <button type="button" class="btn-close"
+                                                      data-bs-dismiss="modal"
+                                                      aria-label="Close"></button>
+                                              </div>
+                                              <div class="modal-body text-center">
+                                                  <input name="code">
+                                              </div>
+                                              <div
+                                                  class="modal-footer d-flex justify-content-center">
+                                                  <button type="button" class="btn btn-secondary"
+                                                      data-bs-dismiss="modal"> اغلاق </button>
+                                                  <button type="submit" class="btn btn-primary">
+
+                                                      ارسال
+                                                  </button>
+                                              </div>
+                                          </form>
+                                      </div>
+                                  </div>
+                              </div>
+                              @endif
+                          </td>
                           </tr>
                       </tbody>
                     </table>
@@ -173,13 +249,19 @@
                         <span>لا يوجد اي ملاحظات</span>
                       </div>
                       <div class="col-12">
-                        @if(Auth::user()->type == 1)
-                        @if($order->status < 3)
+                        @if(Auth::user()->type == 0)
+                        @if($order->status < 2)
                         <form action="{{ route('test') }}" method="get" class="overflow-hidden mx-3">
                             <div class="tab-pane fade show active mt-3 row" id="profile-overview">
                                 <button type="submit" name="id" value="{{ $order->id }}" class="btn btn-primary px-3 col-md-2 col-sm-12 mb-2">دفع</button>
                                 <a href="{{ route('user.order.cancel',$order->id) }}" class="btn btn-danger px-3 col-md-2 col-sm-12   mx-sm-2 mb-2"> رفض
                                 </a>
+                                @if($order->status == 2 )
+                                <a href="{{ route('retrieval.order',[ 'orderId' => $order->id] )}}"
+                                    class="px-3 col-md-2 col-sm-12   mx-sm-2 mb-2 btn btn-outline-primary">
+                                    استرجاع
+                                </a>
+                                @endif
                             </div>
                         </form>
                         @endif
