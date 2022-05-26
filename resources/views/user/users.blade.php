@@ -26,20 +26,6 @@
 
         <!-- Recent Sales -->
         <div class="card  recent-sales overflow-auto p-3">
-            <div class="filter">
-                <a class="icon px-3" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end text-end">
-                    <li class="dropdown-header text-end">
-                        <h6>فلترة الطلبات</h6>
-                    </li>
-                    <li><a class="dropdown-item" href="#">جميع المستخدمين</a></li>
-                    <li><a class="dropdown-item" href="#">مدير</a></li>
-                    <li><a class="dropdown-item" href="#">صيدلية</a></li>
-                    <li><a class="dropdown-item" href="#">مستخدم</a></li>
-                    <li><a class="dropdown-item" href="#">نشط</a></li>
-                    <li><a class="dropdown-item" href="#">غير مفعل</a></li>
-                </ul>
-            </div>
 
             <div class="card-body my-3">
                 <table class="table table-hover datatable">

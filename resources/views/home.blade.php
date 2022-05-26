@@ -14,6 +14,133 @@
             </div>
             <!-- End Page Title -->
 
+
+            <!-- Satistics -->
+            <p class="px-4 mt-3 fs-5">احصائيات النظام</p>
+            <div class="row">
+
+                <div class="col-xxl-4 col-md-6">
+                    <div class="card info-card revenue-card">
+
+                        <div class="card-body">
+                            <h5 class="card-title fs-5 fw-bolder">المبيعات</h5>
+
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center mx-3"
+                                     style="font-size: 32px;width: 64px;height: 64px;color: #2eca6a;background: #e0f8e9;">
+                                    <i class="bi bi-currency-dollar"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <span class="fs-3">$3,264</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-xxl-4 col-md-6">
+                    <div class="card info-card sales-card">
+
+                        <div class="card-body">
+                            <h5 class="card-title fs-5 fw-bolder">الطلبات</h5>
+
+                            <div class="d-flex align-items-center">
+                                <div
+                                    class="card-icon rounded-circle d-flex align-items-center justify-content-center mx-3"
+                                    style="font-size: 32px;width: 64px;height: 64px;color: #4154f1;background: #f6f6fe;">
+                                    <i class="bi bi-cart fs-2 m-4"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <span class="fs-3">145 طلب</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-xxl-4 col-md-6">
+
+                    <div class="card info-card customers-card">
+                        <div class="card-body">
+                            <h5 class="card-title fs-5 fw-bolder">المسترجعة</h5>
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center bg-danger-light mx-3"
+                                     style="font-size: 32px;width: 64px;height: 64px;">
+                                    <i class="bi bi-arrow-clockwise text-danger"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <span class="fs-3">205 طلب</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-xxl-4 col-md-6">
+
+                    <div class="card info-card customers-card">
+                        <div class="card-body">
+                            <h5 class="card-title fs-5 fw-bolder">المستخدمين</h5>
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center bg-danger-light mx-3"
+                                     style="font-size: 32px;width: 64px;height: 64px;color: #ff771d;background: #ffecdf;">
+                                    <i class="bi bi-people text-danger"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <span class="fs-3">1244 مستخدم</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-xxl-4 col-md-6">
+
+                    <div class="card info-card customers-card">
+                        <div class="card-body">
+                            <h5 class="card-title fs-5 fw-bolder">الصيدليات</h5>
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center bg-primary-light mx-3"
+                                     style="font-size: 32px;width: 64px;height: 64px;">
+                                    <i class="bi bi-house-door text-primary"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <span class="fs-3">1244 صيدلية</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-xxl-4 col-md-6">
+
+                    <div class="card info-card customers-card">
+                        <div class="card-body">
+                            <h5 class="card-title fs-5 fw-bolder">الاعلانات</h5>
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center bg-info-light mx-3"
+                                     style="font-size: 32px;width: 64px;height: 64px;">
+                                    <i class="bi bi-badge-ad text-info"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <span class="fs-3">14 اعلان</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
             <div class="card">
                 <div class="card-header">{{ __('اخر الاشعارات') }}</div>
 

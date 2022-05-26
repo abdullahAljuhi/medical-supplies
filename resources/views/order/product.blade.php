@@ -49,22 +49,39 @@
                             <form method="post" action="{{ route('order.store',$order->id ) }}">
                                 @csrf
                                 <div class="row mb-2">
+                                    <div class="row mb-2   fw-bold">
+                                        <div class="col-md-4 col-6 mb-2 px-0">
+                                            <div class="col-md-2 col-12 fw-bold text-nowrap w-100 border-bottom">
+                                                <label for="name" class=" fw-bold my-2">أسم المنتج</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-6 mb-2 px-0">
+                                            <div class="col-md-2 col-12 fw-bold text-nowrap w-100 border-bottom">
+                                                <label for="name" class="fw-bold my-2">الكمية</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3  col-6 mb-2 px-0">
+                                            <div class="col-md-2 col-12 fw-bold text-nowrap w-100 border-bottom">
+                                                <p class="fw-bold my-2">سعر المنتج</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-6 mb-2 px-0">
+                                            <div class="col-md-2 col-12 fw-bold text-nowrap w-100 border-bottom">
+                                                <label for="name" class="my-2">حالة التوفر</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                     @foreach ($products as $product)
                                         @if($order->type == 1)
-                                            <div class="col-md-4 col-3 col-12 mb-2 border-bottom pb-2">
-                                                <div class="row my-2 text-center">
-                                                    <div class="col-12">صورة العلاج</div>
-                                                </div>
+                                            <div class="col-md-4 col-3 col-12 border-bottom pb-2">
                                                 <img src="{{asset('assets/images/orders/'.$product['product_name'])}}"
                                                      alt="" class="w-100 border myImg" srcset="" style=";height:150px">
                                                 <div class="row my-2">
-                                                    <div class="col-8">الكمية :</div>
                                                     <div class="col-4">
                                                         <label for="name">{{ $product['quantity'] }} </label>
                                                     </div>
                                                 </div>
                                                 <div class="row my-2">
-                                                    <div class="col-3">السعر :</div>
                                                     <div class="col-9">
                                                         <input type="text" name="prices[]" class="form-control col-6"
                                                                id="name" required
@@ -72,7 +89,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="row my-2">
-                                                    <div class="col-3">موجود</div>
                                                     <div class="col-9">
                                                         <select name="found[]" id="select3"
                                                                 class="form-select select1 form-control px-2 mx-1 pe-5"
@@ -84,33 +100,21 @@
                                                 </div>
                                             </div>
                                         @else
-                                            <div class="row mb-2   fw-bold">
-                                                <div class="col-md-4 col-6 mb-2 mt-3 px-0">
-                                                    <div class="col-md-2 col-12 mb-2 fw-bold text-nowrap w-100 border-bottom">
-                                                        <label for="name" class=" fw-bold my-2">أسم المنتج</label>
-                                                    </div>
-                                                    <p class="my-3">{{ $product['product_name'] }} </p>
+                                            <div class="row mb-3 fw-bold">
+                                                <div class="col-md-4 col-6 px-0">
+                                                    <p>{{ $product['product_name'] }} </p class="my-3">
                                                 </div>
-                                                <div class="col-md-2 col-6 mb-2  mt-3 px-0">
-                                                    <div class="col-md-2 col-12 mb-2 fw-bold text-nowrap w-100 border-bottom">
-                                                        <label for="name" class="fw-bold my-2">الكمية</label>
-                                                    </div>
-                                                    <p class="my-3">{{ $product['quantity'] }}</p>
+                                                <div class="col-md-2 col-6 px-0">
+                                                    <p>{{ $product['quantity'] }}</p>
                                                 </div>
-                                                <div class="col-md-3  col-6 mb-2  mt-3 px-0">
-                                                    <div class="col-md-2 col-12 mb-2 fw-bold text-nowrap w-100 border-bottom">
-                                                        <p class="fw-bold my-2">سعر المنتج</p>
-                                                    </div>
-                                                    <input type="text" name="prices[]" class="my-3 form-control col-6"
+                                                <div class="col-md-3 col-6 px-0">
+                                                    <input type="text" name="prices[]" class="form-control col-6"
                                                            id="name" required placeholder="يرجى ادخال سعر هذا المنتج">
                                                 </div>
-                                                <div class="col-md-3 col-6 mb-2  mt-3 px-0">
-                                                    <div class="col-md-2 col-12 mb-2 fw-bold text-nowrap w-100 border-bottom">
-                                                        <label for="name" class="my-2">حالة التوفر</label>
-                                                    </div>
+                                                <div class="col-md-3 col-6 px-0">
                                                     <div class="col-12">
                                                         <select name="found[]" id="select3"
-                                                                class="form-select w-100 my-3 select1 form-control px-2 mx-1 pe-5"
+                                                                class="form-select w-100 select1 form-control px-2 mx-1 pe-5"
                                                                 aria-label=".form-select-lg example">
                                                             <option value="1" selected> موجود</option>
                                                             <option value="0"> غير موجود</option>
