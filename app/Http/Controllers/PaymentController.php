@@ -212,44 +212,65 @@ class PaymentController extends Controller
         public function retrievalOrder($orderId,$productId=''){
             try {
                 // return $request->d;
-                 $order = Order::with('user','pharmacy')->findOrFail($orderId);
-                 $products = json_decode($order->products, true);
-                $products[$productId]['done']=1;
-                // return $products;
-                $total_price = 0;
+                $order = Order::with('user','pharmacy')->findOrFail($orderId);
+                
+                if($productId!==''){
 
-                // store prices products array
-                foreach ( $products as $product) {
-                    if($product['done']==1){
-                        $product['quantity'] = 0;
+                    $products = json_decode($order->products, true);
+                    $products[$productId]['done']=1;
+                    // return $products;
+                    $total_price = 0;
+                    
+                    // store prices products array
+                    foreach ( $products as $product) {
+                        if($product['done']==1){
+                            $product['quantity'] = 0;
                     }
                     $total_price += $product['unit_amount'] * $product['quantity'];
-        
+                    
                 }
                 $total_price+= $order->delivery_price;
                 $products = json_encode($products, JSON_UNESCAPED_UNICODE);
                 $order->products=$products;
                 $order->products=$products;
                 $order->total_price = $total_price;
-                $order->save();
+                // return redirect()->back();
                 // return $order;
-                return redirect()->back();
                 if($order->total_price == $order->delivery_price){
-                    $order->recovery=1;
+                    $order->status=7;
+                }else{
+                    $user = Pharmacy::findOrFail($order->pharmacy_id)->user_id;
+                    // return $user;
+                    // send notification for pharmacy
+                    event(new Messages($order, $user,' هناك طلب بعض الادويه مسترجعه'));
                 }
-                // $total=;
-                return $order;
+            }else{
+                $order->status=7;
+            }
+            $order->save();
+
+            if($order->status==7){
+                $user = Pharmacy::findOrFail($order->pharmacy_id)->user_id;
+                // return $user;
+                // send notification for pharmacy
+                event(new Messages($order, $user,' هناك طلب مسترجع'));
+
                 // get user
                 $user = $order->user;
-
                 //calc site rate
-                $rate = $order->total_price *(10/100);
+                $rate = $order->total_price * (5/100);
                 // get admin
                 $admin=User::where('type','1')->first();
+                //convert rate form site account to user account
+                // $this->convert($admin,$user,$rate);
+                $admin->transfer($user, $rate); 
+            }
 
                 
-                //convert rate form site account to user account
-                $this->convert($admin,$user,$rate);
+
+                
+                
+                return redirect()->back()->with(['success' => 'تمت العملية بنجاح']);
 
             } catch (\Throwable $th) {
                 return $th->getMessage();

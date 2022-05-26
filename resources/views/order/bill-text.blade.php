@@ -103,43 +103,11 @@
                                                 </td>
                                                 <td>
                                                     {{-- evt.target --}}
-                                                    @if ( Auth::user()->type == 0 && $product['done'] !=1 )
+                                                    @if ( Auth::user()->type == 0 && $order->status== 2 )
                                                     <a href="{{ route('retrieval.order',[ 'orderId' => $order->id , 'productId' => $product['id']] )}}" class=" btn btn-outline-primary" >
                                                         {{-- data-order="{{$order->id.','.$product['id'] }} --}}
                                                         استرجاع
                                                     </a>
-                                                    @elseif(Auth::user()->type==2 && $product['done']!=1)
-                                                    <a  data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal" class="btn btn-outline-primary">تأكيد التسليم</a>
-                                                    <!-- Modal -->
-                                                    <div class="modal fade" id="exampleModal" tabindex="-1"
-                                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <form action="{{ route('receive.order',$order->id) }}" method="get">
-
-                                                                    <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">
-                                                                    يرجى ادخال كود المستم من الزبون
-                                                                    </h5>
-                                                                    <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal"
-                                                                        aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <input name="code">
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">Close</button>
-                                                                    <button  type="submit" class="btn btn-primary">Save
-                                                                        changes</button>
-                                                                </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                     
                                                     @endif
                                                 </td>
                                             </tr>
@@ -155,9 +123,44 @@
                                             <tr>
                                                 <td colspan="2">الاجمالي</td>
                                                 <td class="fw-bold">{{ $order->total_price }}</td>
-                                            </tr>
+                                                <td>
 
-                                        </tfoot>
+                                                    @if(Auth::user()->type==2 && $product['done']!=1)
+                                                    <a  data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal" class="btn btn-outline-primary">تأكيد التسليم</a>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog d-flex align-items-center">
+                                                    <div class="modal-content">
+                                                        <form action="{{ route('receive.order',$order->id) }}" method="get">
+                                                            
+                                                            <div class="modal-header text-center">
+                                                                <h5 class="modal-title text-center" id="exampleModalLabel">
+                                                                    يرجى ادخال كود المستم من الزبون
+                                                                </h5>
+                                                                <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body text-center">
+                                                            <input name="code">
+                                                        </div>
+                                                        <div class="modal-footer d-flex justify-content-center">
+                                                            <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal"> اغلاق </button>
+                                                            <button  type="submit" class="btn btn-primary">
+                                                               
+                                                                ارسال
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endif
+                                    </td></tr>
+                                    </tfoot>
                                         @endisset
                                     </table>
                                     @if(Auth::user()->type == 0)
@@ -169,13 +172,25 @@
                                             <a href="{{ route('user.order.cancel',$order->id) }}"
                                                 class="btn btn-danger px-3 col-md-2 col-sm-12   mx-sm-2 mb-2"> رفض
                                             </a>
+                                            @if($order->status ==2 )
+                                            <a href="{{ route('retrieval.order',[ 'orderId' => $order->id] )}}" 
+                                                class="px-3 col-md-2 col-sm-12   mx-sm-2 mb-2 btn btn-outline-primary" >
+                                                استرجاع
+                                            </a>
+                                            @endif
                                         </div>
                                         </form>
                                         @elseif($order->status == 3)
                                         <div class="alert alert-danger" id="profile-overview">
                                             هذا الطلب غير موجود
                                         </div>
+                                            
+                                        @elseif($order->status == 7)
+                                        <div class="alert alert-danger" id="profile-overview">
+                                           هذا الطلب تم استرجاعه
+                                        </div>
                                         @endif
+
                                         @endif
                                 </div>
                             </div>
@@ -234,7 +249,6 @@
             console.log(e.target);
             let d =$('.retreive').attr("data-order").split(',');
             // console.log(d);
-
 
 
 });

@@ -100,6 +100,11 @@
 
                                                 <input type="text" id="name" placeholder="حدد الكمية" class=" col-md-3 col-12 form-control-custome mb-2
                                     " name='quantity[]' autofocus>
+                                    @error('quantity[]')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                                 <input type="hidden" id="name" name='user'
                                                        value="{{ Auth::user()->id }}">
                                                 <input type="hidden" id="name" name='pharmacy'
@@ -107,6 +112,11 @@
                                                 <a href="javascript:void(0);"
                                                    class="add_button col-md-1 col-12 text-center  pe-2"
                                                    title="Add field"><i class="bi fs-3 bi-plus-circle-fill"></i></a>
+                                                   @error('product_name[]')
+                                                   <span class="invalid-feedback" role="alert">
+                                                       <strong>{{ $message }}</strong>
+                                                   </span>
+                                                   @enderror
                                             </div>
                                             <div class="col-md-12 col-12 mb-2">
                                                 <label for="reorder" class="form-label fw-bold">حدد اذا كانت تريد تكرار
@@ -119,6 +129,11 @@
                                                     <option value="14">طلب كل اسبوعين</option>
                                                     <option value="30">طلب كل شهر</option>
                                                 </select>
+                                                @error('period')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="row   py-3 px-2 ">
@@ -139,6 +154,11 @@
                                                             @endforeach
                                                         </select>
                                                         <div class="invalid-feedback">يرجى اختيار محافظة</div>
+                                                        @error('governorate')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
                                                     </div>
                                                     <div class="col-6 second">
                                                         <select name="city" id="select2Text"

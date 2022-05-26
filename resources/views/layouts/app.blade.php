@@ -106,16 +106,18 @@
                 @if (Auth::user()->type == 2)
 
                 @php
-
-                $pharmacy = App\Models\Pharmacy::where('user_id', Auth::user()->id )->first();
-
-                $q = App\Models\Order::where('pharmacy_id',$pharmacy->id)->where('status',0)->where('is_show','0');
-
-                $orders = $q->limit(6)->get() ??'';
-
-                // echo $order;
-                $count = $q->count();
-
+                if (isset(Auth::user()->pharmacy)) {
+                    # code...
+                    $pharmacy = App\Models\Pharmacy::where('user_id', Auth::user()->id )->first();
+                    
+                    $q = App\Models\Order::where('pharmacy_id',$pharmacy->id)->where('status',0)->where('is_show','0');
+                    
+                    $orders = $q->limit(6)->get() ??'';
+                    
+                    // echo $order;
+                    $count = $q->count();
+                    
+                }
                 @endphp
                 @endif
 
@@ -258,7 +260,7 @@
                                 <i class="bi bi-cash-coin"></i><span>المحفظة</span>
                             </a>
                             @else
-                            <a class="dropdown-item d-flex align-items-center" href="{{ route('admin.wallet') }}">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('pharmacy.wallet') }}">
                                 <i class="bi bi-cash-coin"></i><span>المحفظة</span>
                             </a>
                             @endif
