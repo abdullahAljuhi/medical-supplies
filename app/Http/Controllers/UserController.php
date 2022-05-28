@@ -127,7 +127,7 @@ class UserController extends Controller
     {
 
         //this show order status to the user
-        $type = [['قيد الانتظار','في انتظار الدفع','مكتمل','غير متوفر','مرفوض','مشكله في الدفع','h','مسترجع'],
+        $type = [['قيد الانتظار','في انتظار الدفع','في انتظار التسليم','مكتمل','غير متوفر','مرفوض','مشكله في الدفع','مسترجع'],
                 ['primary','warning','success','secondary','danger','orange','orange','warning']];
         
         $route = 'user.order';

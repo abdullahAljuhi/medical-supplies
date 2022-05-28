@@ -122,26 +122,32 @@ class PaymentController extends Controller
                 $name = $meta_data['Customer name'];
 
                 $paid_amount = $data['customer_account_info']['paid_amount'];
+                // user
                 $user = $order->user_id;
 
                 //change order status
                 $order->status = 2;
 
-                $code=$order->code = random_int(100000, 999999);
-
-                $user = Pharmacy::findOrFail($order->pharmacy_id)->user_id;
+                //create random number
+                $code = $order->code = random_int(100000, 999999);
+                //pharmacy
+                $pharmacy = Pharmacy::findOrFail($order->pharmacy_id)->user_id;
 
                 // send notification for pharmacy
-                event(new Messages($order, $user,'  تم الدفع في انتظار التوصيل'));
+                event(new Messages($order, $pharmacy,'  تم الدفع في انتظار التوصيل'));
                
                 $order->save();
+                $admin  = User::where('type','1')->first();
 
-                $this->wallet($paid_amount,$user);
+                $admin->deposit($paid_amount); 
 
             } else {
 
                 $order->status = 6;
 
+            // $pharmacy = Pharmacy::findOrFail($order->pharmacy_id)->user_id;
+            // // send notification for pharmacy
+            // event(new Messages($order, $pharmacy,'  تم الدفع في انتظار التوصيل'));
                 $order->save();
             }
 
@@ -160,42 +166,40 @@ class PaymentController extends Controller
     }
 
     // store in wallet
-    public function wallet($paid_amount,$user){
-        try {
+    // public function wallet($paid_amount , $user){
+    //     try {
 
-                    $admin  = User::where('type','1')->first();
+                    // $admin  = User::where('type','1')->first();
+                        
+    //                 $amount = $paid_amount *(10/100);
             
-                    $user   = User::findOrFail($user);
+    //                 $reminder  = $paid_amount - $amount;
             
-                    $amount = $paid_amount *(10/100);
+    //                 $admin->deposit($reminder); 
             
-                    $reminder  = $paid_amount - $amount;
-            
-                    $user->deposit($reminder); 
-            
-                    $admin->deposit($amount); 
+    //                 $admin->deposit($amount); 
 
-        } catch (\Throwable $th) {
-            return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
-        }
+    //     } catch (\Throwable $th) {
+
+    //         return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+    //     }
 
         
-    }
-        // store in wallet
+    // }
+        // get auth  wallet
         public function test_wallet(){
-
-            $admin  = User::where('type','1')->first();
     
             $user   = User::find(Auth::id());
  
-            $wallet=$user->wallet;
+            $wallet = $user->wallet;
 
-            $transactions=$wallet->transactions;
+            $transactions = $wallet->transactions;
 
             $recipient=0;
             
             $sender=0;
 
+            //clc recipient and sender
             foreach ($transactions as $transaction ) {
 
                 if($transaction->type=='deposit')
@@ -215,62 +219,84 @@ class PaymentController extends Controller
                 // return $request->d;
                 $order = Order::with('user','pharmacy')->findOrFail($orderId);
                 
-                if($productId!==''){
+                // get user
+                $user = $order->user;
+                
+                // get admin
+                $admin = User::where('type','1')->first();
+
+                $pharmacy_user = Pharmacy::findOrFail($order->pharmacy_id)->user_id;
+
+                if($productId !=''){
 
                     $products = json_decode($order->products, true);
-                    $products[$productId]['done']=1;
+
+                    //marke yield products 
+                    $products[$productId]['yield'] = 1;
+
                     // return $products;
                     $total_price = 0;
                     
-                    // store prices products array
+                    $yield =0;
+
+                    // clc total price
                     foreach ( $products as $product) {
-                        if($product['done']==1){
+
+                        if($product['yield'] == 1){
+
                             $product['quantity'] = 0;
                     }
+
                     $total_price += $product['unit_amount'] * $product['quantity'];
                     
                 }
+
+                // add delivery_price
                 $total_price+= $order->delivery_price;
+
+                $yield += $order->total_price - $total_price;
+
+                // return  $total_price;
                 $products = json_encode($products, JSON_UNESCAPED_UNICODE);
+
+                // save products
                 $order->products=$products;
-                $order->products=$products;
+
                 $order->total_price = $total_price;
-                // return redirect()->back();
-                // return $order;
+                
                 if($order->total_price == $order->delivery_price){
+                   
+                    // change order status
                     $order->status=7;
+                    
+                    $admin->transfer($user, $yield);
+                    
+                    // return $order;
+                    $order->save();
+
                 }else{
-                    $user = Pharmacy::findOrFail($order->pharmacy_id)->user_id;
-                    // return $user;
-                    // send notification for pharmacy
-                    event(new Messages($order, $user,' هناك طلب بعض الادويه مسترجعه'));
+                 //convert rate form site account to user account
+                $admin->transfer($user, $yield);
+
+                $order->save();
+                event(new Messages($order,  $pharmacy_user,' هناك بعض الادويه مسترجعه'));
                 }
-            }else{
-                $order->status=7;
-            }
-            $order->save();
-
-            if($order->status==7){
-                $user = Pharmacy::findOrFail($order->pharmacy_id)->user_id;
-                // return $user;
-                // send notification for pharmacy
-                event(new Messages($order, $user,' هناك طلب مسترجع'));
-
-                // get user
-                $user = $order->user;
-                //calc site rate
-                $rate = $order->total_price * (5/100);
-                // get admin
-                $admin=User::where('type','1')->first();
                 //convert rate form site account to user account
-                // $this->convert($admin,$user,$rate);
-                $admin->transfer($user, $rate); 
+                // $admin->transfer($user, $yield);
+            }else{
+
+                $order->status=7;
+
+                // sub
+                $sub = $order->total_price - $order->delivery_price;
+
+                //convert rate form site account to user account
+                $admin->transfer($user, $sub);
+
+                $order->save();
+                event(new Messages($order,  $pharmacy_user,' هناك طلب مسترجع'));
+
             }
-
-                
-
-                
-                
                 return redirect()->back()->with(['success' => 'تمت العملية بنجاح']);
 
             } catch (\Throwable $th) {
@@ -284,19 +310,24 @@ class PaymentController extends Controller
                 // get order
                 $order = Order::with('user','pharmacy')->findOrFail($id);
                 
+                $admin  = User::where('type','1')->first();
+                
                 // check if user is receive order
                 if($order->code ==  $request->code){
 
-                    $user = $order->user;
+                    // $user = $order->user;
+
                     // calc total amount that convert to user
-                    $amount = $order->total_price- ($order->total_price*10/100);
+                    $amount = $order->total_price - ($order->total_price * 5/100);
                     // get pharmacy
                     // $pharmacy = Auth::user();
                     $pharmacy = User::find($order->pharmacy->user_id);
 
                     
-                    $user->transfer($pharmacy, $amount); 
-                    $order->status=3;
+                    $admin->transfer($pharmacy, $amount); 
+
+                    $order->status = 3;
+
                     $order->save();
                     
                     return redirect('/pharmacy');
@@ -309,14 +340,4 @@ class PaymentController extends Controller
 
         }
 
-        // this function use to convert from an account to other account 
-        // take 3 prams converter and recipient and Transfer amount
-        // public function convert($converter,$recipient,$amount){
-        //     try {
-                
-        //     } catch (\Throwable $th) {
-        //         //throw $th;
-
-        //     }
-        // }
-}
+    }

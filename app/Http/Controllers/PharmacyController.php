@@ -248,6 +248,7 @@ class PharmacyController extends Controller
 
                 $address->lat = $request['lat'];
                 $address->lang = $request['lang'];
+
                 $address->save();
             }
 
@@ -276,14 +277,16 @@ class PharmacyController extends Controller
         try {
             $pharmacy = Pharmacy::findOrFail($id);
             if ($pharmacy->image !== '') { // check if pharmacy has image
+                
                 // remove image
                 Storage::disk('users')->delete($pharmacy->image);
-                // $fileName = public_pth('assets/images/pharmacies/' . $pharmacy->image);
-                // unlink(realpath($fileName));
+               
             }
 
             $pharmacy->delete();
-            return redirect()->route('pharmacy.home');
+
+            return redirect()->back();
+
         } catch (Throwable $e) {
             return redirect()->back()->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
@@ -292,7 +295,7 @@ class PharmacyController extends Controller
     // get all orders for user auth
     public function orders()
     {
-        $type = [['جديد',' في انتظار الدفع','في انتظار التسليم','مكتمل','غير متوفر','مرفوض','مشكله في الدفع' , 'مسترجع'],
+        $type = [['جديد',' في انتظار الدفع','في انتظار التسليم','مكتمل' ,'غير متوفر','مرفوض','مشكله في الدفع' , 'مسترجع'],
                  ['primary', 'warning' , 'success' , 'secondary' , 'danger' , 'orange' , 'orange' , 'secondary']];
         
         $route = 'pharmacy.order';

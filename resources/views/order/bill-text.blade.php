@@ -137,18 +137,21 @@
                                                             <td class="fw-bold">{{ $product['quantity'] *$product['unit_amount'] }} </td>
 
                                                             <td >
-                                                                @if (isset($product['found']))
-                                                                {{ $product['found']==1?'موجود':'غير موجود' }}
-                                                                @else
-                                                                غير موجود
-                                                                @endif
+                                                              @isset($product['found'])
+                                                              {{ $product['found']== 1 ?'موجود':'غير موجود' }}
+                                                              @endisset
                                                             </td>
                                                             <td>
-                                                              {{-- evt.target --}}
-                                                              @if ( Auth::user()->type == 0 && $order->status== 2 )
-                                                              <a href="{{ route('retrieval.order',[ 'orderId' => $order->id , 'productId' => $product['id']] )}}" class=" btn btn-outline-primary" >
+                                                              @if ( Auth::user()->type == 0 && $order->status== 2 &&  $product['yield'] != 1 && $product['found']== 1)
+
+                                                              <a href="{{ route('retrieval.order',[ 'orderId' => $order->id , 'productId' => $product['id']] )}}"
+                                                                  class=" btn btn-outline-primary">
                                                                   استرجاع
                                                               </a>
+                              
+                                                              @endif
+                                                              @if($order->status > 2 && $product['yield'] == 1)
+                                                              مسترجع
                                                               @endif
                                                           </td>
                                                         </tr>
@@ -158,21 +161,24 @@
                                                             <td class="text-nowrap">{{ $product['product_name'] }}</td>
                                                             <td>{{ $product['unit_amount']??'' }} </td>
                                                             <td>{{ $product['quantity'] }} </td>
-                                                            <td class="fw-bold">{{ $product['quantity'] *$product['unit_amount'] }} </td>
+                                                            <td class="fw-bold">{{ $product['quantity'] * $product['unit_amount'] }} </td>
 
                                                             <td >
-                                                                @if (isset($product['found']))
-                                                                {{ $product['found']==1?'موجود':'غير موجود' }}
-                                                                @else
-                                                                غير موجود
-                                                                @endif
+                                                              @isset($product['found'])
+                                                              {{ $product['found']== 1 ?'موجود':'غير موجود' }}
+                                                              @endisset
                                                             </td>
                                                             <td>
-                                                              {{-- evt.target --}}
-                                                              @if ( Auth::user()->type == 0 && $order->status== 2 )
-                                                              <a href="{{ route('retrieval.order',[ 'orderId' => $order->id , 'productId' => $product['id']] )}}" class=" btn btn-outline-primary" >
+                                                              @if ( Auth::user()->type == 0 && $order->status== 2 &&  $product['yield'] != 1 && $product['found']== 1)
+
+                                                              <a href="{{ route('retrieval.order',[ 'orderId' => $order->id , 'productId' => $product['id']] )}}"
+                                                                  class=" btn btn-outline-primary">
                                                                   استرجاع
                                                               </a>
+                              
+                                                              @endif
+                                                              @if($order->status >= 2 && $product['yield'] == 1)
+                                                              مسترجع
                                                               @endif
                                                           </td>
                                                         </tr>
@@ -199,7 +205,7 @@
 
                             <td>
 
-                              @if(Auth::user()->type==2 && $product['done']!=1)
+                              @if(Auth::user()->type==2 && $order->status == 2)
                               <a data-bs-toggle="modal" data-bs-target="#exampleModal"
                                   class="btn btn-outline-primary">تأكيد التسليم</a>
                               <!-- Modal -->
@@ -258,12 +264,12 @@
                                 </a>
                             </form>
                             @endif
-                            @endif
                             @if($order->status == 2 )
                             <a href="{{ route('retrieval.order',[ 'orderId' => $order->id] )}}"
                                 class="px-3 col-md-2 col-sm-12   mx-sm-2 mb-2 btn btn-outline-primary">
-                                استرجاع
-                            </a>
+                                استرجاع الطلب كامل
+                              </a>
+                            @endif
                             @endif
                         </div>
                     </div>

@@ -207,20 +207,27 @@ class OrderController extends Controller
             foreach ($prices as $i => $price) {
 
                 $products[$i]['unit_amount'] = $price;
-                $products[$i]['done'] = 0;
+                //
+                $products[$i]['yield'] = 0;
 
-                if($request->found[$i]==1){
+                if($request->found[$i] == 1){
                     $products[$i]['found'] = 1;
                 }else{
                     $products[$i]['quantity']=0;
                     $products[$i]['found'] = 0;
                 }
+                // calc total price
                 $total_price += $price * $products[$i]['quantity'];
             }
+            // add price of deliver
             $total_price += $request->delivery_price;
+
+            //chang status 
             $status=1;
+            // check total price is equal to delivery price
             if( $total_price == $request->delivery_price){
-                $status=3;
+                // change status to not found
+                $status=4;
             }
             // return $products;
             // convert array to json
@@ -272,12 +279,15 @@ class OrderController extends Controller
     public function notFond($id){
         try {
             $order=Order::findOrFail($id);
-            $order->status=3;
+
+            $order->status=4;
+
             $order->save();
+
             return redirect('/pharmacy');
 
         // send notification for user who send order
-        event(new Messages($order, $order->user_id,'هذا العلاج غير موجود'));
+        event(new Messages($order, $order->user_id,'هذا الطلب غير موجود'));
 
         } catch (\Throwable $th) {
             // return
@@ -289,13 +299,15 @@ class OrderController extends Controller
        public function cancel($id){
         try {
             $order=Order::findOrFail($id);
-            $order->status=4;
+            $order->status=5;
+
             $order->save();
 
             $user = Pharmacy::findOrFail($order->pharmacy_id)->user_id;
             // return $user;
             // send notification for pharmacy
-            event(new Messages($order, $user,' تم الغاء هذا الطلب '));
+            event(new Messages($order, $user,' تم الغاء طلب من '));
+
             return redirect('/');
 
         } catch (\Throwable $th) {
